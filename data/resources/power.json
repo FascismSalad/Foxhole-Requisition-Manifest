@@ -1,0 +1,102 @@
+{
+  "facility_power": {
+    "full_name": "Facility Power",
+    "category": "resource",
+    "subcategory": "Power",
+    "aliases": [
+      "facility_power",
+      "facility power",
+      "power"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "power_diesel_plant_diesel",
+        "recipe_name": "Diesel Power Plant",
+        "facility": "Diesel Power Plant",
+        "crafting_time_seconds": 45,
+        "inputs": {
+          "Diesel (L)": 25
+        },
+        "outputs": {
+          "Facility Power": 5
+        }
+      },
+      {
+        "recipe_key": "power_diesel_plant_coal",
+        "recipe_name": "Diesel Power Plant [Coal Power Plant]",
+        "facility": "Diesel Power Plant [Coal Power Plant]",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Coal": 60
+        },
+        "outputs": {
+          "Facility Power": 5
+        }
+      },
+      {
+        "recipe_key": "power_diesel_plant_petrol",
+        "recipe_name": "Diesel Power Plant [Petrol Power Plant]",
+        "facility": "Diesel Power Plant [Petrol Power Plant]",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Petrol (L)": 50
+        },
+        "outputs": {
+          "Facility Power": 12
+        }
+      },
+      {
+        "recipe_key": "power_station_coal_water",
+        "recipe_name": "Power Station (Coal/Water)",
+        "facility": "Power Station",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Coal": 30,
+          "Water (L)": 1
+        },
+        "outputs": {
+          "Facility Power": 10
+        }
+      },
+      {
+        "recipe_key": "power_station_oil",
+        "recipe_name": "Power Station (Oil)",
+        "facility": "Power Station",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Oil (L)": 50
+        },
+        "outputs": {
+          "Facility Power": 10
+        }
+      },
+      {
+        "recipe_key": "power_station_sulfuric_reactor_coke",
+        "recipe_name": "Power Station [Sulfuric Reactor] (Coke/Water)",
+        "facility": "Power Station [Sulfuric Reactor]",
+        "crafting_time_seconds": 120,
+        "inputs": {
+          "Coke": 30,
+          "Water (L)": 1
+        },
+        "outputs": {
+          "Facility Power": 16,
+          "Sulfur": 5
+        }
+      },
+      {
+        "recipe_key": "power_station_sulfuric_reactor_heavy_oil",
+        "recipe_name": "Power Station [Sulfuric Reactor] (Heavy Oil)",
+        "facility": "Power Station [Sulfuric Reactor]",
+        "crafting_time_seconds": 120,
+        "inputs": {
+          "Heavy Oil (L)": 50
+        },
+        "outputs": {
+          "Facility Power": 16,
+          "Sulfur": 5
+        }
+      }
+    ]
+  }
+}

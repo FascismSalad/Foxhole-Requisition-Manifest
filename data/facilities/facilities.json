@@ -1,0 +1,589 @@
+{
+  "stationary_harvester_salvage": {
+    "full_name": "Stationary Harvester (Salvage)",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (salvage)",
+      "salvage harvester"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_salvage_excavator": {
+    "full_name": "Stationary Harvester (Salvage) [Excavator]",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (salvage) [excavator]",
+      "salvage excavator"
+    ],
+    "build_costs": {}
+  },
+  "salvage_mine": {
+    "full_name": "Salvage Mine",
+    "category": "facility",
+    "aliases": [
+      "salvage mine"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_components": {
+    "full_name": "Stationary Harvester (Components)",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (components)",
+      "components harvester"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_components_excavator": {
+    "full_name": "Stationary Harvester (Components) [Excavator]",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (components) [excavator]",
+      "components excavator"
+    ],
+    "build_costs": {}
+  },
+  "component_mine": {
+    "full_name": "Component Mine",
+    "category": "facility",
+    "aliases": [
+      "component mine"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_sulfur": {
+    "full_name": "Stationary Harvester (Sulfur)",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (sulfur)",
+      "sulfur harvester"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_sulfur_excavator": {
+    "full_name": "Stationary Harvester (Sulfur) [Excavator]",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (sulfur) [excavator]",
+      "sulfur excavator"
+    ],
+    "build_costs": {}
+  },
+  "sulfur_mine": {
+    "full_name": "Sulfur Mine",
+    "category": "facility",
+    "aliases": [
+      "sulfur mine"
+    ],
+    "build_costs": {}
+  },
+  "power_station_sulfuric_reactor": {
+    "full_name": "Power Station [Sulfuric Reactor]",
+    "category": "facility",
+    "aliases": [
+      "power station [sulfuric reactor]",
+      "sulfuric reactor"
+    ],
+    "build_costs": {}
+  },
+  "power_station": {
+    "full_name": "Power Station",
+    "category": "facility",
+    "aliases": [
+      "power station"
+    ],
+    "build_costs": {}
+  },
+  "diesel_power_plant": {
+    "full_name": "Diesel Power Plant",
+    "category": "facility",
+    "aliases": [
+      "diesel power plant"
+    ],
+    "build_costs": {}
+  },
+  "diesel_power_plant_coal_power_plant": {
+    "full_name": "Diesel Power Plant [Coal Power Plant]",
+    "category": "facility",
+    "aliases": [
+      "diesel power plant [coal power plant]",
+      "coal power plant"
+    ],
+    "build_costs": {}
+  },
+  "diesel_power_plant_petrol_power_plant": {
+    "full_name": "Diesel Power Plant [Petrol Power Plant]",
+    "category": "facility",
+    "aliases": [
+      "diesel power plant [petrol power plant]",
+      "petrol power plant"
+    ],
+    "build_costs": {}
+  },
+  "coal_refinery_advanced_coal_liquefier": {
+    "full_name": "Coal Refinery [Advanced Coal Liquefier]",
+    "category": "facility",
+    "aliases": [
+      "coal refinery [advanced coal liquefier]",
+      "advanced coal liquefier"
+    ],
+    "build_costs": {}
+  },
+  "coal_refinery_coke_furnace": {
+    "full_name": "Coal Refinery [Coke Furnace]",
+    "category": "facility",
+    "aliases": [
+      "coal refinery [coke furnace]",
+      "coke furnace"
+    ],
+    "build_costs": {}
+  },
+  "coal_refinery_coal_liquefier": {
+    "full_name": "Coal Refinery [Coal Liquefier]",
+    "category": "facility",
+    "aliases": [
+      "coal refinery [coal liquefier]",
+      "coal liquefier"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_coal": {
+    "full_name": "Stationary Harvester (Coal)",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (coal)",
+      "coal harvester"
+    ],
+    "build_costs": {}
+  },
+  "stationary_harvester_coal_excavator": {
+    "full_name": "Stationary Harvester (Coal) [Excavator]",
+    "category": "facility",
+    "aliases": [
+      "stationary harvester (coal) [excavator]",
+      "coal excavator"
+    ],
+    "build_costs": {}
+  },
+  "oil_well": {
+    "full_name": "Oil Well",
+    "category": "facility",
+    "aliases": [
+      "oil well"
+    ],
+    "build_costs": {}
+  },
+  "oil_well_electric": {
+    "full_name": "Oil Well [Electric Oil Well]",
+    "category": "facility",
+    "aliases": [
+      "oil well [electric oil well]",
+      "electric oil well"
+    ],
+    "build_costs": {}
+  },
+  "oil_well_fracker": {
+    "full_name": "Oil Well [Fracker]",
+    "category": "facility",
+    "aliases": [
+      "oil well [fracker]",
+      "fracker"
+    ],
+    "build_costs": {}
+  },
+  "water_pump": {
+    "full_name": "Water Pump",
+    "category": "facility",
+    "aliases": [
+      "water pump"
+    ],
+    "build_costs": {}
+  },
+  "aircraft_maintenance_factory": {
+    "full_name": "Aircraft Maintenance Factory",
+    "category": "facility",
+    "aliases": [
+      "aircraft maintenance factory"
+    ],
+    "build_costs": {}
+  },
+  "aircraft_maintenance_factory_strategic_maintenance_hangar": {
+    "full_name": "Aircraft Maintenance Factory [Strategic Maintenance Hangar]",
+    "category": "facility",
+    "aliases": [
+      "aircraft maintenance factory [strategic maintenance hangar]",
+      "strategic maintenance hangar"
+    ],
+    "build_costs": {}
+  },
+  "materials_factory_metal_press": {
+    "full_name": "Materials Factory [Metal Press]",
+    "category": "facility",
+    "aliases": [
+      "materials factory [metal press]",
+      "metal press"
+    ],
+    "build_costs": {}
+  },
+  "materials_factory_assembly_bay": {
+    "full_name": "Materials Factory [Assembly Bay]",
+    "category": "facility",
+    "aliases": [
+      "materials factory [assembly bay]",
+      "assembly bay"
+    ],
+    "build_costs": {}
+  },
+  "materials_factory_forge": {
+    "full_name": "Materials Factory [Forge]",
+    "category": "facility",
+    "aliases": [
+      "materials factory [forge]",
+      "forge"
+    ],
+    "build_costs": {}
+  },
+  "metalworks_factory_blast_furnace": {
+    "full_name": "Metalworks Factory [Blast Furnace]",
+    "category": "facility",
+    "aliases": [
+      "metalworks factory [blast furnace]",
+      "blast furnace"
+    ],
+    "build_costs": {}
+  },
+  "metalworks_factory_engineering_station": {
+    "full_name": "Metalworks Factory [Engineering Station]",
+    "category": "facility",
+    "aliases": [
+      "metalworks factory [engineering station]",
+      "engineering station"
+    ],
+    "build_costs": {}
+  },
+  "metalworks_factory_recycler": {
+    "full_name": "Metalworks Factory [Recycler]",
+    "category": "facility",
+    "aliases": [
+      "metalworks factory [recycler]",
+      "recycler"
+    ],
+    "build_costs": {}
+  },
+  "ammunition_factory": {
+    "full_name": "Ammunition Factory",
+    "category": "facility",
+    "aliases": [
+      "ammunition factory"
+    ],
+    "build_costs": {}
+  },
+  "coal_refinery": {
+    "full_name": "Coal Refinery",
+    "category": "facility",
+    "aliases": [
+      "coal refinery"
+    ],
+    "build_costs": {}
+  },
+  "materials_factory": {
+    "full_name": "Materials Factory",
+    "category": "facility",
+    "aliases": [
+      "materials factory"
+    ],
+    "build_costs": {}
+  },
+  "materials_factory_smelter": {
+    "full_name": "Materials Factory [Smelter]",
+    "category": "facility",
+    "aliases": [
+      "materials factory [smelter]",
+      "smelter"
+    ],
+    "build_costs": {}
+  },
+  "refinery": {
+    "full_name": "Refinery",
+    "category": "facility",
+    "aliases": [
+      "refinery"
+    ],
+    "build_costs": {}
+  },
+  "offshore_platform": {
+    "full_name": "Offshore Platform",
+    "category": "facility",
+    "aliases": [
+      "offshore platform"
+    ],
+    "build_costs": {}
+  },
+  "oil_refinery": {
+    "full_name": "Oil Refinery",
+    "category": "facility",
+    "aliases": [
+      "oil refinery"
+    ],
+    "build_costs": {}
+  },
+  "oil_refinery_petrochemical_plant": {
+    "full_name": "Oil Refinery [Petrochemical Plant]",
+    "category": "facility",
+    "aliases": [
+      "oil refinery [petrochemical plant]",
+      "petrochemical plant"
+    ],
+    "build_costs": {}
+  },
+  "oil_refinery_cracking_unit": {
+    "full_name": "Oil Refinery [Cracking Unit]",
+    "category": "facility",
+    "aliases": [
+      "oil refinery [cracking unit]",
+      "cracking unit"
+    ],
+    "build_costs": {}
+  },
+  "oil_refinery_reformer": {
+    "full_name": "Oil Refinery [Reformer]",
+    "category": "facility",
+    "aliases": [
+      "oil refinery [reformer]",
+      "reformer"
+    ],
+    "build_costs": {}
+  },
+  "concrete_mixer": {
+    "full_name": "Concrete Mixer",
+    "category": "facility",
+    "aliases": [
+      "concrete mixer"
+    ],
+    "build_costs": {}
+  },
+  "factory": {
+    "full_name": "Factory",
+    "category": "facility",
+    "aliases": [
+      "factory"
+    ],
+    "build_costs": {}
+  },
+  "metalworks_factory": {
+    "full_name": "Metalworks Factory",
+    "category": "facility",
+    "aliases": [
+      "metalworks factory"
+    ],
+    "build_costs": {}
+  },
+  "ammunition_factory_rocket_battery_workshop": {
+    "full_name": "Ammunition Factory [Rocket Battery Workshop]",
+    "category": "facility",
+    "aliases": [
+      "ammunition factory [rocket battery workshop]",
+      "rocket battery workshop"
+    ],
+    "build_costs": {}
+  },
+  "ammunition_factory_large_shell_factory": {
+    "full_name": "Ammunition Factory [Large Shell Factory]",
+    "category": "facility",
+    "aliases": [
+      "ammunition factory [large shell factory]",
+      "large shell factory"
+    ],
+    "build_costs": {}
+  },
+  "mpf": {
+    "full_name": "Mass Production Factory",
+    "category": "facility",
+    "aliases": [
+      "mass production factory",
+      "mpf"
+    ],
+    "build_costs": {}
+  },
+  "ammunition_factory_tripod_factory": {
+    "full_name": "Ammunition Factory [Tripod Factory]",
+    "category": "facility",
+    "aliases": [
+      "ammunition factory [tripod factory]",
+      "tripod factory"
+    ],
+    "build_costs": {}
+  },
+  "infantry_kit_factory_special_issue_firearms_assembly": {
+    "full_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+    "category": "facility",
+    "aliases": [
+      "infantry kit factory [special-issue firearms assembly]",
+      "special-issue firearms assembly"
+    ],
+    "build_costs": {}
+  },
+  "infantry_kit_factory_small_arms_workshop": {
+    "full_name": "Infantry Kit Factory [Small Arms Workshop]",
+    "category": "facility",
+    "aliases": [
+      "infantry kit factory [small arms workshop]",
+      "small arms workshop"
+    ],
+    "build_costs": {}
+  },
+  "infantry_kit_factory_heavy_munitions_foundry": {
+    "full_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+    "category": "facility",
+    "aliases": [
+      "infantry kit factory [heavy munitions foundry]",
+      "heavy munitions foundry"
+    ],
+    "build_costs": {}
+  },
+  "garage": {
+    "full_name": "Garage",
+    "category": "facility",
+    "aliases": [
+      "garage"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station": {
+    "full_name": "Small Assembly Station",
+    "category": "facility",
+    "aliases": [
+      "small assembly station"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_motor_pool": {
+    "full_name": "Small Assembly Station [Motor Pool]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [motor pool]",
+      "motor pool"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_battery_line": {
+    "full_name": "Small Assembly Station [Battery Line]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [battery line]",
+      "battery line"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_field_station": {
+    "full_name": "Small Assembly Station [Field Station]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [field station]",
+      "field station"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_tank_factory": {
+    "full_name": "Small Assembly Station [Tank Factory]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [tank factory]",
+      "tank factory"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_weapons_platform": {
+    "full_name": "Small Assembly Station [Weapons Platform]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [weapons platform]",
+      "weapons platform"
+    ],
+    "build_costs": {}
+  },
+  "large_assembly_station_heavy_tank_assembly": {
+    "full_name": "Large Assembly Station [Heavy Tank Assembly]",
+    "category": "facility",
+    "aliases": [
+      "large assembly station [heavy tank assembly]",
+      "heavy tank assembly"
+    ],
+    "build_costs": {}
+  },
+  "large_assembly_station": {
+    "full_name": "Large Assembly Station",
+    "category": "facility",
+    "aliases": [
+      "large assembly station"
+    ],
+    "build_costs": {}
+  },
+  "large_assembly_station_train_assembly": {
+    "full_name": "Large Assembly Station [Train Assembly]",
+    "category": "facility",
+    "aliases": [
+      "large assembly station [train assembly]",
+      "train assembly"
+    ],
+    "build_costs": {}
+  },
+  "shipyard": {
+    "full_name": "Shipyard",
+    "category": "facility",
+    "aliases": [
+      "shipyard"
+    ],
+    "build_costs": {}
+  },
+  "base_ship": {
+    "full_name": "Base Ship",
+    "category": "facility",
+    "aliases": [
+      "base ship"
+    ],
+    "build_costs": {}
+  },
+  "beach": {
+    "full_name": "Beach",
+    "category": "facility",
+    "aliases": [
+      "beach"
+    ],
+    "build_costs": {}
+  },
+  "dry_dock": {
+    "full_name": "Dry Dock",
+    "category": "facility",
+    "aliases": [
+      "dry dock"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_naval_works": {
+    "full_name": "Small Assembly Station [Naval Works]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [naval works]",
+      "naval works"
+    ],
+    "build_costs": {}
+  },
+  "aircraft_hangar": {
+    "full_name": "Aircraft Hangar",
+    "category": "facility",
+    "aliases": [
+      "aircraft hangar"
+    ],
+    "build_costs": {}
+  },
+  "large_assembly_station_aircraft_assembly": {
+    "full_name": "Large Assembly Station [Aircraft Assembly]",
+    "category": "facility",
+    "aliases": [
+      "large assembly station [aircraft assembly]",
+      "aircraft assembly"
+    ],
+    "build_costs": {}
+  }
+}

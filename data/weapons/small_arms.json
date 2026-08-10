@@ -1,0 +1,444 @@
+{
+  "dusk": {
+    "full_name": "Dusk ce.III",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Assault Rifle",
+    "ammo_type": "7.92mm",
+    "crate_size": 20,
+    "aliases": [
+      "dusk",
+      "dusk ce.iii",
+      "ar"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "dusk_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Refined Materials": 15
+        },
+        "outputs": {
+          "Dusk ce.III": 20
+        }
+      },
+      {
+        "recipe_key": "dusk_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Refined Materials": 79
+        },
+        "outputs": {
+          "Dusk ce.III": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "volta_repeater": {
+    "full_name": "Volta r.I Repeater",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Heavy Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 15,
+    "aliases": [
+      "volta_repeater",
+      "volta r.i repeater",
+      "volta repeater",
+      "volta"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "volta_repeater_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Volta r.I Repeater": 15
+        }
+      },
+      {
+        "recipe_key": "volta_repeater_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Volta r.I Repeater": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
+  },
+  "krr2_790_omen": {
+    "full_name": "KRR2-790 Omen",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Long Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 15,
+    "aliases": [
+      "krr2_790_omen",
+      "krr2-790 omen",
+      "omen"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "krr2_790_omen_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 155
+        },
+        "outputs": {
+          "KRR2-790 Omen": 15
+        }
+      },
+      {
+        "recipe_key": "krr2_790_omen_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 849
+        },
+        "outputs": {
+          "KRR2-790 Omen": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
+  },
+  "cometa_t2_9": {
+    "full_name": "Cometa T2-9",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Revolver",
+    "ammo_type": ".44 Mag",
+    "crate_size": 30,
+    "aliases": [
+      "cometa_t2_9",
+      "cometa t2-9",
+      "cometa"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cometa_t2_9_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 60
+        },
+        "outputs": {
+          "Cometa T2-9": 30
+        }
+      },
+      {
+        "recipe_key": "cometa_t2_9_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 330
+        },
+        "outputs": {
+          "Cometa T2-9": 270
+        },
+        "crate_output": 9,
+        "unit_output": 270
+      }
+    ]
+  },
+  "argenti_rii_rifle": {
+    "full_name": "Argenti r.II Rifle",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 20,
+    "aliases": [
+      "argenti_rii_rifle",
+      "argenti r.ii rifle",
+      "argenti"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "argenti_rii_rifle_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 70,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Argenti r.II Rifle": 20
+        }
+      },
+      {
+        "recipe_key": "argenti_rii_rifle_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6300,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Argenti r.II Rifle": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "catena_rtiv_auto_rifle": {
+    "full_name": "Catena rt.IV Auto-Rifle",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 15,
+    "aliases": [
+      "catena_rtiv_auto_rifle",
+      "catena rt.iv auto-rifle",
+      "catena"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "catena_rtiv_auto_rifle_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 120
+        },
+        "outputs": {
+          "Catena rt.IV Auto-Rifle": 15
+        }
+      },
+      {
+        "recipe_key": "catena_rtiv_auto_rifle_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 660
+        },
+        "outputs": {
+          "Catena rt.IV Auto-Rifle": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
+  },
+  "fuscina_pii": {
+    "full_name": "Fuscina pi.I",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 20,
+    "aliases": [
+      "fuscina_pii",
+      "fuscina pi.i",
+      "fuscina"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "fuscina_pii_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Basic Materials": 140
+        },
+        "outputs": {
+          "Fuscina pi.I": 20
+        }
+      },
+      {
+        "recipe_key": "fuscina_pii_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Basic Materials": 770
+        },
+        "outputs": {
+          "Fuscina pi.I": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "krf1_750_dragonfly": {
+    "full_name": "KRF1-750 Dragonfly",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Shotgun",
+    "ammo_type": "Buckshot",
+    "crate_size": 15,
+    "aliases": [
+      "krf1_750_dragonfly",
+      "krf1-750 dragonfly",
+      "dragonfly"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "krf1_750_dragonfly_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 150,
+        "inputs": {
+          "Basic Materials": 130
+        },
+        "outputs": {
+          "KRF1-750 Dragonfly": 15
+        }
+      },
+      {
+        "recipe_key": "krf1_750_dragonfly_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 13500,
+        "inputs": {
+          "Basic Materials": 715
+        },
+        "outputs": {
+          "KRF1-750 Dragonfly": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
+  },
+  "krr3_792_auger": {
+    "full_name": "KRR3-792 Auger",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Sniper Rifle",
+    "ammo_type": "7.62mm",
+    "crate_size": 5,
+    "aliases": [
+      "krr3_792_auger",
+      "krr3-792 auger",
+      "auger"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "krr3_792_auger_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "crafting_time_seconds": 100,
+        "power_mw": 2,
+        "inputs": {
+          "Argenti r.II Rifle": 20,
+          "Construction Materials": 50,
+          "Processed Construction Materials": 40
+        },
+        "outputs": {
+          "KRR3-792 Auger": 5
+        }
+      }
+    ]
+  },
+  "lionclaw_mcviii": {
+    "full_name": "Lionclaw mc.VIII",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Submachine Gun",
+    "ammo_type": "9mm",
+    "crate_size": 20,
+    "aliases": [
+      "lionclaw_mcviii",
+      "lionclaw mc.viii",
+      "lionclaw"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "lionclaw_mcviii_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Basic Materials": 120
+        },
+        "outputs": {
+          "Lionclaw mc.VIII": 20
+        }
+      },
+      {
+        "recipe_key": "lionclaw_mcviii_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Basic Materials": 660
+        },
+        "outputs": {
+          "Lionclaw mc.VIII": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "pitch_gun_mcv": {
+    "full_name": "The Pitch Gun mc.V",
+    "category": "weapon",
+    "subcategory": "Small Arms",
+    "class": "Submachine Gun",
+    "ammo_type": "9mm",
+    "crate_size": 20,
+    "aliases": [
+      "pitch_gun_mcv",
+      "the pitch gun mc.v",
+      "pitch gun",
+      "the pitch gun"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "pitch_gun_mcv_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Basic Materials": 80
+        },
+        "outputs": {
+          "The Pitch Gun mc.V": 20
+        }
+      },
+      {
+        "recipe_key": "pitch_gun_mcv_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Basic Materials": 440
+        },
+        "outputs": {
+          "The Pitch Gun mc.V": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  }
+}

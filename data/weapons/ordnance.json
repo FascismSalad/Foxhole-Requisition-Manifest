@@ -1,0 +1,168 @@
+{
+  "moray_torpedo": {
+    "full_name": "Moray Torpedo",
+    "category": "weapon",
+    "subcategory": "Torpedoes",
+    "class": "Torpedo",
+    "aliases": [
+      "moray_torpedo",
+      "moray torpedo",
+      "moray"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "moray_torpedo_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 240,
+        "power_mw": 6,
+        "inputs": {
+          "Processed Construction Materials": 2,
+          "Heavy Explosive Powder": 16
+        },
+        "outputs": {
+          "Moray Torpedo": 1
+        }
+      }
+    ]
+  },
+  "quillback_torpedo": {
+    "full_name": "Quillback Torpedo",
+    "category": "weapon",
+    "subcategory": "Torpedoes",
+    "class": "Torpedo",
+    "crate_size": 5,
+    "aliases": [
+      "quillback_torpedo",
+      "quillback torpedo",
+      "quillback"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "quillback_torpedo_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 12
+        },
+        "outputs": {
+          "Quillback Torpedo": 1
+        }
+      },
+      {
+        "recipe_key": "quillback_torpedo_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 125,
+          "Explosive Powder": 75
+        },
+        "outputs": {
+          "Quillback Torpedo": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "quillback_torpedo_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 684,
+          "Explosive Powder": 409
+        },
+        "outputs": {
+          "Quillback Torpedo": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "model7_evie": {
+    "full_name": "Model-7 \"Evie\"",
+    "category": "weapon",
+    "subcategory": "Depth Charges",
+    "class": "Depth Charge",
+    "crate_size": 1,
+    "aliases": [
+      "model7_evie",
+      "model-7 evie",
+      "evie"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "model7_evie_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 8
+        },
+        "outputs": {
+          "Model-7 \"Evie\"": 1
+        }
+      }
+    ]
+  },
+  "shrike_rounds_912": {
+    "full_name": "912 Shrike Rounds",
+    "category": "weapon",
+    "subcategory": "Bombs",
+    "class": "Bomb",
+    "aliases": [
+      "shrike_rounds_912",
+      "912 shrike rounds",
+      "shrike rounds"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shrike_rounds_912_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 90,
+        "power_mw": 4,
+        "inputs": {
+          "Heavy Explosive Powder": 12,
+          "Processed Construction Materials": 1
+        },
+        "outputs": {
+          "912 Shrike Rounds": 1
+        }
+      }
+    ]
+  },
+  "raidbreaker_mk2": {
+    "full_name": "Mark II Raidbreaker",
+    "category": "weapon",
+    "subcategory": "Bombs",
+    "class": "Bomb",
+    "aliases": [
+      "raidbreaker_mk2",
+      "mark ii raidbreaker",
+      "raidbreaker"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "raidbreaker_mk2_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 120,
+        "power_mw": 4,
+        "inputs": {
+          "Heavy Explosive Powder": 16,
+          "Processed Construction Materials": 1
+        },
+        "outputs": {
+          "Mark II Raidbreaker": 1
+        }
+      }
+    ]
+  }
+}

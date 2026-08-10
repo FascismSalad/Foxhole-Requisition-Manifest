@@ -1,0 +1,611 @@
+{
+  "sombre_k81e": {
+    "full_name": "K-81e Sombre",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Combat Ship",
+    "type": "infantry_boat",
+    "weapon_type": "20mm Quad Machine Gun",
+    "ammo_type": "20mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "sombre_k81e",
+      "k-81e sombre",
+      "sombre"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sombre_k81e_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 200
+        },
+        "outputs": {
+          "K-81e Sombre": 1
+        }
+      },
+      {
+        "recipe_key": "sombre_k81e_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 50000,
+        "inputs": {
+          "Basic Materials": 2100
+        },
+        "outputs": {
+          "K-81e Sombre": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "strider": {
+    "full_name": "Strider",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Combat Ship",
+    "type": "gunship",
+    "weapon_type": [
+      "40mm Cannon",
+      "30mm Cannon",
+      "2x 12.7mm Machine Gun"
+    ],
+    "ammo_type": [
+      "40mm",
+      "30mm",
+      "12.7mm"
+    ],
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "strider"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "strider_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 500
+        },
+        "outputs": {
+          "Strider": 1
+        }
+      },
+      {
+        "recipe_key": "strider_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 125000,
+        "inputs": {
+          "Basic Materials": 5250
+        },
+        "outputs": {
+          "Strider": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "charon_type_c": {
+    "full_name": "Type C - Charon",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Combat Ship",
+    "type": "gunboat",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "charon_type_c",
+      "type c - charon",
+      "charon",
+      "gb"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "charon_type_c_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 154,
+        "inputs": {
+          "Refined Materials": 140
+        },
+        "outputs": {
+          "Type C - Charon": 1
+        }
+      },
+      {
+        "recipe_key": "charon_type_c_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 35000,
+        "inputs": {
+          "Refined Materials": 1470
+        },
+        "outputs": {
+          "Type C - Charon": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "lucian_type_b": {
+    "full_name": "Type B - Lucian",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Combat Ship",
+    "type": "siege_boat",
+    "weapon_type": "Shatter Missile Battery",
+    "ammo_type": "Shatter Missile",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "lucian_type_b",
+      "type b - lucian",
+      "lucian"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "lucian_type_b_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Refined Materials": 100
+        },
+        "outputs": {
+          "Type B - Lucian": 1
+        }
+      },
+      {
+        "recipe_key": "lucian_type_b_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Refined Materials": 1050
+        },
+        "outputs": {
+          "Type B - Lucian": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "interceptor_pa12": {
+    "full_name": "Interceptor PA-12",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Landing Ship",
+    "type": "landing_ship",
+    "aliases": [
+      "interceptor_pa12",
+      "interceptor pa-12",
+      "interceptor"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "interceptor_pa12_base_ship",
+        "recipe_name": "Base Ship",
+        "facility": "Base Ship",
+        "crafting_time_seconds": 11,
+        "inputs": {
+          "Basic Materials": 10
+        },
+        "outputs": {
+          "Interceptor PA-12": 1
+        }
+      }
+    ]
+  },
+  "bellweather_vac": {
+    "full_name": "Bellweather by VAC",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Logistics Ship",
+    "type": "mine_boat",
+    "weapon_type": "12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "bellweather_vac",
+      "bellweather by vac",
+      "bellweather"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bellweather_vac_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 165,
+        "inputs": {
+          "Basic Materials": 150
+        },
+        "outputs": {
+          "Bellweather by VAC": 1
+        }
+      },
+      {
+        "recipe_key": "bellweather_vac_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 37500,
+        "inputs": {
+          "Basic Materials": 1575
+        },
+        "outputs": {
+          "Bellweather by VAC": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "aquatipper": {
+    "full_name": "BMS - Aquatipper",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Logistics Ship",
+    "type": "barge",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "aquatipper",
+      "bms - aquatipper"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "aquatipper_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 165,
+        "inputs": {
+          "Basic Materials": 150
+        },
+        "outputs": {
+          "BMS - Aquatipper": 1
+        }
+      },
+      {
+        "recipe_key": "aquatipper_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 37500,
+        "inputs": {
+          "Basic Materials": 1575
+        },
+        "outputs": {
+          "BMS - Aquatipper": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "ironship": {
+    "full_name": "BMS - Ironship",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Logistics Ship",
+    "type": "freighter",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "ironship",
+      "bms - ironship"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ironship_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 500
+        },
+        "outputs": {
+          "BMS - Ironship": 1
+        }
+      },
+      {
+        "recipe_key": "ironship_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 125000,
+        "inputs": {
+          "Basic Materials": 5250
+        },
+        "outputs": {
+          "BMS - Ironship": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "das_krokodil_vac": {
+    "full_name": "Das Krokodil by VAC",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Logistics Ship",
+    "type": "light_freighter",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "das_krokodil_vac",
+      "das krokodil by vac",
+      "das krokodil"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "das_krokodil_vac_shipyard",
+        "recipe_name": "Shipyard",
+        "facility": "Shipyard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Das Krokodil by VAC": 1
+        }
+      },
+      {
+        "recipe_key": "das_krokodil_vac_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Das Krokodil by VAC": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "grouper": {
+    "full_name": "BMS - Grouper",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Small Naval",
+    "class": "Scout Ship",
+    "type": "motorboat",
+    "aliases": [
+      "grouper",
+      "bms - grouper"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "grouper_beach",
+        "recipe_name": "Beach",
+        "facility": "Beach",
+        "crafting_time_seconds": 66,
+        "inputs": {
+          "Basic Materials": 60
+        },
+        "outputs": {
+          "BMS - Grouper": 1
+        }
+      }
+    ]
+  },
+  "trident_acb": {
+    "full_name": "AC-b Trident",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Combat Ship",
+    "type": "submarine",
+    "aliases": [
+      "trident_acb",
+      "ac-b trident",
+      "trident"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "trident_acb_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 21600,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 15,
+          "Naval Shell Plating": 15
+        },
+        "outputs": {
+          "AC-b Trident": 1
+        }
+      }
+    ]
+  },
+  "conqueror": {
+    "full_name": "Conqueror",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Combat Ship",
+    "type": "destroyer",
+    "aliases": [
+      "conqueror",
+      "dd"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "conqueror_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 21600,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 12,
+          "Naval Shell Plating": 12
+        },
+        "outputs": {
+          "Conqueror": 1
+        }
+      }
+    ]
+  },
+  "longhook": {
+    "full_name": "BMS - Longhook",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Logistics Ship",
+    "type": "base_ship",
+    "aliases": [
+      "longhook",
+      "bms - longhook",
+      "lh"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "longhook_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 14400,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 8,
+          "Naval Shell Plating": 15
+        },
+        "outputs": {
+          "BMS - Longhook": 1
+        }
+      }
+    ]
+  },
+  "bluefin": {
+    "full_name": "BMS - Bluefin",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Logistics Ship",
+    "type": "storage_ship",
+    "aliases": [
+      "bluefin",
+      "bms - bluefin"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bluefin_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 28800,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 25,
+          "Naval Shell Plating": 25
+        },
+        "outputs": {
+          "BMS - Bluefin": 1
+        }
+      }
+    ]
+  },
+  "bowhead": {
+    "full_name": "BMS - Bowhead",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Logistics Ship",
+    "type": "resource_ship",
+    "aliases": [
+      "bowhead",
+      "bms - bowhead",
+      "bh"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bowhead_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 14400,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 8,
+          "Naval Shell Plating": 15
+        },
+        "outputs": {
+          "BMS - Bowhead": 1
+        }
+      }
+    ]
+  },
+  "poseidon": {
+    "full_name": "Poseidon",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Combat Ship",
+    "type": "aircraft_carrier",
+    "aliases": [
+      "poseidon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "poseidon_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 36000,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 16,
+          "Naval Shell Plating": 20
+        },
+        "outputs": {
+          "Poseidon": 1
+        }
+      }
+    ]
+  },
+  "titan": {
+    "full_name": "Titan",
+    "category": "vehicle",
+    "subcategory": "Naval Vehicle",
+    "tier": "Large Naval",
+    "class": "Combat Ship",
+    "type": "battleship",
+    "aliases": [
+      "titan",
+      "bs"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "titan_dry_dock",
+        "recipe_name": "Dry Dock",
+        "facility": "Dry Dock",
+        "crafting_time_seconds": 36000,
+        "power_mw": 10,
+        "inputs": {
+          "Naval Hull Segments": 20,
+          "Naval Shell Plating": 20,
+          "Naval Turbine Components": 4
+        },
+        "outputs": {
+          "Titan": 1
+        }
+      }
+    ]
+  }
+}

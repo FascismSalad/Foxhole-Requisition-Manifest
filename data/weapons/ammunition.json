@@ -1,0 +1,1436 @@
+{
+  "cal_792mm": {
+    "full_name": "7.92mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 30,
+    "aliases": [
+      "7.92mm",
+      "7.92"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_792mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 60,
+        "inputs": {
+          "Basic Materials": 120
+        },
+        "outputs": {
+          "7.92mm": 30
+        },
+        "crate_output": 1,
+        "unit_output": 30
+      },
+      {
+        "recipe_key": "cal_792mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5400,
+        "inputs": {
+          "Basic Materials": 660
+        },
+        "outputs": {
+          "7.92mm": 270
+        },
+        "crate_output": 9,
+        "unit_output": 270
+      }
+    ]
+  },
+  "cal_762mm": {
+    "full_name": "7.62mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 40,
+    "aliases": [
+      "7.62mm",
+      "7.62"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_762mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 80
+        },
+        "outputs": {
+          "7.62mm": 40
+        },
+        "crate_output": 1,
+        "unit_output": 40
+      },
+      {
+        "recipe_key": "cal_762mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 440
+        },
+        "outputs": {
+          "7.62mm": 360
+        },
+        "crate_output": 9,
+        "unit_output": 360
+      }
+    ]
+  },
+  "cal_9mm": {
+    "full_name": "9mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 40,
+    "aliases": [
+      "9mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_9mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 80
+        },
+        "outputs": {
+          "9mm": 40
+        },
+        "crate_output": 1,
+        "unit_output": 40
+      },
+      {
+        "recipe_key": "cal_9mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 440
+        },
+        "outputs": {
+          "9mm": 360
+        },
+        "crate_output": 9,
+        "unit_output": 360
+      }
+    ]
+  },
+  "cal_8mm": {
+    "full_name": "8mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 40,
+    "aliases": [
+      "8mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_8mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 20,
+        "inputs": {
+          "Basic Materials": 40
+        },
+        "outputs": {
+          "8mm": 40
+        },
+        "crate_output": 1,
+        "unit_output": 40
+      },
+      {
+        "recipe_key": "cal_8mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 1800,
+        "inputs": {
+          "Basic Materials": 220
+        },
+        "outputs": {
+          "8mm": 360
+        },
+        "crate_output": 9,
+        "unit_output": 360
+      }
+    ]
+  },
+  "cal_44mag": {
+    "full_name": ".44 Mag",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 40,
+    "aliases": [
+      ".44 mag",
+      ".44mag",
+      "44 mag"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_44mag_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 40,
+        "inputs": {
+          "Basic Materials": 40
+        },
+        "outputs": {
+          ".44 Mag": 40
+        },
+        "crate_output": 1,
+        "unit_output": 40
+      },
+      {
+        "recipe_key": "cal_44mag_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 3600,
+        "inputs": {
+          "Basic Materials": 220
+        },
+        "outputs": {
+          ".44 Mag": 360
+        },
+        "crate_output": 9,
+        "unit_output": 360
+      }
+    ]
+  },
+  "buckshot": {
+    "full_name": "Buckshot",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 40,
+    "aliases": [
+      "buckshot"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "buckshot_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 80
+        },
+        "outputs": {
+          "Buckshot": 40
+        },
+        "crate_output": 1,
+        "unit_output": 40
+      },
+      {
+        "recipe_key": "buckshot_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 440
+        },
+        "outputs": {
+          "Buckshot": 360
+        },
+        "crate_output": 9,
+        "unit_output": 360
+      }
+    ]
+  },
+  "cal_127mm": {
+    "full_name": "12.7mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 20,
+    "aliases": [
+      "12.7mm",
+      "12.7"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_127mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 70,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "12.7mm": 20
+        },
+        "crate_output": 1,
+        "unit_output": 20
+      },
+      {
+        "recipe_key": "cal_127mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6300,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "12.7mm": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "cal_145mm": {
+    "full_name": "14.5mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "crate_size": 10,
+    "aliases": [
+      "14.5mm",
+      "14.5"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_145mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "14.5mm": 10
+        },
+        "crate_output": 1,
+        "unit_output": 10
+      },
+      {
+        "recipe_key": "cal_145mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "14.5mm": 90
+        },
+        "crate_output": 9,
+        "unit_output": 90
+      },
+      {
+        "recipe_key": "cal_145mm_infantry_kit_small_arms_workshop",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 12,
+        "inputs": {
+          "Construction Materials": 110
+        },
+        "outputs": {
+          "14.5mm": 100
+        },
+        "crate_output": 10,
+        "unit_output": 100
+      }
+    ]
+  },
+  "cal_20mm": {
+    "full_name": "20mm",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "aliases": [
+      "20mm"
+    ]
+  },
+  "absol_aa_rounds": {
+    "full_name": "Absol Anti-Aircraft Rounds",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "aliases": [
+      "absol anti-aircraft rounds",
+      "absol rounds"
+    ]
+  },
+  "flame_ammo": {
+    "full_name": "Flame Ammo",
+    "category": "ammunition",
+    "subcategory": "Magazines",
+    "is_caliber": true,
+    "aliases": [
+      "flame ammo"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "flame_ammo_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 1,
+          "Heavy Explosive Powder": 4
+        },
+        "outputs": {
+          "Flame Ammo": 1
+        }
+      }
+    ]
+  },
+  "cal_30mm": {
+    "full_name": "30mm",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "crate_size": 20,
+    "aliases": [
+      "30mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_30mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 80,
+          "Explosive Powder": 40
+        },
+        "outputs": {
+          "30mm": 20
+        },
+        "crate_output": 1,
+        "unit_output": 20
+      },
+      {
+        "recipe_key": "cal_30mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 440,
+          "Explosive Powder": 220
+        },
+        "outputs": {
+          "30mm": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      },
+      {
+        "recipe_key": "cal_30mm_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 45,
+          "Explosive Powder": 220
+        },
+        "outputs": {
+          "30mm": 200
+        },
+        "crate_output": 10,
+        "unit_output": 200
+      }
+    ]
+  },
+  "shell_40mm": {
+    "full_name": "40mm",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "crate_size": 20,
+    "aliases": [
+      "40mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_40mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 200,
+        "inputs": {
+          "Basic Materials": 160,
+          "Explosive Powder": 240
+        },
+        "outputs": {
+          "40mm": 20
+        },
+        "crate_output": 1,
+        "unit_output": 20
+      },
+      {
+        "recipe_key": "shell_40mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 18000,
+        "inputs": {
+          "Basic Materials": 880,
+          "Explosive Powder": 1320
+        },
+        "outputs": {
+          "40mm": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      },
+      {
+        "recipe_key": "shell_40mm_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 18000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 175,
+          "Explosive Powder": 1320
+        },
+        "outputs": {
+          "40mm": 200
+        },
+        "crate_output": 10,
+        "unit_output": 200
+      }
+    ]
+  },
+  "shell_68mm": {
+    "full_name": "68mm",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "crate_size": 20,
+    "aliases": [
+      "68mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_68mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 200,
+        "inputs": {
+          "Basic Materials": 120,
+          "Explosive Powder": 240
+        },
+        "outputs": {
+          "68mm": 20
+        },
+        "crate_output": 1,
+        "unit_output": 20
+      },
+      {
+        "recipe_key": "shell_68mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 18000,
+        "inputs": {
+          "Basic Materials": 660,
+          "Explosive Powder": 1320
+        },
+        "outputs": {
+          "68mm": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      },
+      {
+        "recipe_key": "shell_68mm_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 18000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 130,
+          "Explosive Powder": 1320
+        },
+        "outputs": {
+          "68mm": 200
+        },
+        "crate_output": 10,
+        "unit_output": 200
+      }
+    ]
+  },
+  "shell_75mm": {
+    "full_name": "75mm",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "aliases": [
+      "75mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_75mm_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 60,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 8
+        },
+        "outputs": {
+          "75mm": 1
+        }
+      }
+    ]
+  },
+  "shell_945mm": {
+    "full_name": "94.5mm",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "aliases": [
+      "94.5mm",
+      "94.5"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_945mm_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 60,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 8
+        },
+        "outputs": {
+          "94.5mm": 1
+        }
+      }
+    ]
+  },
+  "shell_950_70b_aa": {
+    "full_name": "950-70b Anti-Aircraft Shell",
+    "category": "ammunition",
+    "subcategory": "Shells",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "950-70b anti-aircraft shell",
+      "950-70b"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_950_70b_aa_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 25,
+        "inputs": {
+          "Heavy Explosive Powder": 3,
+          "Construction Materials": 2
+        },
+        "outputs": {
+          "950-70b Anti-Aircraft Shell": 1
+        }
+      },
+      {
+        "recipe_key": "shell_950_70b_aa_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 65,
+        "inputs": {
+          "Basic Materials": 100,
+          "Heavy Explosive Powder": 15
+        },
+        "outputs": {
+          "950-70b Anti-Aircraft Shell": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "shell_950_70b_aa_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5850,
+        "inputs": {
+          "Basic Materials": 550,
+          "Heavy Explosive Powder": 79
+        },
+        "outputs": {
+          "950-70b Anti-Aircraft Shell": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "artillery_120mm": {
+    "full_name": "120mm",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "120mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "artillery_120mm_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 2
+        },
+        "outputs": {
+          "120mm": 1
+        }
+      },
+      {
+        "recipe_key": "artillery_120mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 55,
+        "inputs": {
+          "Basic Materials": 120,
+          "Heavy Explosive Powder": 10
+        },
+        "outputs": {
+          "120mm": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "artillery_120mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4950,
+        "inputs": {
+          "Basic Materials": 660,
+          "Heavy Explosive Powder": 55
+        },
+        "outputs": {
+          "120mm": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "artillery_150mm": {
+    "full_name": "150mm",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "150mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "artillery_150mm_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 40,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 3,
+          "Heavy Explosive Powder": 12
+        },
+        "outputs": {
+          "150mm": 1
+        }
+      },
+      {
+        "recipe_key": "artillery_150mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 65,
+        "inputs": {
+          "Basic Materials": 120,
+          "Heavy Explosive Powder": 60
+        },
+        "outputs": {
+          "150mm": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "artillery_150mm_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5850,
+        "inputs": {
+          "Basic Materials": 660,
+          "Heavy Explosive Powder": 330
+        },
+        "outputs": {
+          "150mm": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "artillery_300mm": {
+    "full_name": "300mm",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "aliases": [
+      "300mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "artillery_300mm_ammunition_factory_large_shell_factory",
+        "recipe_name": "Ammunition Factory [Large Shell Factory]",
+        "facility": "Ammunition Factory [Large Shell Factory]",
+        "crafting_time_seconds": 120,
+        "power_mw": 6,
+        "inputs": {
+          "Unstable Substances": 2,
+          "Assembly Materials IV": 10
+        },
+        "outputs": {
+          "300mm": 1
+        }
+      }
+    ]
+  },
+  "rocket_3c_he": {
+    "full_name": "3C-High Explosive Rocket",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "aliases": [
+      "3c-high explosive rocket",
+      "3c rocket"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "rocket_3c_he_ammunition_factory_rocket_battery_workshop",
+        "recipe_name": "Ammunition Factory [Rocket Battery Workshop]",
+        "facility": "Ammunition Factory [Rocket Battery Workshop]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 4
+        },
+        "outputs": {
+          "3C-High Explosive Rocket": 1
+        }
+      }
+    ]
+  },
+  "rocket_4c_fire": {
+    "full_name": "4C-Fire Rocket",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "aliases": [
+      "4c-fire rocket",
+      "4c rocket"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "rocket_4c_fire_ammunition_factory_rocket_battery_workshop",
+        "recipe_name": "Ammunition Factory [Rocket Battery Workshop]",
+        "facility": "Ammunition Factory [Rocket Battery Workshop]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2,
+          "Heavy Explosive Powder": 4
+        },
+        "outputs": {
+          "4C-Fire Rocket": 1
+        }
+      }
+    ]
+  },
+  "mortar_shell_flare": {
+    "full_name": "Flare Mortar Shell",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "flare mortar shell",
+      "flare shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mortar_shell_flare_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 15
+        },
+        "outputs": {
+          "Flare Mortar Shell": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "mortar_shell_flare_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 79
+        },
+        "outputs": {
+          "Flare Mortar Shell": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "mortar_shell_flare_infantry_kit_small_arms_workshop",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 12,
+        "inputs": {
+          "Explosive Powder": 80,
+          "Construction Materials": 65
+        },
+        "outputs": {
+          "Flare Mortar Shell": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "mortar_shell_incendiary": {
+    "full_name": "Incendiary Mortar Shell",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "incendiary mortar shell",
+      "incendiary shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mortar_shell_incendiary_infantry_kit_special_issue_firearms_assembly",
+        "recipe_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "crafting_time_seconds": 75,
+        "power_mw": 2,
+        "inputs": {
+          "Shrapnel Mortar Shell": 15,
+          "Construction Materials": 5,
+          "Flame Ammo": 1
+        },
+        "outputs": {
+          "Incendiary Mortar Shell": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      }
+    ]
+  },
+  "mortar_shell": {
+    "full_name": "Mortar Shell",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "mortar shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mortar_shell_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 70
+        },
+        "outputs": {
+          "Mortar Shell": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "mortar_shell_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 385
+        },
+        "outputs": {
+          "Mortar Shell": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "mortar_shell_infantry_kit_small_arms_workshop",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 12,
+        "inputs": {
+          "Explosive Powder": 385,
+          "Construction Materials": 65
+        },
+        "outputs": {
+          "Mortar Shell": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "mortar_shell_shrapnel": {
+    "full_name": "Shrapnel Mortar Shell",
+    "category": "ammunition",
+    "subcategory": "Artillery Ammo",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "shrapnel mortar shell",
+      "shrapnel shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mortar_shell_shrapnel_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 20
+        },
+        "outputs": {
+          "Shrapnel Mortar Shell": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "mortar_shell_shrapnel_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 110
+        },
+        "outputs": {
+          "Shrapnel Mortar Shell": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "mortar_shell_shrapnel_infantry_kit_small_arms_workshop",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 12,
+        "inputs": {
+          "Explosive Powder": 110,
+          "Construction Materials": 65
+        },
+        "outputs": {
+          "Shrapnel Mortar Shell": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "shell_250mm_fury": {
+    "full_name": "250mm \"Fury\" Shell",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "250mm fury shell",
+      "fury shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_250mm_fury_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 30,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 15,
+          "Heavy Explosive Powder": 24,
+          "250mm \"Purity\" Shell": 1
+        },
+        "outputs": {
+          "250mm \"Fury\" Shell": 1
+        }
+      },
+      {
+        "recipe_key": "shell_250mm_fury_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 250,
+        "inputs": {
+          "Basic Materials": 250,
+          "Heavy Explosive Powder": 200
+        },
+        "outputs": {
+          "250mm \"Fury\" Shell": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "shell_250mm_fury_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 22500,
+        "inputs": {
+          "Basic Materials": 1375,
+          "Heavy Explosive Powder": 1100
+        },
+        "outputs": {
+          "250mm \"Fury\" Shell": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "shell_250mm_purity": {
+    "full_name": "250mm \"Purity\" Shell",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "250mm purity shell",
+      "purity shell"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shell_250mm_purity_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 30,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 5,
+          "Heavy Explosive Powder": 24
+        },
+        "outputs": {
+          "250mm \"Purity\" Shell": 1
+        }
+      },
+      {
+        "recipe_key": "shell_250mm_purity_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 150,
+        "inputs": {
+          "Basic Materials": 120,
+          "Heavy Explosive Powder": 100
+        },
+        "outputs": {
+          "250mm \"Purity\" Shell": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "shell_250mm_purity_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 13500,
+        "inputs": {
+          "Basic Materials": 660,
+          "Heavy Explosive Powder": 550
+        },
+        "outputs": {
+          "250mm \"Purity\" Shell": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "ammo_ap_rpg": {
+    "full_name": "AP/RPG",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "ap/rpg"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ammo_ap_rpg_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 150
+        },
+        "outputs": {
+          "AP/RPG": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "ammo_ap_rpg_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 825
+        },
+        "outputs": {
+          "AP/RPG": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "ammo_ap_rpg_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 65,
+          "Explosive Powder": 825
+        },
+        "outputs": {
+          "AP/RPG": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "ammo_arc_rpg": {
+    "full_name": "ARC/RPG",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "arc/rpg"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ammo_arc_rpg_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 150
+        },
+        "outputs": {
+          "ARC/RPG": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "ammo_arc_rpg_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 825
+        },
+        "outputs": {
+          "ARC/RPG": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "ammo_arc_rpg_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 65,
+          "Explosive Powder": 825
+        },
+        "outputs": {
+          "ARC/RPG": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "ammo_rpg": {
+    "full_name": "RPG",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 15,
+    "aliases": [
+      "rpg"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ammo_rpg_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 60,
+          "Explosive Powder": 90
+        },
+        "outputs": {
+          "RPG": 15
+        },
+        "crate_output": 1,
+        "unit_output": 15
+      },
+      {
+        "recipe_key": "ammo_rpg_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 330,
+          "Explosive Powder": 495
+        },
+        "outputs": {
+          "RPG": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "ammo_rpg_infantry_kit_heavy_munitions_foundry",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 9000,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 65,
+          "Explosive Powder": 495
+        },
+        "outputs": {
+          "RPG": 150
+        },
+        "crate_output": 10,
+        "unit_output": 150
+      }
+    ]
+  },
+  "ammo_shatter_missile": {
+    "full_name": "Shatter Missile",
+    "category": "ammunition",
+    "subcategory": "Propelled Explosives",
+    "is_caliber": true,
+    "crate_size": 5,
+    "aliases": [
+      "shatter missile"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ammo_shatter_missile_ammunition_factory_rocket_battery_workshop",
+        "recipe_name": "Ammunition Factory [Rocket Battery Workshop]",
+        "facility": "Ammunition Factory [Rocket Battery Workshop]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 15,
+          "Heavy Explosive Powder": 28
+        },
+        "outputs": {
+          "Shatter Missile": 1
+        }
+      },
+      {
+        "recipe_key": "ammo_shatter_missile_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 250,
+        "inputs": {
+          "Basic Materials": 250,
+          "Heavy Explosive Powder": 250
+        },
+        "outputs": {
+          "Shatter Missile": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      },
+      {
+        "recipe_key": "ammo_shatter_missile_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 22500,
+        "inputs": {
+          "Basic Materials": 1375,
+          "Heavy Explosive Powder": 1375
+        },
+        "outputs": {
+          "Shatter Missile": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "molten_wind_vii_ammo": {
+    "full_name": "Molten Wind v.II Ammo",
+    "category": "ammunition",
+    "subcategory": "Flamethrower Ammo",
+    "is_caliber": true,
+    "crate_size": 10,
+    "aliases": [
+      "molten wind v.ii ammo",
+      "molten wind ammo"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "molten_wind_vii_ammo_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 160,
+          "Heavy Explosive Powder": 20
+        },
+        "outputs": {
+          "Molten Wind v.II Ammo": 10
+        },
+        "crate_output": 1,
+        "unit_output": 10
+      }
+    ]
+  }
+}

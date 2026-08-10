@@ -1,0 +1,1164 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil:wght@700;900&family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #191c15;
+  --panel: #21241a;
+  --panel-raised: #2a2d20;
+  --line: #494b3b;
+  --line-faint: #34362a;
+  --brass: #c99a44;
+  --brass-dim: #8a6d38;
+  --brass-dim-bright: #9c7d44;
+  --brass-bright: #d3a952;
+  --brass-light: #ddba6c;
+  --rust: #b5522a;
+  --rust-bright: #cc6b3e;
+  --paper: #ede6d6;
+  --paper-dim: #9c9884;
+  --steel: #5c7a80;
+  --steel-bright: #7699a0;
+  --mint: #7fcfa0;
+  --teal: #199e70;
+  --teal-bright: #3ecf96;
+  --violet: #9085e9;
+  --rose: #d55181;
+  --rose-bright: #e8749f;
+  --brown: #7a4d2a;
+  --brown-bright: #ab7443;
+  --leaf: #6f9c3f;
+  --leaf-bright: #a3d16d;
+  --sky: #4f83ab;
+  --sky-bright: #7bb8e0;
+  --navy: #445c96;
+  --navy-bright: #7091d6;
+  --output-blue: #5fb0e6;
+  --output-blue-bright: #8ecdf2;
+  --yellow: #c9b93a;
+  --yellow-bright: #e8d85a;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  /* reserves the scrollbar's width up front so content doesn't shift
+     sideways the moment the page grows past one screen's height */
+  scrollbar-gutter: stable;
+  /* Bumps every text size and icon (all sized in px) up together, in one
+     place, instead of hand-editing dozens of individual font-size/width/
+     height declarations throughout the file. */
+  zoom: 1.12;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(201,154,68,0.04), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(92,122,128,0.05), transparent 45%);
+  color: var(--paper);
+  font-family: 'Barlow Condensed', sans-serif;
+  min-height: 100vh;
+}
+
+::selection { background: var(--brass); color: #191c15; }
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  border-bottom: 3px double var(--line);
+  padding: 28px 24px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.masthead::before {
+  content: "";
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  color: var(--paper-dim);
+}
+
+.masthead h1 {
+  font-family: 'Big Shoulders Stencil', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 6vw, 58px);
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: var(--brass);
+  text-shadow: 0 2px 0 rgba(0,0,0,0.4);
+  line-height: 1;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+.title-bar {
+  flex-shrink: 0;
+  width: 14px;
+  height: 46px;
+  background: linear-gradient(180deg, var(--brass), var(--brass-dim));
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
+  position: relative;
+  opacity: 0.9;
+}
+
+.title-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% + 5px);
+  width: 3px;
+  background: var(--rust);
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
+  opacity: 0.75;
+}
+
+.title-row .title-bar:first-child::after { display: none; }
+
+.title-row .title-bar:last-child {
+  clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 35% 100%);
+}
+
+.title-row .title-bar:last-child::after {
+  left: auto;
+  right: calc(100% + 5px);
+  clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 35% 100%);
+}
+
+@media (max-width: 700px) {
+  .title-row { gap: 22px; }
+  .title-bar { width: 11px; height: 34px; }
+}
+
+@media (max-width: 560px) {
+  .title-bar { display: none; }
+}
+
+.masthead .subtitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--paper-dim);
+  letter-spacing: 0.12em;
+  margin-top: 10px;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+/* ---------- Search ---------- */
+
+.search-block { position: relative; margin-bottom: 18px; }
+
+.search-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim-bright);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.search-input-container { position: relative; }
+
+.search-input-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  padding: 13px 16px;
+  transition: border-color 0.15s ease;
+}
+
+.search-input-wrap:hover,
+.search-input-wrap.open { border-color: var(--brass); }
+
+.search-input-main {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: var(--paper);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  outline: none;
+}
+
+.search-input-main::placeholder { color: var(--paper-dim); }
+
+.dropdown-caret {
+  color: var(--brass-dim-bright);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.search-input-wrap.open .dropdown-caret { transform: rotate(180deg); color: var(--brass-bright); }
+
+/* Same animated-collapse technique as .ticket-body-wrap: grid-template-rows
+   can transition to 0fr without knowing the content's height ahead of time,
+   so the dropdown grows/shrinks smoothly instead of just snapping open. The
+   inner .autocomplete-list is what actually scrolls/clips/fades — see
+   below — this outer element only ever sizes the grid row. */
+.autocomplete {
+  display: grid;
+  grid-template-rows: 0fr;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin-top: 4px;
+  background: var(--panel-raised);
+  border: 2px solid var(--brass);
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.autocomplete.open { grid-template-rows: 1fr; }
+
+.autocomplete-list {
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 570px;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.autocomplete.open .autocomplete-list { opacity: 1; transition: opacity 0.22s ease 0.08s; }
+
+.autocomplete-list::-webkit-scrollbar { width: 8px; }
+.autocomplete-list::-webkit-scrollbar-track { background: var(--panel); }
+.autocomplete-list::-webkit-scrollbar-thumb { background: var(--line); }
+.autocomplete-list::-webkit-scrollbar-thumb:hover { background: var(--brass-dim); }
+
+.ac-item {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line-faint);
+  font-size: 18px;
+}
+
+.ac-item:last-child { border-bottom: none; }
+.ac-item:hover { background: rgba(201,154,68,0.12); }
+
+.ac-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 3px 7px;
+  border: 1px solid var(--line);
+  color: var(--paper-dim);
+  white-space: nowrap;
+}
+
+.ac-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: 12px;
+  max-width: 60%;
+}
+
+/* Detail tags (everything after the colored lead tag) are normalized by
+   POSITION, not by field: the last one always keeps the plain neutral mint
+   it always had, and a middle one (a row with 3 tags total, e.g. category +
+   subcategory + class) gets its own distinct color instead of blending into
+   the same mint as the last tag. */
+.ac-tag-detail-last { color: var(--mint); border-color: var(--mint); }
+.ac-tag-detail-mid { color: var(--teal-bright); border-color: var(--teal); }
+
+/* One hue per item category so the tags are tellable apart at a glance,
+   not just by reading the label text. Vehicles split into four visually
+   distinct subtypes (land/aircraft/naval/field weapon) since "VEHICLE" alone
+   would otherwise cover four very different kinds of thing. */
+.ac-tag-cat-vehicle { color: var(--brown-bright); border-color: var(--brown); }
+.ac-tag-cat-aircraft { color: var(--leaf-bright); border-color: var(--leaf); }
+.ac-tag-cat-naval { color: var(--sky-bright); border-color: var(--sky); }
+.ac-tag-cat-fieldweapon { color: var(--steel-bright); border-color: var(--steel); }
+.ac-tag-cat-weapon { color: var(--rust-bright); border-color: var(--rust); }
+.ac-tag-cat-ammunition { color: var(--brass-bright); border-color: var(--brass-dim); }
+.ac-tag-cat-material { color: var(--violet); border-color: var(--violet); }
+.ac-tag-cat-item { color: var(--navy-bright); border-color: var(--navy); }
+.ac-tag-cat-resource { color: var(--rose); border-color: var(--rose); }
+
+.ac-item-label { flex: 1; }
+
+.ac-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.ac-empty {
+  color: var(--paper-dim);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: default;
+}
+.ac-empty:hover { background: transparent; }
+
+/* ---------- Three-column layout ---------- */
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+/* A narrow always-visible gathering list, pinned to the left — what to
+   actually go collect, without scrolling through the whole chain to find
+   the LIQUIDS/RAW total steps. Same sticky treatment as .outputs-panel,
+   plus its own scroll region so a long list scrolls in place once it
+   reaches the bottom of the viewport, instead of pushing the sidebar
+   taller than the screen and dragging the whole page with it. The
+   max-height here is a fallback — updateRawPanelHeight in app.js overrides
+   it with a value measured from the panel's actual on-screen position
+   (more accurate: this flat 100vh figure can't account for the panel's
+   real top position before it's actually stuck at its sticky offset), but
+   this keeps the panel bounded even if that JS hasn't run yet/fails.
+   Scrollbar is hidden (still scrolls via wheel/trackpad/keyboard) to keep
+   the sidebar's edge clean. */
+.raw-panel {
+  flex: 0 0 220px;
+  min-width: 0;
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.raw-panel::-webkit-scrollbar { display: none; }
+
+/* The production chain is the working document now — it grows to fill the
+   middle of the page instead of being squeezed into a fixed sidebar. */
+.inputs-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Tickets sit in a single narrow column pinned to the right — a short,
+   glanceable summary next to the (now much longer) chain, so this is the
+   one that stays sticky as you scroll through it. */
+.outputs-panel {
+  flex: 0 0 400px;
+  min-width: 0;
+  position: sticky;
+  top: 20px;
+}
+
+.panel-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim-bright);
+  margin-bottom: 12px;
+}
+.panel-label-spaced { margin-top: 24px; }
+
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .inputs-panel { order: 1; }
+  .raw-panel { flex: 1 1 auto; width: 100%; position: static; order: 2; max-height: none; overflow-y: visible; }
+  .outputs-panel { flex: 1 1 auto; width: 100%; position: static; order: 3; }
+}
+
+/* ---------- Results / outputs area ---------- */
+
+/* Always a single column — the panel itself is now a fixed narrow width,
+   so tickets stack top to bottom instead of tiling sideways. */
+#results {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 24px;
+}
+
+/* ---------- Production chain panel (left side) ---------- */
+
+#chainPanel { display: flex; flex-direction: column; gap: 16px; }
+
+.chain-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 14px 18px 16px;
+}
+
+.chain-card-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--brass-bright);
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line-faint);
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Key for the icon boxes used throughout the chain below: dashed-vs-solid
+   (see .step-icon-dashed) — a NEEDS-side chip is always dashed (consumed),
+   a YIELDS-side chip is always solid (produced), regardless of the item —
+   plus the four category colors (see .step-color-* / stepColorClass in
+   render.js) carried by every chip's border and text. */
+.chain-legend {
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--paper-dim);
+  flex-shrink: 0;
+}
+.chain-legend-item { display: flex; align-items: center; gap: 5px; }
+.chain-legend-swatch { width: 12px; height: 12px; border: 2px solid var(--line); flex-shrink: 0; }
+.chain-legend-swatch-dashed { border-style: dashed; opacity: 0.85; }
+.chain-legend-swatch-solid { border-style: solid; background: var(--panel-raised); }
+.chain-legend-divider { width: 1px; height: 12px; background: var(--line); flex-shrink: 0; }
+.chain-legend-color-liquid { border-style: solid; background: var(--output-blue); }
+.chain-legend-color-resource { border-style: solid; background: var(--brown); }
+.chain-legend-color-power { border-style: solid; background: var(--yellow); }
+.chain-legend-color-craft { border-style: solid; background: var(--leaf); }
+.chain-legend-color-final { border-style: solid; background: var(--rose); }
+
+.chain-outputs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed var(--line-faint);
+}
+
+.chain-output-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--paper);
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+}
+
+.chain-output-qty { color: var(--brass-bright); }
+
+/* min-width:0 down this whole chain: flex/grid items default to
+   min-width:auto, which is their content's un-shrunk size — without
+   overriding it, a long item name refuses to give up space and instead
+   pushes the row (and the card, and the panel) wider than it should be,
+   spilling out past the chain panel's edge instead of wrapping. */
+.chain-card { min-width: 0; }
+
+.step-list { display: flex; flex-direction: column; min-width: 0; }
+
+/* One numbered step per row, read straight down: raw resources to gather
+   first, then each crafting stage in order, ending with the direct inputs
+   for the ticket itself as the last step(s) at the bottom. */
+.step-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 8px;
+  border-top: 1px dashed var(--line-faint);
+  min-width: 0;
+  transition: background 0.15s ease;
+}
+.step-row:first-child { border-top: none; }
+
+/* Recipe-picker affordance: hovering/opening the flow line (craft steps) or
+   the flat line (pooled steps) shades the *whole* step row — number badge,
+   facility line, and all — the same flat-tint "box" look as .step-row-direct
+   below, rather than a border, so the whole numbered step reads as one
+   clickable unit. */
+.step-row:has(.step-yield-toggle:hover) { background: rgba(201, 154, 68, 0.07); }
+.step-row:has(.step-yield-toggle.open) { background: rgba(201, 185, 58, 0.09); }
+
+/* The last step(s) — the direct inputs for what you actually requested —
+   are called out via the DIRECT INPUT text tag (step-direct-tag) alone; the
+   row itself matches every other step's color. */
+
+/* Plain sequence marker (1, 2, 3...) — never a quantity, so it can't be
+   mistaken for one of the amounts in the row. */
+.step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-raised);
+  border: 2px solid var(--leaf);
+  color: var(--leaf-bright);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 15px;
+}
+/* Step-type color coding: liquids (blue), raw resources (brown), and power
+   (yellow) each get their own step-number color so the tier is readable at
+   a glance; every other step (crafting/refining/assembly) stays the
+   default green. */
+.step-num-liquid { border-color: var(--output-blue); color: var(--output-blue-bright); }
+.step-num-resource { border-color: var(--brown); color: var(--brown-bright); }
+.step-num-power { border-color: var(--yellow); color: var(--yellow-bright); }
+
+/* Two stacked lines per step: facility/context on top, the icon-forward
+   input -> output flow right below it. */
+.step-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 1; }
+
+/* Wraps both lines (facility + flow) as ONE clickable unit for the
+   recipe-picker toggle — the shaded/hover area on .step-row (see
+   .step-yield-toggle below) covers this whole head, so the click hitbox
+   needs to match it exactly, not just the flow line underneath. Excludes
+   the recipe detail panel itself (a sibling in .step-body, not in here) so
+   clicking a .recipe-option-card inside it still selects a recipe instead
+   of also closing the picker. */
+.step-head { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+/* Line A — pure context: facility icon + name + batch count, DIRECT INPUT
+   tag, time, and the recipe-picker toggle. No items live on this line. */
+.step-line-facility {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
+}
+/* No fixed size on the wrapper: if the facility has no icon (e.g. "Beach"),
+   iconTag's onerror already removes the <img>, and this collapses to 0
+   width instead of leaving a blank box. */
+.step-facility-icon-wrap { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.step-facility-icon { width: 28px; height: 28px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); }
+.step-facility-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+
+/* Hand-drawn clock glyph (circle + two hands from borders), same technique
+   as .ticket-caret / .crate-toggle-box::after elsewhere — no image/emoji. */
+.step-clock-icon { display: inline-block; width: 9px; height: 9px; border: 1.5px solid var(--steel-bright); border-radius: 50%; position: relative; flex-shrink: 0; margin-right: 3px; }
+.step-clock-icon::before { content: ""; position: absolute; left: 50%; top: 50%; width: 1.5px; height: 3px; background: var(--steel-bright); transform-origin: bottom; transform: translate(-50%, -100%) rotate(15deg); }
+.step-clock-icon::after { content: ""; position: absolute; left: 50%; top: 50%; width: 2.5px; height: 1.5px; background: var(--steel-bright); transform-origin: left; transform: translate(0, -50%) rotate(80deg); }
+
+/* Line B — the icon-forward conversion itself: inputs -> arrow -> output,
+   flat rather than boxed trays. Shared by every step type (craft, gather,
+   and pooled totals) so they all read as the same kind of row. */
+.step-line-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* How many times the facility has to run to turn NEEDS into YIELDS, and
+   the time that takes, stacked together right before the arrow so both
+   read as part of the conversion itself ("these inputs, run N times over
+   T, become that output") — not as a building count/clock up on the
+   facility line, competing with the facility name for space. */
+.step-flow-runs-time {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+}
+.step-flow-runs { color: var(--steel-bright); letter-spacing: 0.06em; }
+
+.step-flow-arrow { flex-shrink: 0; color: var(--brass-dim-bright); align-self: center; font-size: 26px; font-weight: 700; padding: 0 2px; }
+
+.step-flow-side { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; min-width: 0; }
+.step-flow-inputs { flex: 1 1 auto; }
+.step-flow-output { flex: 0 1 auto; }
+
+.step-output-plus { color: var(--paper-dim); font-size: 14px; flex-shrink: 0; align-self: center; }
+
+.step-direct-tag { color: var(--brass-bright); letter-spacing: 0.08em; font-weight: 600; margin-bottom: 2px; }
+
+.step-facility-inline { color: var(--steel-bright); letter-spacing: 0.03em; }
+.step-time { display: inline-flex; align-items: center; color: var(--steel); font-size: 12px; }
+
+.step-needs-label, .step-yields-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--paper-dim);
+  flex-shrink: 0;
+  align-self: center;
+}
+.step-yields-label { color: var(--brass-dim-bright); }
+
+.step-io-empty { color: var(--line); font-size: 14px; align-self: center; }
+
+/* The icon+caption "chip" — the shared building block for every input AND
+   output item anywhere in the chain (regular steps and gather steps alike
+   render through this one shape). `large` is the only thing that tells an
+   output chip apart from an input chip — the output stays the visual
+   headline. */
+.step-icon-chip { display: flex; flex-direction: column; align-items: center; width: 72px; flex-shrink: 0; text-align: center; gap: 3px; }
+.step-icon-chip-lg { width: 92px; }
+
+.step-icon-frame {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-raised);
+  border: 2px solid var(--leaf);
+  flex-shrink: 0;
+}
+.step-icon-chip-lg .step-icon-frame { width: 42px; height: 42px; }
+
+.step-icon-img { width: 24px; height: 24px; object-fit: contain; }
+.step-icon-chip-lg .step-icon-img { width: 30px; height: 30px; }
+
+.step-icon-caption { display: flex; flex-direction: column; align-items: center; line-height: 1.15; }
+.step-icon-qty { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 11px; color: var(--brass-bright); }
+.step-icon-name { font-size: 10px; color: var(--paper-dim); overflow-wrap: anywhere; }
+.step-icon-chip-lg .step-icon-qty { font-size: 15px; }
+.step-icon-chip-lg .step-icon-name { font-size: 13px; color: var(--paper); font-weight: 600; }
+
+/* Every NEEDS-side chip gets this — dashed regardless of what the item
+   itself is, since the same item shows solid on the YIELDS side elsewhere
+   (see stepIconChip in render.js). Position decides the style, not identity. */
+.step-icon-dashed .step-icon-frame { border-style: dashed; opacity: 0.85; }
+.step-icon-dashed .step-icon-name { font-style: italic; }
+
+/* Category color coding: liquids (blue), raw resources (brown), power
+   (yellow), everything else (green) — carried by the icon frame border and
+   the caption text, same four colors used for the step-number badges,
+   regardless of whether the item is a step's own headline output or a
+   NEEDS entry on some other step. */
+.step-color-liquid .step-icon-frame { border-color: var(--output-blue); }
+.step-color-liquid .step-icon-qty { color: var(--output-blue-bright); }
+.step-color-liquid .step-icon-name, .step-color-liquid.raw-panel-name { color: var(--output-blue); }
+.step-color-resource .step-icon-frame { border-color: var(--brown); }
+.step-color-resource .step-icon-qty { color: var(--brown-bright); }
+.step-color-resource .step-icon-name, .step-color-resource.raw-panel-name { color: var(--brown); }
+.step-color-power .step-icon-frame { border-color: var(--yellow); }
+.step-color-power .step-icon-qty { color: var(--yellow-bright); }
+.step-color-power .step-icon-name, .step-color-power.raw-panel-name { color: var(--yellow); }
+.step-color-craft .step-icon-frame { border-color: var(--leaf); }
+.step-color-craft .step-icon-qty { color: var(--leaf-bright); }
+.step-color-craft .step-icon-name, .step-color-craft.raw-panel-name { color: var(--leaf); }
+
+/* The one YIELDS chip that's actually what you requested — the DIRECT
+   INPUT step's output — gets its own color instead of blending into the
+   same green as every other crafted intermediate (see the isDirect check
+   in renderCraftRow), so the end goal of the whole chain stands out. */
+.step-color-final .step-icon-frame { border-color: var(--rose); }
+.step-color-final .step-icon-qty { color: var(--rose-bright); }
+.step-color-final .step-icon-name, .step-color-final.raw-panel-name { color: var(--rose); }
+
+/* Same animated-collapse technique as .ticket-body-wrap/.autocomplete
+   above: the wrap is a single-row grid that transitions grid-template-rows
+   between 0fr and 1fr, and the inner element (which still carries all the
+   real layout/spacing) clips + fades as that row shrinks/grows. Always
+   present in the DOM (see renderCraftRow/renderGatherRow) so there's a
+   "before" state for the transition to animate from — app.js toggles the
+   .open class directly instead of re-rendering. */
+.step-recipe-detail-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.step-recipe-detail-wrap.open { grid-template-rows: 1fr; }
+
+/* A step with more than one valid recipe needs a decision from the user —
+   labeled and outlined distinctly so it reads as "pick one," not just
+   another readout in the row. Sits behind the YIELDS tray's own toggle
+   (.step-yield-toggle below), revealed only once that's open. */
+.step-recipe-detail {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  margin-top: 10px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.step-recipe-detail-wrap.open .step-recipe-detail { opacity: 1; transition: opacity 0.22s ease 0.08s; }
+.step-choice-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+/* A recipe picker is a stack of full previews, not a bare-label dropdown —
+   the user can see each recipe's own facility/time/inputs->output before
+   picking it. Shared by the real per-node picker (renderCraftRow) and the
+   display-only gather-step preview (renderGatherRow) alike. */
+.recipe-option-list { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+
+.recipe-option-card {
+  background: var(--panel-raised);
+  border: 2px solid var(--line);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.recipe-option-card:hover { border-color: var(--brass-light); }
+.recipe-option-card.active { border-color: var(--brass); background: rgba(201, 154, 68, 0.08); }
+
+.recipe-option-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.recipe-option-label { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700; color: var(--brass-bright); }
+.recipe-option-active-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--brass-bright);
+  border: 1px solid var(--brass);
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+/* Every recipe-bearing step — pooled (liquids/raw resources/power) or a
+   regular multi-recipe craft step alike — hides its recipe picker/preview
+   behind its whole flow line instead of a separate button: the entire
+   NEEDS -> arrow -> YIELDS row is clickable, with a trailing chevron
+   indicating it opens/closes. A step with only one possible recipe gets
+   .step-yield-static instead — not clickable, and a plain dot in place of
+   the chevron — so it's clear at a glance there's nothing to pick between,
+   not just an unresponsive click target. The hover/open highlight itself
+   lives on .step-row (above), not here. */
+.step-yield-toggle { cursor: pointer; }
+.step-yield-static { cursor: default; }
+
+/* Reserves the same trailing width whether a row shows "RECIPES [chevron]"
+   or just the static dot — otherwise a single-recipe row's output icon
+   sits closer to the row's right edge than a multi-recipe row's does
+   (the tray is only as wide as its own content), so the YIELDS icons
+   across a list of steps don't land in the same column. margin-left:auto
+   lives here now, not on the label/dot inside, so it's this whole group
+   that gets pushed to the tray's right edge, at a fixed width either way. */
+.step-yield-status {
+  margin-left: auto;
+  flex-shrink: 0;
+  min-width: 68px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.step-yield-recipe-label {
+  flex-shrink: 0;
+  align-self: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+}
+.step-yield-toggle:hover .step-yield-recipe-label { color: var(--yellow-bright); }
+.step-yield-indicator { flex-shrink: 0; align-self: center; }
+.step-yield-indicator-toggle {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease, border-color 0.15s ease;
+}
+.step-yield-toggle:hover .step-yield-indicator-toggle { border-color: var(--yellow-bright); }
+.step-yield-toggle.open .step-yield-indicator-toggle { transform: rotate(225deg); }
+.step-yield-indicator-static {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+@media (max-width: 560px) {
+  .step-flow-runs-time { align-items: flex-start; }
+  .step-line-flow { flex-direction: column; align-items: stretch; }
+  .step-flow-arrow { align-self: center; transform: rotate(90deg); padding: 4px 0; }
+  .step-facility-icon { width: 22px; height: 22px; }
+}
+
+/* ---------- Raw & liquid gathering list (left sidebar) ---------- */
+
+.raw-panel-section + .raw-panel-section { margin-top: 20px; }
+.raw-panel-section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--rust-bright);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.raw-panel-list { display: flex; flex-direction: column; }
+.raw-panel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-top: 1px dashed var(--line-faint);
+}
+.raw-panel-row:first-child { border-top: none; }
+.raw-panel-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+.raw-panel-name { flex: 1 1 auto; min-width: 0; font-size: 13px; overflow-wrap: anywhere; }
+.raw-panel-qty { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 13px; color: var(--brass-bright); flex-shrink: 0; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Requisition Ticket ---------- */
+
+.ticket {
+  position: relative;
+  transition: filter 0.15s ease;
+}
+/* box-shadow always follows the rectangular border-box, ignoring
+   clip-path — filter: drop-shadow() instead shadows the element's actual
+   painted silhouette, so it hugs the zigzag notches on ticket-head too */
+.ticket:hover { filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5)); }
+
+/* The notched "stub" shape lives only on ticket-head, which is a fixed,
+   short element (title + eyebrow + class line) — so it always looks the
+   same, collapsed or expanded, instead of stretching/re-tiling with the
+   ticket's total height. The body below is a plain rectangle that just
+   grows taller as it expands; the shape itself never changes. */
+.ticket-head {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px 16px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  border-bottom: 2px dashed var(--line);
+  cursor: pointer;
+  user-select: none;
+  /* symmetric top-to-bottom (mirrored around 50%) so the notch spacing at
+     the top edge matches the notch spacing at the bottom edge — border is
+     top/bottom only (both flat), not left/right: a stroke across the sharp
+     zigzag sides miters into little bright spikes at every point, so those
+     stay borderless and rely on the background fill alone against the page */
+  clip-path: polygon(
+    0% 0%, 100% 0%,
+    calc(100% - 6px) 12.5%, 100% 25%, calc(100% - 6px) 37.5%, 100% 50%,
+    calc(100% - 6px) 62.5%, 100% 75%, calc(100% - 6px) 87.5%,
+    100% 100%, 0% 100%,
+    6px 87.5%, 0% 75%, 6px 62.5%, 0% 50%, 6px 37.5%, 0% 25%, 6px 12.5%
+  );
+}
+
+.ticket-head-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* a plain chevron (no box/background) centered on the header's bottom
+   edge, straddling the dashed divider — drawn from two border edges of a
+   small square rotated to a corner, not a background-boxed icon. Points
+   up while expanded (content is showing), down while collapsed (more to
+   reveal below). */
+.ticket-caret {
+  position: absolute;
+  left: 50%;
+  /* stays just inside ticket-head's own box (not a negative offset) since
+     ticket-head has a clip-path, which clips off anything positioned
+     outside its shape — the bottom edge is flat here so this is safe */
+  bottom: 4px;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--brass);
+  border-bottom: 2px solid var(--brass);
+  transform: translateX(-50%) rotate(-135deg);
+  transition: transform 0.2s ease, border-color 0.15s ease;
+}
+.ticket-head:hover .ticket-caret { border-color: var(--brass-light); }
+.ticket.collapsed .ticket-caret { transform: translateX(-50%) rotate(45deg); }
+
+/* animated collapse: grid-template-rows can transition to 0fr, which lets the
+   inner content shrink smoothly without knowing its height ahead of time.
+   Paired with an opacity fade on the inner body so it reads as a slide, not
+   just content getting clipped off abruptly. */
+.ticket-body-wrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ticket.collapsed .ticket-body-wrap { grid-template-rows: 0fr; }
+.ticket-body {
+  overflow: hidden;
+  min-height: 0;
+  margin: 0 20px;
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  opacity: 1;
+  transition: opacity 0.22s ease 0.08s;
+}
+.ticket.collapsed .ticket-body { opacity: 0; transition: opacity 0.12s ease; }
+/* only add the closing bottom edge once there's real height to close off —
+   otherwise this is the same doubled-line-at-the-bottom problem as before,
+   just moved down a level */
+.ticket:not(.collapsed) .ticket-body { border-bottom: 1px solid var(--line); }
+
+.ticket-title-block { flex: 1; min-width: 0; }
+
+.ticket-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.ticket-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim-bright);
+  margin-bottom: 4px;
+}
+
+.ticket-title {
+  font-family: 'Big Shoulders Stencil', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--paper);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+
+.ticket-class {
+  font-style: italic;
+  color: var(--paper-dim);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.seal {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--rust);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-8deg);
+  color: var(--rust);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0.85;
+  position: relative;
+}
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid var(--rust);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* quantity stepper — lives inline in the ticket-head now, just the number
+   and the two buttons, no label */
+.ticket-qty-compact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.qty-btn {
+  width: 22px; height: 22px;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  color: var(--brass-bright);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { border-color: var(--brass); }
+.qty-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  min-width: 20px;
+  text-align: center;
+  color: var(--paper);
+}
+
+/* Switches whether the qty stepper above targets individual units or whole
+   crates — only rendered at all when the ticket's item has a known crate
+   size (and isn't Garage-built, which is never crated regardless). Custom-
+   drawn box (not the bare native checkbox) to match the rest of the
+   ticket's bordered-tag styling instead of looking like a browser control. */
+.crate-toggle {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dim);
+  cursor: pointer;
+  user-select: none;
+}
+/* Always occupies its row (visibility, not display) so a ticket's height
+   never shifts depending on whether the currently active recipe happens to
+   have a crate size — only invisible/non-interactive, not absent. */
+.crate-toggle-hidden { visibility: hidden; cursor: default; }
+/* native input stays functional (focusable, checkable) but visually
+   invisible — the span right after it is the box the user actually sees. */
+.crate-toggle-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.crate-toggle-box {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel-raised);
+  position: relative;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.crate-toggle:hover .crate-toggle-box { border-color: var(--brass); }
+.crate-toggle-input:checked + .crate-toggle-box {
+  background: var(--brass);
+  border-color: var(--brass);
+}
+/* checkmark drawn from two border edges of a rotated box, same technique
+   as .ticket-caret elsewhere on the ticket — no icon font/image needed. */
+.crate-toggle-input:checked + .crate-toggle-box::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 2px;
+  height: 5px;
+  border: solid var(--bg);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+.crate-toggle-label { letter-spacing: 0.1em; }
+.crate-toggle:hover .crate-toggle-label { color: var(--brass-bright); }
+
+.ticket-section { padding: 16px 24px; border-bottom: 1px solid var(--line-faint); }
+.ticket-section:last-of-type { border-bottom: none; }
+
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--steel);
+  margin-bottom: 10px;
+}
+.section-label.raw { color: var(--rust); }
+.section-label.parts { color: var(--brass-bright); }
+
+.item-line {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 3px 0;
+  font-size: 16px;
+}
+
+.qty-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  color: var(--brass-bright);
+  padding: 1px 7px;
+  min-width: 44px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.item-name { color: var(--paper); }
+
+/* Crates first, always, wherever a crate size is known for the item —
+   the exact unit count rides along right after in smaller, dimmer text
+   instead of competing with it for attention. Both are generic modifiers
+   (no color of their own) so they inherit whatever color the surrounding
+   qty element already uses — gold in a ticket's qty-chip, blue on a chain
+   step's output, etc. */
+.qty-crates { font-weight: 700; }
+.qty-units { font-size: 0.72em; opacity: 0.65; margin-left: 4px; font-weight: 500; }
+
+.time-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  padding: 16px 24px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+.time-block .time-label { color: var(--paper-dim); letter-spacing: 0.1em; font-size: 10px; }
+.time-block .time-val { color: var(--brass-bright); font-size: 15px; margin-top: 2px; }
+
+/* facility line */
+.facility-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--paper-dim);
+  padding: 12px 24px 0;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 560px) {
+  .ticket-title { font-size: 21px; }
+  .item-line { font-size: 14px; }
+}

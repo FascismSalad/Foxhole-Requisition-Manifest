@@ -1,0 +1,775 @@
+{
+  "rare_metal": {
+    "full_name": "Rare Metal",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "rare_metal",
+      "rare metal",
+      "rares"
+    ]
+  },
+  "salvage": {
+    "full_name": "Salvage",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "salvage",
+      "scrap",
+      "scroop"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "salvage_harvester",
+        "recipe_name": "Stationary Harvester (Salvage)",
+        "facility": "Stationary Harvester (Salvage)",
+        "crafting_time_seconds": 18,
+        "aliases": [
+          "salvage harvester"
+        ],
+        "inputs": {
+          "Petrol (L)": 4
+        },
+        "outputs": {
+          "Salvage": 50
+        }
+      },
+      {
+        "recipe_key": "salvage_harvester_excavator",
+        "recipe_name": "Stationary Harvester (Salvage) [Excavator]",
+        "facility": "Stationary Harvester (Salvage) [Excavator]",
+        "crafting_time_seconds": 18,
+        "aliases": [
+          "salvage excavator"
+        ],
+        "inputs": {
+          "Petrol (L)": 6
+        },
+        "outputs": {
+          "Salvage": 15
+        }
+      },
+      {
+        "recipe_key": "salvage_mine_diesel",
+        "recipe_name": "Salvage Mine (Diesel)",
+        "facility": "Salvage Mine",
+        "crafting_time_seconds": 8,
+        "aliases": [
+          "salvage mine diesel"
+        ],
+        "inputs": {
+          "Diesel (L)": 1
+        },
+        "outputs": {
+          "Salvage": 12
+        },
+        "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
+      },
+      {
+        "recipe_key": "salvage_mine_petrol",
+        "recipe_name": "Salvage Mine (Petrol)",
+        "facility": "Salvage Mine",
+        "crafting_time_seconds": 8,
+        "aliases": [
+          "salvage mine petrol"
+        ],
+        "inputs": {
+          "Petrol (L)": 1
+        },
+        "outputs": {
+          "Salvage": 36
+        },
+        "yield_note": "Mine yield is randomized (27-45 per cycle); output shown is the average."
+      }
+    ]
+  },
+  "damaged_components": {
+    "full_name": "Damaged Components",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "damaged components"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "damaged_components_harvester_excavator",
+        "recipe_name": "Stationary Harvester (Components) [Excavator]",
+        "facility": "Stationary Harvester (Components) [Excavator]",
+        "crafting_time_seconds": 12,
+        "aliases": [
+          "damaged components harvester"
+        ],
+        "inputs": {
+          "Heavy Oil (L)": 3
+        },
+        "outputs": {
+          "Damaged Components": 18
+        }
+      }
+    ]
+  },
+  "components": {
+    "full_name": "Components",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "components"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "components_harvester",
+        "recipe_name": "Stationary Harvester (Components)",
+        "facility": "Stationary Harvester (Components)",
+        "crafting_time_seconds": 12,
+        "aliases": [
+          "components harvester"
+        ],
+        "inputs": {
+          "Heavy Oil (L)": 4
+        },
+        "outputs": {
+          "Components": 6
+        }
+      },
+      {
+        "recipe_key": "components_recycler",
+        "recipe_name": "Metalworks Factory [Recycler]",
+        "facility": "Metalworks Factory [Recycler]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "aliases": [
+          "components recycler",
+          "recycle damaged components"
+        ],
+        "inputs": {
+          "Damaged Components": 75
+        },
+        "outputs": {
+          "Components": 5
+        }
+      },
+      {
+        "recipe_key": "components_mine_diesel",
+        "recipe_name": "Component Mine (Diesel)",
+        "facility": "Component Mine",
+        "crafting_time_seconds": 30,
+        "aliases": [
+          "component mine diesel"
+        ],
+        "inputs": {
+          "Diesel (L)": 1
+        },
+        "outputs": {
+          "Components": 12
+        },
+        "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
+      },
+      {
+        "recipe_key": "components_mine_petrol",
+        "recipe_name": "Component Mine (Petrol)",
+        "facility": "Component Mine",
+        "crafting_time_seconds": 30,
+        "aliases": [
+          "component mine petrol"
+        ],
+        "inputs": {
+          "Petrol (L)": 1
+        },
+        "outputs": {
+          "Components": 36
+        },
+        "yield_note": "Mine yield is randomized (27-45 per cycle); output shown is the average."
+      }
+    ]
+  },
+  "sulfur": {
+    "full_name": "Sulfur",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "sulfur"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sulfur_harvester",
+        "recipe_name": "Stationary Harvester (Sulfur)",
+        "facility": "Stationary Harvester (Sulfur)",
+        "crafting_time_seconds": 12,
+        "aliases": [
+          "sulfur harvester"
+        ],
+        "inputs": {
+          "Heavy Oil (L)": 4
+        },
+        "outputs": {
+          "Sulfur": 6
+        }
+      },
+      {
+        "recipe_key": "sulfur_harvester_excavator",
+        "recipe_name": "Stationary Harvester (Sulfur) [Excavator]",
+        "facility": "Stationary Harvester (Sulfur) [Excavator]",
+        "crafting_time_seconds": 18,
+        "aliases": [
+          "sulfur excavator"
+        ],
+        "inputs": {
+          "Heavy Oil (L)": 6
+        },
+        "outputs": {
+          "Sulfur": 2,
+          "Coal": 5
+        }
+      },
+      {
+        "recipe_key": "sulfur_mine_diesel",
+        "recipe_name": "Sulfur Mine (Diesel)",
+        "facility": "Sulfur Mine",
+        "crafting_time_seconds": 30,
+        "aliases": [
+          "sulfur mine diesel"
+        ],
+        "inputs": {
+          "Diesel (L)": 1
+        },
+        "outputs": {
+          "Sulfur": 12
+        },
+        "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
+      },
+      {
+        "recipe_key": "sulfur_mine_petrol",
+        "recipe_name": "Sulfur Mine (Petrol)",
+        "facility": "Sulfur Mine",
+        "crafting_time_seconds": 30,
+        "aliases": [
+          "sulfur mine petrol"
+        ],
+        "inputs": {
+          "Petrol (L)": 1
+        },
+        "outputs": {
+          "Sulfur": 36
+        },
+        "yield_note": "Mine yield is randomized (27-45 per cycle); output shown is the average."
+      },
+      {
+        "recipe_key": "sulfur_power_station_heavy_oil",
+        "recipe_name": "Power Station [Sulfuric Reactor] (Heavy Oil)",
+        "facility": "Power Station [Sulfuric Reactor]",
+        "crafting_time_seconds": 120,
+        "power_mw": 16,
+        "aliases": [
+          "sulfuric reactor heavy oil"
+        ],
+        "inputs": {
+          "Heavy Oil (L)": 50
+        },
+        "outputs": {
+          "Sulfur": 5
+        }
+      },
+      {
+        "recipe_key": "sulfur_power_station_coke",
+        "recipe_name": "Power Station [Sulfuric Reactor] (Coke/Water)",
+        "facility": "Power Station [Sulfuric Reactor]",
+        "crafting_time_seconds": 120,
+        "power_mw": 16,
+        "aliases": [
+          "sulfuric reactor coke"
+        ],
+        "inputs": {
+          "Coke": 30,
+          "Water (L)": 1
+        },
+        "outputs": {
+          "Sulfur": 5
+        }
+      },
+      {
+        "recipe_key": "sulfur_coal_refinery_advanced",
+        "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
+        "facility": "Coal Refinery [Advanced Coal Liquefier]",
+        "crafting_time_seconds": 270,
+        "power_mw": 6,
+        "aliases": [
+          "advanced coal liquefier"
+        ],
+        "inputs": {
+          "Coal": 300,
+          "Water (L)": 100
+        },
+        "outputs": {
+          "Sulfur": 15,
+          "Concrete Materials": 1,
+          "Oil (L)": 100
+        }
+      },
+      {
+        "recipe_key": "sulfur_coal_refinery_coke_furnace",
+        "recipe_name": "Coal Refinery [Coke Furnace]",
+        "facility": "Coal Refinery [Coke Furnace]",
+        "crafting_time_seconds": 270,
+        "power_mw": 3,
+        "aliases": [
+          "coke furnace"
+        ],
+        "inputs": {
+          "Coal": 200
+        },
+        "outputs": {
+          "Sulfur": 15,
+          "Coke": 165
+        }
+      },
+      {
+        "recipe_key": "sulfur_coal_refinery_liquefier",
+        "recipe_name": "Coal Refinery [Coal Liquefier]",
+        "facility": "Coal Refinery [Coal Liquefier]",
+        "crafting_time_seconds": 270,
+        "power_mw": 6,
+        "aliases": [
+          "coal liquefier"
+        ],
+        "inputs": {
+          "Coal": 300,
+          "Water (L)": 50
+        },
+        "outputs": {
+          "Sulfur": 10,
+          "Concrete Materials": 1,
+          "Oil (L)": 50
+        }
+      }
+    ]
+  },
+  "coal": {
+    "full_name": "Coal",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "coal"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "coal_harvester",
+        "recipe_name": "Stationary Harvester (Coal)",
+        "facility": "Stationary Harvester (Coal)",
+        "crafting_time_seconds": 18,
+        "aliases": [
+          "coal harvester"
+        ],
+        "inputs": {
+          "Petrol (L)": 1
+        },
+        "outputs": {
+          "Coal": 50
+        }
+      },
+      {
+        "recipe_key": "coal_harvester_excavator",
+        "recipe_name": "Stationary Harvester (Coal) [Excavator]",
+        "facility": "Stationary Harvester (Coal) [Excavator]",
+        "crafting_time_seconds": 18,
+        "aliases": [
+          "coal excavator"
+        ],
+        "inputs": {
+          "Petrol (L)": 2
+        },
+        "outputs": {
+          "Coal": 15
+        }
+      }
+    ]
+  },
+  "oil": {
+    "full_name": "Oil",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "oil"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "oil_well",
+        "recipe_name": "Oil Well",
+        "facility": "Oil Well",
+        "crafting_time_seconds": 50,
+        "aliases": [
+          "oil well"
+        ],
+        "inputs": {},
+        "outputs": {
+          "Oil (L)": 50
+        }
+      },
+      {
+        "recipe_key": "oil_well_electric",
+        "recipe_name": "Oil Well [Electric Oil Well]",
+        "facility": "Oil Well [Electric Oil Well]",
+        "crafting_time_seconds": 26,
+        "power_mw": 2,
+        "aliases": [
+          "electric oil well"
+        ],
+        "inputs": {},
+        "outputs": {
+          "Oil (L)": 50
+        }
+      },
+      {
+        "recipe_key": "oil_well_fracker",
+        "recipe_name": "Oil Well [Fracker]",
+        "facility": "Oil Well [Fracker]",
+        "crafting_time_seconds": 40,
+        "power_mw": 3,
+        "aliases": [
+          "oil well fracker",
+          "fracker"
+        ],
+        "inputs": {
+          "Water (L)": 25
+        },
+        "outputs": {
+          "Oil (L)": 100
+        }
+      }
+    ]
+  },
+  "water": {
+    "full_name": "Water",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "water"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "water_pump",
+        "recipe_name": "Water Pump",
+        "facility": "Water Pump",
+        "crafting_time_seconds": 50,
+        "aliases": [
+          "water pump"
+        ],
+        "inputs": {},
+        "outputs": {
+          "Water (L)": 50
+        }
+      }
+    ]
+  },
+  "coke": {
+    "full_name": "Coke",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "coke"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "coke_refinery",
+        "recipe_name": "Coal Refinery",
+        "facility": "Coal Refinery",
+        "crafting_time_seconds": 270,
+        "power_mw": 3,
+        "inputs": {
+          "Coal": 200
+        },
+        "outputs": {
+          "Coke": 180
+        }
+      },
+      {
+        "recipe_key": "coke_furnace",
+        "recipe_name": "Coal Refinery [Coke Furnace]",
+        "facility": "Coal Refinery [Coke Furnace]",
+        "crafting_time_seconds": 270,
+        "power_mw": 3,
+        "inputs": {
+          "Coal": 200
+        },
+        "outputs": {
+          "Coke": 165,
+          "Sulfur": 15
+        }
+      },
+      {
+        "recipe_key": "coke_advanced_liquefier",
+        "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
+        "facility": "Coal Refinery [Advanced Coal Liquefier]",
+        "crafting_time_seconds": 405,
+        "power_mw": 6,
+        "inputs": {
+          "Coal": 300,
+          "Water (L)": 100
+        },
+        "outputs": {
+          "Coke": 260,
+          "Heavy Oil (L)": 60
+        }
+      }
+    ]
+  },
+  "basic_materials": {
+    "full_name": "Basic Materials",
+    "category": "resource",
+    "subcategory": "Raw",
+    "facility": "Refinery",
+    "crafting_time_seconds": 0.48,
+    "aliases": [
+      "basic_materials",
+      "basic materials",
+      "bmats",
+      "bmat"
+    ],
+    "inputs": {
+      "Salvage": 2
+    },
+    "outputs": {
+      "Basic Materials": 1
+    }
+  },
+  "diesel": {
+    "full_name": "Diesel",
+    "category": "resource",
+    "subcategory": "Raw",
+    "facility": "Refinery",
+    "crafting_time_seconds": 12,
+    "aliases": [
+      "diesel"
+    ],
+    "inputs": {
+      "Salvage": 10
+    },
+    "outputs": {
+      "Diesel (L)": 100
+    }
+  },
+  "enriched_oil": {
+    "full_name": "Enriched Oil",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "enriched_oil",
+      "enriched oil",
+      "eoil",
+      "e.oil"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "enriched_oil_offshore",
+        "recipe_name": "Offshore Platform",
+        "facility": "Offshore Platform",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Coal": 100
+        },
+        "outputs": {
+          "Enriched Oil (L)": 30
+        }
+      },
+      {
+        "recipe_key": "enriched_oil_petrochemical",
+        "recipe_name": "Oil Refinery [Petrochemical Plant]",
+        "facility": "Oil Refinery [Petrochemical Plant]",
+        "crafting_time_seconds": 200,
+        "power_mw": 6,
+        "inputs": {
+          "Sulfur": 60,
+          "Heavy Oil (L)": 30
+        },
+        "outputs": {
+          "Enriched Oil (L)": 30
+        }
+      }
+    ]
+  },
+  "explosive_powder": {
+    "full_name": "Explosive Powder",
+    "category": "resource",
+    "subcategory": "Raw",
+    "facility": "Refinery",
+    "crafting_time_seconds": 9.375,
+    "aliases": [
+      "explosive_powder",
+      "explosive powder",
+      "emat"
+    ],
+    "inputs": {
+      "Salvage": 5
+    },
+    "outputs": {
+      "Explosive Powder": 1
+    }
+  },
+  "gravel": {
+    "full_name": "Gravel",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "gravel"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "gravel_concrete_mixer_coal",
+        "recipe_name": "Concrete Mixer (Coal)",
+        "facility": "Concrete Mixer",
+        "crafting_time_seconds": 40,
+        "inputs": {
+          "Coal": 100
+        },
+        "outputs": {
+          "Gravel": 20
+        }
+      },
+      {
+        "recipe_key": "gravel_concrete_mixer_salvage",
+        "recipe_name": "Concrete Mixer (Salvage)",
+        "facility": "Concrete Mixer",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Salvage": 120
+        },
+        "outputs": {
+          "Gravel": 20
+        }
+      },
+      {
+        "recipe_key": "gravel_refinery_coal",
+        "recipe_name": "Refinery (Coal)",
+        "facility": "Refinery",
+        "crafting_time_seconds": 1.2,
+        "inputs": {
+          "Coal": 5
+        },
+        "outputs": {
+          "Gravel": 1
+        }
+      },
+      {
+        "recipe_key": "gravel_refinery_salvage",
+        "recipe_name": "Refinery (Salvage)",
+        "facility": "Refinery",
+        "crafting_time_seconds": 1.2,
+        "inputs": {
+          "Salvage": 6
+        },
+        "outputs": {
+          "Gravel": 1
+        }
+      }
+    ]
+  },
+  "heavy_explosive_powder": {
+    "full_name": "Heavy Explosive Powder",
+    "category": "resource",
+    "subcategory": "Raw",
+    "facility": "Refinery",
+    "crafting_time_seconds": 15,
+    "aliases": [
+      "heavy_explosive_powder",
+      "heavy explosive powder",
+      "hemat",
+      "hmat"
+    ],
+    "inputs": {
+      "Sulfur": 5
+    },
+    "outputs": {
+      "Heavy Explosive Powder": 1
+    }
+  },
+  "heavy_oil": {
+    "full_name": "Heavy Oil",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "heavy_oil",
+      "heavy oil",
+      "hoil",
+      "h.oil"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "heavy_oil_offshore",
+        "recipe_name": "Offshore Platform",
+        "facility": "Offshore Platform",
+        "crafting_time_seconds": 50,
+        "inputs": {},
+        "outputs": {
+          "Heavy Oil (L)": 30
+        }
+      },
+      {
+        "recipe_key": "heavy_oil_cracking_unit",
+        "recipe_name": "Oil Refinery [Cracking Unit]",
+        "facility": "Oil Refinery [Cracking Unit]",
+        "crafting_time_seconds": 55,
+        "power_mw": 1.5,
+        "inputs": {
+          "Oil (L)": 50
+        },
+        "outputs": {
+          "Heavy Oil (L)": 30
+        }
+      }
+    ]
+  },
+  "petrol": {
+    "full_name": "Petrol",
+    "category": "resource",
+    "subcategory": "Raw",
+    "aliases": [
+      "petrol"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "petrol_base",
+        "recipe_name": "Oil Refinery",
+        "facility": "Oil Refinery",
+        "crafting_time_seconds": 50,
+        "power_mw": 1,
+        "inputs": {
+          "Oil (L)": 50
+        },
+        "outputs": {
+          "Petrol (L)": 50
+        }
+      },
+      {
+        "recipe_key": "petrol_reformer",
+        "recipe_name": "Oil Refinery [Reformer]",
+        "facility": "Oil Refinery [Reformer]",
+        "crafting_time_seconds": 50,
+        "power_mw": 1,
+        "inputs": {
+          "Oil (L)": 40,
+          "Water (L)": 10
+        },
+        "outputs": {
+          "Petrol (L)": 50
+        }
+      }
+    ]
+  },
+  "refined_materials": {
+    "full_name": "Refined Materials",
+    "category": "resource",
+    "subcategory": "Raw",
+    "facility": "Refinery",
+    "crafting_time_seconds": 40,
+    "aliases": [
+      "refined_materials",
+      "refined materials",
+      "rmat"
+    ],
+    "inputs": {
+      "Components": 20
+    },
+    "outputs": {
+      "Refined Materials": 1
+    }
+  }
+}

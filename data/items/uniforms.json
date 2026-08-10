@@ -1,0 +1,228 @@
+{
+  "fabri_rucksack": {
+    "full_name": "Fabri Rucksack",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "fabri_rucksack",
+      "fabri rucksack",
+      "engineer uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Fabri Rucksack": 15
+    }
+  },
+  "medic_fatigues": {
+    "full_name": "Medic Fatigues",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "medic_fatigues",
+      "medic fatigues",
+      "medic uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Medic Fatigues": 15
+    }
+  },
+  "recon_camo": {
+    "full_name": "Recon Camo",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "recon_camo",
+      "recon camo",
+      "scout uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Recon Camo": 15
+    }
+  },
+  "tankmans_coveralls": {
+    "full_name": "Tankman's Coveralls",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "tankmans_coveralls",
+      "tankman's coveralls",
+      "tankmans coveralls",
+      "tank uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Tankman's Coveralls": 15
+    }
+  },
+  "heavy_topcoat": {
+    "full_name": "Heavy Topcoat",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "heavy_topcoat",
+      "heavy topcoat",
+      "snow uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Heavy Topcoat": 15
+    }
+  },
+  "legionarys_oilcoat": {
+    "full_name": "Legionary's Oilcoat",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "legionarys_oilcoat",
+      "legionary's oilcoat",
+      "legionarys oilcoat",
+      "rain uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Legionary's Oilcoat": 15
+    }
+  },
+  "grenadiers_baldric": {
+    "full_name": "Grenadier's Baldric",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "grenadiers_baldric",
+      "grenadier's baldric",
+      "grenadiers baldric",
+      "grenade uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Grenadier's Baldric": 15
+    }
+  },
+  "velian_flak_vest": {
+    "full_name": "Velian Flak Vest",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "velian_flak_vest",
+      "velian flak vest",
+      "armour uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 200
+    },
+    "outputs": {
+      "Velian Flak Vest": 10
+    }
+  },
+  "officialis_attire": {
+    "full_name": "Officialis' Attire",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "officialis_attire",
+      "officialis' attire",
+      "officialis attire",
+      "officer uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Officialis' Attire": 3
+    }
+  },
+  "remex_garb": {
+    "full_name": "Remex Garb",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "remex_garb",
+      "remex garb",
+      "naval uniform"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 90,
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Remex Garb": 15
+    }
+  },
+  "lodesmans_lorica": {
+    "full_name": "Lodesman's Lorica",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "lodesmans_lorica",
+      "lodesman's lorica",
+      "lodesmans lorica",
+      "pilot uniform"
+    ],
+    "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+    "crafting_time_seconds": 120,
+    "power_mw": 4,
+    "inputs": {
+      "Officialis' Attire": 3,
+      "Rare Materials": 2
+    },
+    "outputs": {
+      "Lodesman's Lorica": 1
+    }
+  },
+  "austers_harness": {
+    "full_name": "Auster's Harness",
+    "category": "item",
+    "subcategory": "Uniform",
+    "aliases": [
+      "austers_harness",
+      "auster's harness",
+      "austers harness",
+      "paratrooper uniform"
+    ],
+    "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+    "crafting_time_seconds": 120,
+    "power_mw": 4,
+    "inputs": {
+      "Recon Camo": 15,
+      "Processed Construction Materials": 10
+    },
+    "outputs": {
+      "Auster's Harness": 15
+    }
+  }
+}

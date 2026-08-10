@@ -1,0 +1,573 @@
+{
+  "metal_beam": {
+    "full_name": "Metal Beam",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "metal_beam",
+      "metal beam",
+      "metal beams",
+      "beam",
+      "beams"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "metal_beam_assembly_bay",
+        "recipe_name": "Assembly Bay",
+        "facility": "Materials Factory [Assembly Bay]",
+        "crafting_time_seconds": 25,
+        "power_mw": 2,
+        "inputs": {
+          "Salvage": 25
+        },
+        "outputs": {
+          "Metal Beam": 1,
+          "Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "metal_beam_factory_utility",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 20,
+        "inputs": {
+          "Basic Materials": 25
+        },
+        "outputs": {
+          "Metal Beam": 5
+        }
+      }
+    ]
+  },
+  "am1": {
+    "full_name": "Assembly Materials I",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Materials Factory [Forge]",
+    "crafting_time_seconds": 60,
+    "power_mw": 2,
+    "aliases": [
+      "am1",
+      "amat1",
+      "am 1",
+      "amat 1",
+      "assembly materials i",
+      "assembly materials 1",
+      "a1"
+    ],
+    "inputs": {
+      "Salvage": 15,
+      "Coke": 75
+    },
+    "outputs": {
+      "Assembly Materials I": 1
+    }
+  },
+  "am2": {
+    "full_name": "Assembly Materials II",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Materials Factory [Forge]",
+    "crafting_time_seconds": 60,
+    "power_mw": 2,
+    "aliases": [
+      "am2",
+      "amat2",
+      "am 2",
+      "amat 2",
+      "assembly materials ii",
+      "assembly materials 2",
+      "a2"
+    ],
+    "inputs": {
+      "Salvage": 15,
+      "Petrol (L)": 50
+    },
+    "outputs": {
+      "Assembly Materials II": 1
+    }
+  },
+  "am3": {
+    "full_name": "Assembly Materials III",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory [Blast Furnace]",
+    "crafting_time_seconds": 120,
+    "power_mw": 5,
+    "aliases": [
+      "am3",
+      "amat3",
+      "am 3",
+      "amat 3",
+      "assembly materials iii",
+      "assembly materials 3",
+      "a3"
+    ],
+    "inputs": {
+      "Construction Materials": 3,
+      "Sulfur": 20
+    },
+    "outputs": {
+      "Assembly Materials III": 1
+    }
+  },
+  "am4": {
+    "full_name": "Assembly Materials IV",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory [Blast Furnace]",
+    "crafting_time_seconds": 120,
+    "power_mw": 5,
+    "aliases": [
+      "am4",
+      "amat4",
+      "am 4",
+      "amat 4",
+      "assembly materials iv",
+      "assembly materials 4",
+      "a4"
+    ],
+    "inputs": {
+      "Processed Construction Materials": 1,
+      "Heavy Oil (L)": 66
+    },
+    "outputs": {
+      "Assembly Materials IV": 1
+    }
+  },
+  "am5": {
+    "full_name": "Assembly Materials V",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory [Engineering Station]",
+    "crafting_time_seconds": 120,
+    "power_mw": 8,
+    "aliases": [
+      "am5",
+      "amat5",
+      "am 5",
+      "amat 5",
+      "assembly materials v",
+      "assembly materials 5",
+      "a5"
+    ],
+    "inputs": {
+      "Steel Construction Materials": 3,
+      "Coke": 245,
+      "Assembly Materials I": 10,
+      "Assembly Materials II": 10
+    },
+    "outputs": {
+      "Assembly Materials V": 1
+    }
+  },
+  "rare_alloys": {
+    "full_name": "Rare Alloys",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory [Blast Furnace]",
+    "crafting_time_seconds": 180,
+    "power_mw": 10,
+    "aliases": [
+      "rare_alloys",
+      "rare alloys",
+      "rare alloy",
+      "alloy",
+      "alloys"
+    ],
+    "inputs": {
+      "Rare Metal": 20,
+      "Processed Construction Materials": 5,
+      "Coke": 60
+    },
+    "outputs": {
+      "Rare Alloys": 1
+    }
+  },
+  "steel": {
+    "full_name": "Steel Construction Materials",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "steel",
+      "steels",
+      "steel construction materials",
+      "steel construction material",
+      "scmat"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "steel_eoil",
+        "recipe_name": "Enriched Oil Recipe (EOil)",
+        "facility": "Metalworks Factory [Engineering Station]",
+        "crafting_time_seconds": 90,
+        "power_mw": 12,
+        "aliases": [
+          "steel_eoil",
+          "steel eoil",
+          "eoil steel"
+        ],
+        "inputs": {
+          "Processed Construction Materials": 9,
+          "Coke": 375,
+          "Enriched Oil (L)": 90,
+          "Water (L)": 100
+        },
+        "outputs": {
+          "Steel Construction Materials": 3
+        }
+      },
+      {
+        "recipe_key": "steel_hoil",
+        "recipe_name": "Heavy Oil Recipe (HOil)",
+        "facility": "Metalworks Factory [Engineering Station]",
+        "crafting_time_seconds": 90,
+        "power_mw": 9,
+        "aliases": [
+          "steel_hoil",
+          "steel hoil",
+          "hoil steel"
+        ],
+        "inputs": {
+          "Processed Construction Materials": 3,
+          "Coke": 200,
+          "Sulfur": 65,
+          "Heavy Oil (L)": 35
+        },
+        "outputs": {
+          "Steel Construction Materials": 1
+        }
+      }
+    ]
+  },
+  "thermal_shielding": {
+    "full_name": "Thermal Shielding",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Ammunition Factory",
+    "crafting_time_seconds": 1500,
+    "power_mw": 4,
+    "aliases": [
+      "thermal_shielding",
+      "thermal shielding",
+      "thermal",
+      "shielding"
+    ],
+    "inputs": {
+      "Construction Materials": 2,
+      "Assembly Materials IV": 5
+    },
+    "outputs": {
+      "Thermal Shielding": 1
+    }
+  },
+  "barbed_wire": {
+    "full_name": "Barbed Wire",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "barbed_wire",
+      "barbed wire"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "barbed_wire_assembly_bay",
+        "recipe_name": "Assembly Bay",
+        "facility": "Materials Factory [Assembly Bay]",
+        "crafting_time_seconds": 25,
+        "power_mw": 2,
+        "inputs": {
+          "Salvage": 25
+        },
+        "outputs": {
+          "Barbed Wire": 5,
+          "Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "barbed_wire_factory_utility",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 15,
+        "inputs": {
+          "Basic Materials": 15
+        },
+        "outputs": {
+          "Barbed Wire": 5
+        }
+      }
+    ]
+  },
+  "sandbag": {
+    "full_name": "Sandbag",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "sandbag",
+      "sandbags"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sandbag_assembly_bay",
+        "recipe_name": "Assembly Bay",
+        "facility": "Materials Factory [Assembly Bay]",
+        "crafting_time_seconds": 25,
+        "power_mw": 2,
+        "inputs": {
+          "Salvage": 25
+        },
+        "outputs": {
+          "Sandbag": 5,
+          "Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "sandbag_factory_utility",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 15,
+        "inputs": {
+          "Basic Materials": 15
+        },
+        "outputs": {
+          "Sandbag": 5
+        }
+      }
+    ]
+  },
+  "pcon": {
+    "full_name": "Processed Construction Materials",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "pcon",
+      "pcons",
+      "processed construction materials",
+      "processed construction material",
+      "pcmat",
+      "vegan pcons"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "pcon_recycler",
+        "recipe_name": "Recycler",
+        "facility": "Metalworks Factory [Recycler]",
+        "crafting_time_seconds": 90,
+        "power_mw": 8,
+        "inputs": {
+          "Construction Materials": 15,
+          "Metal Beam": 1,
+          "Heavy Oil (L)": 10
+        },
+        "outputs": {
+          "Processed Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "pcon_base",
+        "recipe_name": "Metalworks Factory",
+        "facility": "Metalworks Factory",
+        "crafting_time_seconds": 60,
+        "power_mw": 5,
+        "inputs": {
+          "Construction Materials": 3,
+          "Components": 20
+        },
+        "outputs": {
+          "Processed Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "pcon_blast_furnace",
+        "recipe_name": "Blast Furnace",
+        "facility": "Metalworks Factory [Blast Furnace]",
+        "crafting_time_seconds": 60,
+        "power_mw": 8,
+        "inputs": {
+          "Construction Materials": 3,
+          "Components": 55,
+          "Heavy Oil (L)": 6
+        },
+        "outputs": {
+          "Processed Construction Materials": 3
+        }
+      }
+    ]
+  },
+  "concrete_materials": {
+    "full_name": "Concrete Materials",
+    "category": "material",
+    "subcategory": "Large",
+    "aliases": [
+      "concrete_materials",
+      "concrete materials",
+      "conc"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "concrete_materials_coal_liquefier",
+        "recipe_name": "Coal Refinery [Coal Liquefier]",
+        "facility": "Coal Refinery [Coal Liquefier]",
+        "crafting_time_seconds": 270,
+        "power_mw": 6,
+        "inputs": {
+          "Coal": 300,
+          "Water (L)": 50
+        },
+        "outputs": {
+          "Concrete Materials": 1,
+          "Sulfur": 10,
+          "Oil (L)": 50
+        }
+      },
+      {
+        "recipe_key": "concrete_materials_advanced_liquefier",
+        "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
+        "facility": "Coal Refinery [Advanced Coal Liquefier]",
+        "crafting_time_seconds": 270,
+        "power_mw": 6,
+        "inputs": {
+          "Coal": 300,
+          "Water (L)": 100
+        },
+        "outputs": {
+          "Concrete Materials": 1,
+          "Sulfur": 15,
+          "Oil (L)": 100
+        }
+      },
+      {
+        "recipe_key": "concrete_materials_concrete_mixer",
+        "recipe_name": "Concrete Mixer",
+        "facility": "Concrete Mixer",
+        "crafting_time_seconds": 20,
+        "inputs": {
+          "Components": 20
+        },
+        "outputs": {
+          "Concrete Materials": 1
+        }
+      }
+    ]
+  },
+  "pipe": {
+    "full_name": "Pipe",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory",
+    "crafting_time_seconds": 120,
+    "power_mw": 5,
+    "aliases": [
+      "pipe",
+      "pipes"
+    ],
+    "inputs": {
+      "Processed Construction Materials": 3
+    },
+    "outputs": {
+      "Pipe": 1
+    }
+  },
+  "rare_materials": {
+    "full_name": "Rare Materials",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Metalworks Factory [Blast Furnace]",
+    "crafting_time_seconds": 180,
+    "power_mw": 10,
+    "aliases": [
+      "rare_materials",
+      "rare materials"
+    ],
+    "inputs": {
+      "Rare Metal": 1,
+      "Construction Materials": 5
+    },
+    "outputs": {
+      "Rare Materials": 1
+    }
+  },
+  "unstable_substances": {
+    "full_name": "Unstable Substances",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Ammunition Factory [Rocket Battery Workshop]",
+    "crafting_time_seconds": 1800,
+    "power_mw": 5,
+    "aliases": [
+      "unstable_substances",
+      "unstable substances"
+    ],
+    "inputs": {
+      "Flame Ammo": 3,
+      "Heavy Explosive Powder": 8
+    },
+    "outputs": {
+      "Unstable Substances": 1
+    }
+  },
+  "naval_hull_segments": {
+    "full_name": "Naval Hull Segments",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "aliases": [
+      "naval_hull_segments",
+      "naval hull segments",
+      "hull segments"
+    ],
+    "inputs": {
+      "Processed Construction Materials": 60,
+      "Assembly Materials I": 2,
+      "Assembly Materials II": 2,
+      "Assembly Materials IV": 10,
+      "Rare Alloys": 4,
+      "Thermal Shielding": 4
+    },
+    "outputs": {
+      "Naval Hull Segments": 1
+    }
+  },
+  "naval_shell_plating": {
+    "full_name": "Naval Shell Plating",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 300,
+    "power_mw": 2,
+    "aliases": [
+      "naval_shell_plating",
+      "naval shell plating",
+      "shell plating"
+    ],
+    "inputs": {
+      "Construction Materials": 2,
+      "Thermal Shielding": 1
+    },
+    "outputs": {
+      "Naval Shell Plating": 1
+    }
+  },
+  "naval_turbine_components": {
+    "full_name": "Naval Turbine Components",
+    "category": "material",
+    "subcategory": "Large",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 43200,
+    "power_mw": 2,
+    "aliases": [
+      "naval_turbine_components",
+      "naval turbine components",
+      "turbine components"
+    ],
+    "inputs": {
+      "Assembly Materials V": 20,
+      "Rare Alloys": 20
+    },
+    "outputs": {
+      "Naval Turbine Components": 1
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "sagittarii_g40": {
+    "full_name": "G40 Sagittarii",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Machine Gun",
+    "weapon_type": "12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "sagittarii_g40",
+      "g40 sagittarii",
+      "sagittarii",
+      "fmg"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sagittarii_g40_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 22,
+        "inputs": {
+          "Refined Materials": 20
+        },
+        "outputs": {
+          "G40 Sagittarii": 1
+        }
+      },
+      {
+        "recipe_key": "sagittarii_g40_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5000,
+        "inputs": {
+          "Refined Materials": 210
+        },
+        "outputs": {
+          "G40 Sagittarii": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "cestus_ga6": {
+    "full_name": "GA6 Cestus",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field AT Rifle",
+    "weapon_type": "Anti-Tank Rifle",
+    "ammo_type": "14.5mm",
+    "aliases": [
+      "cestus_ga6",
+      "ga6 cestus",
+      "cestus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cestus_ga6_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "G40 Sagittarii": 1,
+          "Construction Materials": 30,
+          "Assembly Materials II": 20
+        },
+        "outputs": {
+          "GA6 Cestus": 1
+        }
+      }
+    ]
+  },
+  "battering_ram_aa2": {
+    "full_name": "AA-2 Battering Ram",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Cannon",
+    "weapon_type": "68mm Cannon",
+    "ammo_type": "68mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "battering_ram_aa2",
+      "aa-2 battering ram",
+      "battering ram",
+      "fat"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "battering_ram_aa2_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 22,
+        "inputs": {
+          "Refined Materials": 20
+        },
+        "outputs": {
+          "AA-2 Battering Ram": 1
+        }
+      },
+      {
+        "recipe_key": "battering_ram_aa2_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5000,
+        "inputs": {
+          "Refined Materials": 210
+        },
+        "outputs": {
+          "AA-2 Battering Ram": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "smelter_40_45": {
+    "full_name": "40-45 Smelter",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Cannon",
+    "weapon_type": "40mm Cannon",
+    "ammo_type": "40mm",
+    "aliases": [
+      "smelter_40_45",
+      "40-45 smelter",
+      "smelter",
+      "hvfc",
+      "hv40"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "smelter_40_45_small_assembly_station_field_station",
+        "recipe_name": "Small Assembly Station [Field Station]",
+        "facility": "Small Assembly Station [Field Station]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "AA-2 Battering Ram": 1,
+          "Processed Construction Materials": 5,
+          "Assembly Materials IV": 5
+        },
+        "outputs": {
+          "40-45 Smelter": 1
+        }
+      }
+    ]
+  },
+  "stygian_bolt_945g": {
+    "full_name": "945g Stygian Bolt",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Cannon",
+    "weapon_type": "94.5mm Cannon",
+    "ammo_type": "94.5mm",
+    "aliases": [
+      "stygian_bolt_945g",
+      "945g stygian bolt",
+      "stygian bolt"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "stygian_bolt_945g_small_assembly_station_weapons_platform",
+        "recipe_name": "Small Assembly Station [Weapons Platform]",
+        "facility": "Small Assembly Station [Weapons Platform]",
+        "crafting_time_seconds": 420,
+        "power_mw": 2,
+        "inputs": {
+          "AA-2 Battering Ram": 1,
+          "Steel Construction Materials": 15,
+          "Assembly Materials II": 20,
+          "Assembly Materials III": 15
+        },
+        "outputs": {
+          "945g Stygian Bolt": 1
+        }
+      }
+    ]
+  },
+  "koronides_120_68": {
+    "full_name": "120-68 Koronides Field Gun",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Artillery",
+    "weapon_type": "120mm Light Artillery Cannon",
+    "ammo_type": "120mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "koronides_120_68",
+      "120-68 koronides field gun",
+      "koronides"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "koronides_120_68_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 28,
+        "inputs": {
+          "Refined Materials": 50
+        },
+        "outputs": {
+          "120-68 Koronides Field Gun": 1
+        }
+      },
+      {
+        "recipe_key": "koronides_120_68_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 12500,
+        "inputs": {
+          "Refined Materials": 525
+        },
+        "outputs": {
+          "120-68 Koronides Field Gun": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "tisiphone_30_250": {
+    "full_name": "30-250 Tisiphone Field Cannon",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Mortar",
+    "weapon_type": "250mm Mortar",
+    "ammo_type": "250mm Purity Shell",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "tisiphone_30_250",
+      "30-250 tisiphone field cannon",
+      "tisiphone"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tisiphone_30_250_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 39,
+        "inputs": {
+          "Refined Materials": 35
+        },
+        "outputs": {
+          "30-250 Tisiphone Field Cannon": 1
+        }
+      },
+      {
+        "recipe_key": "tisiphone_30_250_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8750,
+        "inputs": {
+          "Refined Materials": 366
+        },
+        "outputs": {
+          "30-250 Tisiphone Field Cannon": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "alekto_40_250": {
+    "full_name": "40-250 Alekto Heavy Cannon",
+    "category": "vehicle",
+    "subcategory": "Field Weapon",
+    "class": "Field Mortar",
+    "weapon_type": "250mm Mortar",
+    "ammo_type": "250mm Fury Shell",
+    "aliases": [
+      "alekto_40_250",
+      "40-250 alekto heavy cannon",
+      "alekto"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "alekto_40_250_small_assembly_station_weapons_platform",
+        "recipe_name": "Small Assembly Station [Weapons Platform]",
+        "facility": "Small Assembly Station [Weapons Platform]",
+        "crafting_time_seconds": 420,
+        "power_mw": 2,
+        "inputs": {
+          "30-250 Tisiphone Field Cannon": 1,
+          "Steel Construction Materials": 10,
+          "Assembly Materials II": 20,
+          "Assembly Materials III": 15
+        },
+        "outputs": {
+          "40-250 Alekto Heavy Cannon": 1
+        }
+      }
+    ]
+  }
+}

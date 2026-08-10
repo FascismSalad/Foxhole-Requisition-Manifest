@@ -1,0 +1,2324 @@
+{
+  "caster_03mm": {
+    "full_name": "03MM Caster",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Scout",
+    "type": "motorcycle",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "caster_03mm",
+      "03mm caster",
+      "caster"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "caster_03mm_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 94,
+        "inputs": {
+          "Basic Materials": 85
+        },
+        "outputs": {
+          "03MM Caster": 1
+        }
+      },
+      {
+        "recipe_key": "caster_03mm_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 21250,
+        "inputs": {
+          "Basic Materials": 891
+        },
+        "outputs": {
+          "03MM Caster": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "stinger_00ms": {
+    "full_name": "00MS Stinger",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Scout",
+    "type": "motorcycle",
+    "weapon_type": "7.92mm Machine Gun",
+    "ammo_type": "7.92mm",
+    "aliases": [
+      "stinger_00ms",
+      "00ms stinger",
+      "stinger"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "stinger_00ms_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 180,
+        "power_mw": 2,
+        "inputs": {
+          "03MM Caster": 1,
+          "Construction Materials": 5
+        },
+        "outputs": {
+          "00MS Stinger": 1
+        }
+      }
+    ]
+  },
+  "argonaut_uv05a": {
+    "full_name": "UV-05a Argonaut",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Scout",
+    "type": "light_utility_vehicle",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "argonaut_uv05a",
+      "uv-05a argonaut",
+      "argonaut"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "argonaut_uv05a_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 11,
+        "inputs": {
+          "Refined Materials": 10
+        },
+        "outputs": {
+          "UV-05a Argonaut": 1
+        }
+      },
+      {
+        "recipe_key": "argonaut_uv05a_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 2500,
+        "inputs": {
+          "Refined Materials": 105
+        },
+        "outputs": {
+          "UV-05a Argonaut": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "icarus_uv24": {
+    "full_name": "UV-24 Icarus",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Scout",
+    "type": "light_utility_vehicle",
+    "weapon_type": "RPG Launcher",
+    "ammo_type": "RPG",
+    "aliases": [
+      "icarus_uv24",
+      "uv-24 icarus",
+      "icarus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "icarus_uv24_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 180,
+        "power_mw": 2,
+        "inputs": {
+          "UV-05a Argonaut": 1,
+          "Construction Materials": 3,
+          "Assembly Materials II": 10
+        },
+        "outputs": {
+          "UV-24 Icarus": 1
+        }
+      }
+    ]
+  },
+  "odyssey_uv5c": {
+    "full_name": "UV-5c Odyssey",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Scout",
+    "type": "light_utility_vehicle",
+    "aliases": [
+      "odyssey_uv5c",
+      "uv-5c odyssey",
+      "odyssey"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "odyssey_uv5c_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 180,
+        "power_mw": 2,
+        "inputs": {
+          "UV-05a Argonaut": 1,
+          "Construction Materials": 3
+        },
+        "outputs": {
+          "UV-5c Odyssey": 1
+        }
+      }
+    ]
+  },
+  "xiphos_t3": {
+    "full_name": "T3 Xiphos",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "armoured_car",
+    "weapon_type": "7.92mm Twin-Barrel Machine Gun",
+    "ammo_type": "7.92mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "xiphos_t3",
+      "t3 xiphos",
+      "xiphos"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "xiphos_t3_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 28,
+        "inputs": {
+          "Refined Materials": 25
+        },
+        "outputs": {
+          "T3 Xiphos": 1
+        }
+      },
+      {
+        "recipe_key": "xiphos_t3_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6250,
+        "inputs": {
+          "Refined Materials": 261
+        },
+        "outputs": {
+          "T3 Xiphos": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "gemini_t8": {
+    "full_name": "T8 Gemini",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "armoured_car",
+    "weapon_type": "Twin RPG Launchers",
+    "ammo_type": "RPG",
+    "aliases": [
+      "gemini_t8",
+      "t8 gemini",
+      "gemini"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "gemini_t8_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "T3 Xiphos": 1,
+          "Construction Materials": 10,
+          "Assembly Materials I": 10
+        },
+        "outputs": {
+          "T8 Gemini": 1
+        }
+      }
+    ]
+  },
+  "percutio_t5": {
+    "full_name": "T5 Percutio",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "armoured_car",
+    "weapon_type": "14.5mm Anti-Tank Rifle",
+    "ammo_type": "14.5mm",
+    "aliases": [
+      "percutio_t5",
+      "t5 percutio",
+      "percutio",
+      "atac"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "percutio_t5_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "T3 Xiphos": 1,
+          "Construction Materials": 10,
+          "Assembly Materials I": 10
+        },
+        "outputs": {
+          "T5 Percutio": 1
+        }
+      }
+    ]
+  },
+  "actaeon_t12": {
+    "full_name": "T12 Actaeon Tankette",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "tankette",
+    "weapon_type": "12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "actaeon_t12",
+      "t12 actaeon tankette",
+      "actaeon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "actaeon_t12_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 39,
+        "inputs": {
+          "Refined Materials": 35
+        },
+        "outputs": {
+          "T12 Actaeon Tankette": 1
+        }
+      },
+      {
+        "recipe_key": "actaeon_t12_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8750,
+        "inputs": {
+          "Refined Materials": 366
+        },
+        "outputs": {
+          "T12 Actaeon Tankette": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "vesta_t14": {
+    "full_name": "T14 Vesta Tankette",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "tankette",
+    "weapon_type": "Flamethrower",
+    "ammo_type": "Flame Ammo",
+    "aliases": [
+      "vesta_t14",
+      "t14 vesta tankette",
+      "vesta"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "vesta_t14_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "T12 Actaeon Tankette": 1,
+          "Processed Construction Materials": 10,
+          "Assembly Materials I": 15
+        },
+        "outputs": {
+          "T14 Vesta Tankette": 1
+        }
+      }
+    ]
+  },
+  "ixion_t20": {
+    "full_name": "T20 Ixion Tankette",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "tankette",
+    "weapon_type": "30mm Cannon",
+    "ammo_type": "30mm",
+    "aliases": [
+      "ixion_t20",
+      "t20 ixion tankette",
+      "ixion"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ixion_t20_small_assembly_station_motor_pool",
+        "recipe_name": "Small Assembly Station [Motor Pool]",
+        "facility": "Small Assembly Station [Motor Pool]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "T12 Actaeon Tankette": 1,
+          "Construction Materials": 10,
+          "Assembly Materials I": 15
+        },
+        "outputs": {
+          "T20 Ixion Tankette": 1
+        }
+      }
+    ]
+  },
+  "deioneus_t13": {
+    "full_name": "T13 Deioneus Rocket Battery",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "tankette",
+    "weapon_type": "4C-Fire Rockets Battery",
+    "ammo_type": "4C-Fire Rocket",
+    "aliases": [
+      "deioneus_t13",
+      "t13 deioneus rocket battery",
+      "deioneus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "deioneus_t13_small_assembly_station_battery_line",
+        "recipe_name": "Small Assembly Station [Battery Line]",
+        "facility": "Small Assembly Station [Battery Line]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "T12 Actaeon Tankette": 1,
+          "Processed Construction Materials": 20,
+          "Assembly Materials I": 15,
+          "Assembly Materials III": 3
+        },
+        "outputs": {
+          "T13 Deioneus Rocket Battery": 1
+        }
+      }
+    ]
+  },
+  "acheron_ab8": {
+    "full_name": "AB-8 Acheron",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "landing_apc",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "acheron_ab8",
+      "ab-8 acheron",
+      "acheron"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "acheron_ab8_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 22,
+        "inputs": {
+          "Refined Materials": 20
+        },
+        "outputs": {
+          "AB-8 Acheron": 1
+        }
+      },
+      {
+        "recipe_key": "acheron_ab8_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 5000,
+        "inputs": {
+          "Refined Materials": 210
+        },
+        "outputs": {
+          "AB-8 Acheron": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "doru_ab11": {
+    "full_name": "AB-11 Doru",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "landing_apc",
+    "weapon_type": "12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "aliases": [
+      "doru_ab11",
+      "ab-11 doru",
+      "doru"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "doru_ab11_small_assembly_station_field_station",
+        "recipe_name": "Small Assembly Station [Field Station]",
+        "facility": "Small Assembly Station [Field Station]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "AB-8 Acheron": 1,
+          "Processed Construction Materials": 5,
+          "Assembly Materials III": 3
+        },
+        "outputs": {
+          "AB-11 Doru": 1
+        }
+      }
+    ]
+  },
+  "javelin_hha": {
+    "full_name": "HH-a Javelin",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "half_track",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "javelin_hha",
+      "hh-a javelin",
+      "javelin"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "javelin_hha_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 61,
+        "inputs": {
+          "Refined Materials": 55
+        },
+        "outputs": {
+          "HH-a Javelin": 1
+        }
+      },
+      {
+        "recipe_key": "javelin_hha_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 13750,
+        "inputs": {
+          "Refined Materials": 576
+        },
+        "outputs": {
+          "HH-a Javelin": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "hoplite_hhb": {
+    "full_name": "HH-b Hoplite",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "half_track",
+    "aliases": [
+      "hoplite_hhb",
+      "hh-b hoplite",
+      "hoplite"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "hoplite_hhb_small_assembly_station_battery_line",
+        "recipe_name": "Small Assembly Station [Battery Line]",
+        "facility": "Small Assembly Station [Battery Line]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "HH-a Javelin": 1,
+          "Processed Construction Materials": 3,
+          "Assembly Materials IV": 3
+        },
+        "outputs": {
+          "HH-b Hoplite": 1
+        }
+      }
+    ]
+  },
+  "peltast_hhd": {
+    "full_name": "HH-d Peltast",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "AFV",
+    "type": "half_track",
+    "weapon_type": "Mortar",
+    "ammo_type": [
+      "Mortar Shell",
+      "Shrapnel Mortar Shell",
+      "Flare Mortar Shell",
+      "Incendiary Mortar Shell"
+    ],
+    "aliases": [
+      "peltast_hhd",
+      "hh-d peltast",
+      "peltast",
+      "mht",
+      "mtht"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "peltast_hhd_small_assembly_station_battery_line",
+        "recipe_name": "Small Assembly Station [Battery Line]",
+        "facility": "Small Assembly Station [Battery Line]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "HH-a Javelin": 1,
+          "Processed Construction Materials": 5,
+          "Assembly Materials II": 5,
+          "Assembly Materials IV": 3
+        },
+        "outputs": {
+          "HH-d Peltast": 1
+        }
+      }
+    ]
+  },
+  "hatchet_h5": {
+    "full_name": "H-5 Hatchet",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_tank",
+    "weapon_type": "40mm Cannon",
+    "ammo_type": "40mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "hatchet_h5",
+      "h-5 hatchet",
+      "hatchet"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "hatchet_h5_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 127,
+        "inputs": {
+          "Refined Materials": 115
+        },
+        "outputs": {
+          "H-5 Hatchet": 1
+        }
+      },
+      {
+        "recipe_key": "hatchet_h5_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 28750,
+        "inputs": {
+          "Refined Materials": 1206
+        },
+        "outputs": {
+          "H-5 Hatchet": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "sagaris_ha1": {
+    "full_name": "HA-1 Sagaris",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_tank",
+    "weapon_type": "Twin-Barrel Anti-Air Cannon",
+    "ammo_type": "Absol Anti-Aircraft Rounds",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "sagaris_ha1",
+      "ha-1 sagaris",
+      "sagaris",
+      "ltaa"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sagaris_ha1_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 138,
+        "inputs": {
+          "Refined Materials": 125
+        },
+        "outputs": {
+          "HA-1 Sagaris": 1
+        }
+      },
+      {
+        "recipe_key": "sagaris_ha1_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 31250,
+        "inputs": {
+          "Refined Materials": 1311
+        },
+        "outputs": {
+          "HA-1 Sagaris": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "kranesca_h8": {
+    "full_name": "H-8 Kranesca",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_tank",
+    "weapon_type": "40mm Cannon",
+    "ammo_type": "40mm",
+    "aliases": [
+      "kranesca_h8",
+      "h-8 kranesca",
+      "kranesca"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "kranesca_h8_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "H-5 Hatchet": 1,
+          "Processed Construction Materials": 5,
+          "Assembly Materials I": 20,
+          "Assembly Materials IV": 5
+        },
+        "outputs": {
+          "H-8 Kranesca": 1
+        }
+      }
+    ]
+  },
+  "vulcan_h19": {
+    "full_name": "H-19 Vulcan",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_tank",
+    "weapon_type": "Flamethrower",
+    "ammo_type": "Flame Ammo",
+    "aliases": [
+      "vulcan_h19",
+      "h-19 vulcan",
+      "vulcan"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "vulcan_h19_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "H-5 Hatchet": 1,
+          "Processed Construction Materials": 8,
+          "Assembly Materials II": 20,
+          "Assembly Materials III": 5
+        },
+        "outputs": {
+          "H-19 Vulcan": 1
+        }
+      }
+    ]
+  },
+  "pelekys_h10": {
+    "full_name": "H-10 Pelekys",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_tank",
+    "weapon_type": "68mm Cannon",
+    "ammo_type": "68mm",
+    "aliases": [
+      "pelekys_h10",
+      "h-10 pelekys",
+      "pelekys",
+      "ltd"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "pelekys_h10_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "H-5 Hatchet": 1,
+          "Processed Construction Materials": 8,
+          "Assembly Materials II": 20,
+          "Assembly Materials III": 5
+        },
+        "outputs": {
+          "H-10 Pelekys": 1
+        }
+      }
+    ]
+  },
+  "bardiche_86ka": {
+    "full_name": "86K-a Bardiche",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": [
+      "68mm Short-Barrel Cannon",
+      "12.7mm Coaxial Machine Gun"
+    ],
+    "ammo_type": [
+      "68mm",
+      "12.7mm"
+    ],
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "bardiche_86ka",
+      "86k-a bardiche",
+      "bardiche"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bardiche_86ka_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 182,
+        "inputs": {
+          "Refined Materials": 165
+        },
+        "outputs": {
+          "86K-a Bardiche": 1
+        }
+      },
+      {
+        "recipe_key": "bardiche_86ka_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 41250,
+        "inputs": {
+          "Refined Materials": 1731
+        },
+        "outputs": {
+          "86K-a Bardiche": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "falchion_85kb": {
+    "full_name": "85K-b Falchion",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": "40mm Cannon",
+    "ammo_type": "40mm",
+    "crate_size": 5,
+    "crate_type": "Shippable",
+    "aliases": [
+      "falchion_85kb",
+      "85k-b falchion",
+      "falchion",
+      "falc",
+      "mpt"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "falchion_85kb_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 149,
+        "inputs": {
+          "Refined Materials": 135
+        },
+        "outputs": {
+          "85K-b Falchion": 1
+        }
+      },
+      {
+        "recipe_key": "falchion_85kb_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 33750,
+        "inputs": {
+          "Refined Materials": 1416
+        },
+        "outputs": {
+          "85K-b Falchion": 25
+        },
+        "crate_output": 5,
+        "unit_output": 25
+      }
+    ]
+  },
+  "nemesis_90tv": {
+    "full_name": "90T-v Nemesis",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": [
+      "68mm Cannon",
+      "Quad Grenade Launcher"
+    ],
+    "ammo_type": [
+      "68mm",
+      "Tremola Grenade GPb-1"
+    ],
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "nemesis_90tv",
+      "90t-v nemesis",
+      "nemesis",
+      "nem"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "nemesis_90tv_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 165,
+        "inputs": {
+          "Refined Materials": 150
+        },
+        "outputs": {
+          "90T-v Nemesis": 1
+        }
+      },
+      {
+        "recipe_key": "nemesis_90tv_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 37500,
+        "inputs": {
+          "Refined Materials": 1575
+        },
+        "outputs": {
+          "90T-v Nemesis": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "spatha_85ka": {
+    "full_name": "85K-a Spatha",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": "40mm Cannon",
+    "ammo_type": "40mm",
+    "aliases": [
+      "spatha_85ka",
+      "85k-a spatha",
+      "spatha"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "spatha_85ka_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 420,
+        "power_mw": 2,
+        "inputs": {
+          "85K-b Falchion": 1,
+          "Processed Construction Materials": 12,
+          "Assembly Materials I": 10,
+          "Assembly Materials IV": 8
+        },
+        "outputs": {
+          "85K-a Spatha": 1
+        }
+      }
+    ]
+  },
+  "talos_85vg": {
+    "full_name": "85V-g Talos",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": "75mm Cannon",
+    "ammo_type": "75mm",
+    "aliases": [
+      "talos_85vg",
+      "85v-g talos",
+      "talos"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "talos_85vg_small_assembly_station_weapons_platform",
+        "recipe_name": "Small Assembly Station [Weapons Platform]",
+        "facility": "Small Assembly Station [Weapons Platform]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "85K-b Falchion": 1,
+          "Steel Construction Materials": 10,
+          "Assembly Materials I": 10,
+          "Assembly Materials III": 15,
+          "Assembly Materials IV": 15
+        },
+        "outputs": {
+          "85V-g Talos": 1
+        }
+      }
+    ]
+  },
+  "ranseur_86kc": {
+    "full_name": "86K-c Ranseur",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "assault_tank",
+    "weapon_type": [
+      "12.7mm Machine Gun",
+      "Quad Mounted RPG Launcher"
+    ],
+    "ammo_type": [
+      "12.7mm",
+      "RPG"
+    ],
+    "aliases": [
+      "ranseur_86kc",
+      "86k-c ranseur",
+      "ranseur",
+      "quadiche",
+      "quad"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ranseur_86kc_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 420,
+        "power_mw": 2,
+        "inputs": {
+          "86K-a Bardiche": 1,
+          "Processed Construction Materials": 10,
+          "Assembly Materials II": 10,
+          "Assembly Materials III": 10
+        },
+        "outputs": {
+          "86K-c Ranseur": 1
+        }
+      }
+    ]
+  },
+  "scorpion_hc2": {
+    "full_name": "HC-2 Scorpion",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "light_infantry_tank",
+    "weapon_type": "2x 12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "scorpion_hc2",
+      "hc-2 scorpion",
+      "scorpion",
+      "ist"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "scorpion_hc2_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Refined Materials": 100
+        },
+        "outputs": {
+          "HC-2 Scorpion": 1
+        }
+      },
+      {
+        "recipe_key": "scorpion_hc2_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Refined Materials": 1050
+        },
+        "outputs": {
+          "HC-2 Scorpion": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "ballista_hc7": {
+    "full_name": "HC-7 Ballista",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "siege_tank",
+    "weapon_type": "250mm Mortar",
+    "ammo_type": "250mm Purity Shell",
+    "aliases": [
+      "ballista_hc7",
+      "hc-7 ballista",
+      "ballista"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ballista_hc7_small_assembly_station_tank_factory",
+        "recipe_name": "Small Assembly Station [Tank Factory]",
+        "facility": "Small Assembly Station [Tank Factory]",
+        "crafting_time_seconds": 180,
+        "power_mw": 2,
+        "inputs": {
+          "HC-2 Scorpion": 1,
+          "Processed Construction Materials": 15,
+          "Assembly Materials II": 15
+        },
+        "outputs": {
+          "HC-7 Ballista": 1
+        }
+      }
+    ]
+  },
+  "lance_36": {
+    "full_name": "Lance-36",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "battle_tank",
+    "weapon_type": [
+      "75mm Cannon",
+      "12.7mm Machine Gun"
+    ],
+    "ammo_type": [
+      "75mm",
+      "12.7mm"
+    ],
+    "aliases": [
+      "lance_36",
+      "lance-36"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "lance_36_large_assembly_station_heavy_tank_assembly",
+        "recipe_name": "Large Assembly Station [Heavy Tank Assembly]",
+        "facility": "Large Assembly Station [Heavy Tank Assembly]",
+        "crafting_time_seconds": 64800,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 50,
+          "Assembly Materials III": 30,
+          "Assembly Materials IV": 60,
+          "Assembly Materials V": 35
+        },
+        "outputs": {
+          "Lance-36": 1
+        }
+      }
+    ]
+  },
+  "hasta_lance25": {
+    "full_name": "Lance-25 Hasta",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "battle_tank",
+    "weapon_type": "94.5mm Cannon",
+    "ammo_type": "94.5mm",
+    "aliases": [
+      "hasta_lance25",
+      "lance-25 hasta",
+      "hasta",
+      "btd"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "hasta_lance25_large_assembly_station_heavy_tank_assembly",
+        "recipe_name": "Large Assembly Station [Heavy Tank Assembly]",
+        "facility": "Large Assembly Station [Heavy Tank Assembly]",
+        "crafting_time_seconds": 86400,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 60,
+          "Assembly Materials III": 65,
+          "Assembly Materials IV": 45,
+          "Assembly Materials V": 65
+        },
+        "outputs": {
+          "Lance-25 Hasta": 1
+        }
+      }
+    ]
+  },
+  "sarissa_lance46": {
+    "full_name": "Lance-46 Sarissa",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "battle_tank",
+    "weapon_type": "150mm Heavy Artillery Cannon",
+    "ammo_type": "150mm",
+    "aliases": [
+      "sarissa_lance46",
+      "lance-46 sarissa",
+      "sarissa"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sarissa_lance46_large_assembly_station_heavy_tank_assembly",
+        "recipe_name": "Large Assembly Station [Heavy Tank Assembly]",
+        "facility": "Large Assembly Station [Heavy Tank Assembly]",
+        "crafting_time_seconds": 86400,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 150,
+          "Assembly Materials III": 65,
+          "Assembly Materials IV": 40,
+          "Assembly Materials V": 85
+        },
+        "outputs": {
+          "Lance-46 Sarissa": 1
+        }
+      }
+    ]
+  },
+  "ares_o75b": {
+    "full_name": "O-75b Ares",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Tank",
+    "type": "super_tank",
+    "weapon_type": "Double-Barrelled 75mm Cannon",
+    "ammo_type": "75mm",
+    "aliases": [
+      "ares_o75b",
+      "o-75b ares",
+      "ares"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ares_o75b_large_assembly_station_heavy_tank_assembly",
+        "recipe_name": "Large Assembly Station [Heavy Tank Assembly]",
+        "facility": "Large Assembly Station [Heavy Tank Assembly]",
+        "crafting_time_seconds": 172800,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 275,
+          "Assembly Materials III": 105,
+          "Assembly Materials IV": 95,
+          "Assembly Materials V": 105,
+          "Rare Alloys": 3
+        },
+        "outputs": {
+          "O-75b Ares": 1
+        }
+      }
+    ]
+  },
+  "atlas_hauler_r5": {
+    "full_name": "R-5 Atlas Hauler",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "truck",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "atlas_hauler_r5",
+      "r-5 atlas hauler",
+      "atlas hauler",
+      "atlas"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "atlas_hauler_r5_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 132,
+        "inputs": {
+          "Basic Materials": 120
+        },
+        "outputs": {
+          "R-5 Atlas Hauler": 1
+        }
+      },
+      {
+        "recipe_key": "atlas_hauler_r5_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 30000,
+        "inputs": {
+          "Basic Materials": 1260
+        },
+        "outputs": {
+          "R-5 Atlas Hauler": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "hauler_r1": {
+    "full_name": "R-1 Hauler",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "truck",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "hauler_r1",
+      "r-1 hauler"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "hauler_r1_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "R-1 Hauler": 1
+        }
+      },
+      {
+        "recipe_key": "hauler_r1_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "R-1 Hauler": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "speartip_escort_r9": {
+    "full_name": "R-9 Speartip Escort",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "truck",
+    "weapon_type": "7.92mm Machine Gun",
+    "ammo_type": "7.92mm",
+    "aliases": [
+      "speartip_escort_r9",
+      "r-9 speartip escort",
+      "speartip"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "speartip_escort_r9_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "R-1 Hauler": 1,
+          "Construction Materials": 10
+        },
+        "outputs": {
+          "R-9 Speartip Escort": 1
+        }
+      }
+    ]
+  },
+  "sisyphus_hauler_r5b": {
+    "full_name": "R-5b Sisyphus Hauler",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "truck",
+    "aliases": [
+      "sisyphus_hauler_r5b",
+      "r-5b sisyphus hauler",
+      "sisyphus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sisyphus_hauler_r5b_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "R-1 Hauler": 1,
+          "Construction Materials": 10
+        },
+        "outputs": {
+          "R-5b Sisyphus Hauler": 1
+        }
+      }
+    ]
+  },
+  "retiarius_skirmisher_r17": {
+    "full_name": "R-17 Retiarius Skirmisher",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "truck",
+    "weapon_type": "3C-High Explosive Rocket Battery",
+    "ammo_type": "3C-High Explosive Rocket",
+    "aliases": [
+      "retiarius_skirmisher_r17",
+      "r-17 retiarius skirmisher",
+      "retiarius"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "retiarius_skirmisher_r17_small_assembly_station_battery_line",
+        "recipe_name": "Small Assembly Station [Battery Line]",
+        "facility": "Small Assembly Station [Battery Line]",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "R-1 Hauler": 1,
+          "Processed Construction Materials": 70,
+          "Assembly Materials I": 10,
+          "Assembly Materials III": 8
+        },
+        "outputs": {
+          "R-17 Retiarius Skirmisher": 1
+        }
+      }
+    ]
+  },
+  "stolon_tanker_rr3": {
+    "full_name": "RR-3 Stolon Tanker",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "fuel_tanker",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "stolon_tanker_rr3",
+      "rr-3 stolon tanker",
+      "stolon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "stolon_tanker_rr3_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "RR-3 Stolon Tanker": 1
+        }
+      },
+      {
+        "recipe_key": "stolon_tanker_rr3_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "RR-3 Stolon Tanker": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "packmule_flatbed": {
+    "full_name": "BMS - Packmule Flatbed",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "flatbed_truck",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "packmule_flatbed",
+      "bms - packmule flatbed",
+      "packmule",
+      "flat",
+      "flatbed"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "packmule_flatbed_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 33,
+        "inputs": {
+          "Refined Materials": 30
+        },
+        "outputs": {
+          "BMS - Packmule Flatbed": 1
+        }
+      },
+      {
+        "recipe_key": "packmule_flatbed_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7500,
+        "inputs": {
+          "Refined Materials": 315
+        },
+        "outputs": {
+          "BMS - Packmule Flatbed": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "chariot_r15": {
+    "full_name": "R-15 - Chariot",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "transport_bus",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "chariot_r15",
+      "r-15 - chariot",
+      "chariot"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "chariot_r15_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "R-15 - Chariot": 1
+        }
+      },
+      {
+        "recipe_key": "chariot_r15_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "R-15 - Chariot": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "taurine_rigger": {
+    "full_name": "AU-A150 Taurine Rigger",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Transport",
+    "type": "heavy_duty_truck",
+    "aliases": [
+      "taurine_rigger",
+      "au-a150 taurine rigger",
+      "taurine rigger"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "taurine_rigger_small_assembly_station_field_station",
+        "recipe_name": "Small Assembly Station [Field Station]",
+        "facility": "Small Assembly Station [Field Station]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "Processed Construction Materials": 40
+        },
+        "outputs": {
+          "AU-A150 Taurine Rigger": 1
+        }
+      }
+    ]
+  },
+  "universal_assembly_rig": {
+    "full_name": "BMS - Universal Assembly Rig",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "construction_vehicle",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "universal_assembly_rig",
+      "bms - universal assembly rig",
+      "assembly rig"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "universal_assembly_rig_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "BMS - Universal Assembly Rig": 1
+        }
+      },
+      {
+        "recipe_key": "universal_assembly_rig_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "BMS - Universal Assembly Rig": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "fabricator": {
+    "full_name": "BMS - Fabricator",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "advanced_construction_vehicle",
+    "aliases": [
+      "fabricator",
+      "bms - fabricator",
+      "acv"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "fabricator_small_assembly_station_field_station",
+        "recipe_name": "Small Assembly Station [Field Station]",
+        "facility": "Small Assembly Station [Field Station]",
+        "crafting_time_seconds": 900,
+        "power_mw": 2,
+        "inputs": {
+          "BMS - Universal Assembly Rig": 1,
+          "Processed Construction Materials": 10
+        },
+        "outputs": {
+          "BMS - Fabricator": 1
+        }
+      }
+    ]
+  },
+  "mobile_auto_crane": {
+    "full_name": "BMS - Class 2 Mobile Auto-Crane",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "crane",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "mobile_auto_crane",
+      "bms - class 2 mobile auto-crane",
+      "auto-crane"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mobile_auto_crane_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 138,
+        "inputs": {
+          "Basic Materials": 125
+        },
+        "outputs": {
+          "BMS - Class 2 Mobile Auto-Crane": 1
+        }
+      },
+      {
+        "recipe_key": "mobile_auto_crane_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 31250,
+        "inputs": {
+          "Basic Materials": 1311
+        },
+        "outputs": {
+          "BMS - Class 2 Mobile Auto-Crane": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "scrap_hauler": {
+    "full_name": "BMS - Scrap Hauler",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "harvester",
+    "aliases": [
+      "scrap_hauler",
+      "bms - scrap hauler",
+      "harvie"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "scrap_hauler_small_assembly_station_field_station",
+        "recipe_name": "Small Assembly Station [Field Station]",
+        "facility": "Small Assembly Station [Field Station]",
+        "crafting_time_seconds": 900,
+        "power_mw": 2,
+        "inputs": {
+          "Processed Construction Materials": 90,
+          "Assembly Materials IV": 25
+        },
+        "outputs": {
+          "BMS - Scrap Hauler": 1
+        }
+      }
+    ]
+  },
+  "tumblebox": {
+    "full_name": "Rooster - Tumblebox",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "trailer",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "tumblebox",
+      "rooster - tumblebox"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tumblebox_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Rooster - Tumblebox": 1
+        }
+      },
+      {
+        "recipe_key": "tumblebox_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Rooster - Tumblebox": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "lamploader": {
+    "full_name": "Rooster - Lamploader",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "trailer",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "lamploader",
+      "rooster - lamploader"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "lamploader_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Rooster - Lamploader": 1
+        }
+      },
+      {
+        "recipe_key": "lamploader_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Rooster - Lamploader": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "junkwagon": {
+    "full_name": "Rooster - Junkwagon",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Logistics",
+    "type": "trailer",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "junkwagon",
+      "rooster - junkwagon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "junkwagon_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Rooster - Junkwagon": 1
+        }
+      },
+      {
+        "recipe_key": "junkwagon_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Rooster - Junkwagon": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "salus_ambulance": {
+    "full_name": "R-12 - Salus Ambulance",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Support",
+    "type": "ambulance",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "salus_ambulance",
+      "r-12 - salus ambulance",
+      "salus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "salus_ambulance_garage",
+        "recipe_name": "Garage",
+        "facility": "Garage",
+        "crafting_time_seconds": 165,
+        "inputs": {
+          "Basic Materials": 150
+        },
+        "outputs": {
+          "R-12 - Salus Ambulance": 1
+        }
+      },
+      {
+        "recipe_key": "salus_ambulance_mpf",
+        "recipe_name": "MPF (5-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 37500,
+        "inputs": {
+          "Basic Materials": 1575
+        },
+        "outputs": {
+          "R-12 - Salus Ambulance": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "salva_flame_truck": {
+    "full_name": "R-12b - Salva Flame Truck",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Support",
+    "type": "fire_engine",
+    "weapon_type": "Water Cannon",
+    "aliases": [
+      "salva_flame_truck",
+      "r-12b - salva flame truck",
+      "salva"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "salva_flame_truck_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "R-12 - Salus Ambulance": 1,
+          "Construction Materials": 15,
+          "Assembly Materials II": 5
+        },
+        "outputs": {
+          "R-12b - Salva Flame Truck": 1
+        }
+      }
+    ]
+  },
+  "mineseeker": {
+    "full_name": "BMS Mineseeker",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Small Train",
+    "type": "locomotive",
+    "aliases": [
+      "mineseeker",
+      "bms mineseeker"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mineseeker_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 900,
+        "power_mw": 2,
+        "inputs": {
+          "Construction Materials": 125,
+          "Assembly Materials I": 10,
+          "Assembly Materials II": 20
+        },
+        "outputs": {
+          "BMS Mineseeker": 1
+        }
+      }
+    ]
+  },
+  "stowheel": {
+    "full_name": "BMS Stowheel",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Small Train",
+    "type": "box_car",
+    "aliases": [
+      "stowheel",
+      "bms stowheel"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "stowheel_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "Construction Materials": 35,
+          "Assembly Materials I": 5,
+          "Assembly Materials II": 15
+        },
+        "outputs": {
+          "BMS Stowheel": 1
+        }
+      }
+    ]
+  },
+  "railtruck": {
+    "full_name": "BMS Railtruck",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Small Train",
+    "type": "container_car",
+    "aliases": [
+      "railtruck",
+      "bms railtruck"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "railtruck_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "Construction Materials": 35,
+          "Assembly Materials I": 15,
+          "Assembly Materials II": 5
+        },
+        "outputs": {
+          "BMS Railtruck": 1
+        }
+      }
+    ]
+  },
+  "linerunner": {
+    "full_name": "BMS Linerunner",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Small Train",
+    "type": "flatbed_car",
+    "aliases": [
+      "linerunner",
+      "bms linerunner"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "linerunner_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "Construction Materials": 35,
+          "Assembly Materials I": 15,
+          "Assembly Materials II": 5
+        },
+        "outputs": {
+          "BMS Linerunner": 1
+        }
+      }
+    ]
+  },
+  "tinderbox": {
+    "full_name": "BMS Tinderbox",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Small Train",
+    "type": "liquid_container_car",
+    "aliases": [
+      "tinderbox",
+      "bms tinderbox"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tinderbox_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 300,
+        "power_mw": 2,
+        "inputs": {
+          "Construction Materials": 35,
+          "Assembly Materials I": 5,
+          "Assembly Materials II": 15
+        },
+        "outputs": {
+          "BMS Tinderbox": 1
+        }
+      }
+    ]
+  },
+  "black_bolt": {
+    "full_name": "BMS Black Bolt",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "locomotive",
+    "aliases": [
+      "black_bolt",
+      "bms black bolt"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "black_bolt_large_assembly_station",
+        "recipe_name": "Large Assembly Station",
+        "facility": "Large Assembly Station",
+        "crafting_time_seconds": 21600,
+        "power_mw": 8,
+        "inputs": {
+          "Processed Construction Materials": 200,
+          "Assembly Materials I": 60,
+          "Assembly Materials IV": 50
+        },
+        "outputs": {
+          "BMS Black Bolt": 1
+        }
+      }
+    ]
+  },
+  "roadhouse": {
+    "full_name": "BMS Roadhouse",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "caboose",
+    "aliases": [
+      "roadhouse",
+      "bms roadhouse"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "roadhouse_large_assembly_station",
+        "recipe_name": "Large Assembly Station",
+        "facility": "Large Assembly Station",
+        "crafting_time_seconds": 30,
+        "power_mw": 8,
+        "inputs": {
+          "Processed Construction Materials": 20,
+          "Assembly Materials II": 15,
+          "Assembly Materials III": 5
+        },
+        "outputs": {
+          "BMS Roadhouse": 1
+        }
+      }
+    ]
+  },
+  "rockhold": {
+    "full_name": "BMS Rockhold",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "container_car",
+    "aliases": [
+      "rockhold",
+      "bms rockhold"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "rockhold_large_assembly_station",
+        "recipe_name": "Large Assembly Station",
+        "facility": "Large Assembly Station",
+        "crafting_time_seconds": 30,
+        "power_mw": 8,
+        "inputs": {
+          "Processed Construction Materials": 20,
+          "Assembly Materials II": 15,
+          "Assembly Materials III": 5
+        },
+        "outputs": {
+          "BMS Rockhold": 1
+        }
+      }
+    ]
+  },
+  "longrider": {
+    "full_name": "BMS Longrider",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "flatbed_car",
+    "aliases": [
+      "longrider",
+      "bms longrider"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "longrider_large_assembly_station",
+        "recipe_name": "Large Assembly Station",
+        "facility": "Large Assembly Station",
+        "crafting_time_seconds": 30,
+        "power_mw": 8,
+        "inputs": {
+          "Processed Construction Materials": 20,
+          "Assembly Materials II": 15,
+          "Assembly Materials III": 10
+        },
+        "outputs": {
+          "BMS Longrider": 1
+        }
+      }
+    ]
+  },
+  "holdout": {
+    "full_name": "BMS Holdout",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "infantry_car",
+    "aliases": [
+      "holdout",
+      "bms holdout"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "holdout_large_assembly_station",
+        "recipe_name": "Large Assembly Station",
+        "facility": "Large Assembly Station",
+        "crafting_time_seconds": 1800,
+        "power_mw": 8,
+        "inputs": {
+          "Processed Construction Materials": 20,
+          "Assembly Materials II": 15,
+          "Assembly Materials III": 5
+        },
+        "outputs": {
+          "BMS Holdout": 1
+        }
+      }
+    ]
+  },
+  "steelbreaker_k5a": {
+    "full_name": "Aegis Steelbreaker K5a",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "combat_car",
+    "weapon_type": [
+      "40mm Cannon",
+      "2x 12.7mm Machine Gun"
+    ],
+    "ammo_type": [
+      "40mm",
+      "12.7mm"
+    ],
+    "aliases": [
+      "steelbreaker_k5a",
+      "aegis steelbreaker k5a",
+      "steelbreaker"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "steelbreaker_k5a_large_assembly_station_train_assembly",
+        "recipe_name": "Large Assembly Station [Train Assembly]",
+        "facility": "Large Assembly Station [Train Assembly]",
+        "crafting_time_seconds": 1800,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 30,
+          "Assembly Materials I": 30,
+          "Assembly Materials IV": 30
+        },
+        "outputs": {
+          "Aegis Steelbreaker K5a": 1
+        }
+      }
+    ]
+  },
+  "bloodtender": {
+    "full_name": "BMS Bloodtender",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "first_aid_car",
+    "weapon_type": "12.7mm Machine Gun",
+    "ammo_type": "12.7mm",
+    "aliases": [
+      "bloodtender",
+      "bms bloodtender"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bloodtender_large_assembly_station_train_assembly",
+        "recipe_name": "Large Assembly Station [Train Assembly]",
+        "facility": "Large Assembly Station [Train Assembly]",
+        "crafting_time_seconds": 129600,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 60,
+          "Assembly Materials III": 45,
+          "Assembly Materials IV": 55,
+          "Assembly Materials V": 40,
+          "Rare Alloys": 2
+        },
+        "outputs": {
+          "BMS Bloodtender": 1
+        }
+      }
+    ]
+  },
+  "tempest_cannon_ra2": {
+    "full_name": "Tempest Cannon RA-2",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Large Train",
+    "type": "artillery_car",
+    "weapon_type": "300mm Storm Cannon",
+    "ammo_type": "300mm",
+    "aliases": [
+      "tempest_cannon_ra2",
+      "tempest cannon ra-2",
+      "tempest cannon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tempest_cannon_ra2_large_assembly_station_train_assembly",
+        "recipe_name": "Large Assembly Station [Train Assembly]",
+        "facility": "Large Assembly Station [Train Assembly]",
+        "crafting_time_seconds": 259200,
+        "power_mw": 8,
+        "inputs": {
+          "Steel Construction Materials": 285,
+          "Assembly Materials III": 95,
+          "Assembly Materials IV": 105,
+          "Assembly Materials V": 105,
+          "Rare Alloys": 35,
+          "Thermal Shielding": 45
+        },
+        "outputs": {
+          "Tempest Cannon RA-2": 1
+        }
+      }
+    ]
+  },
+  "sky_hauler": {
+    "full_name": "BMS - Overseer Sky-Hauler",
+    "category": "vehicle",
+    "subcategory": "Land Vehicle",
+    "class": "Crane Train",
+    "type": "large_crane",
+    "aliases": [
+      "sky_hauler",
+      "bms - overseer sky-hauler",
+      "overseer sky-hauler",
+      "sky-hauler"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "sky_hauler_crane_railway_track",
+        "recipe_name": "Crane Railway Track",
+        "inputs": {
+          "Processed Construction Materials": 250
+        },
+        "outputs": {
+          "BMS - Overseer Sky-Hauler": 1
+        }
+      }
+    ]
+  }
+}

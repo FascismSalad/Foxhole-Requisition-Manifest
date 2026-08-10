@@ -1,0 +1,91 @@
+{
+  "bandages": {
+    "full_name": "Bandages",
+    "category": "item",
+    "subcategory": "Medical",
+    "aliases": [
+      "bandages",
+      "bandage"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 40,
+    "inputs": {
+      "Basic Materials": 80
+    },
+    "outputs": {
+      "Bandages": 50
+    }
+  },
+  "blood_plasma": {
+    "full_name": "Blood Plasma",
+    "category": "item",
+    "subcategory": "Medical",
+    "aliases": [
+      "blood_plasma",
+      "blood plasma",
+      "plasma"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 40,
+    "inputs": {
+      "Basic Materials": 80
+    },
+    "outputs": {
+      "Blood Plasma": 50
+    }
+  },
+  "first_aid_kit": {
+    "full_name": "First Aid Kit",
+    "category": "item",
+    "subcategory": "Medical",
+    "aliases": [
+      "first_aid_kit",
+      "first aid kit",
+      "fak"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 35,
+    "inputs": {
+      "Basic Materials": 60
+    },
+    "outputs": {
+      "First Aid Kit": 10
+    }
+  },
+  "soldier_supplies": {
+    "full_name": "Soldier Supplies",
+    "category": "item",
+    "subcategory": "Medical",
+    "aliases": [
+      "soldier_supplies",
+      "soldier supplies",
+      "shirts",
+      "ss"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 80,
+    "inputs": {
+      "Basic Materials": 80
+    },
+    "outputs": {
+      "Soldier Supplies": 10
+    }
+  },
+  "trauma_kit": {
+    "full_name": "Trauma Kit",
+    "category": "item",
+    "subcategory": "Medical",
+    "aliases": [
+      "trauma_kit",
+      "trauma kit"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 50,
+    "inputs": {
+      "Basic Materials": 80
+    },
+    "outputs": {
+      "Trauma Kit": 10
+    }
+  }
+}

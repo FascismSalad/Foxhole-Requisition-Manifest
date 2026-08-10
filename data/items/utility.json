@@ -1,0 +1,341 @@
+{
+  "maintenance_supplies": {
+    "full_name": "Maintenance Supplies",
+    "category": "item",
+    "subcategory": "Utility",
+    "crate_size": 100,
+    "aliases": [
+      "maintenance_supplies",
+      "maintenance supplies",
+      "ms",
+      "msupp"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "maintenance_supplies_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 250
+        },
+        "outputs": {
+          "Maintenance Supplies": 100
+        },
+        "crate_output": 1,
+        "unit_output": 100
+      },
+      {
+        "recipe_key": "maintenance_supplies_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 1375
+        },
+        "outputs": {
+          "Maintenance Supplies": 900
+        },
+        "crate_output": 9,
+        "unit_output": 900
+      },
+      {
+        "recipe_key": "maintenance_supplies_materials_factory",
+        "recipe_name": "Materials Factory",
+        "facility": "Materials Factory",
+        "crafting_time_seconds": 40,
+        "power_mw": 3,
+        "inputs": {
+          "Salvage": 150
+        },
+        "outputs": {
+          "Maintenance Supplies": 20
+        }
+      }
+    ]
+  },
+  "shovel": {
+    "full_name": "Shovel",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "shovel",
+      "shovels"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 100,
+    "inputs": {
+      "Basic Materials": 200
+    },
+    "outputs": {
+      "Shovel": 10
+    }
+  },
+  "sledge_hammer": {
+    "full_name": "Sledge Hammer",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "sledge_hammer",
+      "sledge hammer",
+      "sledgehammer"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 100,
+    "inputs": {
+      "Basic Materials": 200
+    },
+    "outputs": {
+      "Sledge Hammer": 10
+    }
+  },
+  "water_bucket": {
+    "full_name": "Water Bucket",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "water_bucket",
+      "water bucket"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 40,
+    "inputs": {
+      "Basic Materials": 80
+    },
+    "outputs": {
+      "Water Bucket": 50
+    }
+  },
+  "wrench": {
+    "full_name": "Wrench",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "wrench",
+      "wrenches"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 50,
+    "inputs": {
+      "Basic Materials": 75
+    },
+    "outputs": {
+      "Wrench": 5
+    }
+  },
+  "binoculars": {
+    "full_name": "Binoculars",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "binoculars",
+      "binos",
+      "binocs"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 50,
+    "inputs": {
+      "Basic Materials": 75
+    },
+    "outputs": {
+      "Binoculars": 5
+    }
+  },
+  "flight_mask": {
+    "full_name": "Flight Mask",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "flight_mask",
+      "flight mask",
+      "pilot mask"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 75,
+    "inputs": {
+      "Basic Materials": 150
+    },
+    "outputs": {
+      "Flight Mask": 5
+    }
+  },
+  "gas_mask": {
+    "full_name": "Gas Mask",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "gas_mask",
+      "gas mask"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 100,
+    "inputs": {
+      "Basic Materials": 160
+    },
+    "outputs": {
+      "Gas Mask": 20
+    }
+  },
+  "radio": {
+    "full_name": "Radio",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "radio"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 50,
+    "inputs": {
+      "Basic Materials": 75
+    },
+    "outputs": {
+      "Radio": 5
+    }
+  },
+  "radio_backpack": {
+    "full_name": "Radio Backpack",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "radio_backpack",
+      "radio backpack"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 75,
+    "inputs": {
+      "Basic Materials": 150
+    },
+    "outputs": {
+      "Radio Backpack": 5
+    }
+  },
+  "air_raid_siren": {
+    "full_name": "Air Raid Siren",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "air_raid_siren",
+      "air raid siren",
+      "air siren"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 125,
+    "inputs": {
+      "Basic Materials": 150
+    },
+    "outputs": {
+      "Air Raid Siren": 5
+    }
+  },
+  "legion_vexillum": {
+    "full_name": "Legion Vexillum",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "legion_vexillum",
+      "legion vexillum",
+      "vexillum"
+    ],
+    "facility": "Ammunition Factory [Tripod Factory]",
+    "crafting_time_seconds": 25,
+    "power_mw": 4,
+    "inputs": {
+      "Construction Materials": 1,
+      "Assembly Materials I": 1
+    },
+    "outputs": {
+      "Legion Vexillum": 1
+    }
+  },
+  "listening_kit": {
+    "full_name": "Listening Kit",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "listening_kit",
+      "listening kit",
+      "lk"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 60,
+    "inputs": {
+      "Basic Materials": 150
+    },
+    "outputs": {
+      "Listening Kit": 5
+    }
+  },
+  "wind_sock": {
+    "full_name": "Wind Sock",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "wind_sock",
+      "wind sock",
+      "windsock"
+    ],
+    "facility": "Factory",
+    "crafting_time_seconds": 60,
+    "inputs": {
+      "Basic Materials": 150
+    },
+    "outputs": {
+      "Wind Sock": 5
+    }
+  },
+  "paratroopers_ruck": {
+    "full_name": "Paratrooper's Ruck",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "paratroopers_ruck",
+      "paratrooper's ruck",
+      "paratroopers ruck"
+    ],
+    "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+    "crafting_time_seconds": 60,
+    "power_mw": 2,
+    "inputs": {
+      "Construction Materials": 20
+    },
+    "outputs": {
+      "Paratrooper's Ruck": 10
+    }
+  },
+  "tripod": {
+    "full_name": "Tripod",
+    "category": "item",
+    "subcategory": "Utility",
+    "aliases": [
+      "tripod",
+      "tripods"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tripod_factory_utility",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 60,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Tripod": 5
+        }
+      },
+      {
+        "recipe_key": "tripod_ammunition_factory_tripod_factory",
+        "recipe_name": "Ammunition Factory [Tripod Factory]",
+        "facility": "Ammunition Factory [Tripod Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 2
+        },
+        "outputs": {
+          "Tripod": 1
+        }
+      }
+    ]
+  }
+}

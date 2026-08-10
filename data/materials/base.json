@@ -1,0 +1,56 @@
+{
+  "cmat": {
+    "full_name": "Construction Materials",
+    "category": "material",
+    "subcategory": "Base",
+    "aliases": [
+      "cmat",
+      "cmats",
+      "construction materials",
+      "construction material"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cmat_metal_press",
+        "recipe_name": "Metal Press",
+        "facility": "Materials Factory [Metal Press]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Salvage": 15,
+          "Petrol (L)": 25
+        },
+        "outputs": {
+          "Construction Materials": 3
+        }
+      },
+      {
+        "recipe_key": "cmat_base",
+        "recipe_name": "Materials Factory",
+        "facility": "Materials Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 2,
+        "inputs": {
+          "Salvage": 10
+        },
+        "outputs": {
+          "Construction Materials": 1
+        }
+      },
+      {
+        "recipe_key": "cmat_smelter",
+        "recipe_name": "Smelter",
+        "facility": "Materials Factory [Smelter]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Salvage": 15,
+          "Coke": 25
+        },
+        "outputs": {
+          "Construction Materials": 3
+        }
+      }
+    ]
+  }
+}

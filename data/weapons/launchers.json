@@ -1,0 +1,251 @@
+{
+  "bane_45": {
+    "full_name": "Bane 45",
+    "category": "weapon",
+    "subcategory": "Launchers",
+    "class": "Anti-Tank RPG",
+    "ammo_type": "AP/RPG",
+    "crate_size": 5,
+    "aliases": [
+      "bane_45",
+      "bane 45",
+      "bane"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bane_45_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 150,
+          "Refined Materials": 40
+        },
+        "outputs": {
+          "Bane 45": 5
+        }
+      },
+      {
+        "recipe_key": "bane_45_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 825,
+          "Refined Materials": 220
+        },
+        "outputs": {
+          "Bane 45": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "ignifist_30": {
+    "full_name": "Ignifist 30",
+    "category": "weapon",
+    "subcategory": "Launchers",
+    "class": "Anti-Tank RPG",
+    "crate_size": 10,
+    "aliases": [
+      "ignifist_30",
+      "ignifist 30",
+      "ignifist"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "ignifist_30_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 75,
+        "inputs": {
+          "Basic Materials": 85,
+          "Explosive Powder": 70
+        },
+        "outputs": {
+          "Ignifist 30": 10
+        }
+      },
+      {
+        "recipe_key": "ignifist_30_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6750,
+        "inputs": {
+          "Basic Materials": 464,
+          "Explosive Powder": 385
+        },
+        "outputs": {
+          "Ignifist 30": 90
+        },
+        "crate_output": 9,
+        "unit_output": 90
+      },
+      {
+        "recipe_key": "ignifist_30_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 6900,
+        "power_mw": 12,
+        "inputs": {
+          "Explosive Powder": 385,
+          "Construction Materials": 95
+        },
+        "outputs": {
+          "Ignifist 30": 100
+        }
+      }
+    ]
+  },
+  "venom_cii_35": {
+    "full_name": "Venom c.II 35",
+    "category": "weapon",
+    "subcategory": "Launchers",
+    "class": "Anti-Tank RPG",
+    "ammo_type": "AP/RPG",
+    "crate_size": 5,
+    "aliases": [
+      "venom_cii_35",
+      "venom c.ii 35",
+      "venom"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "venom_cii_35_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 15
+        },
+        "outputs": {
+          "Venom c.II 35": 5
+        }
+      },
+      {
+        "recipe_key": "venom_cii_35_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 79
+        },
+        "outputs": {
+          "Venom c.II 35": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "klg901_2_lunaire_f": {
+    "full_name": "KLG901-2 Lunaire F",
+    "category": "weapon",
+    "subcategory": "Launchers",
+    "class": "Grenade Launcher",
+    "ammo_type": [
+      "Tremola Grenade GPb-1",
+      "Green Ash Grenade",
+      "PT-815 Smoke Grenade"
+    ],
+    "crate_size": 5,
+    "aliases": [
+      "klg901_2_lunaire_f",
+      "klg901-2 lunaire f",
+      "lunaire f"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "klg901_2_lunaire_f_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 50,
+          "Refined Materials": 15
+        },
+        "outputs": {
+          "KLG901-2 Lunaire F": 5
+        }
+      },
+      {
+        "recipe_key": "klg901_2_lunaire_f_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 275,
+          "Refined Materials": 79
+        },
+        "outputs": {
+          "KLG901-2 Lunaire F": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "mounted_fissura_gdi": {
+    "full_name": "Mounted Fissura gd.I",
+    "category": "weapon",
+    "subcategory": "Launchers",
+    "class": "Mounted Grenade Launcher",
+    "ammo_type": [
+      "Tremola Grenade GPb-1",
+      "Green Ash Grenade",
+      "PT-815 Smoke Grenade"
+    ],
+    "crate_size": 5,
+    "aliases": [
+      "mounted_fissura_gdi",
+      "mounted fissura gd.i",
+      "fissura"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mounted_fissura_gdi_tripod_factory",
+        "recipe_name": "Ammunition Factory [Tripod Factory]",
+        "facility": "Ammunition Factory [Tripod Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 3
+        },
+        "outputs": {
+          "Mounted Fissura gd.I": 1
+        }
+      },
+      {
+        "recipe_key": "mounted_fissura_gdi_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 5
+        },
+        "outputs": {
+          "Mounted Fissura gd.I": 5
+        }
+      },
+      {
+        "recipe_key": "mounted_fissura_gdi_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 24
+        },
+        "outputs": {
+          "Mounted Fissura gd.I": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  }
+}

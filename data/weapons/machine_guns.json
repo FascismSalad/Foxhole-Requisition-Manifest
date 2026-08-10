@@ -1,0 +1,142 @@
+{
+  "catara_moii": {
+    "full_name": "Catara mo.II",
+    "category": "weapon",
+    "subcategory": "Machine Guns",
+    "class": "Light Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 20,
+    "aliases": [
+      "catara_moii",
+      "catara mo.ii",
+      "catara"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "catara_moii_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Refined Materials": 15
+        },
+        "outputs": {
+          "Catara mo.II": 20
+        }
+      },
+      {
+        "recipe_key": "catara_moii_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Refined Materials": 79
+        },
+        "outputs": {
+          "Catara mo.II": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "krn886_127_gast_machine_gun": {
+    "full_name": "KRN886-127 Gast Machine Gun",
+    "category": "weapon",
+    "subcategory": "Machine Guns",
+    "class": "Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 5,
+    "aliases": [
+      "krn886_127_gast_machine_gun",
+      "krn886-127 gast machine gun",
+      "gast machine gun",
+      "gast",
+      "hmg"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "krn886_127_gast_machine_gun_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Refined Materials": 25
+        },
+        "outputs": {
+          "KRN886-127 Gast Machine Gun": 5
+        }
+      },
+      {
+        "recipe_key": "krn886_127_gast_machine_gun_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Refined Materials": 134
+        },
+        "outputs": {
+          "KRN886-127 Gast Machine Gun": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "lamentum_mmiv": {
+    "full_name": "Lamentum mm.IV",
+    "category": "weapon",
+    "subcategory": "Machine Guns",
+    "class": "Mounted Machine Gun",
+    "ammo_type": "12.7mm",
+    "crate_size": 5,
+    "aliases": [
+      "lamentum_mmiv",
+      "lamentum mm.iv",
+      "lamentum"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "lamentum_mmiv_tripod_factory",
+        "recipe_name": "Ammunition Factory [Tripod Factory]",
+        "facility": "Ammunition Factory [Tripod Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 3
+        },
+        "outputs": {
+          "Lamentum mm.IV": 1
+        }
+      },
+      {
+        "recipe_key": "lamentum_mmiv_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 5
+        },
+        "outputs": {
+          "Lamentum mm.IV": 5
+        }
+      },
+      {
+        "recipe_key": "lamentum_mmiv_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 24
+        },
+        "outputs": {
+          "Lamentum mm.IV": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  }
+}

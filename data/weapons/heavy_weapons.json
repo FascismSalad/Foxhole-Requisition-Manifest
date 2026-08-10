@@ -1,0 +1,219 @@
+{
+  "dawn_veii": {
+    "full_name": "Dawn Ve.II",
+    "category": "weapon",
+    "subcategory": "Heavy Weapons",
+    "class": "Anti-Tank Rifle",
+    "ammo_type": "14.5mm",
+    "crate_size": 3,
+    "aliases": [
+      "dawn_veii",
+      "dawn ve.ii",
+      "dawn",
+      "atr"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "dawn_veii_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "crafting_time_seconds": 75,
+        "power_mw": 4,
+        "inputs": {
+          "Dusk ce.III": 20,
+          "Processed Construction Materials": 3,
+          "Assembly Materials II": 5
+        },
+        "outputs": {
+          "Dawn Ve.II": 3
+        }
+      }
+    ]
+  },
+  "molten_wind_vii_flame_torch": {
+    "full_name": "Molten Wind v.II Flame Torch",
+    "category": "weapon",
+    "subcategory": "Heavy Weapons",
+    "class": "Flamethrower",
+    "ammo_type": "Molten Wind v.II Ammo",
+    "crate_size": 10,
+    "aliases": [
+      "molten_wind_vii_flame_torch",
+      "molten wind v.ii flame torch",
+      "molten wind"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "molten_wind_vii_flame_torch_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 185,
+          "Refined Materials": 25
+        },
+        "outputs": {
+          "Molten Wind v.II Flame Torch": 10
+        }
+      },
+      {
+        "recipe_key": "molten_wind_vii_flame_torch_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 1014,
+          "Refined Materials": 134
+        },
+        "outputs": {
+          "Molten Wind v.II Flame Torch": 90
+        },
+        "crate_output": 9,
+        "unit_output": 90
+      }
+    ]
+  },
+  "typhon_raxii": {
+    "full_name": "Typhon ra.XII",
+    "category": "weapon",
+    "subcategory": "Heavy Weapons",
+    "class": "Mounted Anti-Tank Rifle",
+    "ammo_type": "14.5mm",
+    "crate_size": 5,
+    "aliases": [
+      "typhon_raxii",
+      "typhon ra.xii",
+      "typhon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "typhon_raxii_tripod_factory",
+        "recipe_name": "Ammunition Factory [Tripod Factory]",
+        "facility": "Ammunition Factory [Tripod Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 3
+        },
+        "outputs": {
+          "Typhon ra.XII": 1
+        }
+      },
+      {
+        "recipe_key": "typhon_raxii_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 5
+        },
+        "outputs": {
+          "Typhon ra.XII": 5
+        }
+      },
+      {
+        "recipe_key": "typhon_raxii_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 24
+        },
+        "outputs": {
+          "Typhon ra.XII": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "daucus_isgiii": {
+    "full_name": "Daucus isg.III",
+    "category": "weapon",
+    "subcategory": "Heavy Weapons",
+    "class": "Mounted Infantry Support Gun",
+    "ammo_type": "30mm",
+    "crate_size": 5,
+    "aliases": [
+      "daucus_isgiii",
+      "daucus isg.iii",
+      "daucus"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "daucus_isgiii_tripod_factory",
+        "recipe_name": "Ammunition Factory [Tripod Factory]",
+        "facility": "Ammunition Factory [Tripod Factory]",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 3
+        },
+        "outputs": {
+          "Daucus isg.III": 1
+        }
+      },
+      {
+        "recipe_key": "daucus_isgiii_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 5
+        },
+        "outputs": {
+          "Daucus isg.III": 5
+        }
+      },
+      {
+        "recipe_key": "daucus_isgiii_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 24
+        },
+        "outputs": {
+          "Daucus isg.III": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "quickhatch_rti": {
+    "full_name": "Quickhatch Rt.I",
+    "category": "weapon",
+    "subcategory": "Heavy Weapons",
+    "class": "Sniper Rifle",
+    "ammo_type": "14.5mm",
+    "crate_size": 3,
+    "aliases": [
+      "quickhatch_rti",
+      "quickhatch rt.i",
+      "quickhatch",
+      "atsr"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "quickhatch_rti_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "facility": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
+        "crafting_time_seconds": 120,
+        "power_mw": 4,
+        "inputs": {
+          "Catara mo.II": 20,
+          "Processed Construction Materials": 25,
+          "Assembly Materials I": 5
+        },
+        "outputs": {
+          "Quickhatch Rt.I": 3
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,3019 @@
+[
+  {
+    "title": ".44 Mag",
+    "url": "https://foxhole.wiki.gg/wiki/.44_Mag",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RevolverAmmoItemIcon.png?b190ce",
+    "image_local_path": "foxhole_items\\images\\44_Mag.png"
+  },
+  {
+    "title": "00MS “Stinger”",
+    "url": "https://foxhole.wiki.gg/wiki/00MS_%E2%80%9CStinger%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MotorcycleOffensiveVehicleIcon.png?d856a2",
+    "image_local_path": "foxhole_items\\images\\00MS_Stinger.png"
+  },
+  {
+    "title": "12.7mm",
+    "url": "https://foxhole.wiki.gg/wiki/12.7mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MachineGunAmmoIcon.png?e151f7",
+    "image_local_path": "foxhole_items\\images\\12_7mm.png"
+  },
+  {
+    "title": "120-68 “Koronides” Field Gun",
+    "url": "https://foxhole.wiki.gg/wiki/120-68_%E2%80%9CKoronides%E2%80%9D_Field_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldArtilleryColVehicleIcon.png?fc3da1",
+    "image_local_path": "foxhole_items\\images\\120-68_Koronides_Field_Gun.png"
+  },
+  {
+    "title": "120mm",
+    "url": "https://foxhole.wiki.gg/wiki/120mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightArtilleryAmmoItemIcon.png?c00707",
+    "image_local_path": "foxhole_items\\images\\120mm.png"
+  },
+  {
+    "title": "14.5mm",
+    "url": "https://foxhole.wiki.gg/wiki/14.5mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleAmmoItemIcon.png?48a8d6",
+    "image_local_path": "foxhole_items\\images\\14_5mm.png"
+  },
+  {
+    "title": "150mm",
+    "url": "https://foxhole.wiki.gg/wiki/150mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyArtilleryAmmoItemIcon.png?4552df",
+    "image_local_path": "foxhole_items\\images\\150mm.png"
+  },
+  {
+    "title": "20mm",
+    "url": "https://foxhole.wiki.gg/wiki/20mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftAmmoIcon.png?3c9a75",
+    "image_local_path": "foxhole_items\\images\\20mm.png"
+  },
+  {
+    "title": "228 Satterley Heavy Storm Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/228_Satterley_Heavy_Storm_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleAssaultWIcontga.png?8f2968",
+    "image_local_path": "foxhole_items\\images\\228_Satterley_Heavy_Storm_Rifle.png"
+  },
+  {
+    "title": "250mm “Fury” Shell",
+    "url": "https://foxhole.wiki.gg/wiki/250mm_%E2%80%9CFury%E2%80%9D_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarTankAmmoBRIcon.png?b17356",
+    "image_local_path": "foxhole_items\\images\\250mm_Fury_Shell.png"
+  },
+  {
+    "title": "250mm “Purity” Shell",
+    "url": "https://foxhole.wiki.gg/wiki/250mm_%E2%80%9CPurity%E2%80%9D_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarTankIcon.png?b9d9a6",
+    "image_local_path": "foxhole_items\\images\\250mm_Purity_Shell.png"
+  },
+  {
+    "title": "30-250 “Tisiphone” Field Cannon",
+    "url": "https://foxhole.wiki.gg/wiki/30-250_%E2%80%9CTisiphone%E2%80%9D_Field_Cannon",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldMortarCIcon.png?d24698",
+    "image_local_path": "foxhole_items\\images\\30-250_Tisiphone_Field_Cannon.png"
+  },
+  {
+    "title": "300mm",
+    "url": "https://foxhole.wiki.gg/wiki/300mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LRArtilleryAmmoItemIcon.png?3cadc1",
+    "image_local_path": "foxhole_items\\images\\300mm.png"
+  },
+  {
+    "title": "30mm",
+    "url": "https://foxhole.wiki.gg/wiki/30mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MiniTankAmmoItemIcon.png?9e6416",
+    "image_local_path": "foxhole_items\\images\\30mm.png"
+  },
+  {
+    "title": "3C-High Explosive Rocket",
+    "url": "https://foxhole.wiki.gg/wiki/3C-High_Explosive_Rocket",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HERocketAmmoIcon.png?463901",
+    "image_local_path": "foxhole_items\\images\\3C-High_Explosive_Rocket.png"
+  },
+  {
+    "title": "40-250 “Alekto” Heavy Cannon",
+    "url": "https://foxhole.wiki.gg/wiki/40-250_%E2%80%9CAlekto%E2%80%9D_Heavy_Cannon",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeFieldMortarCIcon.png?fbe6ac",
+    "image_local_path": "foxhole_items\\images\\40-250_Alekto_Heavy_Cannon.png"
+  },
+  {
+    "title": "40-45 “Smelter”",
+    "url": "https://foxhole.wiki.gg/wiki/40-45_%E2%80%9CSmelter%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldATOffensiveCIcon.png?90fc43",
+    "image_local_path": "foxhole_items\\images\\40-45_Smelter.png"
+  },
+  {
+    "title": "40mm",
+    "url": "https://foxhole.wiki.gg/wiki/40mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankAmmoItemIcon.png?88a2c5",
+    "image_local_path": "foxhole_items\\images\\40mm.png"
+  },
+  {
+    "title": "4C-Fire Rocket",
+    "url": "https://foxhole.wiki.gg/wiki/4C-Fire_Rocket",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlameRocketAmmoIcon.png?935eac",
+    "image_local_path": "foxhole_items\\images\\4C-Fire_Rocket.png"
+  },
+  {
+    "title": "50-500 “Thunderbolt” Cannon",
+    "url": "https://foxhole.wiki.gg/wiki/50-500_%E2%80%9CThunderbolt%E2%80%9D_Cannon",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyArtilleryCIcon.png?3a8f49",
+    "image_local_path": "foxhole_items\\images\\50-500_Thunderbolt_Cannon.png"
+  },
+  {
+    "title": "68A-4 Ronan Fathomer",
+    "url": "https://foxhole.wiki.gg/wiki/68A-4_Ronan_Fathomer",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightBoatInfantryWVehicleIcon.png?cb1db8",
+    "image_local_path": "foxhole_items\\images\\68A-4_Ronan_Fathomer.png"
+  },
+  {
+    "title": "68mm",
+    "url": "https://foxhole.wiki.gg/wiki/68mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATAmmoIcon.png?996336",
+    "image_local_path": "foxhole_items\\images\\68mm.png"
+  },
+  {
+    "title": "7.62mm",
+    "url": "https://foxhole.wiki.gg/wiki/7.62mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleAmmoItemIcon.png?6e2a55",
+    "image_local_path": "foxhole_items\\images\\7_62mm.png"
+  },
+  {
+    "title": "7.92mm",
+    "url": "https://foxhole.wiki.gg/wiki/7.92mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssaultRifleAmmoItemIcon.png?e79005",
+    "image_local_path": "foxhole_items\\images\\7_92mm.png"
+  },
+  {
+    "title": "74b-1 Ronan Gunship",
+    "url": "https://foxhole.wiki.gg/wiki/74b-1_Ronan_Gunship",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GunboatWIcon.png?6f03f7",
+    "image_local_path": "foxhole_items\\images\\74b-1_Ronan_Gunship.png"
+  },
+  {
+    "title": "75mm",
+    "url": "https://foxhole.wiki.gg/wiki/75mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankAmmoItemIcon.png?e87a58",
+    "image_local_path": "foxhole_items\\images\\75mm.png"
+  },
+  {
+    "title": "81f-f Ronan Blackguard",
+    "url": "https://foxhole.wiki.gg/wiki/81f-f_Ronan_Blackguard",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Gunboat2WIcon.png?2bd262",
+    "image_local_path": "foxhole_items\\images\\81f-f_Ronan_Blackguard.png"
+  },
+  {
+    "title": "85K-a “Spatha”",
+    "url": "https://foxhole.wiki.gg/wiki/85K-a_%E2%80%9CSpatha%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ColonialMediumTankOffensive.png?fc149a",
+    "image_local_path": "foxhole_items\\images\\85K-a_Spatha.png"
+  },
+  {
+    "title": "85K-b “Falchion”",
+    "url": "https://foxhole.wiki.gg/wiki/85K-b_%E2%80%9CFalchion%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ColonialMediumTankIcon.png?5b6e6f",
+    "image_local_path": "foxhole_items\\images\\85K-b_Falchion.png"
+  },
+  {
+    "title": "85V-g “Talos”",
+    "url": "https://foxhole.wiki.gg/wiki/85V-g_%E2%80%9CTalos%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTankLargeCIcon.png?984cfe",
+    "image_local_path": "foxhole_items\\images\\85V-g_Talos.png"
+  },
+  {
+    "title": "86K-a “Bardiche”",
+    "url": "https://foxhole.wiki.gg/wiki/86K-a_%E2%80%9CBardiche%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2CIcon.png?2161df",
+    "image_local_path": "foxhole_items\\images\\86K-a_Bardiche.png"
+  },
+  {
+    "title": "86K-c “Ranseur”",
+    "url": "https://foxhole.wiki.gg/wiki/86K-c_%E2%80%9CRanseur%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2TwinCVehicleIcon.png?e175d6",
+    "image_local_path": "foxhole_items\\images\\86K-c_Ranseur.png"
+  },
+  {
+    "title": "8mm",
+    "url": "https://foxhole.wiki.gg/wiki/8mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PistolAmmoItemIcon.png?e45fcc",
+    "image_local_path": "foxhole_items\\images\\8mm.png"
+  },
+  {
+    "title": "90T-v “Nemesis”",
+    "url": "https://foxhole.wiki.gg/wiki/90T-v_%E2%80%9CNemesis%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank3CItemIcon.png?ddf976",
+    "image_local_path": "foxhole_items\\images\\90T-v_Nemesis.png"
+  },
+  {
+    "title": "912 Shrike Rounds",
+    "url": "https://foxhole.wiki.gg/wiki/912_Shrike_Rounds",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\912_Shrike_Rounds.png"
+  },
+  {
+    "title": "94.5mm",
+    "url": "https://foxhole.wiki.gg/wiki/94.5mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATLargeAmmoIcon.png?53ed83",
+    "image_local_path": "foxhole_items\\images\\94_5mm.png"
+  },
+  {
+    "title": "945g “Stygian Bolt”",
+    "url": "https://foxhole.wiki.gg/wiki/945g_%E2%80%9CStygian_Bolt%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldATHeavyCIcon.png?3c9db2",
+    "image_local_path": "foxhole_items\\images\\945g_Stygian_Bolt.png"
+  },
+  {
+    "title": "950-70b Anti-Aircraft Shell",
+    "url": "https://foxhole.wiki.gg/wiki/950-70b_Anti-Aircraft_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AAAmmoIcon.png?ba1e25",
+    "image_local_path": "foxhole_items\\images\\950-70b_Anti-Aircraft_Shell.png"
+  },
+  {
+    "title": "9mm",
+    "url": "https://foxhole.wiki.gg/wiki/9mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SubMachineGunAmmoIcon.png?823243",
+    "image_local_path": "foxhole_items\\images\\9mm.png"
+  },
+  {
+    "title": "A3 Harpa Fragmentation Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/A3_Harpa_Fragmentation_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeItemIcon.png?39b76d",
+    "image_local_path": "foxhole_items\\images\\A3_Harpa_Fragmentation_Grenade.png"
+  },
+  {
+    "title": "A51 Venti “Daedalus”",
+    "url": "https://foxhole.wiki.gg/wiki/A51_Venti_%E2%80%9CDaedalus%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftScoutCIcon.png?cd009a",
+    "image_local_path": "foxhole_items\\images\\A51_Venti_Daedalus.png"
+  },
+  {
+    "title": "AA-2 Battering Ram",
+    "url": "https://foxhole.wiki.gg/wiki/AA-2_Battering_Ram",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldAntiTankColVehicleIcon.png?6448f9",
+    "image_local_path": "foxhole_items\\images\\AA-2_Battering_Ram.png"
+  },
+  {
+    "title": "AB-11 “Doru”",
+    "url": "https://foxhole.wiki.gg/wiki/AB-11_%E2%80%9CDoru%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LandingCraftOffensiveVehicleIcon.png?ef3f7a",
+    "image_local_path": "foxhole_items\\images\\AB-11_Doru.png"
+  },
+  {
+    "title": "AC-b “Trident”",
+    "url": "https://foxhole.wiki.gg/wiki/AC-b_%E2%80%9CTrident%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipSubmarineCIcon.png?bf4b35",
+    "image_local_path": "foxhole_items\\images\\AC-b_Trident.png"
+  },
+  {
+    "title": "AP⧸RPG",
+    "url": "https://foxhole.wiki.gg/wiki/AP%E2%A7%B8RPG",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRpgAmmoItemIcon.png?7e0381",
+    "image_local_path": "foxhole_items\\images\\AP_RPG.png"
+  },
+  {
+    "title": "ARC⧸RPG",
+    "url": "https://foxhole.wiki.gg/wiki/ARC%E2%A7%B8RPG",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATMortarAmmoItemIcon.png?fa7398",
+    "image_local_path": "foxhole_items\\images\\ARC_RPG.png"
+  },
+  {
+    "title": "Aalto Storm Rifle 24",
+    "url": "https://foxhole.wiki.gg/wiki/Aalto_Storm_Rifle_24",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssaultRifleItemIcon.png?732100",
+    "image_local_path": "foxhole_items\\images\\Aalto_Storm_Rifle_24.png"
+  },
+  {
+    "title": "Abisme AT-99",
+    "url": "https://foxhole.wiki.gg/wiki/Abisme_AT-99",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AntiTankMineItemIcon.png?2c9f3b",
+    "image_local_path": "foxhole_items\\images\\Abisme_AT-99.png"
+  },
+  {
+    "title": "Absol Anti-Aircraft Rounds",
+    "url": "https://foxhole.wiki.gg/wiki/Absol_Anti-Aircraft_Rounds",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightAAAmmoIcon.png?2ec58f",
+    "image_local_path": "foxhole_items\\images\\Absol_Anti-Aircraft_Rounds.png"
+  },
+  {
+    "title": "Aegis Steelbreaker K5a",
+    "url": "https://foxhole.wiki.gg/wiki/Aegis_Steelbreaker_K5a",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CombatCarCVehicleIcon.png?1ebf57",
+    "image_local_path": "foxhole_items\\images\\Aegis_Steelbreaker_K5a.png"
+  },
+  {
+    "title": "Ahti Model 2",
+    "url": "https://foxhole.wiki.gg/wiki/Ahti_Model_2",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PistolWItemIcon.png?35b6dd",
+    "image_local_path": "foxhole_items\\images\\Ahti_Model_2.png"
+  },
+  {
+    "title": "Air Raid Siren",
+    "url": "https://foxhole.wiki.gg/wiki/Air_Raid_Siren",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AirSirenTIcon.png?228b97",
+    "image_local_path": "foxhole_items\\images\\Air_Raid_Siren.png"
+  },
+  {
+    "title": "Aircraft Part",
+    "url": "https://foxhole.wiki.gg/wiki/Aircraft_Part",
+    "description": "An Aircraft Part is a type of item that is used as a component to assemble Aircraft.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Aircraft_Part.png"
+  },
+  {
+    "title": "Alligator Charge",
+    "url": "https://foxhole.wiki.gg/wiki/Alligator_Charge",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SatchelCharge.png?3fa682",
+    "image_local_path": "foxhole_items\\images\\Alligator_Charge.png"
+  },
+  {
+    "title": "Aluminum",
+    "url": "https://foxhole.wiki.gg/wiki/Aluminum",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResouceAluminumIcon.png?64400c",
+    "image_local_path": "foxhole_items\\images\\Aluminum.png"
+  },
+  {
+    "title": "Aluminum Alloy",
+    "url": "https://foxhole.wiki.gg/wiki/Aluminum_Alloy",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResouceAluminumRefinedIcon.png?ac6736",
+    "image_local_path": "foxhole_items\\images\\Aluminum_Alloy.png"
+  },
+  {
+    "title": "Ammunition",
+    "url": "https://foxhole.wiki.gg/wiki/Ammunition",
+    "description": "Ammunition is used by Weapons, Vehicles, and player manned defenses. Garrisoned defenses do not need ammunition. Each ammo type may or may not stack in player's inventory depending on their uniform, and in vehicle or structure's inventory depending on their type.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RevolverAmmoItemIcon.png/24px-RevolverAmmoItemIcon.png?b190ce",
+    "image_local_path": "foxhole_items\\images\\Ammunition.png"
+  },
+  {
+    "title": "Anti-Tank RPG",
+    "url": "https://foxhole.wiki.gg/wiki/Anti-Tank_RPG",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATRpgItemIcon.png/24px-ATRpgItemIcon.png?d35704",
+    "image_local_path": "foxhole_items\\images\\Anti-Tank_RPG.png"
+  },
+  {
+    "title": "Anti-Tank Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Anti-Tank_Rifle",
+    "description": "Anti-Tank Rifles (abbreviated as ATR) are a class of anti-tank firearms that fire 14.5mm ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATRifleLightCIcon.png/24px-ATRifleLightCIcon.png?fb320c",
+    "image_local_path": "foxhole_items\\images\\Anti-Tank_Rifle.png"
+  },
+  {
+    "title": "Anti-Tank Sticky Bomb",
+    "url": "https://foxhole.wiki.gg/wiki/Anti-Tank_Sticky_Bomb",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/StickyBombIcon.png?af5c47",
+    "image_local_path": "foxhole_items\\images\\Anti-Tank_Sticky_Bomb.png"
+  },
+  {
+    "title": "Argenti r.II Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Argenti_r.II_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleCItemIcon.png?72bbf1",
+    "image_local_path": "foxhole_items\\images\\Argenti_r_II_Rifle.png"
+  },
+  {
+    "title": "Armour Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Armour_Uniform",
+    "description": "The Armour Uniform is a type of uniform designed to give the wearer additional protection against enemy fire at the cost of additional weight.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ArmourUniformW.png/120px-ArmourUniformW.png?d249dc",
+    "image_local_path": "foxhole_items\\images\\Armour_Uniform.png"
+  },
+  {
+    "title": "Armoured Fighting Tractor",
+    "url": "https://foxhole.wiki.gg/wiki/Armoured_Fighting_Tractor",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RelicCarVehicleIcon.png/48px-RelicCarVehicleIcon.png?a77df7",
+    "image_local_path": "foxhole_items\\images\\Armoured_Fighting_Tractor.png"
+  },
+  {
+    "title": "Assault Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Assault_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/AssaultRifleHeavyCItemIcon.png/24px-AssaultRifleHeavyCItemIcon.png?6655c8",
+    "image_local_path": "foxhole_items\\images\\Assault_Rifle.png"
+  },
+  {
+    "title": "Assembly Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials",
+    "description": "Assembly Materials are a special class of advanced materials that are crafted and used in Facilities.",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials1Icon.png?d9f547",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials.png"
+  },
+  {
+    "title": "Assembly Materials I",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials_I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials1Icon.png?d9f547",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials_I.png"
+  },
+  {
+    "title": "Assembly Materials II",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials_II",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials2Icon.png?dbb2da",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials_II.png"
+  },
+  {
+    "title": "Assembly Materials III",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials_III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials3Icon.png?6f1a56",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials_III.png"
+  },
+  {
+    "title": "Assembly Materials IV",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials_IV",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials4Icon.png?37281f",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials_IV.png"
+  },
+  {
+    "title": "Assembly Materials V",
+    "url": "https://foxhole.wiki.gg/wiki/Assembly_Materials_V",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssemblyMaterials5Icon.png?98d3d7",
+    "image_local_path": "foxhole_items\\images\\Assembly_Materials_V.png"
+  },
+  {
+    "title": "Auster's Harness",
+    "url": "https://foxhole.wiki.gg/wiki/Auster%27s_Harness",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ParatrooperUniformCIcon.png?fcee2f",
+    "image_local_path": "foxhole_items\\images\\Auster_s_Harness.png"
+  },
+  {
+    "title": "Aviator's Raiment",
+    "url": "https://foxhole.wiki.gg/wiki/Aviator%27s_Raiment",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PilotUniformWIcon.png?d81ad9",
+    "image_local_path": "foxhole_items\\images\\Aviator_s_Raiment.png"
+  },
+  {
+    "title": "B2 Varsi Anti-Tank Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/B2_Varsi_Anti-Tank_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATLaunchedGrenadeWIcon.png?82d65f",
+    "image_local_path": "foxhole_items\\images\\B2_Varsi_Anti-Tank_Grenade.png"
+  },
+  {
+    "title": "BF5 White Ash Flask Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/BF5_White_Ash_Flask_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATGrenadeWIcon.png?656e1c",
+    "image_local_path": "foxhole_items\\images\\BF5_White_Ash_Flask_Grenade.png"
+  },
+  {
+    "title": "BMS - Bluefin",
+    "url": "https://foxhole.wiki.gg/wiki/BMS_-_Bluefin",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipStorageShipIcon.png?2947d6",
+    "image_local_path": "foxhole_items\\images\\BMS_-_Bluefin.png"
+  },
+  {
+    "title": "BMS - Longhook",
+    "url": "https://foxhole.wiki.gg/wiki/BMS_-_Longhook",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipBaseShipIcon.png?e04280",
+    "image_local_path": "foxhole_items\\images\\BMS_-_Longhook.png"
+  },
+  {
+    "title": "BMS Holdout",
+    "url": "https://foxhole.wiki.gg/wiki/BMS_Holdout",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/InfantryCarVehicleIcon.png?219fbc",
+    "image_local_path": "foxhole_items\\images\\BMS_Holdout.png"
+  },
+  {
+    "title": "Balfour Falconer 250mm",
+    "url": "https://foxhole.wiki.gg/wiki/Balfour_Falconer_250mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldMortarWIcon.png?56a820",
+    "image_local_path": "foxhole_items\\images\\Balfour_Falconer_250mm.png"
+  },
+  {
+    "title": "Balfour Rampart 68mm",
+    "url": "https://foxhole.wiki.gg/wiki/Balfour_Rampart_68mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldCannonOffensiveWIcon.png?430b0d",
+    "image_local_path": "foxhole_items\\images\\Balfour_Rampart_68mm.png"
+  },
+  {
+    "title": "Balfour Stockade 75mm",
+    "url": "https://foxhole.wiki.gg/wiki/Balfour_Stockade_75mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldCannonHeavyWIcon.png?2d4ad5",
+    "image_local_path": "foxhole_items\\images\\Balfour_Stockade_75mm.png"
+  },
+  {
+    "title": "Balfour Wolfhound 40mm",
+    "url": "https://foxhole.wiki.gg/wiki/Balfour_Wolfhound_40mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldCannonWVehicleIcon.png?fd561f",
+    "image_local_path": "foxhole_items\\images\\Balfour_Wolfhound_40mm.png"
+  },
+  {
+    "title": "Bandages",
+    "url": "https://foxhole.wiki.gg/wiki/Bandages",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BandagesItemIcon.png?e356da",
+    "image_local_path": "foxhole_items\\images\\Bandages.png"
+  },
+  {
+    "title": "Bandages/it",
+    "url": "https://foxhole.wiki.gg/wiki/Bandages/it",
+    "description": "NOTA\n\nA causa della mancanza della localizzazione italiana del gioco, si è deciso di abbinare fra parentesi i termini importanti in lingua originale in modo da avere un riferimento chiaro con i termini usati in gioco. \n\n \nLe Bende sono un oggetto medico usate per fermare il sanguinamento (bleeding) su se stessi e funge da munizione per il Kit di Primo Soccorso (First Aid Kit).",
+    "image_url": "https://foxhole.wiki.gg/images/BandagesItemIcon.png?e356da",
+    "image_local_path": "foxhole_items\\images\\Bandages_it.png"
+  },
+  {
+    "title": "Bane 45",
+    "url": "https://foxhole.wiki.gg/wiki/Bane_45",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRpgItemIcon.png?d35704",
+    "image_local_path": "foxhole_items\\images\\Bane_45.png"
+  },
+  {
+    "title": "Barbed Wire (Material)",
+    "url": "https://foxhole.wiki.gg/wiki/Barbed_Wire_(Material)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BarbedWireMaterialItemIcon.png?98fe9d",
+    "image_local_path": "foxhole_items\\images\\Barbed_Wire_Material.png"
+  },
+  {
+    "title": "Basic Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Basic_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BasicMaterialsIcon.png?b246f1",
+    "image_local_path": "foxhole_items\\images\\Basic_Materials.png"
+  },
+  {
+    "title": "Bellweather by VAC",
+    "url": "https://foxhole.wiki.gg/wiki/Bellweather_by_VAC",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MineboatIcon.png?6f61d6",
+    "image_local_path": "foxhole_items\\images\\Bellweather_by_VAC.png"
+  },
+  {
+    "title": "Binoculars",
+    "url": "https://foxhole.wiki.gg/wiki/Binoculars",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BinocularsItemIcon.png?a7e8fd",
+    "image_local_path": "foxhole_items\\images\\Binoculars.png"
+  },
+  {
+    "title": "Blacksteele",
+    "url": "https://foxhole.wiki.gg/wiki/Blacksteele",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipDestroyerWIcon.png?7c264d",
+    "image_local_path": "foxhole_items\\images\\Blacksteele.png"
+  },
+  {
+    "title": "Blakerow 871",
+    "url": "https://foxhole.wiki.gg/wiki/Blakerow_871",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CarbineItemIcon.png?d343a2",
+    "image_local_path": "foxhole_items\\images\\Blakerow_871.png"
+  },
+  {
+    "title": "Blood Plasma",
+    "url": "https://foxhole.wiki.gg/wiki/Blood_Plasma",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BloodPlasmaItemIcon.png?3f8716",
+    "image_local_path": "foxhole_items\\images\\Blood_Plasma.png"
+  },
+  {
+    "title": "Bomastone Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/Bomastone_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeCItemIcon.png?42b939",
+    "image_local_path": "foxhole_items\\images\\Bomastone_Grenade.png"
+  },
+  {
+    "title": "Bonesaw MK.3",
+    "url": "https://foxhole.wiki.gg/wiki/Bonesaw_MK.3",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATMortarItemIcon.png?2b41ad",
+    "image_local_path": "foxhole_items\\images\\Bonesaw_MK_3.png"
+  },
+  {
+    "title": "Booker Greyhound Model 910",
+    "url": "https://foxhole.wiki.gg/wiki/Booker_Greyhound_Model_910",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleAutomaticWItemIcon.png?1da780",
+    "image_local_path": "foxhole_items\\images\\Booker_Greyhound_Model_910.png"
+  },
+  {
+    "title": "Booker Storm Rifle Model 838",
+    "url": "https://foxhole.wiki.gg/wiki/Booker_Storm_Rifle_Model_838",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssaultRifleHeavyWItemIcon.png?e70de5",
+    "image_local_path": "foxhole_items\\images\\Booker_Storm_Rifle_Model_838.png"
+  },
+  {
+    "title": "Buckhorn CCQ-18",
+    "url": "https://foxhole.wiki.gg/wiki/Buckhorn_CCQ-18",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BayonetIcon.png?63a155",
+    "image_local_path": "foxhole_items\\images\\Buckhorn_CCQ-18.png"
+  },
+  {
+    "title": "Buckshot",
+    "url": "https://foxhole.wiki.gg/wiki/Buckshot",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ShotgunAmmoItemIcon.png?c082cc",
+    "image_local_path": "foxhole_items\\images\\Buckshot.png"
+  },
+  {
+    "title": "Callahan (Battleship)",
+    "url": "https://foxhole.wiki.gg/wiki/Callahan_(Battleship)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipBattleshipWIcon.png?75567c",
+    "image_local_path": "foxhole_items\\images\\Callahan_Battleship.png"
+  },
+  {
+    "title": "Caoivish Parka",
+    "url": "https://foxhole.wiki.gg/wiki/Caoivish_Parka",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SnowUniformWIcon.png?479b41",
+    "image_local_path": "foxhole_items\\images\\Caoivish_Parka.png"
+  },
+  {
+    "title": "Carnyx Anti-Tank Rocket Launcher",
+    "url": "https://foxhole.wiki.gg/wiki/Carnyx_Anti-Tank_Rocket_Launcher",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRPGHeavyWIcon.png?1c5289",
+    "image_local_path": "foxhole_items\\images\\Carnyx_Anti-Tank_Rocket_Launcher.png"
+  },
+  {
+    "title": "Cascadier 873",
+    "url": "https://foxhole.wiki.gg/wiki/Cascadier_873",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PistolLightWItemIcon.png?87f946",
+    "image_local_path": "foxhole_items\\images\\Cascadier_873.png"
+  },
+  {
+    "title": "Catara mo.II",
+    "url": "https://foxhole.wiki.gg/wiki/Catara_mo.II",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightMachineGunIcon.png?7de463",
+    "image_local_path": "foxhole_items\\images\\Catara_mo_II.png"
+  },
+  {
+    "title": "Catena rt.IV Auto-Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Catena_rt.IV_Auto-Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleAutomaticCIcon.png?35190a",
+    "image_local_path": "foxhole_items\\images\\Catena_rt_IV_Auto-Rifle.png"
+  },
+  {
+    "title": "Centurion MV-2",
+    "url": "https://foxhole.wiki.gg/wiki/Centurion_MV-2",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MapIconFortCursed.png?63d3a7",
+    "image_local_path": "foxhole_items\\images\\Centurion_MV-2.png"
+  },
+  {
+    "title": "Clancy Cinder M3",
+    "url": "https://foxhole.wiki.gg/wiki/Clancy_Cinder_M3",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleLongW.png?1a4b01",
+    "image_local_path": "foxhole_items\\images\\Clancy_Cinder_M3.png"
+  },
+  {
+    "title": "Clancy-Raca M4",
+    "url": "https://foxhole.wiki.gg/wiki/Clancy-Raca_M4",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SniperRifleItemIcon.png?3a4c7d",
+    "image_local_path": "foxhole_items\\images\\Clancy-Raca_M4.png"
+  },
+  {
+    "title": "Cloudrunner's Vesture",
+    "url": "https://foxhole.wiki.gg/wiki/Cloudrunner%27s_Vesture",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ParatrooperUniformWIcon.png?81ea76",
+    "image_local_path": "foxhole_items\\images\\Cloudrunner_s_Vesture.png"
+  },
+  {
+    "title": "Coal",
+    "url": "https://foxhole.wiki.gg/wiki/Coal",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CoalIcon.png?4cfccd",
+    "image_local_path": "foxhole_items\\images\\Coal.png"
+  },
+  {
+    "title": "Coal Field",
+    "url": "https://foxhole.wiki.gg/wiki/Coal_Field",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Coal_Field.png?db458f",
+    "image_local_path": "foxhole_items\\images\\Coal_Field.png"
+  },
+  {
+    "title": "Coke",
+    "url": "https://foxhole.wiki.gg/wiki/Coke",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CokeIcon.png?c60b3a",
+    "image_local_path": "foxhole_items\\images\\Coke.png"
+  },
+  {
+    "title": "Collins Cannon 68mm",
+    "url": "https://foxhole.wiki.gg/wiki/Collins_Cannon_68mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldAntiTankWarVehicleIcon.png?a945d3",
+    "image_local_path": "foxhole_items\\images\\Collins_Cannon_68mm.png"
+  },
+  {
+    "title": "Colonial Aircraft Engine (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Colonial_Aircraft_Engine_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Colonial_Aircraft_Engine_Large.png"
+  },
+  {
+    "title": "Colonial Aircraft Engine (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Colonial_Aircraft_Engine_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Colonial_Aircraft_Engine_Small.png"
+  },
+  {
+    "title": "Colonial Aircraft Mechanical Parts (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Colonial_Aircraft_Mechanical_Parts_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Colonial_Aircraft_Mechanical_Parts_Large.png"
+  },
+  {
+    "title": "Colonial Aircraft Mechanical Parts (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Colonial_Aircraft_Mechanical_Parts_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Colonial_Aircraft_Mechanical_Parts_Small.png"
+  },
+  {
+    "title": "Cometa T2-9",
+    "url": "https://foxhole.wiki.gg/wiki/Cometa_T2-9",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RevolverItemIcon.png?977458",
+    "image_local_path": "foxhole_items\\images\\Cometa_T2-9.png"
+  },
+  {
+    "title": "Component Field",
+    "url": "https://foxhole.wiki.gg/wiki/Component_Field",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Components_Field.png?a6657f",
+    "image_local_path": "foxhole_items\\images\\Component_Field.png"
+  },
+  {
+    "title": "Component Mine",
+    "url": "https://foxhole.wiki.gg/wiki/Component_Mine",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ComponentMineIcon.png?479488",
+    "image_local_path": "foxhole_items\\images\\Component_Mine.png"
+  },
+  {
+    "title": "Components",
+    "url": "https://foxhole.wiki.gg/wiki/Components",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ComponentsIcon.png?ff5836",
+    "image_local_path": "foxhole_items\\images\\Components.png"
+  },
+  {
+    "title": "Concrete Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Concrete_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ConcreteBagIcon.png?a37cdc",
+    "image_local_path": "foxhole_items\\images\\Concrete_Materials.png"
+  },
+  {
+    "title": "Conqueror",
+    "url": "https://foxhole.wiki.gg/wiki/Conqueror",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipDestroyerCIcon.png?372686",
+    "image_local_path": "foxhole_items\\images\\Conqueror.png"
+  },
+  {
+    "title": "Construction Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Construction_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ConstructionMaterialsIcon.png?571daa",
+    "image_local_path": "foxhole_items\\images\\Construction_Materials.png"
+  },
+  {
+    "title": "Copper",
+    "url": "https://foxhole.wiki.gg/wiki/Copper",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResourceCopperIcon.png?89aa3c",
+    "image_local_path": "foxhole_items\\images\\Copper.png"
+  },
+  {
+    "title": "Copper Alloy",
+    "url": "https://foxhole.wiki.gg/wiki/Copper_Alloy",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResourceCopperRefinedIcon.png?823a5c",
+    "image_local_path": "foxhole_items\\images\\Copper_Alloy.png"
+  },
+  {
+    "title": "Crate",
+    "url": "https://foxhole.wiki.gg/wiki/Crate",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CrateItemIcon.png?9d3eda",
+    "image_local_path": "foxhole_items\\images\\Crate.png"
+  },
+  {
+    "title": "Cremari Mortar",
+    "url": "https://foxhole.wiki.gg/wiki/Cremari_Mortar",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarItemIcon.png?76316a",
+    "image_local_path": "foxhole_items\\images\\Cremari_Mortar.png"
+  },
+  {
+    "title": "Critically Wounded Soldier",
+    "url": "https://foxhole.wiki.gg/wiki/Critically_Wounded_Soldier",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CriticallyWoundedIcon.png?d5d099",
+    "image_local_path": "foxhole_items\\images\\Critically_Wounded_Soldier.png"
+  },
+  {
+    "title": "Crow's Foot Mine",
+    "url": "https://foxhole.wiki.gg/wiki/Crow%27s_Foot_Mine",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/InfantryMineIcon.png?5d4414",
+    "image_local_path": "foxhole_items\\images\\Crow_s_Foot_Mine.png"
+  },
+  {
+    "title": "Cullen Predator Mk. III",
+    "url": "https://foxhole.wiki.gg/wiki/Cullen_Predator_Mk._III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SuperTankWVehicleIcon.png?295840",
+    "image_local_path": "foxhole_items\\images\\Cullen_Predator_Mk_III.png"
+  },
+  {
+    "title": "Cutler Foebreaker",
+    "url": "https://foxhole.wiki.gg/wiki/Cutler_Foebreaker",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRPGTWIcon.png?1fed2f",
+    "image_local_path": "foxhole_items\\images\\Cutler_Foebreaker.png"
+  },
+  {
+    "title": "Cutler Launcher 4",
+    "url": "https://foxhole.wiki.gg/wiki/Cutler_Launcher_4",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RpgItemIcon.png?d7d19d",
+    "image_local_path": "foxhole_items\\images\\Cutler_Launcher_4.png"
+  },
+  {
+    "title": "DAE 1b-2 “Serra”",
+    "url": "https://foxhole.wiki.gg/wiki/DAE_1b-2_%E2%80%9CSerra%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedInfantryCIcon.png?46c5c2",
+    "image_local_path": "foxhole_items\\images\\DAE_1b-2_Serra.png"
+  },
+  {
+    "title": "DAE 1o-3 “Polybolos”",
+    "url": "https://foxhole.wiki.gg/wiki/DAE_1o-3_%E2%80%9CPolybolos%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedIndirectCIcon.png?9c0e32",
+    "image_local_path": "foxhole_items\\images\\DAE_1o-3_Polybolos.png"
+  },
+  {
+    "title": "DAE 2a-1 “Ruptura”",
+    "url": "https://foxhole.wiki.gg/wiki/DAE_2a-1_%E2%80%9CRuptura%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedCannonLargeC.png?ce3cf9",
+    "image_local_path": "foxhole_items\\images\\DAE_2a-1_Ruptura.png"
+  },
+  {
+    "title": "DAE 3b-2 “Hades' Net”",
+    "url": "https://foxhole.wiki.gg/wiki/DAE_3b-2_%E2%80%9CHades%27_Net%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedMultiCStructureIcon.png?9f2fe2",
+    "image_local_path": "foxhole_items\\images\\DAE_3b-2_Hades_Net.png"
+  },
+  {
+    "title": "Damaged Colonial Aircraft Engine (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Colonial_Aircraft_Engine_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Colonial_Aircraft_Engine_Large.png"
+  },
+  {
+    "title": "Damaged Colonial Aircraft Engine (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Colonial_Aircraft_Engine_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Colonial_Aircraft_Engine_Small.png"
+  },
+  {
+    "title": "Damaged Colonial Aircraft Mechanical Parts (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Colonial_Aircraft_Mechanical_Parts_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Colonial_Aircraft_Mechanical_Parts_Large.png"
+  },
+  {
+    "title": "Damaged Colonial Aircraft Mechanical Parts (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Colonial_Aircraft_Mechanical_Parts_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Colonial_Aircraft_Mechanical_Parts_Small.png"
+  },
+  {
+    "title": "Damaged Components",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Components",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ComponentsDamagedIcon.png?19ab24",
+    "image_local_path": "foxhole_items\\images\\Damaged_Components.png"
+  },
+  {
+    "title": "Damaged Warden Aircraft Engine (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Warden_Aircraft_Engine_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Warden_Aircraft_Engine_Large.png"
+  },
+  {
+    "title": "Damaged Warden Aircraft Engine (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Warden_Aircraft_Engine_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Warden_Aircraft_Engine_Small.png"
+  },
+  {
+    "title": "Damaged Warden Aircraft Mechanical Parts (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Warden_Aircraft_Mechanical_Parts_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Warden_Aircraft_Mechanical_Parts_Large.png"
+  },
+  {
+    "title": "Damaged Warden Aircraft Mechanical Parts (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Damaged_Warden_Aircraft_Mechanical_Parts_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Damaged_Warden_Aircraft_Mechanical_Parts_Small.png"
+  },
+  {
+    "title": "Daucus isg.III",
+    "url": "https://foxhole.wiki.gg/wiki/Daucus_isg.III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/InfantrySupportGunItemIcon.png?e19c0a",
+    "image_local_path": "foxhole_items\\images\\Daucus_isg_III.png"
+  },
+  {
+    "title": "Devitt Ironhide Mk. IV",
+    "url": "https://foxhole.wiki.gg/wiki/Devitt_Ironhide_Mk._IV",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankWarDefensiveVehicleIcon.png?a6ee34",
+    "image_local_path": "foxhole_items\\images\\Devitt_Ironhide_Mk_IV.png"
+  },
+  {
+    "title": "Devitt Mk. III",
+    "url": "https://foxhole.wiki.gg/wiki/Devitt_Mk._III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankWarVehicleIcon.png?6e7889",
+    "image_local_path": "foxhole_items\\images\\Devitt_Mk_III.png"
+  },
+  {
+    "title": "Devitt-Caine Mk. IV MMR",
+    "url": "https://foxhole.wiki.gg/wiki/Devitt-Caine_Mk._IV_MMR",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankArtilleryWar.png?d9f92d",
+    "image_local_path": "foxhole_items\\images\\Devitt-Caine_Mk_IV_MMR.png"
+  },
+  {
+    "title": "Diesel",
+    "url": "https://foxhole.wiki.gg/wiki/Diesel",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResourceFuelIcon.png?a1fe12",
+    "image_local_path": "foxhole_items\\images\\Diesel.png"
+  },
+  {
+    "title": "Drummond Spitfire 100d",
+    "url": "https://foxhole.wiki.gg/wiki/Drummond_Spitfire_100d",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutVehicleOffensiveWarVehicleIcon.png?51f5b1",
+    "image_local_path": "foxhole_items\\images\\Drummond_Spitfire_100d.png"
+  },
+  {
+    "title": "Duncan's Coin 14.5mm",
+    "url": "https://foxhole.wiki.gg/wiki/Duncan%27s_Coin_14.5mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldAT2WIcon.png?99fa32",
+    "image_local_path": "foxhole_items\\images\\Duncan_s_Coin_14_5mm.png"
+  },
+  {
+    "title": "E680-S Rudder Lock",
+    "url": "https://foxhole.wiki.gg/wiki/E680-S_Rudder_Lock",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SeaMineIcon.png?a23df3",
+    "image_local_path": "foxhole_items\\images\\E680-S_Rudder_Lock.png"
+  },
+  {
+    "title": "E681-B Hullbreaker Mine",
+    "url": "https://foxhole.wiki.gg/wiki/E681-B_Hullbreaker_Mine",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SurfaceMineIcon.png?7eae64",
+    "image_local_path": "foxhole_items\\images\\E681-B_Hullbreaker_Mine.png"
+  },
+  {
+    "title": "Eleos Infantry Dagger",
+    "url": "https://foxhole.wiki.gg/wiki/Eleos_Infantry_Dagger",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/StilSwordCIcon.png?fa1111",
+    "image_local_path": "foxhole_items\\images\\Eleos_Infantry_Dagger.png"
+  },
+  {
+    "title": "Emplaced Heavy Artillery",
+    "url": "https://foxhole.wiki.gg/wiki/Emplaced_Heavy_Artillery",
+    "description": "The Emplaced Heavy Artillery is a class of emplacement utilizing 150mm ammuniton, ideal for seiging down concrete. These weapons serve a notable benchmark for the beginning of late war.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/HeavyArtilleryW.png/120px-HeavyArtilleryW.png?271619",
+    "image_local_path": "foxhole_items\\images\\Emplaced_Heavy_Artillery.png"
+  },
+  {
+    "title": "Emplacement House",
+    "url": "https://foxhole.wiki.gg/wiki/Emplacement_House",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Emplacement_House_screenshot.jpg?dc0942",
+    "image_local_path": "foxhole_items\\images\\Emplacement_House.jpg"
+  },
+  {
+    "title": "Engineer Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Engineer_Uniform",
+    "description": "The Engineer Uniform is a type of Uniform that designed to reduce the Weight of certain construction and facility materials, aiding the wearer in various construction roles.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/EngineerUniformCIcon.png/120px-EngineerUniformCIcon.png?3c4789",
+    "image_local_path": "foxhole_items\\images\\Engineer_Uniform.png"
+  },
+  {
+    "title": "Enriched Oil",
+    "url": "https://foxhole.wiki.gg/wiki/Enriched_Oil",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EnrichedOilIcon.png?4dd33e",
+    "image_local_path": "foxhole_items\\images\\Enriched_Oil.png"
+  },
+  {
+    "title": "Excavator",
+    "url": "https://foxhole.wiki.gg/wiki/Excavator",
+    "description": "",
+    "image_url": null,
+    "image_local_path": null
+  },
+  {
+    "title": "Explosive Powder",
+    "url": "https://foxhole.wiki.gg/wiki/Explosive_Powder",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ExplosiveMaterialIcon.png?2de2ce",
+    "image_local_path": "foxhole_items\\images\\Explosive_Powder.png"
+  },
+  {
+    "title": "Extra Large Item",
+    "url": "https://foxhole.wiki.gg/wiki/Extra_Large_Item",
+    "description": "An Extra Large Item is an item so massive that it cannot be held by the Player, does not fit in any inventory, and can only be in stockpiles.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/MaterialTrailerIcon.png/24px-MaterialTrailerIcon.png?d81465",
+    "image_local_path": "foxhole_items\\images\\Extra_Large_Item.png"
+  },
+  {
+    "title": "Fabri Rucksack",
+    "url": "https://foxhole.wiki.gg/wiki/Fabri_Rucksack",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EngineerUniformCIcon.png?3c4789",
+    "image_local_path": "foxhole_items\\images\\Fabri_Rucksack.png"
+  },
+  {
+    "title": "Facility Power",
+    "url": "https://foxhole.wiki.gg/wiki/Facility_Power",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterPower.png?6abf94",
+    "image_local_path": "foxhole_items\\images\\Facility_Power.png"
+  },
+  {
+    "title": "Falias Raiding Club",
+    "url": "https://foxhole.wiki.gg/wiki/Falias_Raiding_Club",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TrenchMaceWIcon.png?6557d6",
+    "image_local_path": "foxhole_items\\images\\Falias_Raiding_Club.png"
+  },
+  {
+    "title": "Ferro 879",
+    "url": "https://foxhole.wiki.gg/wiki/Ferro_879",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PistolItemIcon.png?26eb4b",
+    "image_local_path": "foxhole_items\\images\\Ferro_879.png"
+  },
+  {
+    "title": "Fiddler Submachine Gun Model 868",
+    "url": "https://foxhole.wiki.gg/wiki/Fiddler_Submachine_Gun_Model_868",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SubMachineGunIcon.png?2748f2",
+    "image_local_path": "foxhole_items\\images\\Fiddler_Submachine_Gun_Model_868.png"
+  },
+  {
+    "title": "First Aid Kit",
+    "url": "https://foxhole.wiki.gg/wiki/First_Aid_Kit",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FirstAidKitItem.png?d7f02e",
+    "image_local_path": "foxhole_items\\images\\First_Aid_Kit.png"
+  },
+  {
+    "title": "Fists",
+    "url": "https://foxhole.wiki.gg/wiki/Fists",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FistItemIcon.png?4395e8",
+    "image_local_path": "foxhole_items\\images\\Fists.png"
+  },
+  {
+    "title": "Flame Ammo",
+    "url": "https://foxhole.wiki.gg/wiki/Flame_Ammo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlameAmmoIcon.png?eb71d1",
+    "image_local_path": "foxhole_items\\images\\Flame_Ammo.png"
+  },
+  {
+    "title": "Flamethrower",
+    "url": "https://foxhole.wiki.gg/wiki/Flamethrower",
+    "description": "Flamethrowers are a type of handheld weapon that shoot flames instead of bullets. Unlike other infantry weapons, it does not have an internal ammo count.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/FlamegunCICon.png/24px-FlamegunCICon.png?7fc955",
+    "image_local_path": "foxhole_items\\images\\Flamethrower.png"
+  },
+  {
+    "title": "Flamethrower Ammo",
+    "url": "https://foxhole.wiki.gg/wiki/Flamethrower_Ammo",
+    "description": "Flamethrower Ammo is a type of ammunition specifically used by Flamethrowers.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/FlamePackCIcon.png/120px-FlamePackCIcon.png?108df5",
+    "image_local_path": "foxhole_items\\images\\Flamethrower_Ammo.png"
+  },
+  {
+    "title": "Flare Mortar Shell",
+    "url": "https://foxhole.wiki.gg/wiki/Flare_Mortar_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarAmmoIconFlare.png?f47f7e",
+    "image_local_path": "foxhole_items\\images\\Flare_Mortar_Shell.png"
+  },
+  {
+    "title": "Flight Mask",
+    "url": "https://foxhole.wiki.gg/wiki/Flight_Mask",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PilotMaskIcon.png?4ab270",
+    "image_local_path": "foxhole_items\\images\\Flight_Mask.png"
+  },
+  {
+    "title": "Flood Juggernaut Mk. VII",
+    "url": "https://foxhole.wiki.gg/wiki/Flood_Juggernaut_Mk._VII",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankWarDefensiveVehicleIcon.png?27cc26",
+    "image_local_path": "foxhole_items\\images\\Flood_Juggernaut_Mk_VII.png"
+  },
+  {
+    "title": "Flood Mk. I",
+    "url": "https://foxhole.wiki.gg/wiki/Flood_Mk._I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankWar.png?e91f0a",
+    "image_local_path": "foxhole_items\\images\\Flood_Mk_I.png"
+  },
+  {
+    "title": "Flood Mk. IX Stain",
+    "url": "https://foxhole.wiki.gg/wiki/Flood_Mk._IX_Stain",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankHeavyArtilleryWIcon.png?973d96",
+    "image_local_path": "foxhole_items\\images\\Flood_Mk_IX_Stain.png"
+  },
+  {
+    "title": "Fuscina pi.I",
+    "url": "https://foxhole.wiki.gg/wiki/Fuscina_pi.I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleLightCItemIcon.png?ef8350",
+    "image_local_path": "foxhole_items\\images\\Fuscina_pi_I.png"
+  },
+  {
+    "title": "G40 “Sagittarii”",
+    "url": "https://foxhole.wiki.gg/wiki/G40_%E2%80%9CSagittarii%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldMachineGun.png?81becc",
+    "image_local_path": "foxhole_items\\images\\G40_Sagittarii.png"
+  },
+  {
+    "title": "GA6 “Cestus”",
+    "url": "https://foxhole.wiki.gg/wiki/GA6_%E2%80%9CCestus%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldAT2CIcon.png?d06efd",
+    "image_local_path": "foxhole_items\\images\\GA6_Cestus.png"
+  },
+  {
+    "title": "Gallagher Brigand Mk. I",
+    "url": "https://foxhole.wiki.gg/wiki/Gallagher_Brigand_Mk._I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2WIcon.png?914f8b",
+    "image_local_path": "foxhole_items\\images\\Gallagher_Brigand_Mk_I.png"
+  },
+  {
+    "title": "Gallagher Highwayman Mk. III",
+    "url": "https://foxhole.wiki.gg/wiki/Gallagher_Highwayman_Mk._III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2MultiWIcon.png?8c3462",
+    "image_local_path": "foxhole_items\\images\\Gallagher_Highwayman_Mk_III.png"
+  },
+  {
+    "title": "Gallagher Outlaw Mk. II",
+    "url": "https://foxhole.wiki.gg/wiki/Gallagher_Outlaw_Mk._II",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2RangeWIcon.png?cfc25c",
+    "image_local_path": "foxhole_items\\images\\Gallagher_Outlaw_Mk_II.png"
+  },
+  {
+    "title": "Gallagher Thornfall Mk. VI",
+    "url": "https://foxhole.wiki.gg/wiki/Gallagher_Thornfall_Mk._VI",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTank2IndirectWIcon.png?a66136",
+    "image_local_path": "foxhole_items\\images\\Gallagher_Thornfall_Mk_VI.png"
+  },
+  {
+    "title": "Gas Mask",
+    "url": "https://foxhole.wiki.gg/wiki/Gas_Mask",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GasmaskIcon.png?ea70f3",
+    "image_local_path": "foxhole_items\\images\\Gas_Mask.png"
+  },
+  {
+    "title": "Gentleman's Peacoat",
+    "url": "https://foxhole.wiki.gg/wiki/Gentleman%27s_Peacoat",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/NavalUniformW.png?28a5e3",
+    "image_local_path": "foxhole_items\\images\\Gentleman_s_Peacoat.png"
+  },
+  {
+    "title": "Gravel",
+    "url": "https://foxhole.wiki.gg/wiki/Gravel",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GroundMaterialsIcon.png?13bc03",
+    "image_local_path": "foxhole_items\\images\\Gravel.png"
+  },
+  {
+    "title": "Green Ash Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/Green_Ash_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DeadlyGas01Icon.png?ac61eb",
+    "image_local_path": "foxhole_items\\images\\Green_Ash_Grenade.png"
+  },
+  {
+    "title": "Grenade Launcher",
+    "url": "https://foxhole.wiki.gg/wiki/Grenade_Launcher",
+    "description": "Grenade Launchers are infantry weapons designed to fire a variety of grenade types over a long distance.\nUnlike throwing grenades by hand, launched grenades cannot be cooked, and will always detonate 4s after being launched.\nWhen they are equipped, pressing  cycles through grenade types in your inventory.",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_f.png/32px-Keyboard_f.png?9d6aaa",
+    "image_local_path": "foxhole_items\\images\\Grenade_Launcher.png"
+  },
+  {
+    "title": "Grenade Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Grenade_Uniform",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeUniformCIcon.png?36cd4e",
+    "image_local_path": "foxhole_items\\images\\Grenade_Uniform.png"
+  },
+  {
+    "title": "Gunner's Breastplate",
+    "url": "https://foxhole.wiki.gg/wiki/Gunner%27s_Breastplate",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmourUniformW.png?d249dc",
+    "image_local_path": "foxhole_items\\images\\Gunner_s_Breastplate.png"
+  },
+  {
+    "title": "H-10 “Pelekys”",
+    "url": "https://foxhole.wiki.gg/wiki/H-10_%E2%80%9CPelekys%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankOffensiveCVehicleIcon.png?1427df",
+    "image_local_path": "foxhole_items\\images\\H-10_Pelekys.png"
+  },
+  {
+    "title": "H-19 “Vulcan”",
+    "url": "https://foxhole.wiki.gg/wiki/H-19_%E2%80%9CVulcan%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankFlameCIcon.png?ba524c",
+    "image_local_path": "foxhole_items\\images\\H-19_Vulcan.png"
+  },
+  {
+    "title": "H-5 “Hatchet”",
+    "url": "https://foxhole.wiki.gg/wiki/H-5_%E2%80%9CHatchet%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankColVehicleIcon.png?33670a",
+    "image_local_path": "foxhole_items\\images\\H-5_Hatchet.png"
+  },
+  {
+    "title": "H-8 “Kranesca”",
+    "url": "https://foxhole.wiki.gg/wiki/H-8_%E2%80%9CKranesca%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTankColMobilityVehicleIcon.png?2a274c",
+    "image_local_path": "foxhole_items\\images\\H-8_Kranesca.png"
+  },
+  {
+    "title": "HA-1 “Sagaris”",
+    "url": "https://foxhole.wiki.gg/wiki/HA-1_%E2%80%9CSagaris%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTank3CVehicleIcon.png?1f8fc8",
+    "image_local_path": "foxhole_items\\images\\HA-1_Sagaris.png"
+  },
+  {
+    "title": "HC-2 “Scorpion”",
+    "url": "https://foxhole.wiki.gg/wiki/HC-2_%E2%80%9CScorpion%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTank2InfantryCVehicleIcon.png?b9105d",
+    "image_local_path": "foxhole_items\\images\\HC-2_Scorpion.png"
+  },
+  {
+    "title": "HC-7 “Ballista”",
+    "url": "https://foxhole.wiki.gg/wiki/HC-7_%E2%80%9CBallista%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarTankVehicleIcon.png?c8328f",
+    "image_local_path": "foxhole_items\\images\\HC-7_Ballista.png"
+  },
+  {
+    "title": "HH-a “Javelin”",
+    "url": "https://foxhole.wiki.gg/wiki/HH-a_%E2%80%9CJavelin%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalfTrackColVehicleIcon.png?b33db4",
+    "image_local_path": "foxhole_items\\images\\HH-a_Javelin.png"
+  },
+  {
+    "title": "HH-b “Hoplite”",
+    "url": "https://foxhole.wiki.gg/wiki/HH-b_%E2%80%9CHoplite%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalfTrackColHeavyArmorVehicleIcon.png?64dcd6",
+    "image_local_path": "foxhole_items\\images\\HH-b_Hoplite.png"
+  },
+  {
+    "title": "HH-d “Peltast”",
+    "url": "https://foxhole.wiki.gg/wiki/HH-d_%E2%80%9CPeltast%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalfTrackArtilleryCIcon.png?308055",
+    "image_local_path": "foxhole_items\\images\\HH-d_Peltast.png"
+  },
+  {
+    "title": "Hammer",
+    "url": "https://foxhole.wiki.gg/wiki/Hammer",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HammerIcon.png?f169bc",
+    "image_local_path": "foxhole_items\\images\\Hammer.png"
+  },
+  {
+    "title": "Havoc Charge",
+    "url": "https://foxhole.wiki.gg/wiki/Havoc_Charge",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ExplosiveTripodIcon.png?1756d4",
+    "image_local_path": "foxhole_items\\images\\Havoc_Charge.png"
+  },
+  {
+    "title": "Health",
+    "url": "https://foxhole.wiki.gg/wiki/Health",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HealthLevelAnimation.gif?64bfc2",
+    "image_local_path": "foxhole_items\\images\\Health.gif"
+  },
+  {
+    "title": "Heavy Ammo Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Ammo_Uniform",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AmmoUniformWIcon.png?16c0b5",
+    "image_local_path": "foxhole_items\\images\\Heavy_Ammo_Uniform.png"
+  },
+  {
+    "title": "Heavy Artillery",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Artillery",
+    "description": "Heavy Artillery is a class of Emplaced Weapons that fire 150mm shells at long ranges. Unlike most Emplacements, they are not invisible at night and cannot be hidden inside large bushes.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/HeavyArtilleryCIcon.png/120px-HeavyArtilleryCIcon.png?3a8f49",
+    "image_local_path": "foxhole_items\\images\\Heavy_Artillery.png"
+  },
+  {
+    "title": "Heavy Explosive Powder",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Explosive_Powder",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyExplosiveMaterialsIcon.png?f93996",
+    "image_local_path": "foxhole_items\\images\\Heavy_Explosive_Powder.png"
+  },
+  {
+    "title": "Heavy Oil",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Oil",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyOilIcon.png?f356a3",
+    "image_local_path": "foxhole_items\\images\\Heavy_Oil.png"
+  },
+  {
+    "title": "Heavy Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RevolvingRifleWItemIcon.png/24px-RevolvingRifleWItemIcon.png?411f7f",
+    "image_local_path": "foxhole_items\\images\\Heavy_Rifle.png"
+  },
+  {
+    "title": "Heavy Topcoat",
+    "url": "https://foxhole.wiki.gg/wiki/Heavy_Topcoat",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SnowUniformCIcon.png?55b958",
+    "image_local_path": "foxhole_items\\images\\Heavy_Topcoat.png"
+  },
+  {
+    "title": "Herne QMW 1a Scourge Hunter",
+    "url": "https://foxhole.wiki.gg/wiki/Herne_QMW_1a_Scourge_Hunter",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MapIconFortCursed.png?63d3a7",
+    "image_local_path": "foxhole_items\\images\\Herne_QMW_1a_Scourge_Hunter.png"
+  },
+  {
+    "title": "Huber Exalt 150mm",
+    "url": "https://foxhole.wiki.gg/wiki/Huber_Exalt_150mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyArtilleryW.png?271619",
+    "image_local_path": "foxhole_items\\images\\Huber_Exalt_150mm.png"
+  },
+  {
+    "title": "Huber Lariat 120mm",
+    "url": "https://foxhole.wiki.gg/wiki/Huber_Lariat_120mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedHowitzerIcon.png?f0c9cc",
+    "image_local_path": "foxhole_items\\images\\Huber_Lariat_120mm.png"
+  },
+  {
+    "title": "Huber Starbreaker 94.5mm",
+    "url": "https://foxhole.wiki.gg/wiki/Huber_Starbreaker_94.5mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedATLargeWIcon.png?d1b02c",
+    "image_local_path": "foxhole_items\\images\\Huber_Starbreaker_94_5mm.png"
+  },
+  {
+    "title": "Hydra's Whisper",
+    "url": "https://foxhole.wiki.gg/wiki/Hydra%27s_Whisper",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BangaloreItemIcon.png?26b1fe",
+    "image_local_path": "foxhole_items\\images\\Hydra_s_Whisper.png"
+  },
+  {
+    "title": "Ignifist 30",
+    "url": "https://foxhole.wiki.gg/wiki/Ignifist_30",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRPGLightCItemIcon.png?3307d3",
+    "image_local_path": "foxhole_items\\images\\Ignifist_30.png"
+  },
+  {
+    "title": "Incendiary Mortar Shell",
+    "url": "https://foxhole.wiki.gg/wiki/Incendiary_Mortar_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarAmmoIconFlame.png?c4727b",
+    "image_local_path": "foxhole_items\\images\\Incendiary_Mortar_Shell.png"
+  },
+  {
+    "title": "Infantry Battledress",
+    "url": "https://foxhole.wiki.gg/wiki/Infantry_Battledress",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SoldierUniformWIcon.png?66c9de",
+    "image_local_path": "foxhole_items\\images\\Infantry_Battledress.png"
+  },
+  {
+    "title": "Iron",
+    "url": "https://foxhole.wiki.gg/wiki/Iron",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResouceIronIcon.png?49987c",
+    "image_local_path": "foxhole_items\\images\\Iron.png"
+  },
+  {
+    "title": "Iron Alloy",
+    "url": "https://foxhole.wiki.gg/wiki/Iron_Alloy",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ResouceIronRefinedIcon.png?9630b7",
+    "image_local_path": "foxhole_items\\images\\Iron_Alloy.png"
+  },
+  {
+    "title": "Items",
+    "url": "https://foxhole.wiki.gg/wiki/Items",
+    "description": "Items are objects in the game that can be picked up and carried by Players in their inventory.",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_ctrl.png/32px-Keyboard_ctrl.png?8c414e",
+    "image_local_path": "foxhole_items\\images\\Items.png"
+  },
+  {
+    "title": "K-81e “Sombre”",
+    "url": "https://foxhole.wiki.gg/wiki/K-81e_%E2%80%9CSombre%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightBoatInfantryCIcon.png?a30257",
+    "image_local_path": "foxhole_items\\images\\K-81e_Sombre.png"
+  },
+  {
+    "title": "KLG901-2 Lunaire F",
+    "url": "https://foxhole.wiki.gg/wiki/KLG901-2_Lunaire_F",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeLauncherCItemIcon.png?7660c7",
+    "image_local_path": "foxhole_items\\images\\KLG901-2_Lunaire_F.png"
+  },
+  {
+    "title": "KRF1-750 Dragonfly",
+    "url": "https://foxhole.wiki.gg/wiki/KRF1-750_Dragonfly",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ShotgunCItemIcon.png?c5661b",
+    "image_local_path": "foxhole_items\\images\\KRF1-750_Dragonfly.png"
+  },
+  {
+    "title": "KRN886-127 Gast Machine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/KRN886-127_Gast_Machine_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MGCItemIcon.png?a5481f",
+    "image_local_path": "foxhole_items\\images\\KRN886-127_Gast_Machine_Gun.png"
+  },
+  {
+    "title": "KRR2-790 Omen",
+    "url": "https://foxhole.wiki.gg/wiki/KRR2-790_Omen",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleLongC.png?638ba1",
+    "image_local_path": "foxhole_items\\images\\KRR2-790_Omen.png"
+  },
+  {
+    "title": "KRR3-792 Auger",
+    "url": "https://foxhole.wiki.gg/wiki/KRR3-792_Auger",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SniperRifleCItemIcon.png?17b090",
+    "image_local_path": "foxhole_items\\images\\KRR3-792_Auger.png"
+  },
+  {
+    "title": "King Gallant Mk. II",
+    "url": "https://foxhole.wiki.gg/wiki/King_Gallant_Mk._II",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutTankOffensiveWIcon.png?c1cbc2",
+    "image_local_path": "foxhole_items\\images\\King_Gallant_Mk_II.png"
+  },
+  {
+    "title": "King Jester Mk. I-1",
+    "url": "https://foxhole.wiki.gg/wiki/King_Jester_Mk._I-1",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutTankMultiWIcon.png?94d0e6",
+    "image_local_path": "foxhole_items\\images\\King_Jester_Mk_I-1.png"
+  },
+  {
+    "title": "King Spire Mk. I",
+    "url": "https://foxhole.wiki.gg/wiki/King_Spire_Mk._I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutTankWIcon.png?a4ceb8",
+    "image_local_path": "foxhole_items\\images\\King_Spire_Mk_I.png"
+  },
+  {
+    "title": "Lamentum mm.IV",
+    "url": "https://foxhole.wiki.gg/wiki/Lamentum_mm.IV",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HeavyMachineGunIcon.png?888142",
+    "image_local_path": "foxhole_items\\images\\Lamentum_mm_IV.png"
+  },
+  {
+    "title": "Lance-25 “Hasta”",
+    "url": "https://foxhole.wiki.gg/wiki/Lance-25_%E2%80%9CHasta%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankATCIcon.png?bc71bd",
+    "image_local_path": "foxhole_items\\images\\Lance-25_Hasta.png"
+  },
+  {
+    "title": "Lance-36",
+    "url": "https://foxhole.wiki.gg/wiki/Lance-36",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTank.png?d19941",
+    "image_local_path": "foxhole_items\\images\\Lance-36.png"
+  },
+  {
+    "title": "Lance-46 “Sarissa”",
+    "url": "https://foxhole.wiki.gg/wiki/Lance-46_%E2%80%9CSarissa%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BattleTankHeavyArtilleryCIcon.png?22e2ca",
+    "image_local_path": "foxhole_items\\images\\Lance-46_Sarissa.png"
+  },
+  {
+    "title": "Large Item",
+    "url": "https://foxhole.wiki.gg/wiki/Large_Item",
+    "description": "A Large Item is an item so large that it does not fit in a backpack and the Player can only carry one at a time, preventing them from using their equipment. It is placed in a dedicated \"Large Item\" slot (#8) in the inventory and is visible in the hands of the soldier carrying them. It does not stack in inventory slots.",
+    "image_url": "https://foxhole.wiki.gg/images/Tripod_Carried.jpg?9f8277",
+    "image_local_path": "foxhole_items\\images\\Large_Item.jpg"
+  },
+  {
+    "title": "Leary Shellbore 68mm",
+    "url": "https://foxhole.wiki.gg/wiki/Leary_Shellbore_68mm",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedATIcon.png?94922d",
+    "image_local_path": "foxhole_items\\images\\Leary_Shellbore_68mm.png"
+  },
+  {
+    "title": "Leary Snare Trap 20",
+    "url": "https://foxhole.wiki.gg/wiki/Leary_Snare_Trap_20",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EmplacedMGIcon.png?770fca",
+    "image_local_path": "foxhole_items\\images\\Leary_Snare_Trap_20.png"
+  },
+  {
+    "title": "Legion Vexillum",
+    "url": "https://foxhole.wiki.gg/wiki/Legion_Vexillum",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BannerTCItemIcon.png?d673b6",
+    "image_local_path": "foxhole_items\\images\\Legion_Vexillum.png"
+  },
+  {
+    "title": "Legionary Fatigues",
+    "url": "https://foxhole.wiki.gg/wiki/Legionary_Fatigues",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SoldierUniformCIcon.png?272be9",
+    "image_local_path": "foxhole_items\\images\\Legionary_Fatigues.png"
+  },
+  {
+    "title": "Liaison Transmitter",
+    "url": "https://foxhole.wiki.gg/wiki/Liaison_Transmitter",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/Research_Tier3_Icon.png/48px-Research_Tier3_Icon.png?234579",
+    "image_local_path": "foxhole_items\\images\\Liaison_Transmitter.png"
+  },
+  {
+    "title": "Light Machine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/Light_Machine_Gun",
+    "description": "Light Machine Guns (abbreviated as LMG) are a class of firearms that fire 12.7mm ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/LightMachineGunIcon.png/24px-LightMachineGunIcon.png?7de463",
+    "image_local_path": "foxhole_items\\images\\Light_Machine_Gun.png"
+  },
+  {
+    "title": "Listening Kit",
+    "url": "https://foxhole.wiki.gg/wiki/Listening_Kit",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ListeningKitIcon.png?914257",
+    "image_local_path": "foxhole_items\\images\\Listening_Kit.png"
+  },
+  {
+    "title": "Lodesman's Lorica",
+    "url": "https://foxhole.wiki.gg/wiki/Lodesman%27s_Lorica",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PilotUniformCIcon.png?6d58a0",
+    "image_local_path": "foxhole_items\\images\\Lodesman_s_Lorica.png"
+  },
+  {
+    "title": "Long Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Long_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RifleLongW.png/24px-RifleLongW.png?1a4b01",
+    "image_local_path": "foxhole_items\\images\\Long_Rifle.png"
+  },
+  {
+    "title": "Luminary Mk. II Harbinger",
+    "url": "https://foxhole.wiki.gg/wiki/Luminary_Mk._II_Harbinger",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftFighterWIcon.png?30793d",
+    "image_local_path": "foxhole_items\\images\\Luminary_Mk_II_Harbinger.png"
+  },
+  {
+    "title": "Luminary Mk. IV Herald",
+    "url": "https://foxhole.wiki.gg/wiki/Luminary_Mk._IV_Herald",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftScoutWIcon.png?11cb5e",
+    "image_local_path": "foxhole_items\\images\\Luminary_Mk_IV_Herald.png"
+  },
+  {
+    "title": "M925 Austringer Man-O-War",
+    "url": "https://foxhole.wiki.gg/wiki/M925_Austringer_Man-O-War",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftTorpedoWIcon.png?46c909",
+    "image_local_path": "foxhole_items\\images\\M925_Austringer_Man-O-War.png"
+  },
+  {
+    "title": "Machine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/Machine_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/MGCItemIcon.png/24px-MGCItemIcon.png?a5481f",
+    "image_local_path": "foxhole_items\\images\\Machine_Gun.png"
+  },
+  {
+    "title": "Maintenance Supplies",
+    "url": "https://foxhole.wiki.gg/wiki/Maintenance_Supplies",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MaintenanceSuppliesIcon.png?2e3f5c",
+    "image_local_path": "foxhole_items\\images\\Maintenance_Supplies.png"
+  },
+  {
+    "title": "Malone MK.2",
+    "url": "https://foxhole.wiki.gg/wiki/Malone_MK.2",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MGWItemIcon.png?1529e1",
+    "image_local_path": "foxhole_items\\images\\Malone_MK_2.png"
+  },
+  {
+    "title": "Malone Ratcatcher MK.1",
+    "url": "https://foxhole.wiki.gg/wiki/Malone_Ratcatcher_MK.1",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MGHeavyTWItemIcon.png?6db3a9",
+    "image_local_path": "foxhole_items\\images\\Malone_Ratcatcher_MK_1.png"
+  },
+  {
+    "title": "Mammon 91-b",
+    "url": "https://foxhole.wiki.gg/wiki/Mammon_91-b",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HEGrenadeItemIcon.png?a22b79",
+    "image_local_path": "foxhole_items\\images\\Mammon_91-b.png"
+  },
+  {
+    "title": "Mark II Raidbreaker",
+    "url": "https://foxhole.wiki.gg/wiki/Mark_II_Raidbreaker",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Mark_II_Raidbreaker.png"
+  },
+  {
+    "title": "Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Materials",
+    "description": "Materials are items used to produce equipment and to construct, refuel, and repair Vehicles and Structures. Most are stored under the  section of Stockpiles. They can be categorized in three main groups: Raw Materials, Refined Materials and Large Materials.",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterResource.png?3582d0",
+    "image_local_path": "foxhole_items\\images\\Materials.png"
+  },
+  {
+    "title": "Medic Fatigues",
+    "url": "https://foxhole.wiki.gg/wiki/Medic_Fatigues",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MedicUniformCIcon.png?6822ce",
+    "image_local_path": "foxhole_items\\images\\Medic_Fatigues.png"
+  },
+  {
+    "title": "Medic Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Medic_Uniform",
+    "description": "The Medic Uniform is a type of Uniform specially designed for frontline Medics, reducing the weight of medical equipment, and being able to stack medical supplies.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/MedicUniformCIcon.png/120px-MedicUniformCIcon.png?6822ce",
+    "image_local_path": "foxhole_items\\images\\Medic_Uniform.png"
+  },
+  {
+    "title": "Medical",
+    "url": "https://foxhole.wiki.gg/wiki/Medical",
+    "description": "Medical items are related to the Player's Health or Respawning. They are listed in the \"Medical\"  category in stockpiles. They are produced at Factories in the \"Medical\"  category except Critically Wounded Soldiers which are spawned by dying Wounded Players.",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterMedical.png?27f531",
+    "image_local_path": "foxhole_items\\images\\Medical.png"
+  },
+  {
+    "title": "Melee Weapon",
+    "url": "https://foxhole.wiki.gg/wiki/Melee_Weapon",
+    "description": "Melee Weapons are a class of infantry weapons used in close quarters.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/StilSwordCIcon.png/24px-StilSwordCIcon.png?fa1111",
+    "image_local_path": "foxhole_items\\images\\Melee_Weapon.png"
+  },
+  {
+    "title": "Mergo-4 “Myrmidon”",
+    "url": "https://foxhole.wiki.gg/wiki/Mergo-4_%E2%80%9CMyrmidon%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftDiveCIcon.png?495a38",
+    "image_local_path": "foxhole_items\\images\\Mergo-4_Myrmidon.png"
+  },
+  {
+    "title": "Metal Beam",
+    "url": "https://foxhole.wiki.gg/wiki/Metal_Beam",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MetalBeamMaterialItemIcon.png?67ca32",
+    "image_local_path": "foxhole_items\\images\\Metal_Beam.png"
+  },
+  {
+    "title": "Model-7 “Evie”",
+    "url": "https://foxhole.wiki.gg/wiki/Model-7_%E2%80%9CEvie%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DepthChargeIcon.png?50e9f3",
+    "image_local_path": "foxhole_items\\images\\Model-7_Evie.png"
+  },
+  {
+    "title": "Moray Torpedo",
+    "url": "https://foxhole.wiki.gg/wiki/Moray_Torpedo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TorpedoIcon.png?f21126",
+    "image_local_path": "foxhole_items\\images\\Moray_Torpedo.png"
+  },
+  {
+    "title": "Mortar Shell",
+    "url": "https://foxhole.wiki.gg/wiki/Mortar_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarAmmoIcon.png?683a3e",
+    "image_local_path": "foxhole_items\\images\\Mortar_Shell.png"
+  },
+  {
+    "title": "Mounted Anti-Tank RPG",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Anti-Tank_RPG",
+    "description": "Mounted Anti-Tank RPGs are a class of mounted anti-tank launchers that fire ARC/RPG ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATMortarWTripodItemIcon.png/24px-ATMortarWTripodItemIcon.png?49cb62",
+    "image_local_path": "foxhole_items\\images\\Mounted_Anti-Tank_RPG.png"
+  },
+  {
+    "title": "Mounted Anti-Tank Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Anti-Tank_Rifle",
+    "description": "Mounted Anti-Tank Rifles (or MATR) are a class of anti-tank Mounted Weapons that fire 14.5mm ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATRifleTCIcon.png/24px-ATRifleTCIcon.png?b9c954",
+    "image_local_path": "foxhole_items\\images\\Mounted_Anti-Tank_Rifle.png"
+  },
+  {
+    "title": "Mounted Bonesaw MK.3",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Bonesaw_MK.3",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATMortarWTripodItemIcon.png?49cb62",
+    "image_local_path": "foxhole_items\\images\\Mounted_Bonesaw_MK_3.png"
+  },
+  {
+    "title": "Mounted Equipment",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Equipment",
+    "description": "Mounted Equipments are a class of large utility items that must be mounted on a Deployed Tripod in order to be used. Unlike Mounted Weapons they cannot be mounted on any vehicle.",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_b.png/32px-Keyboard_b.png?71134e",
+    "image_local_path": "foxhole_items\\images\\Mounted_Equipment.png"
+  },
+  {
+    "title": "Mounted Fissura gd.I",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Fissura_gd.I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeLauncherTCIcon.png?d398e7",
+    "image_local_path": "foxhole_items\\images\\Mounted_Fissura_gd_I.png"
+  },
+  {
+    "title": "Mounted Grenade Launcher",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Grenade_Launcher",
+    "description": "Mounted Grenade Launchers are a class of Mounted Weapons that fire certain types of grenades.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/GrenadeLauncherTCIcon.png/24px-GrenadeLauncherTCIcon.png?d398e7",
+    "image_local_path": "foxhole_items\\images\\Mounted_Grenade_Launcher.png"
+  },
+  {
+    "title": "Mounted Infantry Support Gun",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Infantry_Support_Gun",
+    "description": "Mounted Infantry Support Guns (or ISG) are a class of Mounted Weapons that fire 30mm ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/InfantrySupportGunItemIcon.png/24px-InfantrySupportGunItemIcon.png?e19c0a",
+    "image_local_path": "foxhole_items\\images\\Mounted_Infantry_Support_Gun.png"
+  },
+  {
+    "title": "Mounted Machine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Machine_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/HeavyMachineGunIcon.png/24px-HeavyMachineGunIcon.png?888142",
+    "image_local_path": "foxhole_items\\images\\Mounted_Machine_Gun.png"
+  },
+  {
+    "title": "Mounted RPG Launcher",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_RPG_Launcher",
+    "description": "Mounted RPG Launchers are a class of Mounted Weapons that fire RPG ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATRPGTWIcon.png/24px-ATRPGTWIcon.png?1fed2f",
+    "image_local_path": "foxhole_items\\images\\Mounted_RPG_Launcher.png"
+  },
+  {
+    "title": "Mounted Weapons",
+    "url": "https://foxhole.wiki.gg/wiki/Mounted_Weapons",
+    "description": "Mounted Weapons, or Tripod Weapons, are a class of large heavy weapons that must be placed on a mount (either a Deployed Tripod, certain vehicles, or certain structures) in order to be fired.",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_b.png/32px-Keyboard_b.png?71134e",
+    "image_local_path": "foxhole_items\\images\\Mounted_Weapons.png"
+  },
+  {
+    "title": "Nakki",
+    "url": "https://foxhole.wiki.gg/wiki/Nakki",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipSubmarineWIcon.png?2df038",
+    "image_local_path": "foxhole_items\\images\\Nakki.png"
+  },
+  {
+    "title": "Naval Buoy",
+    "url": "https://foxhole.wiki.gg/wiki/Naval_Buoy",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WaterWallItemIcon.png?dbd485",
+    "image_local_path": "foxhole_items\\images\\Naval_Buoy.png"
+  },
+  {
+    "title": "Naval Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Naval_Uniform",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/NavalUniformW.png/120px-NavalUniformW.png?28a5e3",
+    "image_local_path": "foxhole_items\\images\\Naval_Uniform.png"
+  },
+  {
+    "title": "Neville Anti-Tank Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Neville_Anti-Tank_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleItemIcon.png?58ec0d",
+    "image_local_path": "foxhole_items\\images\\Neville_Anti-Tank_Rifle.png"
+  },
+  {
+    "title": "Niska Mk. I Gun Motor Carriage",
+    "url": "https://foxhole.wiki.gg/wiki/Niska_Mk._I_Gun_Motor_Carriage",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalfTrackWarVehicleIcon.png?4c5a24",
+    "image_local_path": "foxhole_items\\images\\Niska_Mk_I_Gun_Motor_Carriage.png"
+  },
+  {
+    "title": "Niska Mk. II Blinder",
+    "url": "https://foxhole.wiki.gg/wiki/Niska_Mk._II_Blinder",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalfTrackOffensiveWarVehicleIcon.png?2dc541",
+    "image_local_path": "foxhole_items\\images\\Niska_Mk_II_Blinder.png"
+  },
+  {
+    "title": "Niska Mk. III Scar Twin",
+    "url": "https://foxhole.wiki.gg/wiki/Niska_Mk._III_Scar_Twin",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalftrackTwinW.png?134c12",
+    "image_local_path": "foxhole_items\\images\\Niska_Mk_III_Scar_Twin.png"
+  },
+  {
+    "title": "Niska-Rycker Mk. IX Skycaller",
+    "url": "https://foxhole.wiki.gg/wiki/Niska-Rycker_Mk._IX_Skycaller",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HalftrackMultiWIcon.png?aefe37",
+    "image_local_path": "foxhole_items\\images\\Niska-Rycker_Mk_IX_Skycaller.png"
+  },
+  {
+    "title": "No.1 “The Liar” Submachine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/No.1_%E2%80%9CThe_Liar%E2%80%9D_Submachine_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SMGHeavyWItemIcon.png?b32528",
+    "image_local_path": "foxhole_items\\images\\No_1_The_Liar_Submachine_Gun.png"
+  },
+  {
+    "title": "No.2 Loughcaster",
+    "url": "https://foxhole.wiki.gg/wiki/No.2_Loughcaster",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleW.png?771bf6",
+    "image_local_path": "foxhole_items\\images\\No_2_Loughcaster.png"
+  },
+  {
+    "title": "No.2B Hawthorne",
+    "url": "https://foxhole.wiki.gg/wiki/No.2B_Hawthorne",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleShortWIcon.png?7c0d03",
+    "image_local_path": "foxhole_items\\images\\No_2B_Hawthorne.png"
+  },
+  {
+    "title": "No.4 The Pillory Scattergun",
+    "url": "https://foxhole.wiki.gg/wiki/No.4_The_Pillory_Scattergun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ShotgunWItemIcon.png?be8c44",
+    "image_local_path": "foxhole_items\\images\\No_4_The_Pillory_Scattergun.png"
+  },
+  {
+    "title": "Noble Firebrand Mk. XVII",
+    "url": "https://foxhole.wiki.gg/wiki/Noble_Firebrand_Mk._XVII",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DestroyerTankFlameWIcon.png?2d66aa",
+    "image_local_path": "foxhole_items\\images\\Noble_Firebrand_Mk_XVII.png"
+  },
+  {
+    "title": "Noble Widow MK. XIV",
+    "url": "https://foxhole.wiki.gg/wiki/Noble_Widow_MK._XIV",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DestroyerTankWVehicleIcon.png?3fb853",
+    "image_local_path": "foxhole_items\\images\\Noble_Widow_MK_XIV.png"
+  },
+  {
+    "title": "O'Brien V.101 Freeman",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.101_Freeman",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarOffensiveWVehicleIcon.png?68c7e3",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_101_Freeman.png"
+  },
+  {
+    "title": "O'Brien V.110",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.110",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarWarVehicleIcon.png?4d72dc",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_110.png"
+  },
+  {
+    "title": "O'Brien V.113 Gravekeeper",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.113_Gravekeeper",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarATWVehicleIcon.png?1d7e7c",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_113_Gravekeeper.png"
+  },
+  {
+    "title": "O'Brien V.121 Highlander",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.121_Highlander",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarMobilityWarVehicleIcon.png?2097a1",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_121_Highlander.png"
+  },
+  {
+    "title": "O'Brien V.130 Wild Jack",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.130_Wild_Jack",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarFlameWarVehicleIcon.png?97e970",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_130_Wild_Jack.png"
+  },
+  {
+    "title": "O'Brien V.190 Knave",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.190_Knave",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarTwinWIcon.png?babc40",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_190_Knave.png"
+  },
+  {
+    "title": "O'Brien V.200 Squire",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_V.200_Squire",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCar2MultiWIcon.png?a1f572",
+    "image_local_path": "foxhole_items\\images\\O_Brien_V_200_Squire.png"
+  },
+  {
+    "title": "O'Brien Warsmith v.215",
+    "url": "https://foxhole.wiki.gg/wiki/O%27Brien_Warsmith_v.215",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/CombatCarWVehicleIcon.png?570ab7",
+    "image_local_path": "foxhole_items\\images\\O_Brien_Warsmith_v_215.png"
+  },
+  {
+    "title": "O-75b “Ares”",
+    "url": "https://foxhole.wiki.gg/wiki/O-75b_%E2%80%9CAres%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SuperTankCtemIcon.png?a4eb14",
+    "image_local_path": "foxhole_items\\images\\O-75b_Ares.png"
+  },
+  {
+    "title": "Officer Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Officer_Uniform",
+    "description": "The Officer Uniform is a type of uniform whose only purpose is to allow you to freely teamkill members of your own Regiment without any repercussions. The only two ammo types that stack in the uniform are 8mm and .44 Mag (3 per slot).\nThis allows any player with this on to act like a \"commissar\" for their regiment. The uniform has 6 inventory slots, which limits the amount of equipment the player can hold in combat.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/OfficerUniformWIcon.png/120px-OfficerUniformWIcon.png?e001c6",
+    "image_local_path": "foxhole_items\\images\\Officer_Uniform.png"
+  },
+  {
+    "title": "Officer's Regalia",
+    "url": "https://foxhole.wiki.gg/wiki/Officer%27s_Regalia",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/OfficerUniformWIcon.png?e001c6",
+    "image_local_path": "foxhole_items\\images\\Officer_s_Regalia.png"
+  },
+  {
+    "title": "Officialis' Attire",
+    "url": "https://foxhole.wiki.gg/wiki/Officialis%27_Attire",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/OfficerUniformCIcon.png?3cd953",
+    "image_local_path": "foxhole_items\\images\\Officialis_Attire.png"
+  },
+  {
+    "title": "Offshore Platform",
+    "url": "https://foxhole.wiki.gg/wiki/Offshore_Platform",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineOilRigIcon.png?ee3da1",
+    "image_local_path": "foxhole_items\\images\\Offshore_Platform.png"
+  },
+  {
+    "title": "Oil",
+    "url": "https://foxhole.wiki.gg/wiki/Oil",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/OilIcon.png?33397b",
+    "image_local_path": "foxhole_items\\images\\Oil.png"
+  },
+  {
+    "title": "Oil Field",
+    "url": "https://foxhole.wiki.gg/wiki/Oil_Field",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Crude_Oil_Field.jpg?cf5baa",
+    "image_local_path": "foxhole_items\\images\\Oil_Field.jpg"
+  },
+  {
+    "title": "Oil Well",
+    "url": "https://foxhole.wiki.gg/wiki/Oil_Well",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/OilWellMineIcon.png?16862e",
+    "image_local_path": "foxhole_items\\images\\Oil_Well.png"
+  },
+  {
+    "title": "Outrider's Mantle",
+    "url": "https://foxhole.wiki.gg/wiki/Outrider%27s_Mantle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutUniformWIcon.png?de8fc6",
+    "image_local_path": "foxhole_items\\images\\Outrider_s_Mantle.png"
+  },
+  {
+    "title": "PT-815 Smoke Grenade",
+    "url": "https://foxhole.wiki.gg/wiki/PT-815_Smoke_Grenade",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Smokegrenadeicon1.png?d837dc",
+    "image_local_path": "foxhole_items\\images\\PT-815_Smoke_Grenade.png"
+  },
+  {
+    "title": "Padded Boiler Suit",
+    "url": "https://foxhole.wiki.gg/wiki/Padded_Boiler_Suit",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TankUniformWIcon.png?aebe3c",
+    "image_local_path": "foxhole_items\\images\\Padded_Boiler_Suit.png"
+  },
+  {
+    "title": "Paratrooper Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Paratrooper_Uniform",
+    "description": "The Paratrooper Uniform is an expensive type of Uniform that allows players to do paradrop missions by wearing a Paratrooper's Ruck.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/MachineGunAmmoIcon.png/24px-MachineGunAmmoIcon.png?e151f7",
+    "image_local_path": "foxhole_items\\images\\Paratrooper_Uniform.png"
+  },
+  {
+    "title": "Paratrooper's Ruck",
+    "url": "https://foxhole.wiki.gg/wiki/Paratrooper%27s_Ruck",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Paratrooper_s_Ruck.png"
+  },
+  {
+    "title": "Petrol",
+    "url": "https://foxhole.wiki.gg/wiki/Petrol",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RefinedFuelIcon.png?415c90",
+    "image_local_path": "foxhole_items\\images\\Petrol.png"
+  },
+  {
+    "title": "Physician's Jacket",
+    "url": "https://foxhole.wiki.gg/wiki/Physician%27s_Jacket",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MedicUniformWIcon.png?d20d82",
+    "image_local_path": "foxhole_items\\images\\Physician_s_Jacket.png"
+  },
+  {
+    "title": "Pipe",
+    "url": "https://foxhole.wiki.gg/wiki/Pipe",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EngineRoomPipeIcon.png?5b5cea",
+    "image_local_path": "foxhole_items\\images\\Pipe.png"
+  },
+  {
+    "title": "Pistol",
+    "url": "https://foxhole.wiki.gg/wiki/Pistol",
+    "description": "Pistols are small, secondary weapons designed to give the player a self-defense weapon in case they are not carrying a primary weapon. Useful for roles that use a different item in the primary slot, such as Medics and Combat Vehicle Crews.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PistolWItemIcon.png/24px-PistolWItemIcon.png?35b6dd",
+    "image_local_path": "foxhole_items\\images\\Pistol.png"
+  },
+  {
+    "title": "Processed Construction Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Processed_Construction_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ProcessedConstructionMaterialsIcon.png?eea77f",
+    "image_local_path": "foxhole_items\\images\\Processed_Construction_Materials.png"
+  },
+  {
+    "title": "Prototype Kit",
+    "url": "https://foxhole.wiki.gg/wiki/Prototype_Kit",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Prototype_Kit.png"
+  },
+  {
+    "title": "Quillback Torpedo",
+    "url": "https://foxhole.wiki.gg/wiki/Quillback_Torpedo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MiniTorpedoAmmoIcon.png?a2023e",
+    "image_local_path": "foxhole_items\\images\\Quillback_Torpedo.png"
+  },
+  {
+    "title": "R-17 “Retiarius” Skirmisher",
+    "url": "https://foxhole.wiki.gg/wiki/R-17_%E2%80%9CRetiarius%E2%80%9D_Skirmisher",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TruckMultiCIcon.png?4c2772",
+    "image_local_path": "foxhole_items\\images\\R-17_Retiarius_Skirmisher.png"
+  },
+  {
+    "title": "R-9 “Speartip” Escort",
+    "url": "https://foxhole.wiki.gg/wiki/R-9_%E2%80%9CSpeartip%E2%80%9D_Escort",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TruckOffensiveVehicleIcon.png?4e6408",
+    "image_local_path": "foxhole_items\\images\\R-9_Speartip_Escort.png"
+  },
+  {
+    "title": "RPG",
+    "url": "https://foxhole.wiki.gg/wiki/RPG",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RpgAmmoItemIcon.png?fbe568",
+    "image_local_path": "foxhole_items\\images\\RPG.png"
+  },
+  {
+    "title": "RPG Launcher",
+    "url": "https://foxhole.wiki.gg/wiki/RPG_Launcher",
+    "description": "RPG Launchers (or simply RPGs) are a class of infantry heavy weapons that fire RPGs as ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RpgItemIcon.png/24px-RpgItemIcon.png?d7d19d",
+    "image_local_path": "foxhole_items\\images\\RPG_Launcher.png"
+  },
+  {
+    "title": "Radio",
+    "url": "https://foxhole.wiki.gg/wiki/Radio",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RadioItemIcon.png?8a6cee",
+    "image_local_path": "foxhole_items\\images\\Radio.png"
+  },
+  {
+    "title": "Radio Backpack",
+    "url": "https://foxhole.wiki.gg/wiki/Radio_Backpack",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RadioBackpackItemIcon.png?500f17",
+    "image_local_path": "foxhole_items\\images\\Radio_Backpack.png"
+  },
+  {
+    "title": "Rain Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Rain_Uniform",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RainUniformCIcon.png?dc83fb",
+    "image_local_path": "foxhole_items\\images\\Rain_Uniform.png"
+  },
+  {
+    "title": "Rare Alloys",
+    "url": "https://foxhole.wiki.gg/wiki/Rare_Alloys",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMaterials09Icon.png?8e2b3e",
+    "image_local_path": "foxhole_items\\images\\Rare_Alloys.png"
+  },
+  {
+    "title": "Rare Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Rare_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Rare_Materials.png"
+  },
+  {
+    "title": "Rare Metal",
+    "url": "https://foxhole.wiki.gg/wiki/Rare_Metal",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RareMaterialsIcon.png?e9e0b2",
+    "image_local_path": "foxhole_items\\images\\Rare_Metal.png"
+  },
+  {
+    "title": "Rare Resource Node",
+    "url": "https://foxhole.wiki.gg/wiki/Rare_Resource_Node",
+    "description": "The Rare Resource Node is a harvestable node that yields Wreckage and randomly spawns across the map rather than on Resource Fields",
+    "image_url": "https://foxhole.wiki.gg/images/Foxhole-Rare-Resource-Node.jpg?3ee09f",
+    "image_local_path": "foxhole_items\\images\\Rare_Resource_Node.jpg"
+  },
+  {
+    "title": "Recon Camo",
+    "url": "https://foxhole.wiki.gg/wiki/Recon_Camo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutUniformCIcon.png?bdf7ec",
+    "image_local_path": "foxhole_items\\images\\Recon_Camo.png"
+  },
+  {
+    "title": "Refined Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Refined_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RefinedMaterialsIcon.png?9656f0",
+    "image_local_path": "foxhole_items\\images\\Refined_Materials.png"
+  },
+  {
+    "title": "Relic Assault Tank",
+    "url": "https://foxhole.wiki.gg/wiki/Relic_Assault_Tank",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RelicCarVehicleIcon.png/48px-RelicCarVehicleIcon.png?a77df7",
+    "image_local_path": "foxhole_items\\images\\Relic_Assault_Tank.png"
+  },
+  {
+    "title": "Relic Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Relic_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RelicCarVehicleIcon.png/48px-RelicCarVehicleIcon.png?a77df7",
+    "image_local_path": "foxhole_items\\images\\Relic_Materials.png"
+  },
+  {
+    "title": "Remex Garb",
+    "url": "https://foxhole.wiki.gg/wiki/Remex_Garb",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/NavalUniformC.png?ef28cd",
+    "image_local_path": "foxhole_items\\images\\Remex_Garb.png"
+  },
+  {
+    "title": "Reserve Power",
+    "url": "https://foxhole.wiki.gg/wiki/Reserve_Power",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ReservePower.png?43beab",
+    "image_local_path": "foxhole_items\\images\\Reserve_Power.png"
+  },
+  {
+    "title": "Resource Field",
+    "url": "https://foxhole.wiki.gg/wiki/Resource_Field",
+    "description": "Resource Fields are locations in the world where Players can harvest large amounts of raw resources. Unlike World Resource Mines, Resource Fields must be manually harvested using various pieces of equipment.",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_e.png/32px-Keyboard_e.png?5e3847",
+    "image_local_path": "foxhole_items\\images\\Resource_Field.png"
+  },
+  {
+    "title": "Resource Harvester",
+    "url": "https://foxhole.wiki.gg/wiki/Resource_Harvester",
+    "description": "Resource Harvesters are logistical structures that automatically gather one type of resource. Most require fuel to work.",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterMining.png?761190",
+    "image_local_path": "foxhole_items\\images\\Resource_Harvester.png"
+  },
+  {
+    "title": "Revolver",
+    "url": "https://foxhole.wiki.gg/wiki/Revolver",
+    "description": "Revolvers are a class of semi-automatic seconday weapons that fire .44 Mag ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RevolverItemIcon.png/24px-RevolverItemIcon.png?977458",
+    "image_local_path": "foxhole_items\\images\\Revolver.png"
+  },
+  {
+    "title": "Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Rifle",
+    "description": "",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_f.png/32px-Keyboard_f.png?9d6aaa",
+    "image_local_path": "foxhole_items\\images\\Rifle.png"
+  },
+  {
+    "title": "Rinnspeir Mk. I Zealot",
+    "url": "https://foxhole.wiki.gg/wiki/Rinnspeir_Mk._I_Zealot",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftParatrooperWIcon.png?642523",
+    "image_local_path": "foxhole_items\\images\\Rinnspeir_Mk_I_Zealot.png"
+  },
+  {
+    "title": "Rinnspeir Ornitier-Class Gunship",
+    "url": "https://foxhole.wiki.gg/wiki/Rinnspeir_Ornitier-Class_Gunship",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Rinnspeir_Ornitier-Class_Gunship.png"
+  },
+  {
+    "title": "Rycker 4/3-F Wasp Nest",
+    "url": "https://foxhole.wiki.gg/wiki/Rycker_4/3-F_Wasp_Nest",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldMultiWItemIcon.png?ab32ea",
+    "image_local_path": "foxhole_items\\images\\Rycker_4_3-F_Wasp_Nest.png"
+  },
+  {
+    "title": "Salvage",
+    "url": "https://foxhole.wiki.gg/wiki/Salvage",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SalvageIcon.png?c10cf6",
+    "image_local_path": "foxhole_items\\images\\Salvage.png"
+  },
+  {
+    "title": "Salvage Field",
+    "url": "https://foxhole.wiki.gg/wiki/Salvage_Field",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Salvage_Field.jpg?3c7695",
+    "image_local_path": "foxhole_items\\images\\Salvage_Field.jpg"
+  },
+  {
+    "title": "Salvage Mine",
+    "url": "https://foxhole.wiki.gg/wiki/Salvage_Mine",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScrapMineIcon.png?59ba67",
+    "image_local_path": "foxhole_items\\images\\Salvage_Mine.png"
+  },
+  {
+    "title": "Salvage/zh",
+    "url": "https://foxhole.wiki.gg/wiki/Salvage/zh",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SalvageIcon.png?c10cf6",
+    "image_local_path": "foxhole_items\\images\\Salvage_zh.png"
+  },
+  {
+    "title": "Sampo Auto-Rifle 77",
+    "url": "https://foxhole.wiki.gg/wiki/Sampo_Auto-Rifle_77",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleAutomaticW.png?126d74",
+    "image_local_path": "foxhole_items\\images\\Sampo_Auto-Rifle_77.png"
+  },
+  {
+    "title": "Sandbag",
+    "url": "https://foxhole.wiki.gg/wiki/Sandbag",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SandbagMaterialItemIcon.png?b6368b",
+    "image_local_path": "foxhole_items\\images\\Sandbag.png"
+  },
+  {
+    "title": "Sapper Gear",
+    "url": "https://foxhole.wiki.gg/wiki/Sapper_Gear",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/EngineerUniformWIcon.png?f9f2ce",
+    "image_local_path": "foxhole_items\\images\\Sapper_Gear.png"
+  },
+  {
+    "title": "Scout Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Scout_Uniform",
+    "description": "The Scout Uniform is a type of Uniform that's designed to give the wearer a higher chance of not being detected on the map. It is useful for scouting enemy positions, either for partisan activities, or gathering intel of enemy defenses.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ScoutUniformWIcon.png/120px-ScoutUniformWIcon.png?de8fc6",
+    "image_local_path": "foxhole_items\\images\\Scout_Uniform.png"
+  },
+  {
+    "title": "Secondary Equipment",
+    "url": "https://foxhole.wiki.gg/wiki/Secondary_Equipment",
+    "description": "Secondary Equipment are items that fit in the player's secondary slot (press  to draw).",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_2.png/32px-Keyboard_2.png?45fa1a",
+    "image_local_path": "foxhole_items\\images\\Secondary_Equipment.png"
+  },
+  {
+    "title": "Secondary Weapons",
+    "url": "https://foxhole.wiki.gg/wiki/Secondary_Weapons",
+    "description": "Secondary Weapons are Weapons that fit in the secondary equipment slot (press  to draw).\nThey include:",
+    "image_url": "https://commons.wiki.gg/images/thumb/Keyboard_2.png/32px-Keyboard_2.png?45fa1a",
+    "image_local_path": "foxhole_items\\images\\Secondary_Weapons.png"
+  },
+  {
+    "title": "Sharkey-Devitt Birdeater Mk. I",
+    "url": "https://foxhole.wiki.gg/wiki/Sharkey-Devitt_Birdeater_Mk._I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LightTank3WVehicleIcon.png?42095d",
+    "image_local_path": "foxhole_items\\images\\Sharkey-Devitt_Birdeater_Mk_I.png"
+  },
+  {
+    "title": "Shatter Missile",
+    "url": "https://foxhole.wiki.gg/wiki/Shatter_Missile",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DemolitionRocketAmmoIcon.png?f2c4e2",
+    "image_local_path": "foxhole_items\\images\\Shatter_Missile.png"
+  },
+  {
+    "title": "Shotgun",
+    "url": "https://foxhole.wiki.gg/wiki/Shotgun",
+    "description": "Shotguns are a class of close-range firearms that uses Buckshot shells as ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ShotgunCItemIcon.png/24px-ShotgunCItemIcon.png?c5661b",
+    "image_local_path": "foxhole_items\\images\\Shotgun.png"
+  },
+  {
+    "title": "Shovel",
+    "url": "https://foxhole.wiki.gg/wiki/Shovel",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ShovelIcon.png?a9b229",
+    "image_local_path": "foxhole_items\\images\\Shovel.png"
+  },
+  {
+    "title": "Shrapnel Mortar Shell",
+    "url": "https://foxhole.wiki.gg/wiki/Shrapnel_Mortar_Shell",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MortarAmmoIconShrapnel.png?4a6a36",
+    "image_local_path": "foxhole_items\\images\\Shrapnel_Mortar_Shell.png"
+  },
+  {
+    "title": "Silverhand - Mk. IV",
+    "url": "https://foxhole.wiki.gg/wiki/Silverhand_-_Mk._IV",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WardenMediumTankIcon.png?d7ef24",
+    "image_local_path": "foxhole_items\\images\\Silverhand_-_Mk_IV.png"
+  },
+  {
+    "title": "Silverhand Chieftain - Mk. VI",
+    "url": "https://foxhole.wiki.gg/wiki/Silverhand_Chieftain_-_Mk._VI",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTankSiegeWVehicleIcon.png?f510b9",
+    "image_local_path": "foxhole_items\\images\\Silverhand_Chieftain_-_Mk_VI.png"
+  },
+  {
+    "title": "Silverhand Lordscar - Mk. X",
+    "url": "https://foxhole.wiki.gg/wiki/Silverhand_Lordscar_-_Mk._X",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumTankATWIcon.png?90b740",
+    "image_local_path": "foxhole_items\\images\\Silverhand_Lordscar_-_Mk_X.png"
+  },
+  {
+    "title": "Sledge Hammer",
+    "url": "https://foxhole.wiki.gg/wiki/Sledge_Hammer",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SledgeHammerItemIcon.png?a27ee2",
+    "image_local_path": "foxhole_items\\images\\Sledge_Hammer.png"
+  },
+  {
+    "title": "Sniper Rifle",
+    "url": "https://foxhole.wiki.gg/wiki/Sniper_Rifle",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/ATRifleSniperCIcontga.png/24px-ATRifleSniperCIcontga.png?689394",
+    "image_local_path": "foxhole_items\\images\\Sniper_Rifle.png"
+  },
+  {
+    "title": "Snow Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Snow_Uniform",
+    "description": "The Snow Uniform is a type of Uniform specially designed to protect the wearer during Snow Storms. Depending on the uniform it will give a varying degree of protection against the cold, prolonging the exposure the wearer can face before freezing to death.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/SnowUniformWIcon.png/120px-SnowUniformWIcon.png?479b41",
+    "image_local_path": "foxhole_items\\images\\Snow_Uniform.png"
+  },
+  {
+    "title": "Soldier Supplies",
+    "url": "https://foxhole.wiki.gg/wiki/Soldier_Supplies",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ClothItemIcon.png?e85f2a",
+    "image_local_path": "foxhole_items\\images\\Soldier_Supplies.png"
+  },
+  {
+    "title": "Soldier Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Soldier_Uniform",
+    "description": "The Soldier Uniform is the standard uniform for soldiers. It is primarily used in infantry combat, but can be used in all types of roles.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/SoldierUniformWIcon.png/120px-SoldierUniformWIcon.png?66c9de",
+    "image_local_path": "foxhole_items\\images\\Soldier_Uniform.png"
+  },
+  {
+    "title": "Stationary Harvester",
+    "url": "https://foxhole.wiki.gg/wiki/Stationary_Harvester",
+    "description": "Stationary Harvesters are player-built structures that automatically gather resources when given fuel. They are built with a Construction Vehicle and can only be built next to a Resource Field (max 3 per field).",
+    "image_url": "https://foxhole.wiki.gg/images/MapIconCivicCenter.png?9a1183",
+    "image_local_path": "foxhole_items\\images\\Stationary_Harvester.png"
+  },
+  {
+    "title": "Stationary Harvester (Coal)",
+    "url": "https://foxhole.wiki.gg/wiki/Stationary_Harvester_(Coal)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineResource4Icon.png?7a368b",
+    "image_local_path": "foxhole_items\\images\\Stationary_Harvester_Coal.png"
+  },
+  {
+    "title": "Stationary Harvester (Components)",
+    "url": "https://foxhole.wiki.gg/wiki/Stationary_Harvester_(Components)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineResource2Icon.png?3f9014",
+    "image_local_path": "foxhole_items\\images\\Stationary_Harvester_Components.png"
+  },
+  {
+    "title": "Stationary Harvester (Salvage)",
+    "url": "https://foxhole.wiki.gg/wiki/Stationary_Harvester_(Salvage)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineResource1Icon.png?36d0a5",
+    "image_local_path": "foxhole_items\\images\\Stationary_Harvester_Salvage.png"
+  },
+  {
+    "title": "Stationary Harvester (Sulfur)",
+    "url": "https://foxhole.wiki.gg/wiki/Stationary_Harvester_(Sulfur)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineResource3Icon.png?cbb44a",
+    "image_local_path": "foxhole_items\\images\\Stationary_Harvester_Sulfur.png"
+  },
+  {
+    "title": "Steel Construction Materials",
+    "url": "https://foxhole.wiki.gg/wiki/Steel_Construction_Materials",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SteelConstructionMaterialsIcon.png?79894c",
+    "image_local_path": "foxhole_items\\images\\Steel_Construction_Materials.png"
+  },
+  {
+    "title": "Storm Cannon",
+    "url": "https://foxhole.wiki.gg/wiki/Storm_Cannon",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LongRangedArtilleryIcon.png?baa77a",
+    "image_local_path": "foxhole_items\\images\\Storm_Cannon.png"
+  },
+  {
+    "title": "Storm Tank",
+    "url": "https://foxhole.wiki.gg/wiki/Storm_Tank",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/RelicCarVehicleIcon.png/48px-RelicCarVehicleIcon.png?a77df7",
+    "image_local_path": "foxhole_items\\images\\Storm_Tank.png"
+  },
+  {
+    "title": "Strider",
+    "url": "https://foxhole.wiki.gg/wiki/Strider",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/MediumBoatCIcon.png?46e9d9",
+    "image_local_path": "foxhole_items\\images\\Strider.png"
+  },
+  {
+    "title": "Submachine Gun",
+    "url": "https://foxhole.wiki.gg/wiki/Submachine_Gun",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/SMGHeavyCItemIcon.png/24px-SMGHeavyCItemIcon.png?7e9698",
+    "image_local_path": "foxhole_items\\images\\Submachine_Gun.png"
+  },
+  {
+    "title": "Sulfur",
+    "url": "https://foxhole.wiki.gg/wiki/Sulfur",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SulfurIcon.png?887b7e",
+    "image_local_path": "foxhole_items\\images\\Sulfur.png"
+  },
+  {
+    "title": "Sulfur Field",
+    "url": "https://foxhole.wiki.gg/wiki/Sulfur_Field",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Sulfur_Field.jpg?3bf015",
+    "image_local_path": "foxhole_items\\images\\Sulfur_Field.jpg"
+  },
+  {
+    "title": "Sulfur Mine",
+    "url": "https://foxhole.wiki.gg/wiki/Sulfur_Mine",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SulfurMineStructureIcon.png?ba1218",
+    "image_local_path": "foxhole_items\\images\\Sulfur_Mine.png"
+  },
+  {
+    "title": "Swallowtail 988/127-2",
+    "url": "https://foxhole.wiki.gg/wiki/Swallowtail_988/127-2",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FieldMachineGunWar.png?a729cf",
+    "image_local_path": "foxhole_items\\images\\Swallowtail_988_127-2.png"
+  },
+  {
+    "title": "T12 “Actaeon” Tankette",
+    "url": "https://foxhole.wiki.gg/wiki/T12_%E2%80%9CActaeon%E2%80%9D_Tankette",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TanketteCVehicleIcon.png?788760",
+    "image_local_path": "foxhole_items\\images\\T12_Actaeon_Tankette.png"
+  },
+  {
+    "title": "T13 “Deioneus” Rocket Battery",
+    "url": "https://foxhole.wiki.gg/wiki/T13_%E2%80%9CDeioneus%E2%80%9D_Rocket_Battery",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TanketteMultiCIcon.png?341c9d",
+    "image_local_path": "foxhole_items\\images\\T13_Deioneus_Rocket_Battery.png"
+  },
+  {
+    "title": "T14 “Vesta” Tankette",
+    "url": "https://foxhole.wiki.gg/wiki/T14_%E2%80%9CVesta%E2%80%9D_Tankette",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TanketteFlameCIcon.png?65db14",
+    "image_local_path": "foxhole_items\\images\\T14_Vesta_Tankette.png"
+  },
+  {
+    "title": "T20 “Ixion” Tankette",
+    "url": "https://foxhole.wiki.gg/wiki/T20_%E2%80%9CIxion%E2%80%9D_Tankette",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TanketteOffensiveCVehicleIcon.png?d9a7f7",
+    "image_local_path": "foxhole_items\\images\\T20_Ixion_Tankette.png"
+  },
+  {
+    "title": "T3 “Xiphos”",
+    "url": "https://foxhole.wiki.gg/wiki/T3_%E2%80%9CXiphos%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarVehicleIcon.png?308725",
+    "image_local_path": "foxhole_items\\images\\T3_Xiphos.png"
+  },
+  {
+    "title": "T5 “Percutio”",
+    "url": "https://foxhole.wiki.gg/wiki/T5_%E2%80%9CPercutio%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarOffensiveCVehicleIcon.png?16e573",
+    "image_local_path": "foxhole_items\\images\\T5_Percutio.png"
+  },
+  {
+    "title": "T8 “Gemini”",
+    "url": "https://foxhole.wiki.gg/wiki/T8_%E2%80%9CGemini%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmoredCarTwinCItemIcon.png?d31847",
+    "image_local_path": "foxhole_items\\images\\T8_Gemini.png"
+  },
+  {
+    "title": "Tank Uniform",
+    "url": "https://foxhole.wiki.gg/wiki/Tank_Uniform",
+    "description": "The Tank Uniform is a type of Uniform that is specially designed to aid vehicle crews in combat, allowing the vehicle and their crew to stay in combat for much longer.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/TankUniformWIcon.png/120px-TankUniformWIcon.png?aebe3c",
+    "image_local_path": "foxhole_items\\images\\Tank_Uniform.png"
+  },
+  {
+    "title": "Tankman's Coveralls",
+    "url": "https://foxhole.wiki.gg/wiki/Tankman%27s_Coveralls",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TankUniformCIcon.png?ffe013",
+    "image_local_path": "foxhole_items\\images\\Tankman_s_Coveralls.png"
+  },
+  {
+    "title": "Tempest Cannon RA-2",
+    "url": "https://foxhole.wiki.gg/wiki/Tempest_Cannon_RA-2",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TrainLRArtilleryVehicleIcon.png?fb4ead",
+    "image_local_path": "foxhole_items\\images\\Tempest_Cannon_RA-2.png"
+  },
+  {
+    "title": "Tenta Torpedo",
+    "url": "https://foxhole.wiki.gg/wiki/Tenta_Torpedo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftTorpedoAmmoIcon.png?5026fc",
+    "image_local_path": "foxhole_items\\images\\Tenta_Torpedo.png"
+  },
+  {
+    "title": "The Hangman 757",
+    "url": "https://foxhole.wiki.gg/wiki/The_Hangman_757",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RevolvingRifleWItemIcon.png?411f7f",
+    "image_local_path": "foxhole_items\\images\\The_Hangman_757.png"
+  },
+  {
+    "title": "The Ospreay",
+    "url": "https://foxhole.wiki.gg/wiki/The_Ospreay",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GrenadeAdapterIcon.png?f49f4f",
+    "image_local_path": "foxhole_items\\images\\The_Ospreay.png"
+  },
+  {
+    "title": "Thermal Shielding",
+    "url": "https://foxhole.wiki.gg/wiki/Thermal_Shielding",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMaterials11Icon.png?4303a7",
+    "image_local_path": "foxhole_items\\images\\Thermal_Shielding.png"
+  },
+  {
+    "title": "Titan",
+    "url": "https://foxhole.wiki.gg/wiki/Titan",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LargeShipBattleshipCIcon.png?29878a",
+    "image_local_path": "foxhole_items\\images\\Titan.png"
+  },
+  {
+    "title": "Toxot-902 “Blind Silver”",
+    "url": "https://foxhole.wiki.gg/wiki/Toxot-902_%E2%80%9CBlind_Silver%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Toxot-902_Blind_Silver.png"
+  },
+  {
+    "title": "Trauma Kit",
+    "url": "https://foxhole.wiki.gg/wiki/Trauma_Kit",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/TraumaKitItemIcon.png?c81ea0",
+    "image_local_path": "foxhole_items\\images\\Trauma_Kit.png"
+  },
+  {
+    "title": "Tremola Grenade GPb-1",
+    "url": "https://foxhole.wiki.gg/wiki/Tremola_Grenade_GPb-1",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/HELaunchedGrenadeItemIcon.png?3aa138",
+    "image_local_path": "foxhole_items\\images\\Tremola_Grenade_GPb-1.png"
+  },
+  {
+    "title": "Tripod",
+    "url": "https://foxhole.wiki.gg/wiki/Tripod",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/DeployableTripodItemIcon.png?d38754",
+    "image_local_path": "foxhole_items\\images\\Tripod.png"
+  },
+  {
+    "title": "Tulka I1.9 White Raven",
+    "url": "https://foxhole.wiki.gg/wiki/Tulka_I1.9_White_Raven",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftWaterWIcon.png?192fb2",
+    "image_local_path": "foxhole_items\\images\\Tulka_I1_9_White_Raven.png"
+  },
+  {
+    "title": "Tulka P4 Welkinrive",
+    "url": "https://foxhole.wiki.gg/wiki/Tulka_P4_Welkinrive",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Tulka_P4_Welkinrive.png"
+  },
+  {
+    "title": "Type B - “Lucian”",
+    "url": "https://foxhole.wiki.gg/wiki/Type_B_-_%E2%80%9CLucian%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Type_B_-_Lucian.png"
+  },
+  {
+    "title": "Type C - “Charon”",
+    "url": "https://foxhole.wiki.gg/wiki/Type_C_-_%E2%80%9CCharon%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/GunBoatCHullIcon.png?82c0e7",
+    "image_local_path": "foxhole_items\\images\\Type_C_-_Charon.png"
+  },
+  {
+    "title": "UV-24 “Icarus”",
+    "url": "https://foxhole.wiki.gg/wiki/UV-24_%E2%80%9CIcarus%E2%80%9D",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ScoutVehicleOffensiveVehicleIcon.png?907747",
+    "image_local_path": "foxhole_items\\images\\UV-24_Icarus.png"
+  },
+  {
+    "title": "Uniforms",
+    "url": "https://foxhole.wiki.gg/wiki/Uniforms",
+    "description": "Uniforms are an equippable item that allows the player to specialize in a type of role, giving them buffs, and allowing the player to do better in certain roles. Unlike other pieces of equipment, the player wears it at all time, and can only swap uniforms and not fully removed them.",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterWeaponsStructures.png?79e891",
+    "image_local_path": "foxhole_items\\images\\Uniforms.png"
+  },
+  {
+    "title": "Unstable Substances",
+    "url": "https://foxhole.wiki.gg/wiki/Unstable_Substances",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMaterials10Icon.png?308d3c",
+    "image_local_path": "foxhole_items\\images\\Unstable_Substances.png"
+  },
+  {
+    "title": "Utility",
+    "url": "https://foxhole.wiki.gg/wiki/Utility",
+    "description": "Utility items are tools and equipments that help you in the war. They are found in the \"Utility\"  section of stockpiles. Most of them are produced at Factories.",
+    "image_url": "https://foxhole.wiki.gg/images/IconFilterUtility.png?18e749",
+    "image_local_path": "foxhole_items\\images\\Utility.png"
+  },
+  {
+    "title": "V-1 Tzykalia",
+    "url": "https://foxhole.wiki.gg/wiki/V-1_Tzykalia",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\V-1_Tzykalia.png"
+  },
+  {
+    "title": "V-5b Pegasus",
+    "url": "https://foxhole.wiki.gg/wiki/V-5b_Pegasus",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AircraftParatrooperCIcon.png?15d8cc",
+    "image_local_path": "foxhole_items\\images\\V-5b_Pegasus.png"
+  },
+  {
+    "title": "Velian Flak Vest",
+    "url": "https://foxhole.wiki.gg/wiki/Velian_Flak_Vest",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ArmourUniformC.png?347b74",
+    "image_local_path": "foxhole_items\\images\\Velian_Flak_Vest.png"
+  },
+  {
+    "title": "Venom c.II 35",
+    "url": "https://foxhole.wiki.gg/wiki/Venom_c.II_35",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRPGCItemIcon.png?d1e77c",
+    "image_local_path": "foxhole_items\\images\\Venom_c_II_35.png"
+  },
+  {
+    "title": "Volta r.I Repeater",
+    "url": "https://foxhole.wiki.gg/wiki/Volta_r.I_Repeater",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/RifleHeavyCItemIcon.png?fa98dc",
+    "image_local_path": "foxhole_items\\images\\Volta_r_I_Repeater.png"
+  },
+  {
+    "title": "War Ensign",
+    "url": "https://foxhole.wiki.gg/wiki/War_Ensign",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/BannerTWItemIcon.png?d84fa7",
+    "image_local_path": "foxhole_items\\images\\War_Ensign.png"
+  },
+  {
+    "title": "Warden Aircraft Engine (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Warden_Aircraft_Engine_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Warden_Aircraft_Engine_Large.png"
+  },
+  {
+    "title": "Warden Aircraft Engine (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Warden_Aircraft_Engine_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Warden_Aircraft_Engine_Small.png"
+  },
+  {
+    "title": "Warden Aircraft Mechanical Parts (Large)",
+    "url": "https://foxhole.wiki.gg/wiki/Warden_Aircraft_Mechanical_Parts_(Large)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Warden_Aircraft_Mechanical_Parts_Large.png"
+  },
+  {
+    "title": "Warden Aircraft Mechanical Parts (Small)",
+    "url": "https://foxhole.wiki.gg/wiki/Warden_Aircraft_Mechanical_Parts_(Small)",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/PrototypeKitIcon.png/48px-PrototypeKitIcon.png?2d1d4c",
+    "image_local_path": "foxhole_items\\images\\Warden_Aircraft_Mechanical_Parts_Small.png"
+  },
+  {
+    "title": "Water",
+    "url": "https://foxhole.wiki.gg/wiki/Water",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WaterIcon.png?17ecd7",
+    "image_local_path": "foxhole_items\\images\\Water.png"
+  },
+  {
+    "title": "Water Bucket",
+    "url": "https://foxhole.wiki.gg/wiki/Water_Bucket",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/LoreBucket.png?2b4a97",
+    "image_local_path": "foxhole_items\\images\\Water_Bucket.png"
+  },
+  {
+    "title": "Water Pump",
+    "url": "https://foxhole.wiki.gg/wiki/Water_Pump",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FacilityMineWaterIcon.png?8f761b",
+    "image_local_path": "foxhole_items\\images\\Water_Pump.png"
+  },
+  {
+    "title": "Weapons",
+    "url": "https://foxhole.wiki.gg/wiki/Weapons",
+    "description": "Foxhole features a wide variety of weapons for player soldiers to use with the right ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/SubtypeAntiTank.png/24px-SubtypeAntiTank.png?faac2b",
+    "image_local_path": "foxhole_items\\images\\Weapons.png"
+  },
+  {
+    "title": "Weapons/zh",
+    "url": "https://foxhole.wiki.gg/wiki/Weapons/zh",
+    "description": "Foxhole features a wide variety of weapons for player soldiers to use with the right ammunition.",
+    "image_url": "https://foxhole.wiki.gg/images/thumb/SubtypeAntiTank.png/24px-SubtypeAntiTank.png?faac2b",
+    "image_local_path": "foxhole_items\\images\\Weapons_zh.png"
+  },
+  {
+    "title": "Willow's Bane Ammo",
+    "url": "https://foxhole.wiki.gg/wiki/Willow%27s_Bane_Ammo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlamePackWIcon.png?817309",
+    "image_local_path": "foxhole_items\\images\\Willow_s_Bane_Ammo.png"
+  },
+  {
+    "title": "Willow's Bane Model 845",
+    "url": "https://foxhole.wiki.gg/wiki/Willow%27s_Bane_Model_845",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlamegunWICon.png?ef2f59",
+    "image_local_path": "foxhole_items\\images\\Willow_s_Bane_Model_845.png"
+  },
+  {
+    "title": "Wind Sock",
+    "url": "https://foxhole.wiki.gg/wiki/Wind_Sock",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WindsockItemIcon.png?cb4dc0",
+    "image_local_path": "foxhole_items\\images\\Wind_Sock.png"
+  },
+  {
+    "title": "Wounded Player",
+    "url": "https://foxhole.wiki.gg/wiki/Wounded_Player",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WoundedIcon.png?988813",
+    "image_local_path": "foxhole_items\\images\\Wounded_Player.png"
+  },
+  {
+    "title": "Wreckage",
+    "url": "https://foxhole.wiki.gg/wiki/Wreckage",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/Salvage02Icon.png?157e8f",
+    "image_local_path": "foxhole_items\\images\\Wreckage.png"
+  },
+  {
+    "title": "Wrench",
+    "url": "https://foxhole.wiki.gg/wiki/Wrench",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/WorkWrench.png?3c724b",
+    "image_local_path": "foxhole_items\\images\\Wrench.png"
+  },
+  {
+    "title": "“Dawn” Ve.II",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CDawn%E2%80%9D_Ve.II",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleLightCIcon.png?fb320c",
+    "image_local_path": "foxhole_items\\images\\Dawn_Ve_II.png"
+  },
+  {
+    "title": "“Dusk” ce.III",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CDusk%E2%80%9D_ce.III",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/AssaultRifleHeavyCItemIcon.png?6655c8",
+    "image_local_path": "foxhole_items\\images\\Dusk_ce_III.png"
+  },
+  {
+    "title": "“Lionclaw” mc.VIII",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CLionclaw%E2%80%9D_mc.VIII",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SMGHeavyCItemIcon.png?7e9698",
+    "image_local_path": "foxhole_items\\images\\Lionclaw_mc_VIII.png"
+  },
+  {
+    "title": "“Molten Wind” v.II Ammo",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CMolten_Wind%E2%80%9D_v.II_Ammo",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlamePackCIcon.png?108df5",
+    "image_local_path": "foxhole_items\\images\\Molten_Wind_v_II_Ammo.png"
+  },
+  {
+    "title": "“Molten Wind” v.II Flame Torch",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CMolten_Wind%E2%80%9D_v.II_Flame_Torch",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/FlamegunCICon.png?7fc955",
+    "image_local_path": "foxhole_items\\images\\Molten_Wind_v_II_Flame_Torch.png"
+  },
+  {
+    "title": "“Quickhatch” Rt.I",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CQuickhatch%E2%80%9D_Rt.I",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleSniperCIcontga.png?689394",
+    "image_local_path": "foxhole_items\\images\\Quickhatch_Rt_I.png"
+  },
+  {
+    "title": "“The Pitch Gun” mc.V",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CThe_Pitch_Gun%E2%80%9D_mc.V",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/SMGCItemIcon.png?a9b9ab",
+    "image_local_path": "foxhole_items\\images\\The_Pitch_Gun_mc_V.png"
+  },
+  {
+    "title": "“Typhon” ra.XII",
+    "url": "https://foxhole.wiki.gg/wiki/%E2%80%9CTyphon%E2%80%9D_ra.XII",
+    "description": "",
+    "image_url": "https://foxhole.wiki.gg/images/ATRifleTCIcon.png?b9c954",
+    "image_local_path": "foxhole_items\\images\\Typhon_ra_XII.png"
+  }
+]

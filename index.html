@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foxhole Requisition Manifest</title>
+<link rel="icon" href="favicon.ico?v=1">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+
+<div class="masthead">
+  <div class="title-row">
+    <span class="title-bar" aria-hidden="true"></span>
+    <h1>FOXHOLE REQUISITION MANIFEST</h1>
+    <span class="title-bar" aria-hidden="true"></span>
+  </div>
+  <div class="subtitle">FACILITY REQUISITION MANAGEMENT</div>
+</div>
+
+<div class="wrap">
+  <div class="search-block">
+    <span class="search-label">SEARCH THE REQUISITION INDEX</span>
+    <div class="search-input-container" id="searchInputContainer">
+      <div class="search-input-wrap" id="searchInputWrap">
+        <input class="search-input-main" id="searchInput" type="text" placeholder="SEARCH FOR A VEHICLE, MATERIAL, OR ITEM..." autocomplete="off">
+        <span class="dropdown-caret" aria-hidden="true">▾</span>
+      </div>
+      <div class="autocomplete" id="autocomplete">
+        <div class="autocomplete-list" id="autocompleteList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="raw-panel" id="rawPanelWrap">
+      <div class="panel-label">RAW &amp; LIQUID INPUTS</div>
+      <div id="rawPanel">
+        <div class="empty-state">— NONE NEEDED —</div>
+      </div>
+      <div class="panel-label panel-label-spaced">MATERIALS CONSUMED</div>
+      <div id="consumedPanel">
+        <div class="empty-state">— NONE YET —</div>
+      </div>
+    </div>
+
+    <div class="inputs-panel">
+      <div class="panel-label">PRODUCTION CHAIN</div>
+      <div id="chainPanel">
+        <div class="empty-state">— NO PRODUCTION CHAIN —</div>
+      </div>
+    </div>
+
+    <div class="outputs-panel">
+      <div class="panel-label">REQUISITIONS</div>
+      <div id="results">
+        <div class="empty-state">— NO REQUISITION SELECTED —</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/loader.js?v=6"></script>
+<script src="js/calc.js?v=6"></script>
+<script src="js/render.js?v=6"></script>
+<script src="js/app.js?v=6"></script>
+</body>
+</html>

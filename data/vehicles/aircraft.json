@@ -1,0 +1,141 @@
+{
+  "daedalus": {
+    "full_name": "A51 Venti Daedalus",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Tiny Aircraft",
+    "type": "amphibious_scout",
+    "facility": "Aircraft Hangar",
+    "crafting_time_seconds": 110,
+    "aliases": [
+      "daedalus",
+      "amphibious scout"
+    ],
+    "assembly_materials": {
+      "Refined Materials": 100
+    },
+    "aircraft_parts": {}
+  },
+  "perdix": {
+    "full_name": "A59 Venti Perdix",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Tiny Aircraft",
+    "type": "scout",
+    "facility": "Aircraft Hangar",
+    "crafting_time_seconds": 110,
+    "aliases": [
+      "perdix",
+      "scout"
+    ],
+    "assembly_materials": {
+      "Refined Materials": 100
+    },
+    "aircraft_parts": {}
+  },
+  "blind_silver": {
+    "full_name": "Toxot-902 Blind Silver",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Small Aircraft",
+    "type": "fighter",
+    "facility": "Large Assembly Station [Aircraft Assembly]",
+    "crafting_time_seconds": 3600,
+    "power_mw": 8,
+    "aliases": [
+      "blind_silver",
+      "blind silver",
+      "toxot",
+      "fighter"
+    ],
+    "assembly_materials": {
+      "Processed Construction Materials": 40,
+      "Assembly Materials III": 50,
+      "Assembly Materials IV": 50,
+      "Rare Alloys": 2
+    },
+    "aircraft_parts": {
+      "Colonial Aircraft Engine (Small)": 1,
+      "Colonial Aircraft Mechanical Parts (Small)": 5
+    }
+  },
+  "myrmidon": {
+    "full_name": "Mergo-4 Myrmidon",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Small Aircraft",
+    "type": "dive_bomber",
+    "facility": "Large Assembly Station [Aircraft Assembly]",
+    "crafting_time_seconds": 3600,
+    "power_mw": 8,
+    "aliases": [
+      "myrmidon",
+      "mym",
+      "db",
+      "sky hitler"
+    ],
+    "assembly_materials": {
+      "Processed Construction Materials": 40,
+      "Assembly Materials I": 85,
+      "Assembly Materials II": 175,
+      "Assembly Materials III": 50,
+      "Rare Alloys": 4
+    },
+    "aircraft_parts": {
+      "Colonial Aircraft Engine (Small)": 1,
+      "Colonial Aircraft Mechanical Parts (Small)": 5
+    }
+  },
+  "pegasus": {
+    "full_name": "V-5b Pegasus",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Large Aircraft",
+    "type": "transport",
+    "facility": "Large Assembly Station [Aircraft Assembly]",
+    "crafting_time_seconds": 7200,
+    "power_mw": 8,
+    "aliases": [
+      "pegasus",
+      "para"
+    ],
+    "assembly_materials": {
+      "Steel Construction Materials": 5,
+      "Assembly Materials III": 20,
+      "Assembly Materials IV": 20,
+      "Rare Alloys": 6,
+      "Thermal Shielding": 10
+    },
+    "aircraft_parts": {
+      "Colonial Aircraft Engine (Large)": 2,
+      "Colonial Aircraft Mechanical Parts (Large)": 6
+    }
+  },
+  "tzykalia": {
+    "full_name": "V-1 Tzykalia",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Large Aircraft",
+    "type": "heavy_bomber",
+    "facility": "Large Assembly Station [Aircraft Assembly]",
+    "crafting_time_seconds": 14400,
+    "power_mw": 8,
+    "aliases": [
+      "tzykalia",
+      "bomber",
+      "hb"
+    ],
+    "assembly_materials": {
+      "Steel Construction Materials": 60,
+      "Assembly Materials III": 25,
+      "Assembly Materials IV": 40,
+      "Assembly Materials V": 65,
+      "Rare Alloys": 12,
+      "Thermal Shielding": 10
+    },
+    "aircraft_parts": {
+      "Colonial Aircraft Engine (Large)": 2,
+      "Colonial Aircraft Mechanical Parts (Large)": 9
+    }
+  }
+}

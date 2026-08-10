@@ -1,0 +1,50 @@
+{
+  "cremari_mortar": {
+    "full_name": "Cremari Mortar",
+    "category": "weapon",
+    "subcategory": "Mortars",
+    "class": "Mortar",
+    "ammo_type": [
+      "Mortar Shell",
+      "Shrapnel Mortar Shell",
+      "Flare Mortar Shell",
+      "Incendiary Mortar Shell"
+    ],
+    "crate_size": 5,
+    "aliases": [
+      "cremari_mortar",
+      "cremari mortar",
+      "cremari"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cremari_mortar_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 50,
+        "inputs": {
+          "Basic Materials": 100,
+          "Refined Materials": 25
+        },
+        "outputs": {
+          "Cremari Mortar": 5
+        }
+      },
+      {
+        "recipe_key": "cremari_mortar_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 4500,
+        "inputs": {
+          "Basic Materials": 550,
+          "Refined Materials": 134
+        },
+        "outputs": {
+          "Cremari Mortar": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  }
+}

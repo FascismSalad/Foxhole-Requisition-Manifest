@@ -1,0 +1,54 @@
+{
+  "buckhorn_ccq18": {
+    "full_name": "Buckhorn CCQ-18",
+    "category": "weapon",
+    "subcategory": "Melee",
+    "class": "Bayonet",
+    "crate_size": 20,
+    "aliases": [
+      "buckhorn_ccq18",
+      "buckhorn ccq-18",
+      "buckhorn"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "buckhorn_ccq18_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 30,
+        "inputs": {
+          "Basic Materials": 40
+        },
+        "outputs": {
+          "Buckhorn CCQ-18": 20
+        }
+      }
+    ]
+  },
+  "eleos_infantry_dagger": {
+    "full_name": "Eleos Infantry Dagger",
+    "category": "weapon",
+    "subcategory": "Melee",
+    "class": "Melee Weapon",
+    "crate_size": 10,
+    "aliases": [
+      "eleos_infantry_dagger",
+      "eleos infantry dagger",
+      "eleos"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "eleos_infantry_dagger_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 200
+        },
+        "outputs": {
+          "Eleos Infantry Dagger": 10
+        }
+      }
+    ]
+  }
+}

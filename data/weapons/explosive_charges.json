@@ -1,0 +1,195 @@
+{
+  "abisme_at99": {
+    "full_name": "Abisme AT-99",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Explosive Charge",
+    "crate_size": 10,
+    "aliases": [
+      "abisme_at99",
+      "abisme at-99",
+      "abisme"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "abisme_at99_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Heavy Explosive Powder": 2,
+          "Construction Materials": 2
+        },
+        "outputs": {
+          "Abisme AT-99": 1
+        }
+      }
+    ]
+  },
+  "crows_foot_mine": {
+    "full_name": "Crow's Foot Mine",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Explosive Charge",
+    "crate_size": 10,
+    "aliases": [
+      "crows_foot_mine",
+      "crow's foot mine",
+      "crows foot mine"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "crows_foot_mine_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Explosive Powder": 2,
+          "Construction Materials": 2
+        },
+        "outputs": {
+          "Crow's Foot Mine": 1
+        }
+      }
+    ]
+  },
+  "havoc_charge": {
+    "full_name": "Havoc Charge",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Explosive Charge",
+    "crate_size": 5,
+    "aliases": [
+      "havoc_charge",
+      "havoc charge",
+      "havoc"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "havoc_charge_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 60,
+        "inputs": {
+          "Basic Materials": 75,
+          "Heavy Explosive Powder": 40
+        },
+        "outputs": {
+          "Havoc Charge": 5
+        }
+      }
+    ]
+  },
+  "hydras_whisper": {
+    "full_name": "Hydra's Whisper",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Explosive Charge",
+    "crate_size": 5,
+    "aliases": [
+      "hydras_whisper",
+      "hydra's whisper",
+      "hydras whisper"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "hydras_whisper_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 100,
+          "Explosive Powder": 80
+        },
+        "outputs": {
+          "Hydra's Whisper": 5
+        }
+      }
+    ]
+  },
+  "e680s_rudder_lock": {
+    "full_name": "E680-S Rudder Lock",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Sea Mine",
+    "crate_size": 1,
+    "aliases": [
+      "e680s_rudder_lock",
+      "e680-s rudder lock",
+      "rudder lock"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "e680s_rudder_lock_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 90,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 1,
+          "Heavy Explosive Powder": 8
+        },
+        "outputs": {
+          "E680-S Rudder Lock": 1
+        }
+      }
+    ]
+  },
+  "e681b_hullbreaker_mine": {
+    "full_name": "E681-B Hullbreaker Mine",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Sea Mine",
+    "crate_size": 5,
+    "aliases": [
+      "e681b_hullbreaker_mine",
+      "e681-b hullbreaker mine",
+      "hullbreaker mine"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "e681b_hullbreaker_mine_ammunition_factory",
+        "recipe_name": "Ammunition Factory",
+        "facility": "Ammunition Factory",
+        "crafting_time_seconds": 25,
+        "power_mw": 4,
+        "inputs": {
+          "Construction Materials": 8
+        },
+        "outputs": {
+          "E681-B Hullbreaker Mine": 1
+        }
+      },
+      {
+        "recipe_key": "e681b_hullbreaker_mine_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 125,
+        "inputs": {
+          "Basic Materials": 125,
+          "Explosive Powder": 35
+        },
+        "outputs": {
+          "E681-B Hullbreaker Mine": 5
+        }
+      },
+      {
+        "recipe_key": "e681b_hullbreaker_mine_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 11250,
+        "inputs": {
+          "Basic Materials": 684,
+          "Explosive Powder": 189
+        },
+        "outputs": {
+          "E681-B Hullbreaker Mine": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  }
+}

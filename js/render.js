@@ -1,0 +1,501 @@
+// ============================================================
+// TICKET RENDERING
+// ============================================================
+
+function titleCaseFromSnake(str) {
+  return str.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+// The ticket subtitle: the classification tier directly above the item's
+// own name in the data hierarchy (category > subcategory > class > type >
+// name) — its type if it has one ("motorcycle" -> Motorcycle, "heavy_bomber"
+// -> Heavy Bomber), else its class ("Field Cannon"), else its subcategory.
+function categoryLabel(obj) {
+  if (!obj) return '';
+  if (obj.type) return titleCaseFromSnake(obj.type);
+  if (obj.class) return obj.class;
+  if (obj.subcategory) return obj.subcategory;
+  return '';
+}
+
+function renderAircraftTicket(entry, cumulativeSeconds) {
+  const { key, quantity, crateMode, collapsed } = entry;
+  const aircraft = AIRCRAFT_COSTS[key];
+  const { crateSize, effectiveQuantity } = resolveTicketQuantity(entry);
+  const directSeconds = (aircraft.crafting_time_seconds || 0) * effectiveQuantity;
+
+  const directInputs = {};
+  for (const [m, a] of Object.entries(aircraft.assembly_materials)) directInputs[m] = (directInputs[m] || 0) + a * effectiveQuantity;
+  for (const [p, a] of Object.entries(aircraft.aircraft_parts)) directInputs[p] = (directInputs[p] || 0) + a * effectiveQuantity;
+
+  // Only items with a known crate size (and not Garage/Shipyard-built) get
+  // a usable toggle — but it's always rendered in the DOM either way (just
+  // hidden via visibility, not display) so the ticket's height doesn't
+  // shift depending on which recipe happens to be active — switching a
+  // recipe in the chain panel (e.g. Garage -> MPF) can change whether this
+  // item has a crate size without the ticket itself resizing around it.
+  const crateToggle = `<label class="crate-toggle ${crateSize ? '' : 'crate-toggle-hidden'}">
+        <input type="checkbox" class="crate-toggle-input" ${crateMode ? 'checked' : ''} ${crateSize ? '' : 'disabled tabindex="-1"'}>
+        <span class="crate-toggle-box"></span>
+        <span class="crate-toggle-label">CRATES</span>
+      </label>`;
+
+  let html = `<div class="ticket ${collapsed ? 'collapsed' : ''}" data-kind="aircraft" data-key="${key}">`;
+  html += `<div class="ticket-head">
+    ${iconTag(aircraft.full_name, 'ticket-icon')}
+    <div class="ticket-title-block">
+      <div class="ticket-eyebrow">AIRCRAFT REQUISITION</div>
+      <div class="ticket-title">${aircraft.full_name}</div>
+      <div class="ticket-class">${categoryLabel(aircraft)}</div>
+      ${crateToggle}
+    </div>
+    <div class="ticket-head-right">
+      <div class="seal">COL<br>ARMY</div>
+      <div class="ticket-qty-compact">
+        <button class="qty-btn" data-action="dec">−</button>
+        <span class="qty-val">${quantity}</span>
+        <button class="qty-btn" data-action="inc">+</button>
+      </div>
+    </div>
+    <span class="ticket-caret" aria-hidden="true"></span>
+  </div>`;
+
+  html += `<div class="ticket-body-wrap"><div class="ticket-body">`;
+
+  html += `<div class="facility-note">FACILITY: ${aircraft.facility || 'Unknown'}</div>`;
+
+  html += `<div class="ticket-section"><div class="section-label parts">DIRECT INPUTS REQUIRED</div>${Object.entries(directInputs).map(([m,a]) => itemLine(a,m,facilityOfOutput(m))).join("")}</div>`;
+
+  html += `<div class="time-row">
+    <div class="time-block"><div class="time-label">DIRECT CRAFT TIME</div><div class="time-val">${fmtTime(directSeconds)}</div></div>
+    <div class="time-block"><div class="time-label">CUMULATIVE CRAFT TIME</div><div class="time-val">${fmtTime(cumulativeSeconds)}</div></div>
+    ${aircraft.power_mw ? `<div class="time-block"><div class="time-label">FACILITY POWER</div><div class="time-val">${aircraft.power_mw} MW</div></div>` : ''}
+  </div>`;
+
+  html += `</div></div>`;
+
+  html += `</div>`;
+  return html;
+}
+
+// entryKey identifies the ticket itself (stable — used for qty-stepper lookups
+// and never changes). displayRecipeKey is whichever recipe is currently in
+// effect at the root of the chain (entryKey's own recipe by default, or
+// whatever the user picked for that root node in the chain panel) — facility,
+// outputs, and direct time are read from that one.
+function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds) {
+  const { key: entryKey, quantity, crateMode, collapsed } = entry;
+  const recipe = MATERIAL_RECIPES[displayRecipeKey];
+  const parent = findMultiRecipeParent(displayRecipeKey); // null for standalone single-recipe materials
+
+  // Standalone materials carry their own full_name; recipes that belong to
+  // a multi-recipe parent (Steel, Salvage, Sulfur...) don't, so fall back
+  // to the parent item's name, then to the recipe's own name.
+  const titleName = recipe.full_name || (parent && parent.itemData.full_name) || recipe.recipe_name;
+  const subtitle = categoryLabel(parent ? parent.itemData : recipe);
+
+  const outputName = Object.keys(recipe.outputs)[0];
+  const outputPerBatch = recipe.outputs[outputName];
+
+  // effectiveQuantity is already the real unit target — crate-mode's ×crateSize
+  // conversion happened once, up front — so the same ceil(qty/outputPerBatch)
+  // math covers MPF and non-MPF recipes alike, no special-casing needed.
+  const { crateSize, effectiveQuantity } = resolveTicketQuantity(entry);
+  const batches = Math.ceil(effectiveQuantity / outputPerBatch);
+
+  const scaledOutputs = {};
+  for (const [item, amt] of Object.entries(recipe.outputs)) scaledOutputs[item] = amt * batches;
+
+  const directSeconds = (recipe.crafting_time_seconds || 0) * batches;
+
+  // Only items with a known crate size (and not Garage/Shipyard-built) get
+  // a usable toggle — but it's always rendered in the DOM either way (just
+  // hidden via visibility, not display) so the ticket's height doesn't
+  // shift depending on which recipe happens to be active — switching a
+  // recipe in the chain panel (e.g. Garage -> MPF) can change whether this
+  // item has a crate size without the ticket itself resizing around it.
+  const crateToggle = `<label class="crate-toggle ${crateSize ? '' : 'crate-toggle-hidden'}">
+        <input type="checkbox" class="crate-toggle-input" ${crateMode ? 'checked' : ''} ${crateSize ? '' : 'disabled tabindex="-1"'}>
+        <span class="crate-toggle-box"></span>
+        <span class="crate-toggle-label">CRATES</span>
+      </label>`;
+
+  let html = `<div class="ticket ${collapsed ? 'collapsed' : ''}" data-kind="material" data-key="${entryKey}">`;
+  html += `<div class="ticket-head">
+    ${iconTag(titleName, 'ticket-icon')}
+    <div class="ticket-title-block">
+      <div class="ticket-eyebrow">MATERIAL REQUISITION</div>
+      <div class="ticket-title">${titleName}</div>
+      <div class="ticket-class">${subtitle}</div>
+      ${crateToggle}
+    </div>
+    <div class="ticket-head-right">
+      <div class="seal">COL<br>ARMY</div>
+      <div class="ticket-qty-compact">
+        <button class="qty-btn" data-action="dec">−</button>
+        <span class="qty-val">${quantity}</span>
+        <button class="qty-btn" data-action="inc">+</button>
+      </div>
+    </div>
+    <span class="ticket-caret" aria-hidden="true"></span>
+  </div>`;
+
+  html += `<div class="ticket-body-wrap"><div class="ticket-body">`;
+
+  html += `<div class="facility-note">FACILITY: ${recipe.facility || 'Unknown'}</div>`;
+
+  const scaledInputs = {};
+  for (const [item, amt] of Object.entries(recipe.inputs)) scaledInputs[item] = amt * batches;
+
+  html += `<div class="ticket-section"><div class="section-label parts">DIRECT INPUTS REQUIRED</div>${Object.entries(scaledInputs).map(([m,a]) => itemLine(a,m,facilityOfOutput(m))).join("")}</div>`;
+
+  html += `<div class="ticket-section"><div class="section-label">OUTPUTS PRODUCED</div>${Object.entries(scaledOutputs).map(([m,a]) => itemLine(a,m,recipe.facility)).join("")}</div>`;
+
+  html += `<div class="time-row">
+    <div class="time-block"><div class="time-label">DIRECT CRAFT TIME</div><div class="time-val">${fmtTime(directSeconds)}</div></div>
+    <div class="time-block"><div class="time-label">CUMULATIVE CRAFT TIME</div><div class="time-val">${fmtTime(cumulativeSeconds)}</div></div>
+    ${recipe.power_mw ? `<div class="time-block"><div class="time-label">FACILITY POWER</div><div class="time-val">${recipe.power_mw} MW</div></div>` : ''}
+  </div>`;
+
+  html += `</div></div>`;
+
+  html += `</div>`;
+  return html;
+}
+
+// ============================================================
+// PRODUCTION CHAIN RENDERING (middle panel)
+// One numbered step per row, read straight down like a checklist: gather
+// the raw resources first, then each crafting stage in order, ending with
+// the direct inputs for the requested ticket(s) as the last step(s) at the
+// bottom. Every step is a single facility/recipe conversion — inputs,
+// arrow, outputs, nothing implied or left for the reader to multiply out.
+// Any step with more than one possible recipe gets a select scoped to that
+// exact node's path (data-path), so choosing a recipe for one occurrence
+// of an item never affects another occurrence elsewhere in the chain.
+// ============================================================
+
+// Matches an item's text color to whichever step type it belongs to —
+// blue for liquids, brown for the base raw resources, yellow for power,
+// green for everything else — same split used for the step-number
+// badges (poolKindOf is defined in calc.js).
+function stepColorClass(name) {
+  const kind = poolKindOf(name);
+  if (kind === 'liquid') return 'step-color-liquid';
+  if (kind === 'resource') return 'step-color-resource';
+  if (kind === 'power') return 'step-color-power';
+  return 'step-color-craft';
+}
+
+// One item's icon-forward "chip": icon in a category-colored frame with the
+// quantity as a small badge over its corner, plus a text caption underneath
+// (qty + name) so it's still fully readable, not icon-only. Shared by both
+// inputs and outputs — position decides the styling, not the item itself:
+// every NEEDS-side chip is dashed, every YIELDS-side chip is solid (plus
+// `large`, the output's own headline treatment), so the same item (e.g.
+// Petrol (L)) reads dashed when it's being consumed and solid when it's
+// what a step produces, with no exceptions either way.
+// facility here is whatever produced THIS item elsewhere in the chain (the
+// child node's own facility) — a Battering Ram fed into another step still
+// shows plain, not crated, if it was itself built at a Garage.
+function stepIconChip(name, qty, facility, { dashed = false, large = false, colorClass } = {}) {
+  const qtyHtml = fmtQty(name, qty, facility);
+  return `<div class="step-icon-chip ${large ? 'step-icon-chip-lg' : ''} ${dashed ? 'step-icon-dashed' : ''} ${colorClass || stepColorClass(name)}">
+    <div class="step-icon-frame">
+      ${iconTag(name, 'step-icon-img')}
+    </div>
+    <div class="step-icon-caption">
+      <span class="step-icon-qty">${qtyHtml}</span>
+      <span class="step-icon-name">${name}</span>
+    </div>
+  </div>`;
+}
+function stepNeedItem(name, qty, facility) { return stepIconChip(name, qty, facility, { dashed: true }); }
+function stepOutputItem(name, qty, facility, colorClass) { return stepIconChip(name, qty, facility, { large: true, colorClass }); }
+
+// One selectable recipe option inside a "CHOOSE RECIPE" picker — a full
+// preview (facility, batch count, time, and its own inputs -> output flow,
+// built from the same icon chips as a real step) instead of a bare text
+// label, so the user can see what a recipe actually entails before picking
+// it. Clicking anywhere on the card selects it (see the
+// .recipe-option-card click handler in app.js). extraDataAttrs carries
+// whatever the caller needs to route that click back to the right
+// entry/node (a real chain override) or pooled-item preview choice.
+function renderRecipeOptionCard(preview, isActive, extraDataAttrs) {
+  const inputsHtml = preview.inputs.length
+    ? preview.inputs.map(inp => stepNeedItem(inp.name, inp.qty, inp.facility)).join('')
+    : `<span class="step-io-empty">—</span>`;
+  const outputsHtml = preview.outputs
+    .map(o => stepOutputItem(o.name, o.qty, preview.facility))
+    .join('<span class="step-output-plus">+</span>');
+
+  return `<div class="recipe-option-card ${isActive ? 'active' : ''}" data-recipe-key="${preview.recipeKey}" ${extraDataAttrs}>
+    <div class="recipe-option-head">
+      <div class="step-facility-icon-wrap">${iconTag(preview.facility || '', 'step-facility-icon')}</div>
+      <div class="recipe-option-label">${preview.label}</div>
+      ${isActive ? `<span class="recipe-option-active-tag">ACTIVE</span>` : ''}
+    </div>
+    <div class="step-line-flow">
+      <div class="step-flow-side step-flow-inputs">${inputsHtml}</div>
+      <div class="step-flow-runs-time">
+        <span class="step-flow-runs">×${fmtNum(preview.batches)} RUNS</span>
+        <div class="step-time"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(preview.craftSeconds)}</div>
+      </div>
+      <span class="step-flow-arrow" aria-hidden="true">&rarr;</span>
+      <div class="step-flow-side step-flow-output">${outputsHtml}</div>
+    </div>
+  </div>`;
+}
+
+// A gather step: the facility that actually produces one pooled liquid, raw
+// resource, or unit of power (Water Pump, Oil Refinery [Petrol], Stationary
+// Harvester (Salvage), Power Station, ...) — one row per pooled item. The
+// LIQUIDS/RAW/POWER totals themselves live in the left sidebar
+// (renderRawPanel) now, not in the chain, so this is the only place left to
+// see/choose the recipe behind them. Same NEEDS -> arrow -> YIELDS shape as
+// a regular craft row (renderCraftRow), and purely informational (see
+// poolItemRecipePreview in calc.js): picking a different recipe here never
+// changes the sidebar's totals, only what this row shows. An item with no
+// recipe at all (Rare Metal, gathered by hand) still gets a row — NEEDS
+// reads empty and there's no facility/RECIPES toggle, same treatment as an
+// Oil Well's own empty-inputs recipe.
+function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
+  const inputsHtml = preview.inputs.length
+    ? preview.inputs.map(inp => stepNeedItem(inp.name, inp.qty, inp.facility)).join('')
+    : `<span class="step-io-empty">—</span>`;
+  const outputHtml = preview.outputs
+    .map(o => stepOutputItem(o.name, o.qty, preview.facility))
+    .join('<span class="step-output-plus">+</span>');
+
+  const yieldToggleAttrs = preview.isMultiRecipe ? `data-gather-toggle="${itemName}"` : '';
+  const yieldToggleClass = preview.isMultiRecipe ? `step-yield-toggle ${isOpen ? 'open' : ''}` : 'step-yield-static';
+  const yieldIndicator = preview.isMultiRecipe
+    ? `<span class="step-yield-status"><span class="step-yield-recipe-label">RECIPES</span><span class="step-yield-indicator step-yield-indicator-toggle" aria-hidden="true"></span></span>`
+    : `<span class="step-yield-status"><span class="step-yield-indicator step-yield-indicator-static" aria-hidden="true" title="No alternate recipes"></span></span>`;
+
+  // Always rendered when multi-recipe (not just when open) — same reasoning
+  // as renderCraftRow's recipeDetail: a CSS collapse animation needs a
+  // persisting "before" state to animate from.
+  const recipeDetail = preview.isMultiRecipe
+    ? `<div class="step-recipe-detail-wrap ${isOpen ? 'open' : ''}">
+        <div class="step-recipe-detail">
+          <span class="step-choice-label">CHOOSE RECIPE</span>
+          <div class="recipe-option-list">${recipeAlternativePreviews(itemName, totalQty).map(p =>
+            renderRecipeOptionCard(p, p.recipeKey === preview.recipeKey, `data-pool-item="${itemName}"`)
+          ).join('')}</div>
+        </div>
+      </div>`
+    : '';
+
+  const kind = poolKindOf(itemName);
+  const numClass = kind === 'liquid' ? 'step-num-liquid' : kind === 'power' ? 'step-num-power' : 'step-num-resource';
+
+  return `<div class="step-row">
+    <div class="step-num ${numClass}">${num}</div>
+    <div class="step-body">
+      <div class="step-head ${yieldToggleClass}" ${yieldToggleAttrs}>
+        <div class="step-line-facility">
+          <div class="step-facility-icon-wrap">${iconTag(preview.facility || '', 'step-facility-icon')}</div>
+          <div class="step-facility-text">
+            <div class="step-facility-inline">${preview.facility || 'GATHER'}</div>
+          </div>
+        </div>
+        <div class="step-line-flow">
+          <div class="step-flow-side step-flow-inputs">
+            <span class="step-needs-label">NEEDS</span>
+            ${inputsHtml}
+          </div>
+          <div class="step-flow-runs-time">
+            <span class="step-flow-runs">×${fmtNum(preview.batches)} RUNS</span>
+            <div class="step-time"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(preview.craftSeconds)}</div>
+          </div>
+          <span class="step-flow-arrow" aria-hidden="true">&rarr;</span>
+          <div class="step-flow-side step-flow-output">
+            <span class="step-yields-label">YIELDS</span>
+            ${outputHtml}
+            ${yieldIndicator}
+          </div>
+        </div>
+      </div>
+      ${recipeDetail}
+    </div>
+  </div>`;
+}
+
+// isOpen: whether this step's "view/choose recipe" detail is currently
+// expanded (state.craftRecipesOpen, keyed by item name — see app.js).
+function renderCraftRow(num, node, isOpen) {
+  // Totals for the whole run, not the per-batch recipe ratio — "make 85
+  // batches, here's what that actually costs you" instead of making the
+  // reader multiply "2 Salvage -> 1 Basic Materials" by 85 themselves.
+  // Reads straight off node.children rather than node.recipeInputs since
+  // each child's own .quantity is already the fully-resolved total (built
+  // that way in buildNode) — this also picks up the implicit Facility
+  // Power child for free wherever a step's recipe draws power.
+  const inputsHtml = node.children.length
+    ? node.children.map(child => stepNeedItem(child.itemName, child.quantity, child.facility)).join('')
+    : `<span class="step-io-empty">—</span>`;
+
+  // The DIRECT INPUT step's own requested item (not any byproduct it also
+  // happens to produce) gets the "final product" color instead of blending
+  // into the same green as every other crafted intermediate.
+  const outputHtml = Object.entries(node.recipeOutputs)
+    .map(([name, qty]) => stepOutputItem(name, qty * node.batches, node.facility, node.isDirect && name === node.itemName ? 'step-color-final' : undefined))
+    .join('<span class="step-output-plus">+</span>');
+
+  // The whole YIELDS tray doubles as the recipe-picker toggle — no separate
+  // button. A step with more than one possible recipe gets the interactive
+  // treatment (clickable, chevron indicator); a single-recipe step still
+  // shows a small dot in its place so it's clear at a glance there's
+  // nothing to pick between, rather than just silently not reacting to a
+  // click.
+  const yieldToggleAttrs = node.isMultiRecipe
+    ? `data-recipe-toggle="${node.itemName}"`
+    : '';
+  const yieldToggleClass = node.isMultiRecipe ? `step-yield-toggle ${isOpen ? 'open' : ''}` : 'step-yield-static';
+  const yieldIndicator = node.isMultiRecipe
+    ? `<span class="step-yield-status"><span class="step-yield-recipe-label">RECIPES</span><span class="step-yield-indicator step-yield-indicator-toggle" aria-hidden="true"></span></span>`
+    : `<span class="step-yield-status"><span class="step-yield-indicator step-yield-indicator-static" aria-hidden="true" title="No alternate recipes"></span></span>`;
+  // The true recipe-agnostic total demand for node.itemName (see
+  // buildChainSteps) — NOT reconstructed from the active recipe's own
+  // batches * output-per-batch, which over-produces whenever that recipe's
+  // batch size doesn't evenly divide the amount actually needed (e.g. a
+  // 9-crate MPF run for a demand of 40 rounds up to 360) and would wrongly
+  // inflate every other alternative's preview to match that overproduction.
+  const totalUnitsNeeded = node.quantity;
+  // Always rendered when multi-recipe (not just when open) so the collapse/
+  // expand can animate smoothly — see the matching note in renderGatherRow.
+  const recipeDetail = node.isMultiRecipe
+    ? `<div class="step-recipe-detail-wrap ${isOpen ? 'open' : ''}">
+        <div class="step-recipe-detail">
+          <span class="step-choice-label">CHOOSE RECIPE</span>
+          <div class="recipe-option-list">${recipeAlternativePreviews(node.itemName, totalUnitsNeeded).map(p =>
+            renderRecipeOptionCard(p, p.recipeKey === node.recipeKey, `data-paths="${node.paths.join('|')}"`)
+          ).join('')}</div>
+        </div>
+      </div>`
+    : '';
+
+  // Only reachable for a pooled item (raw resource/power) when it was
+  // requested directly as its own ticket (root) — nested occurrences never
+  // get here, they're truncated straight into the pooled step instead.
+  const poolBadgeClass = isRawResourceName(node.itemName) ? 'step-num-resource'
+    : node.itemName === 'Facility Power' ? 'step-num-power'
+    : '';
+
+  return `<div class="step-row ${node.isDirect ? 'step-row-direct' : ''}">
+    <div class="step-num ${poolBadgeClass}">${num}</div>
+    <div class="step-body">
+      <div class="step-head ${yieldToggleClass}" ${yieldToggleAttrs}>
+        <div class="step-line-facility">
+          <div class="step-facility-icon-wrap">${iconTag(node.facility || '', 'step-facility-icon')}</div>
+          <div class="step-facility-text">
+            ${node.isDirect ? `<div class="step-direct-tag">DIRECT INPUT</div>` : ''}
+            <div class="step-facility-inline">${node.facility || 'ASSEMBLE'}</div>
+          </div>
+        </div>
+        <div class="step-line-flow">
+          <div class="step-flow-side step-flow-inputs">
+            <span class="step-needs-label">NEEDS</span>
+            ${inputsHtml}
+          </div>
+          <div class="step-flow-runs-time">
+            <span class="step-flow-runs">×${fmtNum(node.batches)} RUNS</span>
+            <div class="step-time"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(node.craftSeconds)}</div>
+          </div>
+          <span class="step-flow-arrow" aria-hidden="true">&rarr;</span>
+          <div class="step-flow-side step-flow-output">
+            <span class="step-yields-label">YIELDS</span>
+            ${outputHtml}
+            ${yieldIndicator}
+          </div>
+        </div>
+      </div>
+      ${recipeDetail}
+    </div>
+  </div>`;
+}
+
+// A compact, always-visible shopping list for the three pooled totals —
+// liquids, raw resources, and power — the exact amount actually needed
+// across the whole chain, not rounded up to whole batches the way the
+// gather steps in the chain itself are (e.g. 2 Stationary Harvester runs
+// yield 100 Salvage, but only 60 of that is actually spent downstream, so
+// this list still reads 60). Lives in the left sidebar so it's visible
+// without scrolling through the whole chain to find it.
+function rawPanelRow(item) {
+  return `<div class="raw-panel-row">
+    ${iconTag(item.name, 'raw-panel-icon')}
+    <span class="raw-panel-name ${stepColorClass(item.name)}">${item.name}</span>
+    <span class="raw-panel-qty">${fmtQty(item.name, item.qty)}</span>
+  </div>`;
+}
+
+function renderRawPanel(liquids, resources, power) {
+  if (!liquids.length && !resources.length && !power.length) return `<div class="empty-state">— NONE NEEDED —</div>`;
+  const section = (label, items) => items.length ? `<div class="raw-panel-section">
+    <div class="raw-panel-section-title">${label}</div>
+    <div class="raw-panel-list">${items.map(rawPanelRow).join('')}</div>
+  </div>` : '';
+  return section('LIQUIDS', liquids) + section('RAW RESOURCES', resources) + section('POWER', power);
+}
+
+// A running ledger of every CRAFTED/intermediate material actually spent
+// across the whole chain (see tallyConsumedMaterials in calc.js) — Basic
+// Materials, Refined Materials, Steel, whatever else gets produced by one
+// step and eaten by another. Same row shape as the raw panel above it, just
+// a second list underneath so the sidebar covers everything consumed, not
+// only the raw/liquid/power tier.
+function renderConsumedPanel(items) {
+  if (!items.length) return `<div class="empty-state">— NONE YET —</div>`;
+  return `<div class="raw-panel-list">${items.map(rawPanelRow).join('')}</div>`;
+}
+
+// entries/trees are parallel arrays (trees[i] is the production chain for
+// entries[i]). All selected outputs share one flattened, merged step list —
+// a step needed by two different outputs shows up once with its run count
+// summed, instead of being duplicated per output.
+function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen, gatherRecipesOpen) {
+  const { liquids, resources, power } = aggregateRawResources(trees);
+  const expandedGather = expandGatherChain(liquids, resources, power, poolRecipeChoice);
+  const craftSteps = buildChainSteps(trees);
+
+  const outputsHtml = entries.map((entry, i) =>
+    `<span class="chain-output-chip">${trees[i].itemName} <span class="chain-output-qty">×${entry.quantity}</span></span>`
+  ).join('');
+
+  // Fixed order: the facilities that actually generate the liquids/raw
+  // resources/power — expanded all the way down (Oil Well feeding the
+  // Petrol that feeds a Harvester, not just the first tier — see
+  // expandGatherChain), most-primitive first — then the real
+  // crafting/refining/assembly steps. The LIQUIDS/RAW/POWER totals
+  // themselves live in the left sidebar now (see renderRawPanel), not as
+  // their own chain rows. Items with no recipe of their own (Rare Metal —
+  // gathered by hand) still get a row, reading NEEDS nothing / YIELDS the
+  // total, same as an Oil Well's empty-inputs recipe does.
+  let stepNum = 0;
+  const gatherRowsHtml = expandedGather.items.map(it => {
+    const preview = poolItemRecipePreview(it.name, it.qty, poolRecipeChoice[it.name]);
+    return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name]);
+  }).join('');
+  const rowsHtml =
+    gatherRowsHtml +
+    craftSteps.map(s => renderCraftRow(++stepNum, s, craftRecipesOpen[s.itemName])).join('');
+
+  const legend = `<div class="chain-legend">
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-swatch-dashed"></span>CONSUMED</span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-swatch-solid"></span>PRODUCED</span>
+    <span class="chain-legend-divider" aria-hidden="true"></span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-color-liquid"></span>LIQUID</span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-color-resource"></span>RESOURCE</span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-color-power"></span>POWER</span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-color-craft"></span>CRAFTED</span>
+    <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-color-final"></span>FINAL PRODUCT</span>
+  </div>`;
+
+  return `<div class="chain-card">
+    <div class="chain-card-title"><span>COMBINED PRODUCTION CHAIN</span>${legend}</div>
+    <div class="chain-outputs-row">${outputsHtml}</div>
+    <div class="step-list">${rowsHtml}</div>
+  </div>`;
+}

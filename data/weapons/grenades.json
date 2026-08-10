@@ -1,0 +1,293 @@
+{
+  "anti_tank_sticky_bomb": {
+    "full_name": "Anti-Tank Sticky Bomb",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Anti-Tank Grenade",
+    "crate_size": 10,
+    "aliases": [
+      "anti_tank_sticky_bomb",
+      "anti-tank sticky bomb",
+      "sticky bomb",
+      "sticky"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "anti_tank_sticky_bomb_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 75,
+        "inputs": {
+          "Basic Materials": 50,
+          "Explosive Powder": 100
+        },
+        "outputs": {
+          "Anti-Tank Sticky Bomb": 10
+        }
+      },
+      {
+        "recipe_key": "anti_tank_sticky_bomb_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6750,
+        "inputs": {
+          "Basic Materials": 275,
+          "Explosive Powder": 550
+        },
+        "outputs": {
+          "Anti-Tank Sticky Bomb": 90
+        },
+        "crate_output": 9,
+        "unit_output": 90
+      },
+      {
+        "recipe_key": "anti_tank_sticky_bomb_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 6900,
+        "power_mw": 12,
+        "inputs": {
+          "Explosive Powder": 550,
+          "Construction Materials": 55
+        },
+        "outputs": {
+          "Anti-Tank Sticky Bomb": 100
+        }
+      }
+    ]
+  },
+  "bomastone_grenade": {
+    "full_name": "Bomastone Grenade",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Grenade",
+    "crate_size": 25,
+    "aliases": [
+      "bomastone_grenade",
+      "bomastone grenade",
+      "bomastone"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "bomastone_grenade_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 100,
+          "Explosive Powder": 40
+        },
+        "outputs": {
+          "Bomastone Grenade": 25
+        }
+      },
+      {
+        "recipe_key": "bomastone_grenade_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 550,
+          "Explosive Powder": 220
+        },
+        "outputs": {
+          "Bomastone Grenade": 225
+        },
+        "crate_output": 9,
+        "unit_output": 225
+      }
+    ]
+  },
+  "green_ash_grenade": {
+    "full_name": "Green Ash Grenade",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Grenade",
+    "crate_size": 5,
+    "aliases": [
+      "green_ash_grenade",
+      "green ash grenade",
+      "green ash",
+      "gas"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "green_ash_grenade_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 100,
+        "inputs": {
+          "Basic Materials": 140
+        },
+        "outputs": {
+          "Green Ash Grenade": 5
+        }
+      },
+      {
+        "recipe_key": "green_ash_grenade_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 9000,
+        "inputs": {
+          "Basic Materials": 770
+        },
+        "outputs": {
+          "Green Ash Grenade": 45
+        },
+        "crate_output": 9,
+        "unit_output": 45
+      }
+    ]
+  },
+  "mammon_91b": {
+    "full_name": "Mammon 91-b",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Grenade",
+    "crate_size": 20,
+    "aliases": [
+      "mammon_91b",
+      "mammon 91-b",
+      "mammon"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "mammon_91b_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Basic Materials": 100,
+          "Explosive Powder": 20
+        },
+        "outputs": {
+          "Mammon 91-b": 20
+        }
+      },
+      {
+        "recipe_key": "mammon_91b_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Basic Materials": 550,
+          "Explosive Powder": 110
+        },
+        "outputs": {
+          "Mammon 91-b": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      }
+    ]
+  },
+  "tremola_grenade_gpb1": {
+    "full_name": "Tremola Grenade GPb-1",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Grenade",
+    "crate_size": 20,
+    "aliases": [
+      "tremola_grenade_gpb1",
+      "tremola grenade gpb-1",
+      "tremola"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "tremola_grenade_gpb1_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 80,
+        "inputs": {
+          "Basic Materials": 75,
+          "Explosive Powder": 100
+        },
+        "outputs": {
+          "Tremola Grenade GPb-1": 20
+        }
+      },
+      {
+        "recipe_key": "tremola_grenade_gpb1_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 7200,
+        "inputs": {
+          "Basic Materials": 409,
+          "Explosive Powder": 550
+        },
+        "outputs": {
+          "Tremola Grenade GPb-1": 180
+        },
+        "crate_output": 9,
+        "unit_output": 180
+      },
+      {
+        "recipe_key": "tremola_grenade_gpb1_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "facility": "Infantry Kit Factory [Heavy Munitions Foundry]",
+        "crafting_time_seconds": 7200,
+        "power_mw": 24,
+        "inputs": {
+          "Construction Materials": 80,
+          "Explosive Powder": 550
+        },
+        "outputs": {
+          "Tremola Grenade GPb-1": 200
+        }
+      }
+    ]
+  },
+  "pt_815_smoke_grenade": {
+    "full_name": "PT-815 Smoke Grenade",
+    "category": "weapon",
+    "subcategory": "Grenades",
+    "class": "Grenade",
+    "crate_size": 15,
+    "aliases": [
+      "pt_815_smoke_grenade",
+      "pt-815 smoke grenade",
+      "smoke grenade"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "pt_815_smoke_grenade_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 75,
+        "inputs": {
+          "Basic Materials": 80
+        },
+        "outputs": {
+          "PT-815 Smoke Grenade": 15
+        }
+      },
+      {
+        "recipe_key": "pt_815_smoke_grenade_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6750,
+        "inputs": {
+          "Basic Materials": 440
+        },
+        "outputs": {
+          "PT-815 Smoke Grenade": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      },
+      {
+        "recipe_key": "pt_815_smoke_grenade_infantry_kit_factory",
+        "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
+        "facility": "Infantry Kit Factory [Small Arms Workshop]",
+        "crafting_time_seconds": 6900,
+        "power_mw": 12,
+        "inputs": {
+          "Construction Materials": 135
+        },
+        "outputs": {
+          "PT-815 Smoke Grenade": 150
+        }
+      }
+    ]
+  }
+}
