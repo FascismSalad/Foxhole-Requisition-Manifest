@@ -86,6 +86,33 @@
       "Colonial Aircraft Mechanical Parts (Small)": 5
     }
   },
+  "harpy": {
+    "full_name": "Daimon aK-5 \"Harpy\"",
+    "category": "vehicle",
+    "subcategory": "Aircraft",
+    "class": "Small Aircraft",
+    "type": "heavy_fighter",
+    "facility": "Large Assembly Station [Aircraft Assembly]",
+    "crafting_time_seconds": 3600,
+    "power_mw": 8,
+    "aliases": [
+      "harpy",
+      "daimon ak-5",
+      "diamon ak-5",
+      "ak-5",
+      "heavy fighter"
+    ],
+    "assembly_materials": {
+      "Processed Construction Materials": 40,
+      "Assembly Materials II": 200,
+      "Assembly Materials III": 50,
+      "Rare Alloys": 2
+    },
+    "aircraft_parts": {
+      "Colonial Aircraft Engine (Small)": 2,
+      "Colonial Aircraft Mechanical Parts (Small)": 7
+    }
+  },
   "pegasus": {
     "full_name": "V-5b Pegasus",
     "category": "vehicle",

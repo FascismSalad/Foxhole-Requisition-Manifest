@@ -302,7 +302,14 @@ function initApp() {
     if (e.target.closest('.crate-toggle')) {
       const entry = state.entries.find(en => en.kind === kind && en.key === key);
       if (!entry) return;
+      // Reset to a clean "just one" in the new mode instead of carrying the
+      // old number over — a crate count and a unit count aren't the same
+      // kind of quantity, so silently reinterpreting whatever number was
+      // there (the old bug) or converting it 1:1 across crateSize (a prior
+      // attempt at this fix) both spring an unexpected total on the user.
+      // Switching modes always restarts the stepper at 1 in that mode.
       entry.crateMode = !entry.crateMode;
+      entry.quantity = 1;
       renderResults();
       return;
     }
