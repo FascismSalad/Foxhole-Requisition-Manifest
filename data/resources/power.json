@@ -10,6 +10,18 @@
     ],
     "recipes": [
       {
+        "recipe_key": "power_diesel_plant_petrol",
+        "recipe_name": "Diesel Power Plant [Petrol Power Plant]",
+        "facility": "Diesel Power Plant [Petrol Power Plant]",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Petrol (L)": 50
+        },
+        "outputs": {
+          "Facility Power": 12
+        }
+      },
+      {
         "recipe_key": "power_diesel_plant_diesel",
         "recipe_name": "Diesel Power Plant",
         "facility": "Diesel Power Plant",
@@ -31,18 +43,6 @@
         },
         "outputs": {
           "Facility Power": 5
-        }
-      },
-      {
-        "recipe_key": "power_diesel_plant_petrol",
-        "recipe_name": "Diesel Power Plant [Petrol Power Plant]",
-        "facility": "Diesel Power Plant [Petrol Power Plant]",
-        "crafting_time_seconds": 90,
-        "inputs": {
-          "Petrol (L)": 50
-        },
-        "outputs": {
-          "Facility Power": 12
         }
       },
       {

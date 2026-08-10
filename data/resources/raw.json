@@ -693,16 +693,6 @@
     ],
     "recipes": [
       {
-        "recipe_key": "heavy_oil_offshore",
-        "recipe_name": "Offshore Platform",
-        "facility": "Offshore Platform",
-        "crafting_time_seconds": 50,
-        "inputs": {},
-        "outputs": {
-          "Heavy Oil (L)": 30
-        }
-      },
-      {
         "recipe_key": "heavy_oil_cracking_unit",
         "recipe_name": "Oil Refinery [Cracking Unit]",
         "facility": "Oil Refinery [Cracking Unit]",
@@ -711,6 +701,16 @@
         "inputs": {
           "Oil (L)": 50
         },
+        "outputs": {
+          "Heavy Oil (L)": 30
+        }
+      },
+      {
+        "recipe_key": "heavy_oil_offshore",
+        "recipe_name": "Offshore Platform",
+        "facility": "Offshore Platform",
+        "crafting_time_seconds": 50,
+        "inputs": {},
         "outputs": {
           "Heavy Oil (L)": 30
         }
@@ -726,19 +726,6 @@
     ],
     "recipes": [
       {
-        "recipe_key": "petrol_base",
-        "recipe_name": "Oil Refinery",
-        "facility": "Oil Refinery",
-        "crafting_time_seconds": 50,
-        "power_mw": 1,
-        "inputs": {
-          "Oil (L)": 50
-        },
-        "outputs": {
-          "Petrol (L)": 50
-        }
-      },
-      {
         "recipe_key": "petrol_reformer",
         "recipe_name": "Oil Refinery [Reformer]",
         "facility": "Oil Refinery [Reformer]",
@@ -747,6 +734,19 @@
         "inputs": {
           "Oil (L)": 40,
           "Water (L)": 10
+        },
+        "outputs": {
+          "Petrol (L)": 50
+        }
+      },
+      {
+        "recipe_key": "petrol_base",
+        "recipe_name": "Oil Refinery",
+        "facility": "Oil Refinery",
+        "crafting_time_seconds": 50,
+        "power_mw": 1,
+        "inputs": {
+          "Oil (L)": 50
         },
         "outputs": {
           "Petrol (L)": 50
