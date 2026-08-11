@@ -7,6 +7,23 @@
 // other occurrence of the same item elsewhere in the tree.
 // ============================================================
 
+// The Mass Production Factory speeds up the more orders are queued in a
+// category: with N orders queued (including the one currently running,
+// capped at 25), production time is divided by (N+1)/2 — a full queue of
+// 25 runs 13x faster than the stated "solo" time in the data. This
+// calculator always assumes an MPF is running at that max queue depth
+// (the fastest it ever gets), so every MPF crafting time is shown already
+// sped up rather than the empty-queue baseline `crafting_time_seconds`
+// value sourced from the wiki. Only the crafting TIME changes — power
+// draw is a fixed property of the physical facility, not the queue depth,
+// so power_mw is untouched.
+const MPF_MAX_QUEUE = 25;
+const MPF_SPEED_DIVISOR = (MPF_MAX_QUEUE + 1) / 2; // 13
+function effectiveCraftingTime(recipeOrAircraft) {
+  const base = recipeOrAircraft.crafting_time_seconds || 0;
+  return recipeOrAircraft.facility === 'Mass Production Factory' ? base / MPF_SPEED_DIVISOR : base;
+}
+
 // Looks up the category/subcategory tag for any item name that appears
 // as a recipe output. Anything with no recipe (Petrol, Coke, Heavy Oil...)
 // is a terminal raw resource, tagged 'resource' even though it has no
@@ -100,7 +117,7 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
 
   const outputQty = recipe.outputs[itemName];
   const batches = Math.ceil(quantityNeeded / outputQty);
-  const craftSeconds = (recipe.crafting_time_seconds || 0) * batches;
+  const craftSeconds = effectiveCraftingTime(recipe) * batches;
 
   const nextChain = new Set(chain);
   nextChain.add(itemName);
@@ -209,7 +226,7 @@ function buildProductionChain(entry) {
     if (aircraft.power_mw) {
       children.push(buildNode('Facility Power', aircraft.power_mw, `${rootPath}>Facility Power`, overrides, null, new Set()));
     }
-    const craftSeconds = (aircraft.crafting_time_seconds || 0) * effectiveQuantity;
+    const craftSeconds = effectiveCraftingTime(aircraft) * effectiveQuantity;
     const totalSeconds = craftSeconds + children.reduce((sum, c) => sum + c.totalSeconds, 0);
     const nonRawDepths = children.filter(c => !c.isRaw).map(c => c.depth);
     const depth = nonRawDepths.length ? 1 + Math.max(...nonRawDepths) : 1;
@@ -398,7 +415,7 @@ function poolItemRecipePreview(name, totalQty, chosenRecipeKey) {
 
   const outputQty = recipe.outputs[name];
   const batches = Math.ceil(totalQty / outputQty);
-  const craftSeconds = (recipe.crafting_time_seconds || 0) * batches;
+  const craftSeconds = effectiveCraftingTime(recipe) * batches;
   const inputs = Object.entries(recipe.inputs).map(([inputName, qty]) => ({
     name: inputName, qty: qty * batches, facility: facilityOfOutput(inputName)
   }));
@@ -503,7 +520,7 @@ function recipeAlternativePreviews(itemName, totalQty) {
   return ITEM_MULTIPLE_RECIPES[parentKey].recipes.map(r => {
     const outputQty = r.outputs[itemName];
     const batches = Math.ceil(totalQty / outputQty);
-    const craftSeconds = (r.crafting_time_seconds || 0) * batches;
+    const craftSeconds = effectiveCraftingTime(r) * batches;
     const inputs = Object.entries(r.inputs).map(([inputName, qty]) => ({
       name: inputName, qty: qty * batches, facility: facilityOfOutput(inputName)
     }));

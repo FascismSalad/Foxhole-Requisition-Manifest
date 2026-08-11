@@ -22,7 +22,7 @@ function renderAircraftTicket(entry, cumulativeSeconds) {
   const { key, quantity, crateMode, collapsed } = entry;
   const aircraft = AIRCRAFT_COSTS[key];
   const { crateSize, effectiveQuantity } = resolveTicketQuantity(entry);
-  const directSeconds = (aircraft.crafting_time_seconds || 0) * effectiveQuantity;
+  const directSeconds = effectiveCraftingTime(aircraft) * effectiveQuantity;
 
   const directInputs = {};
   for (const [m, a] of Object.entries(aircraft.assembly_materials)) directInputs[m] = (directInputs[m] || 0) + a * effectiveQuantity;
@@ -106,7 +106,7 @@ function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds) {
   const scaledOutputs = {};
   for (const [item, amt] of Object.entries(recipe.outputs)) scaledOutputs[item] = amt * batches;
 
-  const directSeconds = (recipe.crafting_time_seconds || 0) * batches;
+  const directSeconds = effectiveCraftingTime(recipe) * batches;
 
   // Only items with a known crate size (and not Garage/Shipyard-built) get
   // a usable toggle — but it's always rendered in the DOM either way (just
