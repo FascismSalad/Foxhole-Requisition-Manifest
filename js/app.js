@@ -276,17 +276,26 @@ function initApp() {
     if (qtyBtn) {
       const entry = state.entries.find(en => en.kind === kind && en.key === key);
       if (!entry) return;
-      // In crate mode, an MPF-batch recipe only steps in whole multiples of
-      // its own batch size (see ticketCrateStep) — snapping to the nearest
-      // multiple first, not just adding/subtracting it, so a quantity left
-      // over from a different recipe still lands on a valid MPF batch count
-      // on the very first click instead of drifting off by the remainder.
-      const step = entry.crateMode ? ticketCrateStep(entry) : 1;
-      if (qtyBtn.dataset.action === 'inc') {
-        entry.quantity = step > 1 ? (Math.floor(entry.quantity / step) + 1) * step : entry.quantity + 1;
-      }
-      if (qtyBtn.dataset.action === 'dec') {
-        entry.quantity = step > 1 ? Math.max(0, Math.ceil(entry.quantity / step) - 1) * step : entry.quantity - 1;
+      if (e.shiftKey) {
+        // Shift = fast jump, flat +/-10 regardless of any MPF batch
+        // alignment — unlike the normal step below, this doesn't snap to a
+        // clean multiple; the eventual craft batch count still rounds up
+        // fine on its own (see buildNode's Math.ceil), so landing off a
+        // round MPF multiple here doesn't cause any real problem.
+        entry.quantity = qtyBtn.dataset.action === 'inc' ? entry.quantity + 10 : Math.max(0, entry.quantity - 10);
+      } else {
+        // In crate mode, an MPF-batch recipe only steps in whole multiples of
+        // its own batch size (see ticketCrateStep) — snapping to the nearest
+        // multiple first, not just adding/subtracting it, so a quantity left
+        // over from a different recipe still lands on a valid MPF batch count
+        // on the very first click instead of drifting off by the remainder.
+        const step = entry.crateMode ? ticketCrateStep(entry) : 1;
+        if (qtyBtn.dataset.action === 'inc') {
+          entry.quantity = step > 1 ? (Math.floor(entry.quantity / step) + 1) * step : entry.quantity + 1;
+        }
+        if (qtyBtn.dataset.action === 'dec') {
+          entry.quantity = step > 1 ? Math.max(0, Math.ceil(entry.quantity / step) - 1) * step : entry.quantity - 1;
+        }
       }
       // dropping to 0 removes the ticket entirely rather than sitting at 0
       if (entry.quantity <= 0) {
