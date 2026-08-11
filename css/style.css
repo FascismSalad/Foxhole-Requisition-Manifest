@@ -453,10 +453,26 @@ body {
 .chain-outputs-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
   padding-bottom: 12px;
   margin-bottom: 4px;
   border-bottom: 1px dashed var(--line-faint);
+}
+
+/* Pinned to the far right of the outputs row (wraps onto its own line
+   below the chips on narrow widths, same as everything else in this
+   flex-wrap row) — a running grand total across every selected ticket
+   combined, not any one of them. */
+.chain-total-time {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--brass-bright);
 }
 
 .chain-output-chip {
@@ -1026,12 +1042,32 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 .qty-btn:hover { border-color: var(--brass); }
+/* Editable quantity field — a real <input type="number"> stripped down to
+   look like the plain text it replaced (no border/background/spinner
+   arrows at rest) so typing a specific amount reads as a natural
+   extension of the +/- stepper, not a separate form control bolted on. */
 .qty-val {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 15px;
-  min-width: 20px;
+  width: 42px;
   text-align: center;
   color: var(--paper);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0;
+  -moz-appearance: textfield;
+}
+.qty-val::-webkit-inner-spin-button,
+.qty-val::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.qty-val:hover { border-bottom-color: var(--line); }
+.qty-val:focus {
+  outline: none;
+  border-bottom-color: var(--brass);
+  color: var(--brass-bright);
 }
 
 /* Switches whether the qty stepper above targets individual units or whole

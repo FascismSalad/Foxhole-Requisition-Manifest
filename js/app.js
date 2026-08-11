@@ -323,6 +323,11 @@ function initApp() {
       return;
     }
 
+    // Typing directly into the qty field lives inside .ticket-head too —
+    // same reasoning as the crate-toggle check above, just skip the
+    // collapse toggle so clicking in to type doesn't also fold the ticket.
+    if (e.target.closest('.qty-val')) return;
+
     // Clicking a ticket's header condenses it down to just that header —
     // handy once you've got several tickets open and want to see more at once.
     // Toggle the class directly instead of going through renderResults(): that
@@ -335,6 +340,28 @@ function initApp() {
       entry.collapsed = !entry.collapsed;
       ticket.classList.toggle('collapsed', entry.collapsed);
     }
+  });
+
+  // Typing a quantity directly commits on blur/Enter (a 'change' event),
+  // not on every keystroke — a full re-render mid-typing would fight the
+  // user for control of the input. Enter just blurs to trigger that same
+  // 'change' path rather than duplicating the commit logic.
+  document.getElementById('results').addEventListener('change', (e) => {
+    const qtyInput = e.target.closest('.qty-val');
+    if (!qtyInput) return;
+    const ticket = e.target.closest('.ticket');
+    if (!ticket) return;
+    const entry = state.entries.find(en => en.kind === ticket.dataset.kind && en.key === ticket.dataset.key);
+    if (!entry) return;
+    // dropping to 0 removes the ticket entirely, same as the stepper buttons
+    entry.quantity = Math.max(0, Math.floor(Number(qtyInput.value) || 0));
+    if (entry.quantity <= 0) {
+      state.entries = state.entries.filter(en => en !== entry);
+    }
+    renderResults();
+  });
+  document.getElementById('results').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.closest('.qty-val')) e.target.blur();
   });
 
   // ---- Production chain interactions (per-node recipe choice) ----
@@ -422,10 +449,34 @@ function initApp() {
 // BOOT
 // ============================================================
 
-loadData()
-  .then(initApp)
-  .catch(err => {
+// Transient network hiccups on first load (slow/cold connection, a brief
+// blip fetching manifest.json) can fail loadData() even though a retry a
+// moment later would succeed — and since every bit of the search bar's
+// interactivity (typing, the dropdown) only gets wired up once loadData()
+// resolves and initApp() runs, a single failed load otherwise leaves the
+// search box looking completely normal while being silently dead (no
+// listeners ever attached, nothing visibly wrong near the search bar
+// itself). Retry a couple of times before giving up, and if it still
+// fails, make the search bar itself visibly broken instead of silently
+// inert.
+async function bootWithRetry(retriesLeft = 2) {
+  try {
+    await loadData();
+    initApp();
+  } catch (err) {
+    if (retriesLeft > 0) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return bootWithRetry(retriesLeft - 1);
+    }
     console.error('Failed to load data:', err);
     document.getElementById('results').innerHTML =
       `<div class="empty-state">— FAILED TO LOAD DATA —<br>${err.message}<br><br>if you opened this file directly (file://), your browser is blocking local JSON fetches.<br>run a local server instead — see README.md</div>`;
-  });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.disabled = true;
+      searchInput.placeholder = 'DATA FAILED TO LOAD — REFRESH THE PAGE';
+    }
+  }
+}
+
+bootWithRetry();

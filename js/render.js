@@ -53,7 +53,7 @@ function renderAircraftTicket(entry, cumulativeSeconds) {
       <div class="seal">COL<br>ARMY</div>
       <div class="ticket-qty-compact">
         <button class="qty-btn" data-action="dec">−</button>
-        <span class="qty-val">${quantity}</span>
+        <input type="number" class="qty-val" value="${quantity}" min="0" step="1" inputmode="numeric">
         <button class="qty-btn" data-action="inc">+</button>
       </div>
     </div>
@@ -133,7 +133,7 @@ function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds) {
       <div class="seal">COL<br>ARMY</div>
       <div class="ticket-qty-compact">
         <button class="qty-btn" data-action="dec">−</button>
-        <span class="qty-val">${quantity}</span>
+        <input type="number" class="qty-val" value="${quantity}" min="0" step="1" inputmode="numeric">
         <button class="qty-btn" data-action="inc">+</button>
       </div>
     </div>
@@ -464,6 +464,17 @@ function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen,
     `<span class="chain-output-chip">${trees[i].itemName} <span class="chain-output-qty">×${entry.quantity}</span></span>`
   ).join('');
 
+  // Same scope as each ticket's own "CUMULATIVE CRAFT TIME" (see
+  // renderMaterialTicket/renderAircraftTicket) — every real crafting step,
+  // not the raw-gathering steps above them (Oil Well/Water Pump/Harvester
+  // runs, which never carry a totalSeconds contribution either) — just
+  // summed once across ALL selected tickets combined instead of one.
+  // craftSteps is already the deduped/merged list (see buildChainSteps),
+  // so a recipe shared by two different tickets contributes its combined
+  // (larger) batch time exactly once here, not double-counted the way
+  // naively summing each tree's own totalSeconds would.
+  const totalCraftSeconds = craftSteps.reduce((sum, s) => sum + s.craftSeconds, 0);
+
   // Fixed order: the facilities that actually generate the liquids/raw
   // resources/power — expanded all the way down (Oil Well feeding the
   // Petrol that feeds a Harvester, not just the first tier — see
@@ -495,7 +506,7 @@ function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen,
 
   return `<div class="chain-card">
     <div class="chain-card-title"><span>COMBINED PRODUCTION CHAIN</span>${legend}</div>
-    <div class="chain-outputs-row">${outputsHtml}</div>
+    <div class="chain-outputs-row">${outputsHtml}<span class="chain-total-time"><span class="step-clock-icon" aria-hidden="true"></span>TOTAL CRAFT TIME ${fmtTime(totalCraftSeconds)}</span></div>
     <div class="step-list">${rowsHtml}</div>
   </div>`;
 }
