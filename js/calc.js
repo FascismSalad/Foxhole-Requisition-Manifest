@@ -217,7 +217,7 @@ function buildProductionChain(entry) {
     return {
       id: rootPath, itemName: aircraft.full_name, quantity: effectiveQuantity, isRaw: false,
       isMultiRecipe: false, alternatives: null, recipeKey: null,
-      recipeInputs: perUnitInputs, recipeOutputs: { [aircraft.full_name]: 1 }, facility: null,
+      recipeInputs: perUnitInputs, recipeOutputs: { [aircraft.full_name]: 1 }, facility: aircraft.facility || null,
       batches: effectiveQuantity, craftSeconds, totalSeconds, depth,
       category: aircraft.category || 'vehicle', subcategory: aircraft.subcategory || '', children
     };
@@ -326,20 +326,26 @@ function tallyConsumedMaterials(craftSteps) {
 // inside each step's input list, or expanding into a Well/Harvester/Power
 // Plant step of its own.
 // Power is handled differently from liquids/resources: it's a flat,
-// steady-state draw per FACILITY RECIPE (see buildNode's power_mw
+// steady-state draw per PHYSICAL FACILITY (see buildNode's power_mw
 // handling), not a per-unit material cost, so needing the same recipe
 // twice in the tree (e.g. two different tickets both needing Refined
 // Materials) must not double its power draw the way it correctly doubles a
 // material cost — it's still just the one facility running more batches
 // (buildChainSteps already merges those occurrences into a single row).
-// Deduped by recipeKey (or the node's own path for aircraft, whose root
-// power draw has no recipeKey but is still its own distinct facility) so
-// each distinct power-drawing recipe is counted exactly once no matter how
-// many places in the tree need its output.
+// Deduped by FACILITY NAME (or recipeKey/node id as a fallback when a node
+// has no facility, e.g. an aircraft root) rather than by recipe — two
+// different recipes that happen to run at the same named facility (e.g.
+// Assembly Materials I and II both at "Materials Factory [Forge]") are
+// assumed buildable one after another on the same physical building, not
+// two separate simultaneous instances of it, so they share one draw
+// instead of stacking. This is a deliberate choice (minimum power
+// infrastructure needed if built sequentially) over the alternative
+// worst-case reading (every distinct recipe gets its own parallel
+// facility) — see conversation history if this needs revisiting.
 function aggregateRawResources(trees) {
   const liquidTotals = {};
   const resourceTotals = {};
-  const powerByKey = {};
+  const powerByFacility = {};
   for (const tree of trees) {
     (function walk(node) {
       if (node.isRaw) {
@@ -349,14 +355,14 @@ function aggregateRawResources(trees) {
         return;
       }
       const powerChild = node.children.find(c => c.itemName === 'Facility Power');
-      if (powerChild) powerByKey[node.recipeKey || node.id] = powerChild.quantity;
+      if (powerChild) powerByFacility[node.facility || node.recipeKey || node.id] = powerChild.quantity;
       node.children.forEach(walk);
     })(tree);
   }
   const toSortedList = obj => Object.entries(obj)
     .map(([name, qty]) => ({ name, qty }))
     .sort((a, b) => b.qty - a.qty || a.name.localeCompare(b.name));
-  const powerTotal = Object.values(powerByKey).reduce((sum, qty) => sum + qty, 0);
+  const powerTotal = Object.values(powerByFacility).reduce((sum, qty) => sum + qty, 0);
   return {
     liquids: toSortedList(liquidTotals),
     resources: toSortedList(resourceTotals),
