@@ -290,7 +290,12 @@ function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
   const kind = poolKindOf(itemName);
   const numClass = kind === 'liquid' ? 'step-num-liquid' : kind === 'power' ? 'step-num-power' : 'step-num-resource';
 
-  return `<div class="step-row">
+  // A stable identity independent of this row's number (which shifts
+  // whenever anything above it is added/removed) — lets updateChainPanel
+  // in app.js tell a genuinely new/removed row apart from one that just
+  // moved position, so only real adds/removes get the enter/exit
+  // animation instead of every row replaying it on every render.
+  return `<div class="step-row" data-row-key="gather:${itemName}">
     <div class="step-num ${numClass}">${num}</div>
     <div class="step-body">
       <div class="step-head ${yieldToggleClass}" ${yieldToggleAttrs}>
@@ -383,7 +388,12 @@ function renderCraftRow(num, node, isOpen) {
     : node.itemName === 'Facility Power' ? 'step-num-power'
     : '';
 
-  return `<div class="step-row ${node.isDirect ? 'step-row-direct' : ''}">
+  // Same stable-identity reasoning as renderGatherRow's data-row-key —
+  // recipeKey when this step has one, else the first merged occurrence's
+  // own path (matches buildChainSteps' own groupKey fallback exactly).
+  const rowKey = node.recipeKey || node.paths[0];
+
+  return `<div class="step-row ${node.isDirect ? 'step-row-direct' : ''}" data-row-key="craft:${rowKey}">
     <div class="step-num ${poolBadgeClass}">${num}</div>
     <div class="step-body">
       <div class="step-head ${yieldToggleClass}" ${yieldToggleAttrs}>
@@ -431,13 +441,31 @@ function rawPanelRow(item) {
   </div>`;
 }
 
-function renderRawPanel(liquids, resources, power) {
+// LIQUIDS/RAW RESOURCES/POWER each double as a toggle: click the header to
+// drop that category's gather rows out of the middle production chain
+// (see renderCombinedChain) without ever touching this sidebar list
+// itself — the totals here always stay fully visible/accurate regardless
+// of the toggle, only the chain's own rows are what get hidden. MATERIALS
+// CONSUMED below has no toggle at all — plain, non-interactive title.
+function renderRawPanel(liquids, resources, power, chainVisibility) {
   if (!liquids.length && !resources.length && !power.length) return `<div class="empty-state">— NONE NEEDED —</div>`;
-  const section = (label, items) => items.length ? `<div class="raw-panel-section">
-    <div class="raw-panel-section-title">${label}</div>
-    <div class="raw-panel-list">${items.map(rawPanelRow).join('')}</div>
-  </div>` : '';
-  return section('LIQUIDS', liquids) + section('RAW RESOURCES', resources) + section('POWER', power);
+  const section = (label, items, toggleKind) => {
+    if (!items.length) return '';
+    const titleHtml = toggleKind
+      ? `<button type="button" class="raw-panel-section-title raw-panel-section-toggle ${chainVisibility[toggleKind] ? '' : 'inactive'}">
+          <span class="raw-panel-toggle-chevron" aria-hidden="true"></span>${label}
+        </button>`
+      : `<div class="raw-panel-section-title">${label}</div>`;
+    // data-chain-toggle lives on the whole section wrapper, not just the
+    // header button, so the click/hover hitbox covers the entire shaded
+    // area (header + every row under it), not just the label text.
+    const toggleAttr = toggleKind ? ` data-chain-toggle="${toggleKind}"` : '';
+    return `<div class="raw-panel-section"${toggleAttr}>
+      ${titleHtml}
+      <div class="raw-panel-list">${items.map(rawPanelRow).join('')}</div>
+    </div>`;
+  };
+  return section('LIQUIDS', liquids, 'liquid') + section('RAW RESOURCES', resources, 'resource') + section('POWER', power, 'power');
 }
 
 // A running ledger of every CRAFTED/intermediate material actually spent
@@ -455,7 +483,7 @@ function renderConsumedPanel(items) {
 // entries[i]). All selected outputs share one flattened, merged step list —
 // a step needed by two different outputs shows up once with its run count
 // summed, instead of being duplicated per output.
-function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen, gatherRecipesOpen) {
+function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen, gatherRecipesOpen, chainVisibility) {
   const { liquids, resources, power } = aggregateRawResources(trees);
   const expandedGather = expandGatherChain(liquids, resources, power, poolRecipeChoice);
   const craftSteps = buildChainSteps(trees);
@@ -484,8 +512,21 @@ function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen,
   // their own chain rows. Items with no recipe of their own (Rare Metal —
   // gathered by hand) still get a row, reading NEEDS nothing / YIELDS the
   // total, same as an Oil Well's empty-inputs recipe does.
+  // LIQUIDS/RAW RESOURCES/POWER can each be toggled out of the chain via
+  // the sidebar header (see renderRawPanel) — filtered here, at the very
+  // last step before rendering, so it never touches expandGatherChain's
+  // own totals (which the sidebar reads separately and always shows in
+  // full, regardless of this toggle) or anything a craft row's own NEEDS
+  // side still legitimately shows consuming.
+  const visibleGatherItems = expandedGather.items.filter(it => {
+    const kind = poolKindOf(it.name);
+    if (kind === 'liquid') return chainVisibility.liquid;
+    if (kind === 'resource') return chainVisibility.resource;
+    if (kind === 'power') return chainVisibility.power;
+    return true;
+  });
   let stepNum = 0;
-  const gatherRowsHtml = expandedGather.items.map(it => {
+  const gatherRowsHtml = visibleGatherItems.map(it => {
     const preview = poolItemRecipePreview(it.name, it.qty, poolRecipeChoice[it.name]);
     return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name]);
   }).join('');

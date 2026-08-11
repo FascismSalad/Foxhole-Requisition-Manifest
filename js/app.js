@@ -19,7 +19,13 @@
 // same shape as craftRecipesOpen, kept separate since gather steps are
 // purely informational (see renderGatherRow/poolItemRecipePreview), not a
 // real chain override.
-const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {} };
+// chainVisibility: whether LIQUIDS/RAW RESOURCES/POWER gather rows show
+// up in the middle production chain — toggled via the sidebar section
+// headers (see renderRawPanel). Purely a display filter on the chain
+// panel; the sidebar's own totals always stay visible regardless (see
+// renderCombinedChain's use of this vs renderRawPanel's). MATERIALS
+// CONSUMED has no toggle, so it's not tracked here.
+const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {}, chainVisibility: { liquid: true, resource: true, power: true } };
 
 // The left sidebar's own scroll region: bounded to whatever room is
 // actually left below its current on-screen position, so it starts
@@ -46,6 +52,43 @@ function updateRawPanelHeight() {
   // well short of the viewport edge — better a little unused space than
   // any part of it still hanging off-screen.
   panel.style.maxHeight = `${Math.max(window.innerHeight - top - 140, 100)}px`;
+}
+
+// Gives a genuinely added/removed row in the production chain a short
+// enter/exit animation, the same smooth-transition quality as the search
+// dropdown and the ticket/recipe-detail collapse animations elsewhere in
+// this app — instead of every row just snapping into/out of existence,
+// which is what a plain innerHTML swap would otherwise do. The chain
+// panel has no persistent per-row DOM to diff against (it's rebuilt from
+// an HTML string on every render), so this does its own lightweight
+// before/after comparison keyed on each row's data-row-key (see
+// renderCraftRow/renderGatherRow in render.js): a key that's new gets an
+// entrance animation, a key that's disappearing gets held in place with
+// an exit animation for one beat before the real DOM swap happens. A row
+// that merely moved position (same key, different step number) gets
+// neither — only true adds/removes animate.
+function updateChainPanel(html) {
+  const container = document.getElementById('chainPanel');
+  const oldRows = new Map(
+    [...container.querySelectorAll('.step-row[data-row-key]')].map(el => [el.dataset.rowKey, el])
+  );
+
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  const newRows = [...temp.querySelectorAll('.step-row[data-row-key]')];
+  const newKeys = new Set(newRows.map(el => el.dataset.rowKey));
+
+  for (const row of newRows) {
+    if (!oldRows.has(row.dataset.rowKey)) row.classList.add('step-row-entering');
+  }
+
+  const exitingRows = [...oldRows.entries()].filter(([key]) => !newKeys.has(key));
+  if (exitingRows.length === 0) {
+    container.replaceChildren(...temp.children);
+    return;
+  }
+  for (const [, el] of exitingRows) el.classList.add('step-row-exiting');
+  setTimeout(() => container.replaceChildren(...temp.children), 180);
 }
 
 function renderResults() {
@@ -76,10 +119,10 @@ function renderResults() {
   }
 
   resultsContainer.innerHTML = ticketsHtml;
-  chainContainer.innerHTML = renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen);
+  updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility));
   const { liquids, resources, power } = aggregateRawResources(trees);
   const expanded = expandGatherChain(liquids, resources, power, state.poolRecipeChoice);
-  rawContainer.innerHTML = renderRawPanel(expanded.liquids, expanded.resources, expanded.power);
+  rawContainer.innerHTML = renderRawPanel(expanded.liquids, expanded.resources, expanded.power, state.chainVisibility);
   consumedContainer.innerHTML = renderConsumedPanel(tallyConsumedMaterials(buildChainSteps(trees)));
   updateRawPanelHeight();
 }
@@ -434,6 +477,30 @@ function initApp() {
       }
       renderResults();
     }
+  });
+
+  // ---- Sidebar: LIQUIDS/RAW RESOURCES/POWER headers toggle their gather
+  // rows out of the middle chain panel (see state.chainVisibility comment
+  // and renderCombinedChain/renderRawPanel in render.js). The sidebar list
+  // itself never changes — only the chain panel's rows react. ----
+  document.getElementById('rawPanelWrap').addEventListener('click', (e) => {
+    const section = e.target.closest('[data-chain-toggle]');
+    if (!section) return;
+    const kind = section.dataset.chainToggle;
+    const isActiveNow = state.chainVisibility[kind] = !state.chainVisibility[kind];
+    // Toggle the persisting DOM node directly instead of going through
+    // renderResults(): that would replace this exact section (the one the
+    // cursor is sitting on mid-click) with a fresh element, dropping its
+    // continuous :hover state for a frame — a visible flicker — and
+    // making the chevron/color change snap instead of transition. Same
+    // reasoning as the ticket-collapse and recipe-detail toggles above.
+    // The sidebar's own list never changes from this toggle, only the
+    // middle chain panel's actual rows do, so that's the only real
+    // re-render needed.
+    const btn = section.querySelector('.raw-panel-section-toggle');
+    if (btn) btn.classList.toggle('inactive', !isActiveNow);
+    const trees = state.entries.map(entry => buildProductionChain(entry));
+    updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility));
   });
 
   // ---- Raw panel: scrolls in place once it reaches the bottom of the

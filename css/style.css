@@ -510,6 +510,24 @@ body {
 }
 .step-row:first-child { border-top: none; }
 
+/* A row genuinely entering/leaving the chain (see updateChainPanel in
+   app.js — keyed by data-row-key, not just "this render happens to
+   differ from the last one") gets a short fade + slight vertical
+   settle, same short/smooth quality as the search dropdown and the
+   ticket/recipe-detail collapse elsewhere in this app. animation (not
+   transition) so it reliably plays once on class application rather
+   than needing a prior style to transition from. */
+@keyframes stepRowEnter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes stepRowExit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-6px); }
+}
+.step-row-entering { animation: stepRowEnter 0.22s ease; }
+.step-row-exiting { animation: stepRowExit 0.18s ease forwards; }
+
 /* Recipe-picker affordance: hovering/opening the flow line (craft steps) or
    the flat line (pooled steps) shades the *whole* step row — number badge,
    facility line, and all — the same flat-tint "box" look as .step-row-direct
@@ -831,7 +849,25 @@ body {
 
 /* ---------- Raw & liquid gathering list (left sidebar) ---------- */
 
-.raw-panel-section + .raw-panel-section { margin-top: 20px; }
+/* A structural 5px buffer on every side of every section, always present
+   (not just while hovering) so the content never sits flush against the
+   hover wash's own edge. */
+.raw-panel-section {
+  padding: 5px;
+}
+.raw-panel-section + .raw-panel-section { margin-top: 15px; }
+/* LIQUIDS/RAW RESOURCES: data-chain-toggle lives on this whole wrapper
+   (see renderRawPanel), so the hover/click hitbox is the entire shaded
+   section — header + every row under it — not just the header text.
+   Same 0.15s background fade as every other hover in this app (see
+   .step-row). POWER has no toggle, so it never gets this treatment. */
+.raw-panel-section[data-chain-toggle] {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.raw-panel-section[data-chain-toggle]:hover {
+  background: rgba(201, 154, 68, 0.07);
+}
 .raw-panel-section-title {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
@@ -839,6 +875,43 @@ body {
   color: var(--rust-bright);
   font-weight: 600;
   margin-bottom: 4px;
+}
+
+/* LIQUIDS/RAW RESOURCES headers double as a chain-panel visibility toggle
+   (see renderRawPanel/renderCombinedChain) — a real <button>, reset to
+   look like the plain title it replaces, plus a chevron marking it as
+   clickable: pointing down while its rows are showing in the chain (open,
+   like an expanded accordion section), sideways once toggled off (closed).
+   Hover brightens the text/chevron too, not just the background — keyed
+   off the whole section hovering (not just this button on its own), so
+   the hover hitbox for every visual cue matches the same shaded area. */
+.raw-panel-section-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 4px;
+  font: inherit;
+  cursor: pointer;
+  color: var(--rust-bright);
+  transition: color 0.15s ease;
+}
+.raw-panel-section[data-chain-toggle]:hover .raw-panel-section-toggle { color: var(--brass-bright); }
+.raw-panel-toggle-chevron {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); /* down — active, currently in the chain */
+  transition: opacity 0.15s ease, transform 0.2s ease;
+}
+.raw-panel-section-toggle.inactive { color: var(--paper-dim); }
+.raw-panel-section-toggle.inactive .raw-panel-toggle-chevron {
+  transform: rotate(-45deg); /* sideways — inactive, hidden from the chain */
+  opacity: 0.5;
 }
 .raw-panel-list { display: flex; flex-direction: column; }
 .raw-panel-row {

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fascismsalad.github.io/Foxhole-Requisition-Manifest/sitemap.xml
