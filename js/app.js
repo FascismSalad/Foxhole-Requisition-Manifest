@@ -96,6 +96,7 @@ function renderResults() {
   const chainContainer = document.getElementById('chainPanel');
   const rawContainer = document.getElementById('rawPanel');
   const consumedContainer = document.getElementById('consumedPanel');
+  const sendToPlannerBtn = document.getElementById('sendToPlannerBtn');
 
   if (state.entries.length === 0) {
     resultsContainer.innerHTML = `<div class="empty-state">— NO REQUISITION SELECTED —</div>`;
@@ -103,6 +104,7 @@ function renderResults() {
     rawContainer.innerHTML = `<div class="empty-state">— NONE NEEDED —</div>`;
     consumedContainer.innerHTML = `<div class="empty-state">— NONE YET —</div>`;
     updateRawPanelHeight();
+    if (sendToPlannerBtn) sendToPlannerBtn.disabled = true;
     return;
   }
 
@@ -125,6 +127,7 @@ function renderResults() {
   rawContainer.innerHTML = renderRawPanel(expanded.liquids, expanded.resources, expanded.power, state.chainVisibility);
   consumedContainer.innerHTML = renderConsumedPanel(tallyConsumedMaterials(buildChainSteps(trees)));
   updateRawPanelHeight();
+  if (sendToPlannerBtn) sendToPlannerBtn.disabled = false;
 }
 
 function addEntry(kind, key, quantity = 1) {
@@ -508,6 +511,23 @@ function initApp() {
   // which also calls it after every render). ----
   window.addEventListener('scroll', updateRawPanelHeight, { passive: true });
   window.addEventListener('resize', updateRawPanelHeight);
+
+  // ---- Send the current combined chain to the Facility Planner: hand it
+  // off via localStorage (the two pages share nothing else — no shared JS
+  // state, no server) and navigate there. planner.js picks it up, lays it
+  // out, and wires it on its own first render. ----
+  document.getElementById('sendToPlannerBtn').addEventListener('click', () => {
+    if (!state.entries.length) return;
+    const trees = state.entries.map(entry => buildProductionChain(entry));
+    const exportData = buildPlannerExport(trees, state.poolRecipeChoice);
+    try {
+      localStorage.setItem('foxholePlannerImport.v1', JSON.stringify(exportData));
+    } catch (e) {
+      alert('Could not hand this chain off to the planner (local storage may be full or disabled).');
+      return;
+    }
+    window.location.href = 'planner.html';
+  });
 
   renderResults();
 }

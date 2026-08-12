@@ -283,7 +283,7 @@ body.planner-page {
 
 .fac-node {
   position: absolute;
-  width: 260px;
+  width: 236px;
   background: var(--panel);
   border: 2px solid var(--line);
   box-shadow: 0 4px 14px rgba(0,0,0,0.4);
@@ -295,21 +295,21 @@ body.planner-page {
 .fac-node-head {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 8px 8px 10px;
+  gap: 6px;
+  padding: 6px 6px 6px 8px;
   background: var(--panel-raised);
   border-bottom: 1px solid var(--line);
   cursor: grab;
 }
 .fac-node-head:active { cursor: grabbing; }
 
-.fac-node-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+.fac-node-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
 .fac-node-title {
   flex: 1;
   min-width: 0;
   font-family: 'Big Shoulders Stencil', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--paper);
   letter-spacing: 0.01em;
   overflow: hidden;
@@ -317,10 +317,32 @@ body.planner-page {
   white-space: nowrap;
 }
 
+/* The facility count — condensed into the header itself (see buildNodeHtml)
+   instead of a separately labeled row, so it costs no extra card height.
+   Reuses the calculator ticket's own .qty-val look (loaded via style.css)
+   at a smaller size rather than a wholly bespoke input. */
+.fac-node-qty-inline { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+.fac-qty-mini-btn {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--brass-bright);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.fac-qty-mini-btn:hover { border-color: var(--brass); }
+.fac-qty-mini-val { width: 22px; font-size: 11px; padding: 0; }
+
 .fac-node-remove {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,7 +350,7 @@ body.planner-page {
   border: 1px solid var(--line);
   color: var(--paper-dim);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
 }
 .fac-node-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
@@ -339,14 +361,14 @@ body.planner-page {
   justify-content: space-between;
   gap: 8px;
   width: 100%;
-  padding: 8px 10px;
+  padding: 6px 10px;
   background: var(--panel);
   border: none;
   border-bottom: 1px dashed var(--line-faint);
   color: var(--yellow);
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   text-align: left;
   cursor: pointer;
 }
@@ -360,38 +382,6 @@ body.planner-page {
   transform: rotate(45deg);
 }
 
-.fac-node-meta {
-  display: flex;
-  gap: 12px;
-  padding: 6px 10px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  color: var(--steel-bright);
-  border-bottom: 1px dashed var(--line-faint);
-}
-.fac-node-meta-item { display: flex; align-items: center; gap: 4px; }
-
-/* How many copies of this exact facility+recipe are placed here — scales
-   every NEEDS/YIELDS rate and the power draw shown below (see setNodeCount
-   in planner.js). Reuses the calculator ticket's own .qty-btn/.qty-val
-   look (loaded via style.css) rather than a bespoke stepper. */
-.fac-node-qty-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 6px 10px;
-  border-bottom: 1px dashed var(--line-faint);
-}
-.fac-node-qty-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: var(--paper-dim);
-}
-.fac-node-qty-stepper { display: flex; align-items: center; gap: 6px; }
-.fac-node-qty-stepper .qty-val { width: 34px; font-size: 13px; }
-
 .fac-node-io {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -404,12 +394,12 @@ body.planner-page {
   font-size: 9px;
   letter-spacing: 0.12em;
   color: var(--paper-dim);
-  padding: 6px 8px 2px;
+  padding: 5px 8px 2px;
 }
 .fac-node-io-col.yields .fac-node-io-label { text-align: right; color: var(--brass-dim-bright); }
 
 .fac-node-io-empty {
-  padding: 4px 8px 10px;
+  padding: 3px 8px 8px;
   color: var(--line);
   font-size: 11px;
   font-family: 'IBM Plex Mono', monospace;
@@ -420,15 +410,15 @@ body.planner-page {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  min-height: 30px;
+  gap: 5px;
+  padding: 3px 8px;
+  min-height: 26px;
 }
 .fac-node-io-col.yields .fac-io-row { flex-direction: row-reverse; text-align: right; }
 
-.fac-io-icon { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+.fac-io-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
 .fac-io-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.15; }
-.fac-io-name { font-size: 11px; color: var(--paper); overflow-wrap: anywhere; }
+.fac-io-name { font-size: 12px; color: var(--paper); overflow-wrap: anywhere; }
 .fac-io-rate { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--steel-bright); }
 
 .fac-port {

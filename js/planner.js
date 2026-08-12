@@ -359,11 +359,6 @@ function buildNodeHtml(node) {
     ? Object.keys(recipe.outputs).map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'out')), 'out')).join('')
     : `<div class="fac-node-io-empty">—</div>`;
 
-  const metaHtml = recipe ? `
-    <div class="fac-node-meta">
-      <span class="fac-node-meta-item"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(effectiveCraftingTime(recipe))}</span>
-    </div>` : '';
-
   // The header always names the base building (what you searched for and
   // placed) — the icon and tooltip switch to the ACTIVE recipe's own exact
   // module facility when one's selected ("Oil Refinery [Cracking Unit]"),
@@ -371,25 +366,25 @@ function buildNodeHtml(node) {
   // sitting on the board right now; falls back to the base building's own
   // icon before a recipe's chosen.
   const iconFacility = recipe ? recipe.facility : node.facility;
+  // The facility count lives inline in the header now (no separate labeled
+  // row, no craft-time row below it — see the card-condensing pass this
+  // came from) — same qty-inc/qty-dec/.fac-qty-val hooks the event
+  // delegation in initPlannerUI already listens for, just laid out smaller.
   return `
     <div class="fac-node-head" data-drag-handle>
       ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
       <div class="fac-node-title" title="${iconFacility}">${node.facility}</div>
+      <div class="fac-node-qty-inline" title="Facilities placed here">
+        <button class="fac-qty-mini-btn" data-action="qty-dec" title="One fewer of this facility">−</button>
+        <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.count}" min="1" step="1" inputmode="numeric">
+        <button class="fac-qty-mini-btn" data-action="qty-inc" title="One more of this facility">+</button>
+      </div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
     <button class="fac-node-recipe-btn" data-action="pick-recipe">
       <span class="rbtn-label">${recipe ? recipe.label : 'SELECT RECIPE'}</span>
       <span class="rbtn-chevron" aria-hidden="true"></span>
     </button>
-    <div class="fac-node-qty-row">
-      <span class="fac-node-qty-label">FACILITIES</span>
-      <div class="fac-node-qty-stepper">
-        <button class="qty-btn" data-action="qty-dec" title="One fewer of this facility">−</button>
-        <input type="number" class="qty-val fac-qty-val" value="${node.count}" min="1" step="1" inputmode="numeric">
-        <button class="qty-btn" data-action="qty-inc" title="One more of this facility">+</button>
-      </div>
-    </div>
-    ${metaHtml}
     <div class="fac-node-io">
       <div class="fac-node-io-col needs">
         <div class="fac-node-io-label">NEEDS</div>
@@ -673,6 +668,94 @@ function loadState() {
   return true;
 }
 
+const PLANNER_IMPORT_KEY = 'foxholePlannerImport.v1';
+
+// Picks up a chain handed off from the main calculator's "SEND TO PLANNER"
+// button (see buildPlannerExport in calc.js) — a plain { steps: [{recipeKey,
+// depth}], edges: [{from,item,to}] } shape with no positions or facility
+// grouping of its own, since the calculator has no idea those concepts
+// exist. This is entirely the "how to draw that as a board" half: lay
+// steps out in columns by depth (gathered raw materials on the left,
+// deeper/more-refined steps to the right — the same direction wires
+// naturally flow), then reconnect edges by recipe key.
+function tryImportFromCalculator() {
+  let raw;
+  try { raw = localStorage.getItem(PLANNER_IMPORT_KEY); } catch (e) { return false; }
+  if (!raw) return false;
+  localStorage.removeItem(PLANNER_IMPORT_KEY); // consume once — a later refresh must not reapply it
+  let payload;
+  try { payload = JSON.parse(raw); } catch (e) { return false; }
+  if (!payload || !Array.isArray(payload.steps) || !payload.steps.length) return false;
+
+  if (plannerState.nodes.length && !confirm('Replace the current board with the chain sent from the calculator?')) {
+    return false;
+  }
+
+  const byDepth = {};
+  for (const step of payload.steps) {
+    const recipe = RECIPE_INDEX_BY_KEY[step.recipeKey];
+    if (!recipe) continue; // stale export from before a data change — skip rather than guess
+    const depth = Number(step.depth) || 0;
+    (byDepth[depth] || (byDepth[depth] = [])).push({ recipeKey: step.recipeKey, facility: baseFacilityName(recipe.facility) });
+  }
+  if (!Object.keys(byDepth).length) return false;
+
+  plannerState.nodes = [];
+  plannerState.connections = [];
+  nodesById = {};
+  const nodeIdByRecipeKey = {};
+  // The gap between columns (COL_SPACING minus the node's own 236px width)
+  // needs to comfortably fit a wire label ("Refined Materials · 54.5/min"
+  // can run ~200px wide) — too tight and the label spills into the next
+  // column's node instead of sitting in open space.
+  const COL_SPACING = 560, ROW_SPACING = 250;
+
+  Object.keys(byDepth).map(Number).sort((a, b) => a - b).forEach(depth => {
+    byDepth[depth].forEach((entry, i) => {
+      const id = `n${nodeIdCounter++}`;
+      const node = { id, facility: entry.facility, recipeKey: entry.recipeKey, x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1 };
+      plannerState.nodes.push(node);
+      nodesById[id] = node;
+      nodeIdByRecipeKey[entry.recipeKey] = id;
+    });
+  });
+
+  for (const edge of payload.edges || []) {
+    const fromId = nodeIdByRecipeKey[edge.from], toId = nodeIdByRecipeKey[edge.to];
+    if (!fromId || !toId) continue;
+    plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode: fromId, fromItem: edge.item, toNode: toId, toItem: edge.item });
+  }
+
+  fitViewToNodes();
+  plannerState.selectedNodeId = null;
+  plannerState.selectedWireId = null;
+  saveState();
+  return true;
+}
+
+// Frames the whole imported chain in the viewport instead of dropping it at
+// whatever pan/scale the board happened to be left at — node HEIGHT isn't
+// known yet at this point (nothing's been rendered to the DOM to measure),
+// so this uses a generous flat estimate rather than the real per-node
+// height; a little slack in the fit is far less noticeable than nodes
+// spilling out of view entirely.
+function fitViewToNodes() {
+  if (!plannerState.nodes.length || !viewportEl) return;
+  const NODE_W = 236, NODE_H_ESTIMATE = 220;
+  const xs = plannerState.nodes.map(n => n.x), ys = plannerState.nodes.map(n => n.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H_ESTIMATE;
+  const rect = viewportEl.getBoundingClientRect();
+  const margin = 40;
+  const scaleX = (rect.width - margin * 2) / (maxX - minX);
+  const scaleY = (rect.height - margin * 2) / (maxY - minY);
+  // Never zoom IN past 100% just because a small chain leaves room to —
+  // only ever shrinks to fit a chain too big for the viewport.
+  plannerState.scale = clamp(Math.min(scaleX, scaleY, 1), 0.3, 2.5);
+  plannerState.pan.x = margin - minX * plannerState.scale;
+  plannerState.pan.y = margin - minY * plannerState.scale;
+}
+
 // ============================================================
 // PAN / ZOOM
 // ============================================================
@@ -947,6 +1030,10 @@ function initPlannerUI() {
   nodesLayerEl.addEventListener('mousedown', e => {
     const port = e.target.closest('.fac-port');
     if (port) { onPortMouseDown(e, port); return; }
+    // The qty stepper and remove button now live inside the drag handle
+    // itself (see buildNodeHtml) — onNodeDragStart's preventDefault() would
+    // otherwise block the qty input from ever receiving focus on click.
+    if (e.target.closest('.fac-node-qty-inline, .fac-node-remove')) return;
     const head = e.target.closest('.fac-node-head');
     if (head) { onNodeDragStart(e, head.closest('.fac-node')); return; }
   });
@@ -1033,12 +1120,13 @@ async function bootPlanner(retriesLeft = 2) {
   buildFacilityIndex();
   initPlannerUI();
   const restored = loadState();
+  const imported = tryImportFromCalculator();
   applyTransform();
   renderFacilitySidebar();
   renderNodesLayer();
   renderWires();
   updateEmptyHint();
-  if (!restored) saveState();
+  if (!restored && !imported) saveState();
 }
 
 bootPlanner();

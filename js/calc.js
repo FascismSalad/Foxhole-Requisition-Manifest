@@ -533,6 +533,79 @@ function recipeAlternativePreviews(itemName, totalQty) {
 }
 
 // ============================================================
+// FACILITY PLANNER EXPORT
+// Converts the current combined production chain (same trees the middle
+// chain panel and the sidebar's gather list are built from) into a
+// portable, planner-agnostic shape: one entry per distinct recipe actually
+// in use ("steps") plus which output feeds which step's input ("edges").
+// Consumed by the Facility Planner (planner.js) via localStorage — this
+// file has no idea a planner exists, it just describes the chain.
+// ============================================================
+
+// recipeKey here deliberately matches whatever RECIPE_INDEX_BY_KEY in
+// planner.js resolves: a plain MATERIAL_RECIPES key for a normal craft
+// step, or (for an aircraft, which has no recipeKey of its own — see
+// buildProductionChain) its root path, which is exactly "aircraft:<key>",
+// the same string planner.js's own aircraft entries are keyed by.
+function plannerStepKey(step) {
+  return step.recipeKey || step.paths[0];
+}
+
+function buildPlannerExport(trees, poolRecipeChoice) {
+  const craftSteps = buildChainSteps(trees);
+  const { liquids, resources, power } = aggregateRawResources(trees);
+  const expanded = expandGatherChain(liquids, resources, power, poolRecipeChoice);
+
+  const seen = new Set();
+  const craftEntries = [];
+  for (const step of craftSteps) {
+    const key = plannerStepKey(step);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    craftEntries.push({ recipeKey: key, depth: step.depth, inputs: step.recipeInputs || {}, outputs: step.recipeOutputs || {} });
+  }
+
+  // Gathered liquids/raw resources/power — each pooled item resolves to
+  // whichever recipe is currently chosen for it (poolRecipeChoice, the same
+  // choice the sidebar's own gather rows use), skipped when there's no
+  // recipe at all (Rare Metal — gathered by hand, nothing to place).
+  const gatherEntries = [];
+  for (const item of expanded.items) {
+    const preview = poolItemRecipePreview(item.name, item.qty, poolRecipeChoice[item.name]);
+    if (!preview || !preview.recipeKey || seen.has(preview.recipeKey)) continue;
+    seen.add(preview.recipeKey);
+    const inputs = {}, outputs = {};
+    for (const inp of preview.inputs) inputs[inp.name] = inp.qty;
+    for (const out of preview.outputs) outputs[out.name] = out.qty;
+    gatherEntries.push({ recipeKey: preview.recipeKey, depth: item.depth, inputs, outputs });
+  }
+
+  // name -> recipeKey that produces it, gather resolutions preferred over a
+  // craft step's incidental byproduct of the same name (e.g. Coke Furnace's
+  // Sulfur byproduct shouldn't out-rank Sulfur's own dedicated gather step).
+  const producerOf = {};
+  for (const s of [...gatherEntries, ...craftEntries]) {
+    for (const outName of Object.keys(s.outputs)) {
+      if (!(outName in producerOf)) producerOf[outName] = s.recipeKey;
+    }
+  }
+
+  const allSteps = [...craftEntries, ...gatherEntries];
+  const edges = [];
+  for (const s of allSteps) {
+    for (const inName of Object.keys(s.inputs)) {
+      const fromKey = producerOf[inName];
+      if (fromKey && fromKey !== s.recipeKey) edges.push({ from: fromKey, item: inName, to: s.recipeKey });
+    }
+  }
+
+  return {
+    steps: allSteps.map(s => ({ recipeKey: s.recipeKey, depth: s.depth })),
+    edges
+  };
+}
+
+// ============================================================
 // FORMATTING HELPERS
 // ============================================================
 

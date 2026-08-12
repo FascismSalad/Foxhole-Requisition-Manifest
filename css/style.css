@@ -416,6 +416,38 @@ body {
 }
 .panel-label-spaced { margin-top: 24px; }
 
+/* Pairs the PRODUCTION CHAIN label with the "send to planner" export
+   button on the same line, right-aligned — the label itself keeps its
+   normal margin-bottom via the row wrapper, not by fighting flex here. */
+.panel-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.panel-label-row .panel-label { margin-bottom: 12px; }
+
+.send-to-planner-btn {
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--brass-bright);
+  background: var(--panel);
+  border: 1px solid var(--brass-dim);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.send-to-planner-btn:hover { border-color: var(--brass); background: rgba(201,154,68,0.1); }
+.send-to-planner-btn:disabled {
+  color: var(--paper-dim);
+  border-color: var(--line);
+  background: var(--panel);
+  cursor: default;
+}
+
 @media (max-width: 900px) {
   .layout { flex-direction: column; }
   .inputs-panel { order: 1; }
