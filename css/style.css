@@ -149,6 +149,41 @@ body {
   margin-top: 10px;
 }
 
+/* ---------- Tool switcher (Calculator <-> Planner) ---------- */
+
+.tool-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 18px;
+}
+
+.tool-nav-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--paper-dim);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid transparent;
+  background: var(--panel);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.tool-nav-link:hover { color: var(--brass-light); border-color: var(--brass-dim); }
+
+.tool-nav-link.active {
+  color: var(--brass-bright);
+  background: var(--panel-raised);
+  border-color: var(--brass-dim);
+  border-bottom-color: var(--brass);
+}
+
+@media (max-width: 560px) {
+  .tool-nav-link { font-size: 10px; padding: 7px 12px; letter-spacing: 0.1em; }
+}
+
 /* ---------- Layout ---------- */
 
 .wrap {
@@ -300,6 +335,7 @@ body {
 .ac-tag-cat-material { color: var(--violet); border-color: var(--violet); }
 .ac-tag-cat-item { color: var(--navy-bright); border-color: var(--navy); }
 .ac-tag-cat-resource { color: var(--rose); border-color: var(--rose); }
+.ac-tag-cat-shippable { color: var(--teal-bright); border-color: var(--teal); }
 
 .ac-item-label { flex: 1; }
 

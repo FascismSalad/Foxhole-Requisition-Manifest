@@ -1,0 +1,477 @@
+/* ============================================================
+   FACILITY PLANNER
+   Forward-direction tool: place facility buildings on a pannable/
+   zoomable board, pick what each is producing, and wire matching
+   inputs/outputs together into a flowchart. Shares masthead/panel-
+   label/search-input tokens with style.css; everything below is
+   specific to the node-board UI.
+   ============================================================ */
+
+.planner-wrap {
+  max-width: none;
+  margin: 0 auto;
+  padding: 20px 20px 30px;
+}
+
+.planner-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+}
+
+/* ---------- Sidebar: facility catalog ---------- */
+
+.planner-sidebar {
+  flex: 0 0 280px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.planner-search-wrap { margin-bottom: 10px; }
+
+.planner-search-input,
+.picker-search-input {
+  width: 100%;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--paper);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.planner-search-input:focus,
+.picker-search-input:focus { border-color: var(--brass); }
+.planner-search-input::placeholder,
+.picker-search-input::placeholder { color: var(--paper-dim); }
+
+.planner-facility-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.planner-facility-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  cursor: grab;
+  border-bottom: 1px solid var(--line-faint);
+  transition: background 0.15s ease;
+}
+.planner-facility-item:last-child { border-bottom: none; }
+.planner-facility-item:hover { background: rgba(201,154,68,0.12); }
+.planner-facility-item:active { cursor: grabbing; }
+
+.planner-facility-icon { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
+.planner-facility-name { flex: 1; min-width: 0; font-size: 15px; color: var(--paper); overflow-wrap: anywhere; }
+.planner-facility-count {
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--steel-bright);
+  border: 1px solid var(--steel);
+  padding: 2px 6px;
+}
+
+.planner-facility-empty {
+  padding: 30px 16px;
+  text-align: center;
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Canvas column ---------- */
+
+.planner-canvas-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.planner-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.planner-toolbar-group { display: flex; align-items: center; gap: 8px; }
+
+.planner-hint {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--paper-dim);
+}
+
+.planner-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.planner-btn:hover { border-color: var(--brass); color: var(--brass-bright); }
+.planner-btn-danger:hover { border-color: var(--rust); color: var(--rust-bright); }
+
+.planner-zoom-readout {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--paper-dim);
+  min-width: 40px;
+  text-align: center;
+}
+
+.planner-viewport {
+  position: relative;
+  height: calc(100vh - 260px);
+  min-height: 480px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  cursor: grab;
+  user-select: none;
+}
+.planner-viewport.panning { cursor: grabbing; }
+
+.planner-empty-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 0 40px;
+}
+.planner-empty-hint.hidden { display: none; }
+
+.planner-world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  background-image: radial-gradient(circle, var(--line-faint) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  /* the dot grid needs a bounded box to actually tile against — sized well
+     past anything a node's x/y could reach, recentered so panning never
+     visibly runs out of dots before the node board itself does */
+  background-position: -3000px -3000px;
+}
+
+.wire-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wire-path {
+  fill: none;
+  stroke: var(--brass-dim);
+  stroke-width: 2.5;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+.wire-path:hover { stroke: var(--brass-light); }
+.wire-path.selected { stroke: var(--rust-bright); stroke-width: 3; }
+.wire-path-hitbox { fill: none; stroke: transparent; stroke-width: 16; pointer-events: stroke; cursor: pointer; }
+
+.wire-path-pending { fill: none; stroke: var(--brass-bright); stroke-width: 2.5; stroke-dasharray: 6 5; }
+
+/* Dashed rather than just recolored, so it stays visually distinct from
+   .selected (also rust, but solid) even on a wire that happens to be both
+   at once — see computeSupplyDemand in planner.js. */
+.wire-path-overcap { stroke: var(--rust); stroke-dasharray: 5 4; }
+.wire-path-overcap.selected { stroke: var(--rust-bright); }
+.wire-label-overcap { fill: var(--rust-bright); }
+
+.wire-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  fill: var(--brass-bright);
+  paint-order: stroke;
+  stroke: var(--bg);
+  stroke-width: 4px;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.planner-nodes { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+
+/* ---------- Facility node card ---------- */
+
+.fac-node {
+  position: absolute;
+  width: 260px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  user-select: none;
+}
+.fac-node img { -webkit-user-drag: none; }
+.fac-node.selected { border-color: var(--brass); }
+
+.fac-node-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 10px;
+  background: var(--panel-raised);
+  border-bottom: 1px solid var(--line);
+  cursor: grab;
+}
+.fac-node-head:active { cursor: grabbing; }
+
+.fac-node-icon { width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
+.fac-node-title {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Big Shoulders Stencil', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--paper);
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fac-node-remove {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--paper-dim);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+.fac-node-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
+
+.fac-node-recipe-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--panel);
+  border: none;
+  border-bottom: 1px dashed var(--line-faint);
+  color: var(--yellow);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  cursor: pointer;
+}
+.fac-node-recipe-btn:hover { color: var(--yellow-bright); background: rgba(201,185,58,0.07); }
+.fac-node-recipe-btn .rbtn-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fac-node-recipe-btn .rbtn-chevron {
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.fac-node-meta {
+  display: flex;
+  gap: 12px;
+  padding: 6px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--steel-bright);
+  border-bottom: 1px dashed var(--line-faint);
+}
+.fac-node-meta-item { display: flex; align-items: center; gap: 4px; }
+
+/* How many copies of this exact facility+recipe are placed here — scales
+   every NEEDS/YIELDS rate and the power draw shown below (see setNodeCount
+   in planner.js). Reuses the calculator ticket's own .qty-btn/.qty-val
+   look (loaded via style.css) rather than a bespoke stepper. */
+.fac-node-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-bottom: 1px dashed var(--line-faint);
+}
+.fac-node-qty-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dim);
+}
+.fac-node-qty-stepper { display: flex; align-items: center; gap: 6px; }
+.fac-node-qty-stepper .qty-val { width: 34px; font-size: 13px; }
+
+.fac-node-io {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.fac-node-io-col { display: flex; flex-direction: column; min-width: 0; }
+.fac-node-io-col.needs { border-right: 1px dashed var(--line-faint); }
+
+.fac-node-io-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--paper-dim);
+  padding: 6px 8px 2px;
+}
+.fac-node-io-col.yields .fac-node-io-label { text-align: right; color: var(--brass-dim-bright); }
+
+.fac-node-io-empty {
+  padding: 4px 8px 10px;
+  color: var(--line);
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.fac-node-io-col.yields .fac-node-io-empty { text-align: right; }
+
+.fac-io-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  min-height: 30px;
+}
+.fac-node-io-col.yields .fac-io-row { flex-direction: row-reverse; text-align: right; }
+
+.fac-io-icon { width: 20px; height: 20px; object-fit: contain; flex-shrink: 0; }
+.fac-io-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.15; }
+.fac-io-name { font-size: 11px; color: var(--paper); overflow-wrap: anywhere; }
+.fac-io-rate { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--steel-bright); }
+
+.fac-port {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--panel-raised);
+  border: 2px solid var(--leaf);
+  transform: translateY(-50%);
+  cursor: crosshair;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.fac-port:hover, .fac-port.wire-target-hover { background: var(--leaf); transform: translateY(-50%) scale(1.3); }
+.fac-port-in { left: -6px; }
+.fac-port-out { right: -6px; }
+.fac-port.connected { background: var(--leaf-bright); }
+
+/* category coloring on ports, matching the calculator's flow colors */
+.fac-port-liquid { border-color: var(--output-blue); }
+.fac-port-liquid:hover, .fac-port-liquid.connected, .fac-port-liquid.wire-target-hover { background: var(--output-blue); }
+.fac-port-resource { border-color: var(--brown); }
+.fac-port-resource:hover, .fac-port-resource.connected, .fac-port-resource.wire-target-hover { background: var(--brown); }
+.fac-port-power { border-color: var(--yellow); }
+.fac-port-power:hover, .fac-port-power.connected, .fac-port-power.wire-target-hover { background: var(--yellow); }
+
+/* An output whose combined outgoing wires ask for more than it actually
+   produces (see computeSupplyDemand in planner.js) — overrides whatever
+   category color the port would otherwise carry, on both the port itself
+   and every wire leaving it, so an over-committed source reads as a
+   problem at a glance instead of silently repeating its full rate on
+   every branch. */
+.fac-port.overcap { border-color: var(--rust); background: var(--rust-bright); }
+
+/* ---------- Recipe picker (shared: sidebar uses inline list, this is the
+   floating popup used by a placed node to change its recipe) ---------- */
+
+.picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+}
+.picker-overlay.open { display: block; }
+
+.picker-panel {
+  position: fixed;
+  width: 360px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-raised);
+  border: 2px solid var(--brass);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+  padding: 12px;
+  gap: 8px;
+}
+
+.picker-head { display: flex; align-items: center; justify-content: space-between; }
+.picker-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--brass-bright);
+}
+.picker-close {
+  background: none;
+  border: none;
+  color: var(--paper-dim);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.picker-close:hover { color: var(--rust-bright); }
+
+.picker-list {
+  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.picker-empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .planner-layout { flex-direction: column; }
+  .planner-sidebar { flex: 1 1 auto; width: 100%; }
+  .planner-facility-list { max-height: 220px; }
+  .planner-viewport { height: 60vh; }
+}

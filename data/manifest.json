@@ -21,5 +21,6 @@
   "materials/large.json",
   "materials/parts.json",
   "resources/raw.json",
-  "resources/power.json"
+  "resources/power.json",
+  "shippable_structures/shippable_structures.json"
 ]

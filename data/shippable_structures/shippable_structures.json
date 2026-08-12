@@ -1,0 +1,1014 @@
+{
+  "dae_1b2_serra": {
+    "full_name": "DAE 1b-2 \"Serra\"",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Machine Gun",
+    "faction": "colonial",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "dae_1b2_serra",
+      "dae 1b-2",
+      "serra"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "dae_1b2_serra_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "DAE 1b-2 \"Serra\"": 1
+        }
+      },
+      {
+        "recipe_key": "dae_1b2_serra_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "DAE 1b-2 \"Serra\"": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "leary_snare_trap_20": {
+    "full_name": "Leary Snare Trap 20",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Machine Gun",
+    "faction": "warden",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "leary_snare_trap_20",
+      "snare trap 20",
+      "snare trap"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "leary_snare_trap_20_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Leary Snare Trap 20": 1
+        }
+      },
+      {
+        "recipe_key": "leary_snare_trap_20_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Leary Snare Trap 20": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "leary_shellbore_68mm": {
+    "full_name": "Leary Shellbore 68mm",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Cannon",
+    "faction": "warden",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "leary_shellbore_68mm",
+      "shellbore 68mm",
+      "shellbore"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "leary_shellbore_68mm_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 165,
+        "inputs": {
+          "Basic Materials": 150
+        },
+        "outputs": {
+          "Leary Shellbore 68mm": 1
+        }
+      },
+      {
+        "recipe_key": "leary_shellbore_68mm_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 37500,
+        "inputs": {
+          "Basic Materials": 1575
+        },
+        "outputs": {
+          "Leary Shellbore 68mm": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "dae_1o3_polybolos": {
+    "full_name": "DAE 1o-3 \"Polybolos\"",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Cannon",
+    "faction": "colonial",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "dae_1o3_polybolos",
+      "dae 1o-3",
+      "polybolos"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "dae_1o3_polybolos_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 138,
+        "inputs": {
+          "Basic Materials": 125
+        },
+        "outputs": {
+          "DAE 1o-3 \"Polybolos\"": 1
+        }
+      },
+      {
+        "recipe_key": "dae_1o3_polybolos_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 31250,
+        "inputs": {
+          "Basic Materials": 1311
+        },
+        "outputs": {
+          "DAE 1o-3 \"Polybolos\"": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "huber_starbreaker_945mm": {
+    "full_name": "Huber Starbreaker 94.5mm",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Cannon",
+    "faction": "warden",
+    "aliases": [
+      "huber_starbreaker_945mm",
+      "starbreaker 94.5mm",
+      "starbreaker"
+    ],
+    "facility": "Small Assembly Station [Tank Factory]",
+    "crafting_time_seconds": 600,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 135,
+      "Assembly Materials I": 10,
+      "Assembly Materials IV": 15
+    },
+    "outputs": {
+      "Huber Starbreaker 94.5mm": 1
+    }
+  },
+  "dae_2a1_ruptura": {
+    "full_name": "DAE 2a-1 \"Ruptura\"",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Cannon",
+    "faction": "colonial",
+    "aliases": [
+      "dae_2a1_ruptura",
+      "dae 2a-1",
+      "ruptura"
+    ],
+    "facility": "Small Assembly Station [Tank Factory]",
+    "crafting_time_seconds": 600,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 135,
+      "Assembly Materials I": 10,
+      "Assembly Materials IV": 15
+    },
+    "outputs": {
+      "DAE 2a-1 \"Ruptura\"": 1
+    }
+  },
+  "thunderbolt_cannon": {
+    "full_name": "50-500 \"Thunderbolt\" Cannon",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Artillery",
+    "faction": "colonial",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "thunderbolt_cannon",
+      "thunderbolt cannon",
+      "50-500",
+      "thunderbolt"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "thunderbolt_cannon_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 215,
+        "inputs": {
+          "Refined Materials": 195
+        },
+        "outputs": {
+          "50-500 \"Thunderbolt\" Cannon": 1
+        }
+      },
+      {
+        "recipe_key": "thunderbolt_cannon_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 48750,
+        "inputs": {
+          "Refined Materials": 2046
+        },
+        "outputs": {
+          "50-500 \"Thunderbolt\" Cannon": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "huber_exalt_150mm": {
+    "full_name": "Huber Exalt 150mm",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Artillery",
+    "faction": "warden",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "huber_exalt_150mm",
+      "exalt 150mm",
+      "exalt"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "huber_exalt_150mm_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 193,
+        "inputs": {
+          "Refined Materials": 175
+        },
+        "outputs": {
+          "Huber Exalt 150mm": 1
+        }
+      },
+      {
+        "recipe_key": "huber_exalt_150mm_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 43750,
+        "inputs": {
+          "Refined Materials": 1836
+        },
+        "outputs": {
+          "Huber Exalt 150mm": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "huber_lariat_120mm": {
+    "full_name": "Huber Lariat 120mm",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Artillery",
+    "faction": "warden",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "huber_lariat_120mm",
+      "lariat 120mm",
+      "lariat"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "huber_lariat_120mm_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 39,
+        "inputs": {
+          "Refined Materials": 35
+        },
+        "outputs": {
+          "Huber Lariat 120mm": 1
+        }
+      },
+      {
+        "recipe_key": "huber_lariat_120mm_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8750,
+        "inputs": {
+          "Refined Materials": 366
+        },
+        "outputs": {
+          "Huber Lariat 120mm": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "dae_3b2_hades_net": {
+    "full_name": "DAE 3b-2 \"Hades' Net\"",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Artillery",
+    "faction": "colonial",
+    "aliases": [
+      "dae_3b2_hades_net",
+      "dae 3b-2",
+      "hades' net",
+      "hades net"
+    ],
+    "facility": "Small Assembly Station [Battery Line]",
+    "crafting_time_seconds": 600,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 20,
+      "Assembly Materials II": 15,
+      "Assembly Materials IV": 3
+    },
+    "outputs": {
+      "DAE 3b-2 \"Hades' Net\"": 1
+    }
+  },
+  "dae_5b_zeal": {
+    "full_name": "DAE 5b \"Zeal\"",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Anti-Aircraft Cannon",
+    "faction": "colonial",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "dae_5b_zeal",
+      "dae 5b",
+      "zeal"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "dae_5b_zeal_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 193,
+        "inputs": {
+          "Refined Materials": 175
+        },
+        "outputs": {
+          "DAE 5b \"Zeal\"": 1
+        }
+      },
+      {
+        "recipe_key": "dae_5b_zeal_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 43750,
+        "inputs": {
+          "Refined Materials": 1836
+        },
+        "outputs": {
+          "DAE 5b \"Zeal\"": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "leary_aa70_bolas": {
+    "full_name": "Leary AA-70 Bolas",
+    "category": "shippable",
+    "subcategory": "Emplaced Weapon",
+    "class": "Emplaced Anti-Aircraft Cannon",
+    "faction": "warden",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "leary_aa70_bolas",
+      "aa-70 bolas",
+      "bolas"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "leary_aa70_bolas_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 193,
+        "inputs": {
+          "Refined Materials": 175
+        },
+        "outputs": {
+          "Leary AA-70 Bolas": 1
+        }
+      },
+      {
+        "recipe_key": "leary_aa70_bolas_small_assembly_station",
+        "recipe_name": "Small Assembly Station [Battery Line]",
+        "facility": "Small Assembly Station [Battery Line]",
+        "crafting_time_seconds": 600,
+        "power_mw": 2,
+        "inputs": {
+          "Processed Construction Materials": 30,
+          "Assembly Materials I": 10,
+          "Assembly Materials IV": 20
+        },
+        "outputs": {
+          "Leary AA-70 Bolas": 1
+        }
+      },
+      {
+        "recipe_key": "leary_aa70_bolas_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 43750,
+        "inputs": {
+          "Refined Materials": 1836
+        },
+        "outputs": {
+          "Leary AA-70 Bolas": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "naval_hull_segments": {
+    "full_name": "Naval Hull Segments",
+    "category": "shippable",
+    "subcategory": "Ship Part",
+    "faction": "neutral",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "aliases": [
+      "naval_hull_segments",
+      "naval hull segments",
+      "hull segments"
+    ],
+    "inputs": {
+      "Processed Construction Materials": 60,
+      "Assembly Materials I": 2,
+      "Assembly Materials II": 2,
+      "Assembly Materials IV": 10,
+      "Rare Alloys": 4,
+      "Thermal Shielding": 4
+    },
+    "outputs": {
+      "Naval Hull Segments": 1
+    }
+  },
+  "naval_shell_plating": {
+    "full_name": "Naval Shell Plating",
+    "category": "shippable",
+    "subcategory": "Ship Part",
+    "faction": "neutral",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 300,
+    "power_mw": 2,
+    "aliases": [
+      "naval_shell_plating",
+      "naval shell plating",
+      "shell plating"
+    ],
+    "inputs": {
+      "Construction Materials": 2,
+      "Thermal Shielding": 1
+    },
+    "outputs": {
+      "Naval Shell Plating": 1
+    }
+  },
+  "naval_turbine_components": {
+    "full_name": "Naval Turbine Components",
+    "category": "shippable",
+    "subcategory": "Ship Part",
+    "faction": "neutral",
+    "facility": "Small Assembly Station [Naval Works]",
+    "crafting_time_seconds": 43200,
+    "power_mw": 2,
+    "aliases": [
+      "naval_turbine_components",
+      "naval turbine components",
+      "turbine components"
+    ],
+    "inputs": {
+      "Assembly Materials V": 20,
+      "Rare Alloys": 20
+    },
+    "outputs": {
+      "Naval Turbine Components": 1
+    }
+  },
+  "shipping_container": {
+    "full_name": "Shipping Container",
+    "category": "shippable",
+    "subcategory": "Shippable Container",
+    "faction": "neutral",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "shipping_container",
+      "shipping container"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "shipping_container_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Shipping Container": 1
+        }
+      },
+      {
+        "recipe_key": "shipping_container_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Shipping Container": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "resource_container": {
+    "full_name": "Resource Container",
+    "category": "shippable",
+    "subcategory": "Shippable Container",
+    "faction": "neutral",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "resource_container",
+      "resource container"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "resource_container_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 55,
+        "inputs": {
+          "Basic Materials": 50
+        },
+        "outputs": {
+          "Resource Container": 1
+        }
+      },
+      {
+        "recipe_key": "resource_container_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 12500,
+        "inputs": {
+          "Basic Materials": 525
+        },
+        "outputs": {
+          "Resource Container": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "liquid_container": {
+    "full_name": "Liquid Container",
+    "category": "shippable",
+    "subcategory": "Shippable Container",
+    "faction": "neutral",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "liquid_container",
+      "liquid container"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "liquid_container_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 110,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Liquid Container": 1
+        }
+      },
+      {
+        "recipe_key": "liquid_container_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 25000,
+        "inputs": {
+          "Basic Materials": 1050
+        },
+        "outputs": {
+          "Liquid Container": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "material_pallet": {
+    "full_name": "Material Pallet",
+    "category": "shippable",
+    "subcategory": "Shippable Container",
+    "faction": "neutral",
+    "crate_size": 5,
+    "crate_type": "Shippable",
+    "aliases": [
+      "material_pallet",
+      "material pallet"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "material_pallet_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 28,
+        "inputs": {
+          "Basic Materials": 25
+        },
+        "outputs": {
+          "Material Pallet": 1
+        }
+      },
+      {
+        "recipe_key": "material_pallet_small_assembly_station",
+        "recipe_name": "Small Assembly Station",
+        "facility": "Small Assembly Station",
+        "crafting_time_seconds": 15,
+        "power_mw": 2,
+        "inputs": {
+          "Basic Materials": 25
+        },
+        "outputs": {
+          "Material Pallet": 1
+        }
+      },
+      {
+        "recipe_key": "material_pallet_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 6250,
+        "inputs": {
+          "Basic Materials": 261
+        },
+        "outputs": {
+          "Material Pallet": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      }
+    ]
+  },
+  "a0e9_rocket_warhead": {
+    "full_name": "A0E-9 Rocket Warhead",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Rocket Part",
+    "faction": "neutral",
+    "aliases": [
+      "a0e9_rocket_warhead",
+      "rocket warhead",
+      "a0e-9 warhead"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 86400,
+    "power_mw": 2,
+    "inputs": {
+      "Rare Alloys": 75,
+      "Unstable Substances": 165,
+      "Assembly Materials III": 45
+    },
+    "outputs": {
+      "A0E-9 Rocket Warhead": 1
+    }
+  },
+  "a0e9_rocket_body": {
+    "full_name": "A0E-9 Rocket Body",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Rocket Part",
+    "faction": "neutral",
+    "aliases": [
+      "a0e9_rocket_body",
+      "rocket body",
+      "a0e-9 body"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 86400,
+    "power_mw": 2,
+    "inputs": {
+      "Steel Construction Materials": 20,
+      "Thermal Shielding": 75,
+      "Assembly Materials I": 65,
+      "Rare Alloys": 125,
+      "Assembly Materials V": 25
+    },
+    "outputs": {
+      "A0E-9 Rocket Body": 1
+    }
+  },
+  "a0e9_rocket_booster": {
+    "full_name": "A0E-9 Rocket Booster",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Rocket Part",
+    "faction": "neutral",
+    "aliases": [
+      "a0e9_rocket_booster",
+      "rocket booster",
+      "a0e-9 booster"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 86400,
+    "power_mw": 2,
+    "inputs": {
+      "Steel Construction Materials": 20,
+      "Thermal Shielding": 75,
+      "Assembly Materials II": 55,
+      "Rare Alloys": 150,
+      "Assembly Materials V": 25
+    },
+    "outputs": {
+      "A0E-9 Rocket Booster": 1
+    }
+  },
+  "weather_station_parts": {
+    "full_name": "Weather Station Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "weather_station_parts",
+      "weather station parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 150,
+      "Assembly Materials I": 150,
+      "Assembly Materials II": 150
+    },
+    "outputs": {
+      "Weather Station Parts": 1
+    }
+  },
+  "underground_fortress_parts": {
+    "full_name": "Underground Fortress Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "underground_fortress_parts",
+      "underground fortress parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 200,
+      "Rare Alloys": 5,
+      "Thermal Shielding": 35
+    },
+    "outputs": {
+      "Underground Fortress Parts": 1
+    }
+  },
+  "structure_parts": {
+    "full_name": "Structure Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "structure_parts",
+      "structure parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 300,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 50,
+      "Assembly Materials IV": 40,
+      "Thermal Shielding": 15
+    },
+    "outputs": {
+      "Structure Parts": 1
+    }
+  },
+  "storm_cannon_parts": {
+    "full_name": "Storm Cannon Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "storm_cannon_parts",
+      "storm cannon parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 300,
+      "Rare Alloys": 20,
+      "Thermal Shielding": 45
+    },
+    "outputs": {
+      "Storm Cannon Parts": 1
+    }
+  },
+  "sc3_aerial_interceptor_array_parts": {
+    "full_name": "SC-3 Aerial Interceptor Array Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "sc3_aerial_interceptor_array_parts",
+      "sc-3 aerial interceptor array parts",
+      "interceptor array parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 50,
+      "Rare Alloys": 3,
+      "Thermal Shielding": 15
+    },
+    "outputs": {
+      "SC-3 Aerial Interceptor Array Parts": 1
+    }
+  },
+  "intelligence_center_parts": {
+    "full_name": "Intelligence Center Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "intelligence_center_parts",
+      "intelligence center parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 1500,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 50,
+      "Rare Alloys": 3,
+      "Thermal Shielding": 15
+    },
+    "outputs": {
+      "Intelligence Center Parts": 1
+    }
+  },
+  "construction_parts": {
+    "full_name": "Construction Parts",
+    "category": "shippable",
+    "subcategory": "Shippable Material",
+    "class": "Large Structure Part",
+    "faction": "neutral",
+    "aliases": [
+      "construction_parts",
+      "construction parts"
+    ],
+    "facility": "Small Assembly Station [Advanced Structure Manufactory]",
+    "crafting_time_seconds": 300,
+    "power_mw": 2,
+    "inputs": {
+      "Processed Construction Materials": 250,
+      "Assembly Materials I": 225,
+      "Assembly Materials II": 225
+    },
+    "outputs": {
+      "Construction Parts": 1
+    }
+  },
+  "construction_equipment": {
+    "full_name": "Construction Equipment",
+    "category": "shippable",
+    "subcategory": "Miscellaneous",
+    "faction": "neutral",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "construction_equipment",
+      "construction equipment"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "construction_equipment_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 55,
+        "inputs": {
+          "Refined Materials": 50
+        },
+        "outputs": {
+          "Construction Equipment": 1
+        }
+      },
+      {
+        "recipe_key": "construction_equipment_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 12500,
+        "inputs": {
+          "Refined Materials": 525
+        },
+        "outputs": {
+          "Construction Equipment": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  },
+  "concrete_mixer_structure": {
+    "full_name": "Concrete Mixer",
+    "category": "shippable",
+    "subcategory": "Miscellaneous",
+    "faction": "neutral",
+    "crate_size": 3,
+    "crate_type": "Shippable",
+    "aliases": [
+      "concrete_mixer",
+      "concrete mixer"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "concrete_mixer_construction_yard",
+        "recipe_name": "Construction Yard",
+        "facility": "Construction Yard",
+        "crafting_time_seconds": 83,
+        "inputs": {
+          "Refined Materials": 75
+        },
+        "outputs": {
+          "Concrete Mixer": 1
+        }
+      },
+      {
+        "recipe_key": "concrete_mixer_mpf",
+        "recipe_name": "MPF [Structures]",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 18750,
+        "inputs": {
+          "Refined Materials": 786
+        },
+        "outputs": {
+          "Concrete Mixer": 15
+        },
+        "crate_output": 5,
+        "unit_output": 15
+      }
+    ]
+  }
+}

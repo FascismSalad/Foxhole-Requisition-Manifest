@@ -57,6 +57,14 @@ async function loadData() {
 
     for (const [key, val] of Object.entries(data)) {
       if (val && typeof val === 'object') {
+        // Warden-exclusive items are entered into the data (so the dataset
+        // itself stays complete) but never exposed to the live calculator —
+        // skip them here, before they populate any lookup index, so
+        // they're simply unreachable via search/results while still
+        // sitting in the JSON files. Entries with no faction field at all
+        // (everything added before this rule existed) are unaffected.
+        if (val.faction === 'warden') continue;
+
         // crate_size/is_caliber are metadata flags, not mutually exclusive
         // with the recipe-shape branches below — most craftable items
         // (weapons, ammo, vehicles, and eventually plain materials) come

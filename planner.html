@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facility Planner — Foxhole Requisition Manifest</title>
+<meta name="description" content="Free Foxhole facility planner — place production buildings on a grid, pick their recipes, and wire up the inputs and outputs into a production flowchart.">
+<link rel="canonical" href="https://fascismsalad.github.io/Foxhole-Requisition-Manifest/planner.html">
+<link rel="icon" href="favicon.ico?v=1">
+<link rel="stylesheet" href="css/style.css?v=13">
+<link rel="stylesheet" href="css/planner.css?v=3">
+</head>
+<body>
+
+<div class="masthead">
+  <div class="title-row">
+    <span class="title-bar" aria-hidden="true"></span>
+    <h1>FOXHOLE REQUISITION MANIFEST</h1>
+    <span class="title-bar" aria-hidden="true"></span>
+  </div>
+  <div class="subtitle">FACILITY REQUISITION MANAGEMENT</div>
+  <nav class="tool-nav">
+    <a class="tool-nav-link" href="index.html">REQUISITION CALCULATOR</a>
+    <a class="tool-nav-link active" href="planner.html">FACILITY PLANNER</a>
+  </nav>
+</div>
+
+<div class="planner-wrap">
+  <div class="planner-layout">
+
+    <div class="planner-sidebar">
+      <div class="panel-label">FACILITY CATALOG</div>
+      <div class="planner-search-wrap">
+        <input class="planner-search-input" id="facilitySearch" type="text" placeholder="SEARCH FACILITIES..." autocomplete="off">
+      </div>
+      <div class="planner-facility-list" id="facilityList"></div>
+    </div>
+
+    <div class="planner-canvas-wrap">
+      <div class="planner-toolbar">
+        <div class="planner-toolbar-group">
+          <button class="planner-btn" id="zoomOutBtn" title="Zoom out">−</button>
+          <span class="planner-zoom-readout" id="zoomReadout">100%</span>
+          <button class="planner-btn" id="zoomInBtn" title="Zoom in">+</button>
+          <button class="planner-btn" id="zoomResetBtn" title="Reset view">RESET VIEW</button>
+        </div>
+        <div class="planner-toolbar-group">
+          <span class="planner-hint">DRAG BACKGROUND TO PAN · SCROLL TO ZOOM · DRAG A DOT TO WIRE ITEMS</span>
+        </div>
+        <div class="planner-toolbar-group">
+          <button class="planner-btn planner-btn-danger" id="clearBoardBtn" title="Remove every node and connection">CLEAR BOARD</button>
+        </div>
+      </div>
+      <div class="planner-viewport" id="plannerViewport">
+        <div class="planner-world" id="plannerWorld">
+          <svg class="wire-layer" id="wireLayer"></svg>
+          <div class="planner-nodes" id="nodesLayer"></div>
+        </div>
+        <div class="planner-empty-hint" id="plannerEmptyHint">
+          — SELECT A FACILITY FROM THE CATALOG TO PLACE IT ON THE BOARD —
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="picker-overlay" id="pickerOverlay">
+  <div class="picker-panel" id="pickerPanel">
+    <div class="picker-head">
+      <span class="picker-title" id="pickerTitle">CHOOSE RECIPE</span>
+      <button class="picker-close" id="pickerClose" aria-label="Close">×</button>
+    </div>
+    <input class="picker-search-input" id="pickerSearch" type="text" placeholder="SEARCH RECIPES..." autocomplete="off">
+    <div class="picker-list" id="pickerList"></div>
+  </div>
+</div>
+
+<script src="js/loader.js?v=20"></script>
+<script src="js/calc.js?v=20"></script>
+<script src="js/render.js?v=20"></script>
+<script src="js/planner.js?v=4"></script>
+</body>
+</html>

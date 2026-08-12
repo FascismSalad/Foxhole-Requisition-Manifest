@@ -449,11 +449,28 @@
     ],
     "build_costs": {}
   },
+  "construction_yard": {
+    "full_name": "Construction Yard",
+    "category": "facility",
+    "aliases": [
+      "construction yard"
+    ],
+    "build_costs": {}
+  },
   "small_assembly_station": {
     "full_name": "Small Assembly Station",
     "category": "facility",
     "aliases": [
       "small assembly station"
+    ],
+    "build_costs": {}
+  },
+  "small_assembly_station_advanced_structure_manufactory": {
+    "full_name": "Small Assembly Station [Advanced Structure Manufactory]",
+    "category": "facility",
+    "aliases": [
+      "small assembly station [advanced structure manufactory]",
+      "advanced structure manufactory"
     ],
     "build_costs": {}
   },
