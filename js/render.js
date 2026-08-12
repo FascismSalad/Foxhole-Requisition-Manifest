@@ -310,8 +310,8 @@ function renderRecipeOptionCard(preview, isActive, extraDataAttrs) {
 // reads empty and there's no facility/RECIPES toggle, same treatment as an
 // Oil Well's own empty-inputs recipe.
 function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
-  // NEEDS shows the BASE (1-queue) rate — a fixed per-recipe reference that
-  // doesn't move as the queue stepper changes, only YIELDS does (see
+  // NEEDS and YIELDS both scale with the current queue count — running N
+  // queues is exactly like running N copies of this recipe's facility (see
   // poolItemRecipePreview in calc.js). An item with no recipe at all (Rare
   // Metal — gathered by hand, no craft-time basis for a rate) falls back to
   // its old plain total-quantity display instead.
@@ -383,23 +383,24 @@ function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
 // isOpen: whether this step's "view/choose recipe" detail is currently
 // expanded (state.craftRecipesOpen, keyed by item name — see app.js).
 function renderCraftRow(num, node, isOpen) {
-  // NEEDS shows the BASE (1-queue) rate for each of this recipe's own
-  // per-batch inputs — a fixed reference that doesn't move as the queue
-  // stepper changes, only YIELDS does (see buildNode in calc.js). Facility
-  // Power isn't part of recipeInputs (it's pushed as a separate implicit
-  // child — see buildNode's power_mw handling) and is a flat steady-state
-  // MW draw, not a per-batch quantity, so it's read off that child instead
-  // of run through the rate math.
+  // Running N queues is exactly like running N copies of this recipe's
+  // facility — NEEDS scales right alongside YIELDS, both against the
+  // CURRENT queue count (see buildNode in calc.js). Facility Power is the
+  // one exception: it isn't part of recipeInputs (it's pushed as a
+  // separate implicit child — see buildNode's power_mw handling) and is a
+  // flat steady-state MW draw to the physical building, not a per-batch
+  // quantity that multiplies with more queues — one shared power
+  // connection regardless of how many queues run through it — so it's
+  // read off that child instead of run through the rate math.
   const powerChild = node.children.find(c => c.itemName === 'Facility Power');
   const materialInputsHtml = Object.entries(node.recipeInputs || {}).map(([name, perBatchQty]) => {
-    const rate = node.baseCraftSecondsPerBatch > 0 ? perBatchQty / node.baseCraftSecondsPerBatch * 60 : 0;
+    const rate = node.craftSecondsPerBatch > 0 ? perBatchQty / node.craftSecondsPerBatch * 60 : 0;
     return stepNeedRate(name, fmtItemRate(name, rate));
   }).join('');
   const powerInputHtml = powerChild ? stepNeedRate('Facility Power', fmtItemRate('Facility Power', powerChild.quantity)) : '';
   const inputsHtml = node.children.length ? (materialInputsHtml + powerInputHtml) : `<span class="step-io-empty">—</span>`;
 
-  // YIELDS shows the CURRENT-QUEUE-scaled rate — this is the side that
-  // actually moves when the queue stepper changes. The DIRECT INPUT step's
+  // YIELDS scales the same way — the DIRECT INPUT step's
   // own requested item (not any byproduct it also happens to produce) gets
   // the "final product" color instead of blending into the same green as
   // every other crafted intermediate.

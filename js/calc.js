@@ -146,12 +146,10 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
   const queueKey = recipe.recipeKey;
   const maxQueues = maxQueuesForRecipe(recipe);
   const queueCount = clampQueueCount(qc[queueKey] || 1, recipe);
-  // The UNqueued (1x) time alongside the actual queued time — batches
-  // still needs the real (queued) craft time for the chain's total-time
-  // math, but the BASE figure is what a step's own NEEDS side shows (see
-  // renderCraftRow), a fixed per-recipe reference that doesn't move as the
-  // queue stepper changes, only the YIELDS side does.
-  const baseCraftSecondsPerBatch = effectiveCraftingTime(recipe, 1);
+  // Running N queues is exactly like running N copies of the same
+  // building — both NEEDS and YIELDS scale together with queueCount (see
+  // renderCraftRow). Only Facility Power (below) stays flat: it's one
+  // shared power connection to the physical building, not per queue slot.
   const craftSecondsPerBatch = effectiveCraftingTime(recipe, queueCount);
   const craftSeconds = craftSecondsPerBatch * batches;
 
@@ -181,7 +179,7 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
     isMultiRecipe: !!parentKey, alternatives, recipeKey: recipe.recipeKey,
     recipeInputs: recipe.inputs, recipeOutputs: recipe.outputs, facility: recipe.facility || null,
     batches, craftSeconds, totalSeconds, depth, category, subcategory, children,
-    queueKey, queueCount, maxQueues, craftSecondsPerBatch, baseCraftSecondsPerBatch
+    queueKey, queueCount, maxQueues, craftSecondsPerBatch
   };
 }
 
@@ -262,7 +260,6 @@ function buildProductionChain(entry, queueCounts) {
     const queueKey = rootPath;
     const maxQueues = maxQueuesForRecipe(aircraft);
     const queueCount = clampQueueCount(qc[queueKey] || 1, aircraft);
-    const baseCraftSecondsPerBatch = effectiveCraftingTime(aircraft, 1);
     const craftSecondsPerBatch = effectiveCraftingTime(aircraft, queueCount);
 
     const children = Object.entries(perUnitInputs).map(([name, perUnitQty]) =>
@@ -284,7 +281,7 @@ function buildProductionChain(entry, queueCounts) {
       recipeInputs: perUnitInputs, recipeOutputs: { [aircraft.full_name]: 1 }, facility: aircraft.facility || null,
       batches: effectiveQuantity, craftSeconds, totalSeconds, depth,
       category: aircraft.category || 'vehicle', subcategory: aircraft.subcategory || '', children,
-      queueKey, queueCount, maxQueues, craftSecondsPerBatch, baseCraftSecondsPerBatch
+      queueKey, queueCount, maxQueues, craftSecondsPerBatch
     };
   }
 
@@ -359,7 +356,7 @@ function buildChainSteps(trees) {
         // through from whichever occurrence created this group rather than
         // accumulated like quantity/batches/craftSeconds above.
         queueKey: step.queueKey, queueCount: step.queueCount, maxQueues: step.maxQueues,
-        craftSecondsPerBatch: step.craftSecondsPerBatch, baseCraftSecondsPerBatch: step.baseCraftSecondsPerBatch
+        craftSecondsPerBatch: step.craftSecondsPerBatch
       });
     }
   }
@@ -476,17 +473,16 @@ function poolItemRecipePreview(name, totalQty, chosenRecipeKey, queueCounts) {
   const queueKey = recipe.recipeKey;
   const maxQueues = maxQueuesForRecipe(recipe);
   const queueCount = clampQueueCount(qc[queueKey] || 1, recipe);
-  const baseCraftSecondsPerBatch = effectiveCraftingTime(recipe, 1);
   const craftSecondsPerBatch = effectiveCraftingTime(recipe, queueCount);
   const craftSeconds = craftSecondsPerBatch * batches;
-  // rate: this specific input/output's per-minute pace — BASE (1x, queue-
-  // independent) for inputs, CURRENT-QUEUE-scaled for outputs, matching
-  // the NEEDS(base)/YIELDS(×queues) split the row itself shows (see
-  // renderGatherRow). qty stays the existing batch-scaled TOTAL (used by
-  // expandGatherChain's own recursive math), untouched.
+  // rate: this specific input/output's per-minute pace, scaled by the
+  // current queue count on BOTH sides — running N queues is exactly like
+  // running N copies of this recipe's facility, so NEEDS scales right
+  // alongside YIELDS (see renderGatherRow). qty stays the existing batch-
+  // scaled TOTAL (used by expandGatherChain's own recursive math), untouched.
   const inputs = Object.entries(recipe.inputs).map(([inputName, qty]) => ({
     name: inputName, qty: qty * batches, facility: facilityOfOutput(inputName),
-    rate: baseCraftSecondsPerBatch > 0 ? qty / baseCraftSecondsPerBatch * 60 : 0
+    rate: craftSecondsPerBatch > 0 ? qty / craftSecondsPerBatch * 60 : 0
   }));
   // Every output the recipe actually produces, not just `name` — some
   // harvester/mine recipes yield a byproduct alongside the main resource

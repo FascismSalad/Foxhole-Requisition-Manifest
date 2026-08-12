@@ -27,10 +27,12 @@
 // CONSUMED has no toggle, so it's not tracked here.
 // queueCounts: recipeKey (or "aircraft:key" for an aircraft root — see
 // buildProductionChain in calc.js) -> how many parallel production queues
-// (1-5, 1 for power) that recipe is set to run at. Scales a step's YIELDS-
-// side rate (and, through the same craft-time math, the ticket/chain's
-// total craft time) — its NEEDS-side rate always stays the fixed 1-queue
-// base reference regardless (see renderCraftRow/renderGatherRow).
+// (1-5, 1 for power) that recipe is set to run at. Running N queues is
+// exactly like running N copies of that recipe's facility, so it scales
+// BOTH a step's NEEDS and YIELDS rates together (and, through the same
+// craft-time math, the ticket/chain's total craft time) — see
+// renderCraftRow/renderGatherRow. Facility Power is the one exception: a
+// flat per-building draw that never scales with queue count regardless.
 const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {}, chainVisibility: { liquid: true, resource: true, power: true }, queueCounts: {} };
 
 // The left sidebar's own scroll region: bounded to whatever room is
