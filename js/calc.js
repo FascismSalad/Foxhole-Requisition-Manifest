@@ -19,9 +19,29 @@
 // so power_mw is untouched.
 const MPF_MAX_QUEUE = 25;
 const MPF_SPEED_DIVISOR = (MPF_MAX_QUEUE + 1) / 2; // 13
-function effectiveCraftingTime(recipeOrAircraft) {
+// queueCount is the PLAYER-set queue depth (1-5, see maxQueuesForRecipe) —
+// a separate, independent multiplier from the MPF's own always-assumed-max
+// internal queue above, so an MPF recipe run at player-queue 3 divides by
+// BOTH: the MPF's fixed 13x baseline, then again by 3 for the extra
+// parallel lines. Defaults to 1 (no speedup) when omitted so every existing
+// caller that doesn't care about queues keeps working unchanged.
+function effectiveCraftingTime(recipeOrAircraft, queueCount) {
   const base = recipeOrAircraft.crafting_time_seconds || 0;
-  return recipeOrAircraft.facility === 'Mass Production Factory' ? base / MPF_SPEED_DIVISOR : base;
+  const mpfAdjusted = recipeOrAircraft.facility === 'Mass Production Factory' ? base / MPF_SPEED_DIVISOR : base;
+  return mpfAdjusted / (queueCount || 1);
+}
+
+// Every facility but power generation can run up to 5 parallel production
+// queues; a power-GENERATING recipe (one whose own output is Facility
+// Power — the actual test, not a facility-name guess) is capped at 1 since
+// there's nothing to parallelize. recipeOrAircraft may be an aircraft
+// (never a power producer, so always falls through to 5) or a plain
+// MATERIAL_RECIPES entry.
+function maxQueuesForRecipe(recipeOrAircraft) {
+  return (recipeOrAircraft && recipeOrAircraft.outputs && 'Facility Power' in recipeOrAircraft.outputs) ? 1 : 5;
+}
+function clampQueueCount(n, recipeOrAircraft) {
+  return Math.min(maxQueuesForRecipe(recipeOrAircraft), Math.max(1, Math.round(n) || 1));
 }
 
 // Looks up the category/subcategory tag for any item name that appears
@@ -69,12 +89,13 @@ function poolKindOf(itemName) {
   return null;
 }
 
-function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, chain) {
+function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, chain, queueCounts) {
   // Guard against circular recipes (A needs B, B needs A) so a bad data
   // edit produces a clear error instead of an infinite recursion / stack overflow.
   if (chain.has(itemName)) {
     throw new Error(`Circular recipe detected: ${[...chain, itemName].join(' -> ')}`);
   }
+  const qc = queueCounts || {};
 
   const { category, subcategory } = tagOf(itemName);
 
@@ -117,13 +138,28 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
 
   const outputQty = recipe.outputs[itemName];
   const batches = Math.ceil(quantityNeeded / outputQty);
-  const craftSeconds = effectiveCraftingTime(recipe) * batches;
+  // queueKey is how this recipe's player-set queue depth is looked up/
+  // stored (see state.queueCounts in app.js) — the recipe's own key, so
+  // every occurrence of the same recipe anywhere in the tree (or merged
+  // into one row by buildChainSteps) shares one queue setting, the same
+  // physical facility however many places it happens to feed.
+  const queueKey = recipe.recipeKey;
+  const maxQueues = maxQueuesForRecipe(recipe);
+  const queueCount = clampQueueCount(qc[queueKey] || 1, recipe);
+  // The UNqueued (1x) time alongside the actual queued time — batches
+  // still needs the real (queued) craft time for the chain's total-time
+  // math, but the BASE figure is what a step's own NEEDS side shows (see
+  // renderCraftRow), a fixed per-recipe reference that doesn't move as the
+  // queue stepper changes, only the YIELDS side does.
+  const baseCraftSecondsPerBatch = effectiveCraftingTime(recipe, 1);
+  const craftSecondsPerBatch = effectiveCraftingTime(recipe, queueCount);
+  const craftSeconds = craftSecondsPerBatch * batches;
 
   const nextChain = new Set(chain);
   nextChain.add(itemName);
 
   const children = Object.entries(recipe.inputs).map(([inputName, inputQty]) =>
-    buildNode(inputName, inputQty * batches, `${path}>${inputName}`, overrides, null, nextChain)
+    buildNode(inputName, inputQty * batches, `${path}>${inputName}`, overrides, null, nextChain, queueCounts)
   );
 
   // Power draw is a steady-state requirement, not a per-batch consumable —
@@ -133,7 +169,7 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
   // other ingredient, including getting its own selectable power-source
   // recipe (see data/resources/power.json).
   if (recipe.power_mw) {
-    children.push(buildNode('Facility Power', recipe.power_mw, `${path}>Facility Power`, overrides, null, nextChain));
+    children.push(buildNode('Facility Power', recipe.power_mw, `${path}>Facility Power`, overrides, null, nextChain, queueCounts));
   }
 
   const totalSeconds = craftSeconds + children.reduce((sum, c) => sum + c.totalSeconds, 0);
@@ -144,7 +180,8 @@ function buildNode(itemName, quantityNeeded, path, overrides, rootDefaultKey, ch
     id: path, itemName, quantity: quantityNeeded, isRaw: false, isLiquid: false, poolKind: null,
     isMultiRecipe: !!parentKey, alternatives, recipeKey: recipe.recipeKey,
     recipeInputs: recipe.inputs, recipeOutputs: recipe.outputs, facility: recipe.facility || null,
-    batches, craftSeconds, totalSeconds, depth, category, subcategory, children
+    batches, craftSeconds, totalSeconds, depth, category, subcategory, children,
+    queueKey, queueCount, maxQueues, craftSecondsPerBatch, baseCraftSecondsPerBatch
   };
 }
 
@@ -205,7 +242,8 @@ function resolveTicketQuantity(entry) {
 // Builds the full production tree for one ticket (aircraft or material
 // entry). entry.nodeOverrides maps a node's path -> the recipe key chosen
 // specifically for that occurrence in the chain.
-function buildProductionChain(entry) {
+function buildProductionChain(entry, queueCounts) {
+  const qc = queueCounts || {};
   const overrides = entry.nodeOverrides || {};
   const rootPath = `${entry.kind}:${entry.key}`;
   const { effectiveQuantity } = resolveTicketQuantity(entry);
@@ -218,15 +256,24 @@ function buildProductionChain(entry) {
     for (const [m, a] of Object.entries(aircraft.assembly_materials)) perUnitInputs[m] = (perUnitInputs[m] || 0) + a;
     for (const [p, a] of Object.entries(aircraft.aircraft_parts)) perUnitInputs[p] = (perUnitInputs[p] || 0) + a;
 
+    // Aircraft have no MATERIAL_RECIPES key of their own to queue by — the
+    // root path ("aircraft:key") is already the same stable identity
+    // buildChainSteps' own groupKey fallback uses for these.
+    const queueKey = rootPath;
+    const maxQueues = maxQueuesForRecipe(aircraft);
+    const queueCount = clampQueueCount(qc[queueKey] || 1, aircraft);
+    const baseCraftSecondsPerBatch = effectiveCraftingTime(aircraft, 1);
+    const craftSecondsPerBatch = effectiveCraftingTime(aircraft, queueCount);
+
     const children = Object.entries(perUnitInputs).map(([name, perUnitQty]) =>
-      buildNode(name, perUnitQty * effectiveQuantity, `${rootPath}>${name}`, overrides, null, new Set())
+      buildNode(name, perUnitQty * effectiveQuantity, `${rootPath}>${name}`, overrides, null, new Set(), qc)
     );
     // Flat, not scaled by effectiveQuantity — same steady-state-draw reasoning
     // as buildNode's own power_mw handling above.
     if (aircraft.power_mw) {
-      children.push(buildNode('Facility Power', aircraft.power_mw, `${rootPath}>Facility Power`, overrides, null, new Set()));
+      children.push(buildNode('Facility Power', aircraft.power_mw, `${rootPath}>Facility Power`, overrides, null, new Set(), qc));
     }
-    const craftSeconds = effectiveCraftingTime(aircraft) * effectiveQuantity;
+    const craftSeconds = craftSecondsPerBatch * effectiveQuantity;
     const totalSeconds = craftSeconds + children.reduce((sum, c) => sum + c.totalSeconds, 0);
     const nonRawDepths = children.filter(c => !c.isRaw).map(c => c.depth);
     const depth = nonRawDepths.length ? 1 + Math.max(...nonRawDepths) : 1;
@@ -236,13 +283,14 @@ function buildProductionChain(entry) {
       isMultiRecipe: false, alternatives: null, recipeKey: null,
       recipeInputs: perUnitInputs, recipeOutputs: { [aircraft.full_name]: 1 }, facility: aircraft.facility || null,
       batches: effectiveQuantity, craftSeconds, totalSeconds, depth,
-      category: aircraft.category || 'vehicle', subcategory: aircraft.subcategory || '', children
+      category: aircraft.category || 'vehicle', subcategory: aircraft.subcategory || '', children,
+      queueKey, queueCount, maxQueues, craftSecondsPerBatch, baseCraftSecondsPerBatch
     };
   }
 
   const recipe = MATERIAL_RECIPES[entry.key];
   const outputName = Object.keys(recipe.outputs)[0];
-  return buildNode(outputName, effectiveQuantity, rootPath, overrides, entry.key, new Set());
+  return buildNode(outputName, effectiveQuantity, rootPath, overrides, entry.key, new Set(), qc);
 }
 
 // Flattens one or more production-chain trees into one row per distinct
@@ -305,7 +353,13 @@ function buildChainSteps(trees) {
         craftSeconds: step.craftSeconds,
         depth: step.depth,
         isDirect,
-        children: step.children
+        children: step.children,
+        // Queue state is a per-RECIPE setting (see buildNode) — identical
+        // across every occurrence being merged here, so just carried
+        // through from whichever occurrence created this group rather than
+        // accumulated like quantity/batches/craftSeconds above.
+        queueKey: step.queueKey, queueCount: step.queueCount, maxQueues: step.maxQueues,
+        craftSecondsPerBatch: step.craftSecondsPerBatch, baseCraftSecondsPerBatch: step.baseCraftSecondsPerBatch
       });
     }
   }
@@ -394,7 +448,8 @@ function aggregateRawResources(trees) {
 // It's independent of the tree/pooling math above — picking a different
 // recipe here never changes the pooled totals, since the whole point of
 // pooling is not to cascade a Well/Harvester/Power-Plant chain any deeper.
-function poolItemRecipePreview(name, totalQty, chosenRecipeKey) {
+function poolItemRecipePreview(name, totalQty, chosenRecipeKey, queueCounts) {
+  const qc = queueCounts || {};
   const parentKey = PARENT_ITEM_BY_OUTPUT[name];
   const alternatives = parentKey
     ? ITEM_MULTIPLE_RECIPES[parentKey].recipes.map(r => ({ recipeKey: r.recipe_key, label: r.recipe_name || r.recipe_key }))
@@ -405,29 +460,47 @@ function poolItemRecipePreview(name, totalQty, chosenRecipeKey) {
   // Oil Well's empty-inputs recipe reads. Every caller already treats an
   // empty inputs list as "nothing to expand/show further," so this isn't a
   // special case for them, just a stand-in for the missing recipe object.
+  // No queueKey either — there's no facility/craft-time basis for a queue
+  // or a rate here, so the row falls back to its plain absolute total.
   if (!recipe) {
     return {
       recipeKey: null, facility: null, batches: 1, craftSeconds: 0,
       inputs: [], outputs: [{ name, qty: totalQty }],
-      isMultiRecipe: false, alternatives: null
+      isMultiRecipe: false, alternatives: null,
+      queueKey: null, queueCount: 1, maxQueues: 1
     };
   }
 
   const outputQty = recipe.outputs[name];
   const batches = Math.ceil(totalQty / outputQty);
-  const craftSeconds = effectiveCraftingTime(recipe) * batches;
+  const queueKey = recipe.recipeKey;
+  const maxQueues = maxQueuesForRecipe(recipe);
+  const queueCount = clampQueueCount(qc[queueKey] || 1, recipe);
+  const baseCraftSecondsPerBatch = effectiveCraftingTime(recipe, 1);
+  const craftSecondsPerBatch = effectiveCraftingTime(recipe, queueCount);
+  const craftSeconds = craftSecondsPerBatch * batches;
+  // rate: this specific input/output's per-minute pace — BASE (1x, queue-
+  // independent) for inputs, CURRENT-QUEUE-scaled for outputs, matching
+  // the NEEDS(base)/YIELDS(×queues) split the row itself shows (see
+  // renderGatherRow). qty stays the existing batch-scaled TOTAL (used by
+  // expandGatherChain's own recursive math), untouched.
   const inputs = Object.entries(recipe.inputs).map(([inputName, qty]) => ({
-    name: inputName, qty: qty * batches, facility: facilityOfOutput(inputName)
+    name: inputName, qty: qty * batches, facility: facilityOfOutput(inputName),
+    rate: baseCraftSecondsPerBatch > 0 ? qty / baseCraftSecondsPerBatch * 60 : 0
   }));
   // Every output the recipe actually produces, not just `name` — some
   // harvester/mine recipes yield a byproduct alongside the main resource
   // (e.g. the Sulfur excavator also drops Coal), which a gather-step display
   // should show honestly rather than hiding.
-  const outputs = Object.entries(recipe.outputs).map(([outName, qty]) => ({ name: outName, qty: qty * batches }));
+  const outputs = Object.entries(recipe.outputs).map(([outName, qty]) => ({
+    name: outName, qty: qty * batches,
+    rate: craftSecondsPerBatch > 0 ? qty / craftSecondsPerBatch * 60 : 0
+  }));
 
   return {
     recipeKey: recipe.recipeKey, facility: recipe.facility || null, batches, craftSeconds,
-    inputs, outputs, isMultiRecipe: !!parentKey, alternatives
+    inputs, outputs, isMultiRecipe: !!parentKey, alternatives,
+    queueKey, queueCount, maxQueues
   };
 }
 
@@ -610,6 +683,27 @@ function buildPlannerExport(trees, poolRecipeChoice) {
 // ============================================================
 
 function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
+
+function round2(n) { return Math.round(n * 100) / 100; }
+
+// Shared by both pages' per-minute rate displays (the calculator's queue-
+// scaled NEEDS/YIELDS chips and the Facility Planner's node ports) so they
+// read identically. A recipe with a long craft time can produce well under
+// 1 unit per minute — "0.1/min" reads awkwardly slow and rounds away most
+// of its precision — so anything under a full unit per minute is shown per
+// hour instead, where the same rate lands on an easily-read number (0.1/min
+// becomes 6.0/hr).
+function fmtRate(n) {
+  if (!isFinite(n)) return '0/min';
+  if (n > 0 && n < 1) return `${(n * 60).toFixed(1)}/hr`;
+  return `${n.toFixed(1)}/min`;
+}
+
+// Facility Power is a flat MW draw, not a per-batch material — never run
+// through fmtRate's /min-or-/hr treatment, just its own rounded MW figure.
+function fmtItemRate(item, rate) {
+  return item === 'Facility Power' ? `${round2(rate)} MW` : fmtRate(rate);
+}
 
 // Wiki-scraped icons live in icons/images/*.png, named by sanitizing the
 // item's title: any run of characters that isn't a letter, digit, or

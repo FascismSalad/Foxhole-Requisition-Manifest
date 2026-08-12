@@ -221,6 +221,21 @@ body.planner-page {
 }
 .planner-empty-hint.hidden { display: none; }
 
+/* Shift-drag marquee (see startBoxSelect in planner.js) — positioned in
+   plain viewport-relative screen pixels, deliberately NOT inside
+   .planner-world, so it's never subject to the pan/zoom transform: its
+   left/top/width/height are set directly from client coordinates every
+   mousemove, and reparenting it under the zoomed world would mean
+   correcting for scale on every frame for no benefit (it's gone before
+   the next render anyway). */
+.planner-select-box {
+  position: absolute;
+  border: 1px dashed var(--brass);
+  background: rgba(201, 154, 68, 0.12);
+  pointer-events: none;
+  z-index: 5;
+}
+
 /* Deliberately a zero-size box: it only exists to carry the pan/zoom
    transform that nodesLayer/wireLayer sit inside, and a zero size keeps it
    from ever clipping/scrolling its own absolutely-positioned children
@@ -257,11 +272,20 @@ body.planner-page {
 .wire-path.selected { stroke: var(--rust-bright); stroke-width: 3; }
 .wire-path-hitbox { fill: none; stroke: transparent; stroke-width: 16; pointer-events: stroke; cursor: pointer; }
 
+/* A dragged bend point on a wire (see onWireHitMouseDown/onWaypointDragStart
+   in planner.js — grab the wire body to pull out a new one, drag an
+   existing dot to move it, double-click to remove it). pointer-events:all
+   because it's a filled shape being grabbed by its area, not traced by its
+   outline the way .wire-path-hitbox's stroke is. */
+.wire-waypoint { fill: var(--brass); stroke: var(--bg); stroke-width: 1.5px; cursor: move; pointer-events: all; }
+.wire-waypoint:hover { fill: var(--brass-bright); }
+.wire-waypoint.selected { fill: var(--rust-bright); }
+
 .wire-path-pending { fill: none; stroke: var(--brass-bright); stroke-width: 2.5; stroke-dasharray: 6 5; }
 
 /* Dashed rather than just recolored, so it stays visually distinct from
    .selected (also rust, but solid) even on a wire that happens to be both
-   at once — see computeSupplyDemand in planner.js. */
+   at once — see computeFlow in planner.js. */
 .wire-path-overcap { stroke: var(--rust); stroke-dasharray: 5 4; }
 .wire-path-overcap.selected { stroke: var(--rust-bright); }
 .wire-label-overcap { fill: var(--rust-bright); }
@@ -355,50 +379,69 @@ body.planner-page {
 }
 .fac-node-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
 
-/* Recipe picker + (when the facility supports more than one) the queue
-   stepper share this row as siblings, not nested inside the button — a
-   queue +/- click must never also open the recipe picker underneath it. */
-.fac-node-recipe-row {
+/* A card can run several of its facility's recipes at once (see
+   nodeRecipeObjs in planner.js) — each active one gets its own removable
+   chip here instead of the old single "SELECT RECIPE" button, with a
+   trailing button to open the picker and toggle more on. */
+.fac-node-recipes {
   display: flex;
-  align-items: stretch;
-  border-bottom: 1px dashed var(--line-faint);
-}
-
-.fac-node-recipe-btn {
-  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex: 1;
-  min-width: 0;
+  gap: 4px;
   padding: 6px 10px;
   background: var(--panel);
-  border: none;
-  color: var(--yellow);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-align: left;
-  cursor: pointer;
+  border-bottom: 1px dashed var(--line-faint);
 }
-.fac-node-recipe-btn:hover { color: var(--yellow-bright); background: rgba(201,185,58,0.07); }
-.fac-node-recipe-btn .rbtn-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.fac-node-recipe-btn .rbtn-chevron {
-  flex-shrink: 0;
-  width: 6px; height: 6px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-}
-
-.fac-node-queue-inline {
+.fac-node-recipe-chip {
   display: flex;
   align-items: center;
-  gap: 2px;
-  flex-shrink: 0;
-  padding: 0 8px;
-  border-left: 1px dashed var(--line-faint);
+  gap: 4px;
+  max-width: 100%;
+  padding: 3px 4px 3px 7px;
+  background: rgba(201,185,58,0.1);
+  border: 1px solid var(--line);
+  color: var(--yellow);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
 }
+.fac-node-recipe-chip:hover { color: var(--yellow-bright); border-color: var(--brass); }
+.fac-node-recipe-chip .chip-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fac-node-recipe-chip .chip-remove {
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--paper-dim);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.fac-node-recipe-chip .chip-remove:hover { color: var(--rust-bright); }
+.fac-node-recipe-empty {
+  padding: 3px 0;
+  color: var(--paper-dim);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+}
+.fac-node-recipe-add {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  background: none;
+  border: 1px dashed var(--line);
+  color: var(--paper-dim);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+.fac-node-recipe-add:hover { color: var(--brass-bright); border-color: var(--brass); }
 
 .fac-node-io {
   display: grid;
@@ -464,12 +507,13 @@ body.planner-page {
 .fac-port-power { border-color: var(--yellow); }
 .fac-port-power:hover, .fac-port-power.connected, .fac-port-power.wire-target-hover { background: var(--yellow); }
 
-/* An output whose combined outgoing wires ask for more than it actually
-   produces (see computeSupplyDemand in planner.js) — overrides whatever
-   category color the port would otherwise carry, on both the port itself
-   and every wire leaving it, so an over-committed source reads as a
-   problem at a glance instead of silently repeating its full rate on
-   every branch. */
+/* Shared by two different problems (see computeFlow in planner.js): an
+   OUTPUT port whose combined outgoing wires ask for more than it actually
+   produces, or an INPUT port that isn't getting enough even with every
+   wire feeding it (multiple sources) added together — overrides whatever
+   category color the port would otherwise carry, on both the flagged port
+   and every wire touching it, so a mismatch reads as a problem at a
+   glance instead of silently not adding up. */
 .fac-port.overcap { border-color: var(--rust); background: var(--rust-bright); }
 
 /* ---------- Recipe picker (shared: sidebar uses inline list, this is the

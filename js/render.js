@@ -18,11 +18,16 @@ function categoryLabel(obj) {
   return '';
 }
 
-function renderAircraftTicket(entry, cumulativeSeconds) {
+function renderAircraftTicket(entry, cumulativeSeconds, queueCounts) {
   const { key, quantity, crateMode, collapsed } = entry;
   const aircraft = AIRCRAFT_COSTS[key];
   const { crateSize, effectiveQuantity } = resolveTicketQuantity(entry);
-  const directSeconds = effectiveCraftingTime(aircraft) * effectiveQuantity;
+  // Matches whatever queue depth is set on this ticket's own root step in
+  // the chain panel (see buildProductionChain's aircraft branch) — keeps
+  // this reading in sync with CUMULATIVE CRAFT TIME below it, which
+  // already reflects that same queue speedup via cumulativeSeconds.
+  const queueCount = clampQueueCount((queueCounts && queueCounts[`aircraft:${key}`]) || 1, aircraft);
+  const directSeconds = effectiveCraftingTime(aircraft, queueCount) * effectiveQuantity;
 
   const directInputs = {};
   for (const [m, a] of Object.entries(aircraft.assembly_materials)) directInputs[m] = (directInputs[m] || 0) + a * effectiveQuantity;
@@ -83,7 +88,7 @@ function renderAircraftTicket(entry, cumulativeSeconds) {
 // effect at the root of the chain (entryKey's own recipe by default, or
 // whatever the user picked for that root node in the chain panel) — facility,
 // outputs, and direct time are read from that one.
-function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds) {
+function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds, queueCounts) {
   const { key: entryKey, quantity, crateMode, collapsed } = entry;
   const recipe = MATERIAL_RECIPES[displayRecipeKey];
   const parent = findMultiRecipeParent(displayRecipeKey); // null for standalone single-recipe materials
@@ -106,7 +111,12 @@ function renderMaterialTicket(entry, displayRecipeKey, cumulativeSeconds) {
   const scaledOutputs = {};
   for (const [item, amt] of Object.entries(recipe.outputs)) scaledOutputs[item] = amt * batches;
 
-  const directSeconds = effectiveCraftingTime(recipe) * batches;
+  // Matches whatever queue depth is set on this ticket's own root step in
+  // the chain panel (see buildNode) — keeps this reading in sync with
+  // CUMULATIVE CRAFT TIME below it, which already reflects that same queue
+  // speedup via cumulativeSeconds.
+  const queueCount = clampQueueCount((queueCounts && queueCounts[recipe.recipeKey]) || 1, recipe);
+  const directSeconds = effectiveCraftingTime(recipe, queueCount) * batches;
 
   // Only items with a known crate size (and not Garage/Shipyard-built) get
   // a usable toggle — but it's always rendered in the DOM either way (just
@@ -213,6 +223,46 @@ function stepIconChip(name, qty, facility, { dashed = false, large = false, colo
 function stepNeedItem(name, qty, facility) { return stepIconChip(name, qty, facility, { dashed: true }); }
 function stepOutputItem(name, qty, facility, colorClass) { return stepIconChip(name, qty, facility, { large: true, colorClass }); }
 
+// Same icon-forward chip shape as stepIconChip, but for a step's own
+// per-minute (or per-hour — see fmtItemRate in calc.js) throughput instead
+// of a crate-formatted total-for-the-order quantity — used by a step row's
+// live NEEDS/YIELDS once a queue count is in play (see renderCraftRow/
+// renderGatherRow), where "how fast" matters more than "how many total."
+function stepRateChip(name, rateText, { dashed = false, large = false, colorClass } = {}) {
+  return `<div class="step-icon-chip ${large ? 'step-icon-chip-lg' : ''} ${dashed ? 'step-icon-dashed' : ''} ${colorClass || stepColorClass(name)}">
+    <div class="step-icon-frame">
+      ${iconTag(name, 'step-icon-img')}
+    </div>
+    <div class="step-icon-caption">
+      <span class="step-icon-qty">${rateText}</span>
+      <span class="step-icon-name">${name}</span>
+    </div>
+  </div>`;
+}
+function stepNeedRate(name, rateText) { return stepRateChip(name, rateText, { dashed: true }); }
+function stepOutputRate(name, rateText, colorClass) { return stepRateChip(name, rateText, { large: true, colorClass }); }
+
+// The queue stepper that replaces a step's old "×N RUNS" + time block — 1
+// to maxQueues (see maxQueuesForRecipe in calc.js), scaling that recipe's
+// effective craft time (and so its YIELDS-side rate) up to maxQueues×
+// faster. A recipe capped at 1 (power generation) has nothing to step
+// between, so it gets a plain static readout instead of dead +/- buttons.
+function stepQueueStepperHtml(queueKey, queueCount, maxQueues) {
+  if (!queueKey) return '';
+  if (maxQueues <= 1) {
+    return `<div class="step-queue-stepper step-queue-static" title="This facility can't run parallel queues">
+      <span class="step-queue-label">QUEUE</span>
+      <span class="step-queue-val">1</span>
+    </div>`;
+  }
+  return `<div class="step-queue-stepper" data-recipe-key="${queueKey}" data-max-queues="${maxQueues}" title="Parallel production queues (1-${maxQueues})">
+    <span class="step-queue-label">QUEUES</span>
+    <button class="step-queue-btn" data-action="queue-dec" title="One fewer queue">−</button>
+    <input type="number" class="qty-val step-queue-val-input" value="${queueCount}" min="1" max="${maxQueues}" step="1" inputmode="numeric">
+    <button class="step-queue-btn" data-action="queue-inc" title="One more queue">+</button>
+  </div>`;
+}
+
 // One selectable recipe option inside a "CHOOSE RECIPE" picker — a full
 // preview (facility, batch count, time, and its own inputs -> output flow,
 // built from the same icon chips as a real step) instead of a bare text
@@ -260,11 +310,17 @@ function renderRecipeOptionCard(preview, isActive, extraDataAttrs) {
 // reads empty and there's no facility/RECIPES toggle, same treatment as an
 // Oil Well's own empty-inputs recipe.
 function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
+  // NEEDS shows the BASE (1-queue) rate — a fixed per-recipe reference that
+  // doesn't move as the queue stepper changes, only YIELDS does (see
+  // poolItemRecipePreview in calc.js). An item with no recipe at all (Rare
+  // Metal — gathered by hand, no craft-time basis for a rate) falls back to
+  // its old plain total-quantity display instead.
+  const hasRecipe = !!preview.recipeKey;
   const inputsHtml = preview.inputs.length
-    ? preview.inputs.map(inp => stepNeedItem(inp.name, inp.qty, inp.facility)).join('')
+    ? preview.inputs.map(inp => stepNeedRate(inp.name, fmtItemRate(inp.name, inp.rate))).join('')
     : `<span class="step-io-empty">—</span>`;
   const outputHtml = preview.outputs
-    .map(o => stepOutputItem(o.name, o.qty, preview.facility))
+    .map(o => hasRecipe ? stepOutputRate(o.name, fmtItemRate(o.name, o.rate)) : stepOutputItem(o.name, o.qty, preview.facility))
     .join('<span class="step-output-plus">+</span>');
 
   const yieldToggleAttrs = preview.isMultiRecipe ? `data-gather-toggle="${itemName}"` : '';
@@ -310,10 +366,7 @@ function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
             <span class="step-needs-label">NEEDS</span>
             ${inputsHtml}
           </div>
-          <div class="step-flow-runs-time">
-            <span class="step-flow-runs">×${fmtNum(preview.batches)} RUNS</span>
-            <div class="step-time"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(preview.craftSeconds)}</div>
-          </div>
+          ${stepQueueStepperHtml(preview.queueKey, preview.queueCount, preview.maxQueues)}
           <span class="step-flow-arrow" aria-hidden="true">&rarr;</span>
           <div class="step-flow-side step-flow-output">
             <span class="step-yields-label">YIELDS</span>
@@ -329,23 +382,32 @@ function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
 
 // isOpen: whether this step's "view/choose recipe" detail is currently
 // expanded (state.craftRecipesOpen, keyed by item name — see app.js).
-function renderCraftRow(num, node, isOpen, queueCounts) {
-  // Totals for the whole run, not the per-batch recipe ratio — "make 85
-  // batches, here's what that actually costs you" instead of making the
-  // reader multiply "2 Salvage -> 1 Basic Materials" by 85 themselves.
-  // Reads straight off node.children rather than node.recipeInputs since
-  // each child's own .quantity is already the fully-resolved total (built
-  // that way in buildNode) — this also picks up the implicit Facility
-  // Power child for free wherever a step's recipe draws power.
-  const inputsHtml = node.children.length
-    ? node.children.map(child => stepNeedItem(child.itemName, child.quantity, child.facility)).join('')
-    : `<span class="step-io-empty">—</span>`;
+function renderCraftRow(num, node, isOpen) {
+  // NEEDS shows the BASE (1-queue) rate for each of this recipe's own
+  // per-batch inputs — a fixed reference that doesn't move as the queue
+  // stepper changes, only YIELDS does (see buildNode in calc.js). Facility
+  // Power isn't part of recipeInputs (it's pushed as a separate implicit
+  // child — see buildNode's power_mw handling) and is a flat steady-state
+  // MW draw, not a per-batch quantity, so it's read off that child instead
+  // of run through the rate math.
+  const powerChild = node.children.find(c => c.itemName === 'Facility Power');
+  const materialInputsHtml = Object.entries(node.recipeInputs || {}).map(([name, perBatchQty]) => {
+    const rate = node.baseCraftSecondsPerBatch > 0 ? perBatchQty / node.baseCraftSecondsPerBatch * 60 : 0;
+    return stepNeedRate(name, fmtItemRate(name, rate));
+  }).join('');
+  const powerInputHtml = powerChild ? stepNeedRate('Facility Power', fmtItemRate('Facility Power', powerChild.quantity)) : '';
+  const inputsHtml = node.children.length ? (materialInputsHtml + powerInputHtml) : `<span class="step-io-empty">—</span>`;
 
-  // The DIRECT INPUT step's own requested item (not any byproduct it also
-  // happens to produce) gets the "final product" color instead of blending
-  // into the same green as every other crafted intermediate.
+  // YIELDS shows the CURRENT-QUEUE-scaled rate — this is the side that
+  // actually moves when the queue stepper changes. The DIRECT INPUT step's
+  // own requested item (not any byproduct it also happens to produce) gets
+  // the "final product" color instead of blending into the same green as
+  // every other crafted intermediate.
   const outputHtml = Object.entries(node.recipeOutputs)
-    .map(([name, qty]) => stepOutputItem(name, qty * node.batches, node.facility, node.isDirect && name === node.itemName ? 'step-color-final' : undefined))
+    .map(([name, perBatchQty]) => {
+      const rate = node.craftSecondsPerBatch > 0 ? perBatchQty / node.craftSecondsPerBatch * 60 : 0;
+      return stepOutputRate(name, fmtItemRate(name, rate), node.isDirect && name === node.itemName ? 'step-color-final' : undefined);
+    })
     .join('<span class="step-output-plus">+</span>');
 
   // The whole YIELDS tray doubles as the recipe-picker toggle — no separate
@@ -374,7 +436,7 @@ function renderCraftRow(num, node, isOpen, queueCounts) {
     ? `<div class="step-recipe-detail-wrap ${isOpen ? 'open' : ''}">
         <div class="step-recipe-detail">
           <span class="step-choice-label">CHOOSE RECIPE</span>
-          <div class="recipe-option-list">${recipeAlternativePreviews(node.itemName, totalUnitsNeeded, queueCounts).map(p =>
+          <div class="recipe-option-list">${recipeAlternativePreviews(node.itemName, totalUnitsNeeded).map(p =>
             renderRecipeOptionCard(p, p.recipeKey === node.recipeKey, `data-paths="${node.paths.join('|')}"`)
           ).join('')}</div>
         </div>
@@ -392,7 +454,6 @@ function renderCraftRow(num, node, isOpen, queueCounts) {
   // recipeKey when this step has one, else the first merged occurrence's
   // own path (matches buildChainSteps' own groupKey fallback exactly).
   const rowKey = node.recipeKey || node.paths[0];
-  const queueStepperHtml = stepQueueStepper(rowKey, node.facility, queueCounts);
 
   return `<div class="step-row ${node.isDirect ? 'step-row-direct' : ''}" data-row-key="craft:${rowKey}">
     <div class="step-num ${poolBadgeClass}">${num}</div>
@@ -404,17 +465,13 @@ function renderCraftRow(num, node, isOpen, queueCounts) {
             ${node.isDirect ? `<div class="step-direct-tag">DIRECT INPUT</div>` : ''}
             <div class="step-facility-inline">${node.facility || 'ASSEMBLE'}</div>
           </div>
-          ${queueStepperHtml}
         </div>
         <div class="step-line-flow">
           <div class="step-flow-side step-flow-inputs">
             <span class="step-needs-label">NEEDS</span>
             ${inputsHtml}
           </div>
-          <div class="step-flow-runs-time">
-            <span class="step-flow-runs">×${fmtNum(node.batches)} RUNS</span>
-            <div class="step-time"><span class="step-clock-icon" aria-hidden="true"></span>${fmtTime(node.craftSeconds)}</div>
-          </div>
+          ${stepQueueStepperHtml(node.queueKey, node.queueCount, node.maxQueues)}
           <span class="step-flow-arrow" aria-hidden="true">&rarr;</span>
           <div class="step-flow-side step-flow-output">
             <span class="step-yields-label">YIELDS</span>
@@ -530,11 +587,11 @@ function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen,
   let stepNum = 0;
   const gatherRowsHtml = visibleGatherItems.map(it => {
     const preview = poolItemRecipePreview(it.name, it.qty, poolRecipeChoice[it.name], queueCounts);
-    return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name], queueCounts);
+    return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name]);
   }).join('');
   const rowsHtml =
     gatherRowsHtml +
-    craftSteps.map(s => renderCraftRow(++stepNum, s, craftRecipesOpen[s.itemName], queueCounts)).join('');
+    craftSteps.map(s => renderCraftRow(++stepNum, s, craftRecipesOpen[s.itemName])).join('');
 
   const legend = `<div class="chain-legend">
     <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-swatch-dashed"></span>CONSUMED</span>

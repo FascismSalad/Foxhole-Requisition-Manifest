@@ -208,14 +208,16 @@ function iconTagWithFallback(candidateNames, cssClass) {
 // ============================================================
 
 const plannerState = {
-  nodes: [],        // { id, facility, recipeKey, x, y } — x/y are world-space px
+  nodes: [],        // { id, facility, recipeKeys, x, y, count } — x/y are world-space px
   connections: [],   // { id, fromNode, fromItem, toNode, toItem }
   pan: { x: 60, y: 60 },
   scale: 1,
-  selectedNodeId: null,
+  selectedNodeIds: new Set(), // shift-drag box select / shift-click can hold more than one
   selectedWireId: null
 };
 let nodesById = {};
+let plannerClipboard = null; // { nodes, connections } snapshot from Ctrl+C — see copySelection
+let pasteOffsetStep = 0;
 let nodeIdCounter = 1;
 let wireIdCounter = 1;
 let portElIndex = {};
@@ -272,14 +274,42 @@ function getPortWorldPos(portEl) {
 }
 
 function bezierPath(x1, y1, x2, y2) {
-  const dx = Math.max(Math.abs(x2 - x1) * 0.5, 60);
+  // Signed, not abs — a control point offset that's always "+dx from x1,
+  // -dx from x2" assumes the target sits to the right, so when it's
+  // actually to the LEFT (a wire feeding back to something upstream, or a
+  // node dragged past what it's wired to) both control points bulge away
+  // from each other instead of toward each other, looping the curve out
+  // and back instead of a clean line. Keeping the sign of (x2-x1) makes
+  // both control points always point toward the OTHER end regardless of
+  // which side it's actually on.
+  const rawDx = x2 - x1;
+  const dx = (rawDx < 0 ? -1 : 1) * Math.max(Math.abs(rawDx) * 0.5, 60);
   return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
 }
 
-function fmtRate(n) {
-  if (!isFinite(n)) return '0/min';
-  return `${n.toFixed(1)}/min`;
+// Power lines read like circuit wiring — straight runs and clean corners,
+// never the smooth curve every other wire uses — so a power connection
+// stays visually distinct on a busy board at a glance, the same way its
+// port already gets its own color. One elbow, bent at the horizontal
+// midpoint, is enough to always reach the target regardless of relative
+// position (unlike a naive H-then-V path, this doesn't go fully vertical
+// when x1 and x2 are nearly equal).
+function orthogonalPath(x1, y1, x2, y2) {
+  const midX = x1 + (x2 - x1) / 2;
+  return `M ${x1} ${y1} L ${midX} ${y1} L ${midX} ${y2} L ${x2} ${y2}`;
 }
+
+function wirePathFor(item, x1, y1, x2, y2) {
+  return poolKindOf(item) === 'power' ? orthogonalPath(x1, y1, x2, y2) : bezierPath(x1, y1, x2, y2);
+}
+
+function straightPath(x1, y1, x2, y2) {
+  return `M ${x1} ${y1} L ${x2} ${y2}`;
+}
+
+// fmtRate/fmtItemRate/round2 are defined in calc.js (shared with the
+// calculator's own queue-scaled rate chips — see renderCraftRow in
+// render.js) so both pages' rate displays read identically.
 
 function portColorClass(name) {
   const kind = poolKindOf(name);
@@ -289,8 +319,13 @@ function portColorClass(name) {
   return '';
 }
 
-function nodeRecipeObj(node) {
-  return node && node.recipeKey ? RECIPE_INDEX_BY_KEY[node.recipeKey] || null : null;
+// A card can run more than one of its facility's recipes at once (an
+// Aircraft Factory building both Parts and Engines on the same node) — its
+// inputs/outputs/rates are the union/sum of every recipe it currently has
+// active, exactly as if each were its own separate node.
+function nodeRecipeObjs(node) {
+  if (!node || !node.recipeKeys) return [];
+  return node.recipeKeys.map(k => RECIPE_INDEX_BY_KEY[k]).filter(Boolean);
 }
 
 function isPortConnected(nodeId, item, dir) {
@@ -298,8 +333,6 @@ function isPortConnected(nodeId, item, dir) {
     ? plannerState.connections.some(c => c.fromNode === nodeId && c.fromItem === item)
     : plannerState.connections.some(c => c.toNode === nodeId && c.toItem === item);
 }
-
-function round2(n) { return Math.round(n * 100) / 100; }
 
 // A node's actual rate for one of its own items, as either its producer
 // (dir 'out') or consumer (dir 'in') — MW for Facility Power (a continuous
@@ -311,18 +344,18 @@ function round2(n) { return Math.round(n * 100) / 100; }
 // renderWires) rather than restating the producer's full output on every
 // branch it happens to feed.
 function itemRatePerMin(node, item, dir) {
-  const recipe = nodeRecipeObj(node);
-  if (!recipe) return 0;
-  const queues = node.queues || 1;
-  if (item === 'Facility Power') {
-    return dir === 'in' ? (recipe.power_mw || 0) * node.count * queues : (recipe.outputs[item] || 0) * node.count * queues;
+  const recipes = nodeRecipeObjs(node);
+  if (!recipes.length) return 0;
+  let total = 0;
+  for (const recipe of recipes) {
+    if (item === 'Facility Power') {
+      total += dir === 'in' ? (recipe.power_mw || 0) : (recipe.outputs[item] || 0);
+      continue;
+    }
+    const qty = dir === 'in' ? (recipe.inputs[item] || 0) : (recipe.outputs[item] || 0);
+    if (qty) total += qty / Math.max(effectiveCraftingTime(recipe), 0.001) * 60;
   }
-  const qty = dir === 'in' ? (recipe.inputs[item] || 0) : (recipe.outputs[item] || 0);
-  return qty / Math.max(effectiveCraftingTime(recipe, queues), 0.001) * 60 * node.count;
-}
-
-function fmtItemRate(item, rate) {
-  return item === 'Facility Power' ? `${round2(rate)} MW` : fmtRate(rate);
+  return total * node.count;
 }
 
 // ============================================================
@@ -343,45 +376,51 @@ function ioRowHtml(node, name, rateText, dir) {
 }
 
 function buildNodeHtml(node) {
-  const recipe = nodeRecipeObj(node);
-  const inputRows = recipe
-    ? Object.keys(recipe.inputs).map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'in')), 'in'))
-    : [];
+  const recipes = nodeRecipeObjs(node);
+  // NEEDS/YIELDS are the UNION of every active recipe's own inputs/outputs
+  // (see itemRatePerMin, which already sums the rate across all of them) —
+  // an item two active recipes both need shows once, at their combined
+  // rate, not as two duplicate rows.
+  const inputItems = [];
+  const outputItems = [];
+  let anyPower = false;
+  for (const r of recipes) {
+    for (const n of Object.keys(r.inputs)) if (!inputItems.includes(n)) inputItems.push(n);
+    for (const n of Object.keys(r.outputs)) if (!outputItems.includes(n)) outputItems.push(n);
+    if (r.power_mw) anyPower = true;
+  }
+  const inputRows = inputItems.map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'in')), 'in'));
   // Power is a normal NEEDS-side port here too — a second, yellow-coded
-  // input alongside the recipe's real ingredients (see itemRatePerMin) —
+  // input alongside the recipes' real ingredients (see itemRatePerMin) —
   // rather than a bare text readout with nothing to actually wire a power
   // plant's output into.
-  if (recipe && recipe.power_mw) {
+  if (anyPower) {
     inputRows.push(ioRowHtml(node, 'Facility Power', fmtItemRate('Facility Power', itemRatePerMin(node, 'Facility Power', 'in')), 'in'));
   }
   const inputsHtml = inputRows.length ? inputRows.join('') : `<div class="fac-node-io-empty">—</div>`;
 
-  const outputsHtml = recipe && Object.keys(recipe.outputs).length
-    ? Object.keys(recipe.outputs).map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'out')), 'out')).join('')
+  const outputsHtml = outputItems.length
+    ? outputItems.map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'out')), 'out')).join('')
     : `<div class="fac-node-io-empty">—</div>`;
 
   // The header always names the base building (what you searched for and
-  // placed) — the icon and tooltip switch to the ACTIVE recipe's own exact
-  // module facility when one's selected ("Oil Refinery [Cracking Unit]"),
-  // since that's the more specific/accurate picture of what's actually
-  // sitting on the board right now; falls back to the base building's own
-  // icon before a recipe's chosen.
-  const iconFacility = recipe ? recipe.facility : node.facility;
+  // placed) — the icon and tooltip switch to the first ACTIVE recipe's own
+  // exact module facility when one's selected ("Oil Refinery [Cracking
+  // Unit]"), since that's the more specific/accurate picture of what's
+  // actually sitting on the board right now; falls back to the base
+  // building's own icon before any recipe's chosen.
+  const iconFacility = recipes.length ? recipes[0].facility : node.facility;
   // The facility count lives inline in the header now (no separate labeled
   // row, no craft-time row below it — see the card-condensing pass this
   // came from) — same qty-inc/qty-dec/.fac-qty-val hooks the event
   // delegation in initPlannerUI already listens for, just laid out smaller.
-  // Queues (separate from facility count — parallel lines WITHIN one
-  // building, not how many buildings) share the button row with the recipe
-  // picker instead of costing their own row, same reasoning; omitted
-  // entirely for a power facility, capped at a single queue.
-  const maxQueues = maxQueuesForFacility(node.facility);
-  const queueStepperHtml = maxQueues > 1 ? `
-    <div class="fac-node-queue-inline" title="Production queues (parallel)">
-      <button class="fac-qty-mini-btn" data-action="queue-dec" title="One fewer queue">−</button>
-      <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.queues}" min="1" max="${maxQueues}" step="1" inputmode="numeric">
-      <button class="fac-qty-mini-btn" data-action="queue-inc" title="One more queue">+</button>
-    </div>` : '';
+  const recipeListHtml = recipes.length
+    ? recipes.map(r => `
+      <div class="fac-node-recipe-chip" data-recipe-key="${r.key}" title="Click to edit recipes">
+        <span class="chip-label">${r.label}</span>
+        <button class="chip-remove" data-action="remove-recipe" data-recipe-key="${r.key}" title="Stop running this recipe">×</button>
+      </div>`).join('')
+    : `<div class="fac-node-recipe-empty">NO RECIPE SELECTED</div>`;
   return `
     <div class="fac-node-head" data-drag-handle>
       ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
@@ -393,12 +432,9 @@ function buildNodeHtml(node) {
       </div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
-    <div class="fac-node-recipe-row">
-      <button class="fac-node-recipe-btn" data-action="pick-recipe">
-        <span class="rbtn-label">${recipe ? recipe.label : 'SELECT RECIPE'}</span>
-        <span class="rbtn-chevron" aria-hidden="true"></span>
-      </button>
-      ${queueStepperHtml}
+    <div class="fac-node-recipes">
+      ${recipeListHtml}
+      <button class="fac-node-recipe-add" data-action="add-recipe" title="Run another of this facility's recipes at the same time">+ RECIPE</button>
     </div>
     <div class="fac-node-io">
       <div class="fac-node-io-col needs">
@@ -416,7 +452,7 @@ function renderNodesLayer() {
   nodesLayerEl.innerHTML = '';
   for (const node of plannerState.nodes) {
     const el = document.createElement('div');
-    el.className = 'fac-node' + (node.id === plannerState.selectedNodeId ? ' selected' : '');
+    el.className = 'fac-node' + (plannerState.selectedNodeIds.has(node.id) ? ' selected' : '');
     el.dataset.nodeId = node.id;
     el.style.left = `${node.x}px`;
     el.style.top = `${node.y}px`;
@@ -440,37 +476,77 @@ function indexPorts() {
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-// Per output port (nodeId+item), how much it actually produces vs. how much
-// every wire leaving it is asking for combined — an output wired to several
-// consumers isn't multiplied by each branch (that was the original bug: a
-// single 60/min refinery showing 60/min on all three of its outgoing
-// wires, implying 180/min total); each wire instead reports its own
-// consumer's real draw, and this tracks whether those draws, summed,
-// overrun what the port can actually supply — surfaced as a warning color
-// on the port and its wires rather than silently letting the numbers not
-// add up.
-function computeSupplyDemand() {
-  const balance = {};
+// Two jobs in one pass, both about wires sharing a port that only has one
+// combined rate to go around:
+//  - FAN-OUT (one output feeding several consumers): a single 60/min
+//    refinery wired to three consumers doesn't supply 60/min to each of
+//    them (the original bug this fixed — the port would've shown 180/min
+//    worth of draw against a 60/min supply even when the consumers only
+//    actually needed 40 total). Each wire's flow is capped by what's
+//    actually left once every other wire off that port is accounted for.
+//  - FAN-IN (one input fed by several producers — "merge inputs": two
+//    buildings both making Construction Materials wired into the same
+//    consumer): the consumer's demand is split across its incoming wires
+//    proportional to each source's own rate, capped at what that source
+//    actually makes, instead of treating EVERY wire as if it alone had to
+//    cover the full downstream demand (which used to flag both sources as
+//    short even when the two together covered it exactly). If every
+//    source combined still isn't enough, each just passes its full rate
+//    through and the port itself — not any one wire — is marked short.
+// The result is a per-wire "flow" (what that specific wire is actually
+// carrying), plus a supplied/demanded balance for every output port and a
+// demand/short balance for every input port, used by renderWires to color
+// whichever side of a shortfall is the real bottleneck.
+function computeFlow() {
+  const byTarget = {};
+  for (const conn of plannerState.connections) {
+    const perNode = byTarget[conn.toNode] || (byTarget[conn.toNode] = {});
+    (perNode[conn.toItem] || (perNode[conn.toItem] = [])).push(conn);
+  }
+
+  const wireFlow = {};       // connId -> rate this specific wire actually carries
+  const inputBalance = {};   // `${toNode}|${toItem}` -> { demand, totalOffered, short }
+  for (const [toNodeId, itemsMap] of Object.entries(byTarget)) {
+    const toNode = nodesById[toNodeId];
+    if (!toNode) continue;
+    for (const [toItem, conns] of Object.entries(itemsMap)) {
+      const demand = itemRatePerMin(toNode, toItem, 'in');
+      const supplies = conns.map(c => {
+        const fromNode = nodesById[c.fromNode];
+        return fromNode ? itemRatePerMin(fromNode, c.fromItem, 'out') : 0;
+      });
+      const totalOffered = supplies.reduce((a, b) => a + b, 0);
+      // Combined sources cover (or exceed) the need: split the demand
+      // between them, proportional to what each already makes. Combined
+      // sources fall short: nobody's throttled, so just pass each one's
+      // full rate through — the shortfall belongs to the port, not a wire.
+      const scale = totalOffered > demand && totalOffered > 0 ? demand / totalOffered : 1;
+      conns.forEach((c, i) => { wireFlow[c.id] = supplies[i] * scale; });
+      inputBalance[`${toNodeId}|${toItem}`] = { demand, totalOffered, short: totalOffered < demand - 1e-6 };
+    }
+  }
+
+  const outputBalance = {}; // `${fromNode}|${fromItem}` -> { supplied, demanded }
   for (const node of plannerState.nodes) {
-    const recipe = nodeRecipeObj(node);
-    if (!recipe) continue;
-    for (const item of Object.keys(recipe.outputs)) {
-      balance[`${node.id}|out|${item}`] = { supplied: itemRatePerMin(node, item, 'out'), demanded: 0 };
+    for (const r of nodeRecipeObjs(node)) {
+      for (const item of Object.keys(r.outputs)) {
+        const key = `${node.id}|${item}`;
+        if (!outputBalance[key]) outputBalance[key] = { supplied: itemRatePerMin(node, item, 'out'), demanded: 0 };
+      }
     }
   }
   for (const conn of plannerState.connections) {
-    const entry = balance[`${conn.fromNode}|out|${conn.fromItem}`];
-    const toNode = nodesById[conn.toNode];
-    if (!entry || !toNode) continue;
-    entry.demanded += itemRatePerMin(toNode, conn.toItem, 'in');
+    const entry = outputBalance[`${conn.fromNode}|${conn.fromItem}`];
+    if (entry) entry.demanded += wireFlow[conn.id] || 0;
   }
-  return balance;
+
+  return { wireFlow, inputBalance, outputBalance };
 }
 
 function renderWires() {
   wireLayerEl.innerHTML = '';
   pendingPathEl = null;
-  const balance = computeSupplyDemand();
+  const { wireFlow, inputBalance, outputBalance } = computeFlow();
   nodesLayerEl.querySelectorAll('.fac-port.overcap').forEach(el => el.classList.remove('overcap'));
 
   for (const conn of plannerState.connections) {
@@ -479,47 +555,96 @@ function renderWires() {
     if (!fromEl || !toEl) continue;
     const p1 = getPortWorldPos(fromEl);
     const p2 = getPortWorldPos(toEl);
-    const d = bezierPath(p1.x, p1.y, p2.x, p2.y);
+    // A dragged bend point (see onWireHitMouseDown/onWaypointDragStart)
+    // splits the wire into a chain of straight hops through each
+    // waypoint in order, rather than one smooth curve straight to the
+    // target — each hop is its own path/hitbox (still tagged with this
+    // connection's id, so selection/click-through-drag work on any of
+    // them) instead of trying to splice multiple curve commands into one
+    // "d" string.
+    const waypoints = conn.waypoints || [];
+    const points = [p1, ...waypoints, p2];
 
-    const bal = balance[`${conn.fromNode}|out|${conn.fromItem}`];
-    const overCap = !!bal && bal.demanded > bal.supplied + 1e-6;
-    if (overCap) fromEl.classList.add('overcap');
+    // Two independent reasons a wire can be flagged, colored the same way
+    // since both mean "the numbers along this wire don't add up": the
+    // SOURCE is promising more across all its wires than it actually makes
+    // (producerOvercap), or the DESTINATION port isn't getting enough even
+    // with every source feeding it combined (inputShort) — see
+    // computeFlow. A wire between two otherwise-fine nodes can still show
+    // inputShort if a sibling wire into the same input is the shortfall.
+    const outBal = outputBalance[`${conn.fromNode}|${conn.fromItem}`];
+    const inBal = inputBalance[`${conn.toNode}|${conn.toItem}`];
+    const producerOvercap = !!outBal && outBal.demanded > outBal.supplied + 1e-6;
+    const inputShort = !!inBal && inBal.short;
+    const overCap = producerOvercap || inputShort;
+    if (producerOvercap) fromEl.classList.add('overcap');
+    if (inputShort) toEl.classList.add('overcap');
 
-    const hit = document.createElementNS(SVG_NS, 'path');
-    hit.setAttribute('d', d);
-    hit.setAttribute('class', 'wire-path-hitbox');
-    hit.dataset.wireId = conn.id;
-    wireLayerEl.appendChild(hit);
+    // A hop between two user-placed points is always a straight line — a
+    // waypoint IS the manual override, so re-curving (or re-elbowing) on
+    // top of it would fight the exact shape being asked for and make
+    // dragging feel unpredictable. The auto routing (bezier, or the
+    // right-angle-only elbow for power — see wirePathFor) only applies to
+    // the untouched single hop straight from port to port.
+    const useStraight = points.length > 2;
+    for (let i = 0; i < points.length - 1; i++) {
+      const segD = useStraight
+        ? straightPath(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y)
+        : wirePathFor(conn.fromItem, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
 
-    const vis = document.createElementNS(SVG_NS, 'path');
-    vis.setAttribute('d', d);
-    vis.setAttribute('class', 'wire-path'
-      + (overCap ? ' wire-path-overcap' : '')
-      + (conn.id === plannerState.selectedWireId ? ' selected' : ''));
-    vis.dataset.wireId = conn.id;
-    wireLayerEl.appendChild(vis);
+      const hit = document.createElementNS(SVG_NS, 'path');
+      hit.setAttribute('d', segD);
+      hit.setAttribute('class', 'wire-path-hitbox');
+      hit.dataset.wireId = conn.id;
+      hit.dataset.segmentIndex = i;
+      wireLayerEl.appendChild(hit);
 
-    // The rate shown is what the CONSUMER at this wire's far end actually
-    // draws, not the producer's full output — see computeSupplyDemand above.
-    const toNode = nodesById[conn.toNode];
-    const rate = toNode ? itemRatePerMin(toNode, conn.toItem, 'in') : 0;
+      const vis = document.createElementNS(SVG_NS, 'path');
+      vis.setAttribute('d', segD);
+      vis.setAttribute('class', 'wire-path'
+        + (overCap ? ' wire-path-overcap' : '')
+        + (conn.id === plannerState.selectedWireId ? ' selected' : ''));
+      vis.dataset.wireId = conn.id;
+      wireLayerEl.appendChild(vis);
+    }
+
+    waypoints.forEach((wp, i) => {
+      const handle = document.createElementNS(SVG_NS, 'circle');
+      handle.setAttribute('cx', wp.x);
+      handle.setAttribute('cy', wp.y);
+      handle.setAttribute('r', 5);
+      handle.setAttribute('class', 'wire-waypoint' + (conn.id === plannerState.selectedWireId ? ' selected' : ''));
+      handle.dataset.wireId = conn.id;
+      handle.dataset.wpIndex = i;
+      wireLayerEl.appendChild(handle);
+    });
+
+    // The rate shown is what THIS wire actually carries — its fair share
+    // of the consumer's demand when other wires feed the same input too,
+    // not the producer's full output and not the consumer's full demand
+    // restated on every branch feeding it (see computeFlow). The label
+    // sits at the midpoint of the middle hop, which is just the original
+    // port-to-port midpoint whenever there are no waypoints at all.
+    const rate = wireFlow[conn.id] || 0;
+    const midIdx = Math.floor((points.length - 2) / 2);
+    const a = points[midIdx], b = points[midIdx + 1];
 
     const label = document.createElementNS(SVG_NS, 'text');
-    label.setAttribute('x', (p1.x + p2.x) / 2);
-    label.setAttribute('y', (p1.y + p2.y) / 2 - 8);
+    label.setAttribute('x', (a.x + b.x) / 2);
+    label.setAttribute('y', (a.y + b.y) / 2 - 8);
     label.setAttribute('class', 'wire-label' + (overCap ? ' wire-label-overcap' : ''));
     label.textContent = `${conn.fromItem} · ${fmtItemRate(conn.fromItem, rate)}`;
     wireLayerEl.appendChild(label);
   }
 }
 
-function updatePendingWire(x1, y1, x2, y2) {
+function updatePendingWire(x1, y1, x2, y2, item) {
   if (!pendingPathEl) {
     pendingPathEl = document.createElementNS(SVG_NS, 'path');
     pendingPathEl.setAttribute('class', 'wire-path-pending');
     wireLayerEl.appendChild(pendingPathEl);
   }
-  pendingPathEl.setAttribute('d', bezierPath(x1, y1, x2, y2));
+  pendingPathEl.setAttribute('d', wirePathFor(item, x1, y1, x2, y2));
 }
 
 function clearPendingWire() {
@@ -533,7 +658,7 @@ function clearPendingWire() {
 
 function updateSelectionClasses() {
   nodesLayerEl.querySelectorAll('.fac-node').forEach(el => {
-    el.classList.toggle('selected', el.dataset.nodeId === plannerState.selectedNodeId);
+    el.classList.toggle('selected', plannerState.selectedNodeIds.has(el.dataset.nodeId));
   });
   wireLayerEl.querySelectorAll('.wire-path').forEach(el => {
     el.classList.toggle('selected', el.dataset.wireId === plannerState.selectedWireId);
@@ -541,18 +666,33 @@ function updateSelectionClasses() {
 }
 
 function selectNode(id) {
-  plannerState.selectedNodeId = id;
+  plannerState.selectedNodeIds = new Set([id]);
+  plannerState.selectedWireId = null;
+  updateSelectionClasses();
+}
+// Shift-clicking a node's header adds/removes just that one node from
+// whatever's currently selected, instead of replacing the selection the
+// way a plain click does — lets a box-select be fine-tuned by hand.
+function toggleNodeSelection(id) {
+  const next = new Set(plannerState.selectedNodeIds);
+  if (next.has(id)) next.delete(id); else next.add(id);
+  plannerState.selectedNodeIds = next;
+  plannerState.selectedWireId = null;
+  updateSelectionClasses();
+}
+function setSelectedNodes(ids) {
+  plannerState.selectedNodeIds = new Set(ids);
   plannerState.selectedWireId = null;
   updateSelectionClasses();
 }
 function selectWire(id) {
   plannerState.selectedWireId = id;
-  plannerState.selectedNodeId = null;
+  plannerState.selectedNodeIds = new Set();
   updateSelectionClasses();
 }
 function deselectAll() {
-  if (!plannerState.selectedNodeId && !plannerState.selectedWireId) return;
-  plannerState.selectedNodeId = null;
+  if (!plannerState.selectedNodeIds.size && !plannerState.selectedWireId) return;
+  plannerState.selectedNodeIds = new Set();
   plannerState.selectedWireId = null;
   updateSelectionClasses();
 }
@@ -573,7 +713,7 @@ function addNode(facility, x, y) {
   // whichever module recipe happens to sort first alphabetically) — falls
   // back to the alphabetically-first when there's no plain configuration.
   const defaultRecipe = recipes.find(r => r.facility === facility) || recipes[0];
-  const node = { id: `n${nodeIdCounter++}`, facility, recipeKey: defaultRecipe.key, x, y, count: 1, queues: 1 };
+  const node = { id: `n${nodeIdCounter++}`, facility, recipeKeys: [defaultRecipe.key], x, y, count: 1 };
   plannerState.nodes.push(node);
   nodesById[node.id] = node;
   renderNodesLayer();
@@ -596,25 +736,17 @@ function setNodeCount(node, count) {
   saveState();
 }
 
-// How many of this node's facility's parallel production queues are
-// devoted to it — 1-5, clamped to 1 for a power facility (see
-// maxQueuesForFacility in calc.js). Unlike count (separate physical
-// buildings), this scales rate by shortening the effective craft time
-// (see itemRatePerMin) — the same lever the manifest's own per-step queue
-// stepper pulls, just expressed per-node here instead of per-recipe-row.
-function setNodeQueues(node, queues) {
-  node.queues = clampQueueCount(queues, node.facility);
-  const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
-  if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
-  indexPorts();
-  renderWires();
-  saveState();
-}
+function removeNode(id) { removeNodes([id]); }
 
-function removeNode(id) {
-  plannerState.nodes = plannerState.nodes.filter(n => n.id !== id);
-  delete nodesById[id];
-  if (plannerState.selectedNodeId === id) plannerState.selectedNodeId = null;
+// Batched so a multi-select Delete does one state mutation and one
+// re-render instead of removeNode's full render cycle per node.
+function removeNodes(ids) {
+  const idSet = new Set(ids);
+  plannerState.nodes = plannerState.nodes.filter(n => !idSet.has(n.id));
+  for (const id of idSet) delete nodesById[id];
+  if (plannerState.selectedNodeIds.size) {
+    plannerState.selectedNodeIds = new Set([...plannerState.selectedNodeIds].filter(id => !idSet.has(id)));
+  }
   pruneConnections();
   renderNodesLayer();
   renderWires();
@@ -627,14 +759,17 @@ function pruneConnections() {
     const fromNode = nodesById[c.fromNode];
     const toNode = nodesById[c.toNode];
     if (!fromNode || !toNode) return false;
-    const fromRecipe = nodeRecipeObj(fromNode);
-    const toRecipe = nodeRecipeObj(toNode);
-    if (!fromRecipe || !toRecipe) return false;
+    const fromRecipes = nodeRecipeObjs(fromNode);
+    const toRecipes = nodeRecipeObjs(toNode);
+    if (!fromRecipes.length || !toRecipes.length) return false;
     // Facility Power lives in recipe.power_mw, not recipe.inputs (see
     // itemRatePerMin) — a plain `in` check would otherwise prune every
-    // power wire the next time this runs.
-    const toValid = c.toItem === 'Facility Power' ? !!toRecipe.power_mw : c.toItem in toRecipe.inputs;
-    return (c.fromItem in fromRecipe.outputs) && toValid;
+    // power wire the next time this runs. A port stays valid as long as
+    // ANY of the node's active recipes still uses that item.
+    const toValid = c.toItem === 'Facility Power'
+      ? toRecipes.some(r => !!r.power_mw)
+      : toRecipes.some(r => c.toItem in r.inputs);
+    return fromRecipes.some(r => c.fromItem in r.outputs) && toValid;
   });
   if (plannerState.selectedWireId && !plannerState.connections.some(c => c.id === plannerState.selectedWireId)) {
     plannerState.selectedWireId = null;
@@ -646,7 +781,7 @@ function addConnection(fromNode, fromItem, toNode, toItem) {
   const exists = plannerState.connections.some(c =>
     c.fromNode === fromNode && c.fromItem === fromItem && c.toNode === toNode && c.toItem === toItem);
   if (exists) return;
-  plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode, fromItem, toNode, toItem });
+  plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode, fromItem, toNode, toItem, waypoints: [] });
   renderNodesLayer(); // refresh "connected" dot styling on both ends
   renderWires();
   saveState();
@@ -657,6 +792,59 @@ function removeConnection(id) {
   if (plannerState.selectedWireId === id) plannerState.selectedWireId = null;
   renderNodesLayer();
   renderWires();
+  saveState();
+}
+
+// ============================================================
+// COPY / PASTE
+// ============================================================
+
+// Snapshots the current selection into plannerClipboard — only wiring
+// BETWEEN two copied nodes comes along (a wire to something outside the
+// selection has no matching node on the other end once pasted, so it's
+// dropped rather than left dangling). Resets the cascade offset so the
+// next paste lands right on top of the copied nodes, same as any other
+// clipboard.
+function copySelection() {
+  if (!plannerState.selectedNodeIds.size) return;
+  const ids = plannerState.selectedNodeIds;
+  plannerClipboard = {
+    nodes: plannerState.nodes.filter(n => ids.has(n.id)).map(n => ({ ...n, recipeKeys: [...n.recipeKeys] })),
+    connections: plannerState.connections
+      .filter(c => ids.has(c.fromNode) && ids.has(c.toNode))
+      .map(c => ({
+        fromNode: c.fromNode, fromItem: c.fromItem, toNode: c.toNode, toItem: c.toItem,
+        waypoints: (c.waypoints || []).map(wp => ({ ...wp }))
+      }))
+  };
+  pasteOffsetStep = 0;
+}
+
+// Pastes as new nodes with new ids, preserving the copied group's relative
+// layout and internal wiring — offset a little further from the original
+// on each successive paste (classic clipboard cascade) so repeated Ctrl+V
+// doesn't stack every copy exactly on top of the last.
+function pasteClipboard() {
+  if (!plannerClipboard || !plannerClipboard.nodes.length) return;
+  pasteOffsetStep += 1;
+  const offset = pasteOffsetStep * 40;
+  const idMap = {};
+  const newNodes = plannerClipboard.nodes.map(n => {
+    const id = `n${nodeIdCounter++}`;
+    idMap[n.id] = id;
+    return { ...n, id, recipeKeys: [...n.recipeKeys], x: n.x + offset, y: n.y + offset };
+  });
+  for (const n of newNodes) { plannerState.nodes.push(n); nodesById[n.id] = n; }
+  for (const c of plannerClipboard.connections) {
+    const fromId = idMap[c.fromNode], toId = idMap[c.toNode];
+    if (!fromId || !toId) continue;
+    const waypoints = (c.waypoints || []).map(wp => ({ x: wp.x + offset, y: wp.y + offset }));
+    plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode: fromId, fromItem: c.fromItem, toNode: toId, toItem: c.toItem, waypoints });
+  }
+  setSelectedNodes(newNodes.map(n => n.id));
+  renderNodesLayer();
+  renderWires();
+  updateEmptyHint();
   saveState();
 }
 
@@ -687,7 +875,9 @@ function loadState() {
     .map(n => ({
       ...n,
       count: Math.max(1, Math.floor(n.count) || 1), // older saved layouts predate the count field
-      queues: clampQueueCount(n.queues || 1, n.facility) // ...and predate queues entirely
+      // Older saved layouts predate multi-recipe cards and carry a single
+      // recipeKey instead — migrate it into a one-item recipeKeys array.
+      recipeKeys: n.recipeKeys ? n.recipeKeys : (n.recipeKey ? [n.recipeKey] : [])
     }));
   plannerState.connections = data.connections || [];
   plannerState.pan = data.pan && typeof data.pan.x === 'number' ? data.pan : { x: 60, y: 60 };
@@ -747,7 +937,7 @@ function tryImportFromCalculator() {
   Object.keys(byDepth).map(Number).sort((a, b) => a - b).forEach(depth => {
     byDepth[depth].forEach((entry, i) => {
       const id = `n${nodeIdCounter++}`;
-      const node = { id, facility: entry.facility, recipeKey: entry.recipeKey, x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1, queues: 1 };
+      const node = { id, facility: entry.facility, recipeKeys: [entry.recipeKey], x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1 };
       plannerState.nodes.push(node);
       nodesById[id] = node;
       nodeIdByRecipeKey[entry.recipeKey] = id;
@@ -757,11 +947,11 @@ function tryImportFromCalculator() {
   for (const edge of payload.edges || []) {
     const fromId = nodeIdByRecipeKey[edge.from], toId = nodeIdByRecipeKey[edge.to];
     if (!fromId || !toId) continue;
-    plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode: fromId, fromItem: edge.item, toNode: toId, toItem: edge.item });
+    plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode: fromId, fromItem: edge.item, toNode: toId, toItem: edge.item, waypoints: [] });
   }
 
   fitViewToNodes();
-  plannerState.selectedNodeId = null;
+  plannerState.selectedNodeIds = new Set();
   plannerState.selectedWireId = null;
   saveState();
   return true;
@@ -839,33 +1029,163 @@ function startPan(e) {
   document.addEventListener('mouseup', onUp);
 }
 
+// Shift+drag on empty board draws a marquee and selects every node its
+// rectangle overlaps — compared purely in screen/client space (each
+// node's own getBoundingClientRect() vs. the marquee's), so it doesn't
+// need to know a node's world-space footprint or account for pan/zoom
+// itself; both rects already live in the same coordinate system the
+// mouse events do.
+function startBoxSelect(e) {
+  e.preventDefault();
+  const startClientX = e.clientX, startClientY = e.clientY;
+  const boxEl = document.createElement('div');
+  boxEl.className = 'planner-select-box';
+  viewportEl.appendChild(boxEl);
+  const viewportRect = viewportEl.getBoundingClientRect();
+
+  function updateBox(ev) {
+    const x1 = Math.min(startClientX, ev.clientX), x2 = Math.max(startClientX, ev.clientX);
+    const y1 = Math.min(startClientY, ev.clientY), y2 = Math.max(startClientY, ev.clientY);
+    boxEl.style.left = `${x1 - viewportRect.left}px`;
+    boxEl.style.top = `${y1 - viewportRect.top}px`;
+    boxEl.style.width = `${x2 - x1}px`;
+    boxEl.style.height = `${y2 - y1}px`;
+    return { left: x1, right: x2, top: y1, bottom: y2 };
+  }
+
+  function onMove(ev) { updateBox(ev); }
+  function onUp(ev) {
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    const sel = updateBox(ev);
+    boxEl.remove();
+    const ids = [];
+    nodesLayerEl.querySelectorAll('.fac-node').forEach(nodeEl => {
+      const r = nodeEl.getBoundingClientRect();
+      if (r.left < sel.right && r.right > sel.left && r.top < sel.bottom && r.bottom > sel.top) {
+        ids.push(nodeEl.dataset.nodeId);
+      }
+    });
+    setSelectedNodes(ids);
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
 // ============================================================
 // NODE DRAG
 // ============================================================
 
+// Selection is decided by the caller BEFORE this runs (see the
+// nodesLayerEl mousedown handler) — dragging moves whichever node(s) are
+// selected at that point: the whole group when the clicked node is part
+// of a multi-selection, or just the one node otherwise.
 function onNodeDragStart(e, nodeEl) {
   e.preventDefault();
   e.stopPropagation();
-  const nodeId = nodeEl.dataset.nodeId;
-  const node = nodesById[nodeId];
-  selectNode(nodeId);
+  const draggedIds = plannerState.selectedNodeIds.size > 1 && plannerState.selectedNodeIds.has(nodeEl.dataset.nodeId)
+    ? [...plannerState.selectedNodeIds]
+    : [nodeEl.dataset.nodeId];
+  const starts = draggedIds.map(id => ({ id, x: nodesById[id].x, y: nodesById[id].y }));
   const startClientX = e.clientX, startClientY = e.clientY;
-  const startX = node.x, startY = node.y;
   let moved = false;
   function onMove(ev) {
     const dx = (ev.clientX - startClientX) / plannerState.scale;
     const dy = (ev.clientY - startClientY) / plannerState.scale;
     if (Math.abs(dx) > 1 || Math.abs(dy) > 1) moved = true;
-    node.x = startX + dx;
-    node.y = startY + dy;
-    nodeEl.style.left = `${node.x}px`;
-    nodeEl.style.top = `${node.y}px`;
+    for (const s of starts) {
+      const node = nodesById[s.id];
+      node.x = s.x + dx;
+      node.y = s.y + dy;
+      const el = nodesLayerEl.querySelector(`.fac-node[data-node-id="${s.id}"]`);
+      if (el) { el.style.left = `${node.x}px`; el.style.top = `${node.y}px`; }
+    }
     renderWires();
   }
   function onUp() {
     document.removeEventListener('mousemove', onMove);
     document.removeEventListener('mouseup', onUp);
     if (moved) saveState();
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
+// ============================================================
+// WIRE RESHAPE (bend points along an existing wire)
+// ============================================================
+
+// Dragging an existing bend point just moves it. A plain click (no real
+// movement) still falls through to selecting the wire, same as clicking
+// anywhere else on it.
+function onWaypointDragStart(e, handleEl) {
+  e.preventDefault();
+  e.stopPropagation();
+  const wireId = handleEl.dataset.wireId;
+  const wpIndex = Number(handleEl.dataset.wpIndex);
+  const conn = plannerState.connections.find(c => c.id === wireId);
+  if (!conn) return;
+  selectWire(wireId);
+  const startClientX = e.clientX, startClientY = e.clientY;
+  let moved = false;
+  function onMove(ev) {
+    if (Math.abs(ev.clientX - startClientX) > 1 || Math.abs(ev.clientY - startClientY) > 1) moved = true;
+    const world = screenToWorld(ev.clientX, ev.clientY);
+    conn.waypoints[wpIndex] = { x: world.x, y: world.y };
+    renderWires();
+  }
+  function onUp() {
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    if (moved) saveState();
+  }
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
+
+// Grabbing the wire's body itself (not an existing handle) and dragging —
+// "let me move the lines connecting pieces around" — pulls a brand new
+// bend point out of whichever hop was grabbed, right where the drag
+// crosses a small threshold, so a plain click (no real movement) still
+// just selects the wire instead of littering it with an accidental
+// zero-length bend. The hop's own data-segment-index IS the correct
+// insertion index into conn.waypoints: waypoints[0..n-1] sit between
+// points[1..n], so a new point pulled out of hop i belongs at
+// waypoints-index i regardless of how many bends already exist.
+function onWireHitMouseDown(e, hitEl) {
+  e.preventDefault();
+  e.stopPropagation();
+  const wireId = hitEl.dataset.wireId;
+  const segmentIndex = Number(hitEl.dataset.segmentIndex);
+  const conn = plannerState.connections.find(c => c.id === wireId);
+  if (!conn) return;
+  const startClientX = e.clientX, startClientY = e.clientY;
+  const startWorld = screenToWorld(startClientX, startClientY);
+  let created = false, wpIndex = -1;
+  function onMove(ev) {
+    if (!created) {
+      if (Math.abs(ev.clientX - startClientX) < 4 && Math.abs(ev.clientY - startClientY) < 4) return;
+      if (!conn.waypoints) conn.waypoints = [];
+      wpIndex = segmentIndex;
+      // Insert at the point where the wire was actually grabbed, not
+      // wherever the cursor happened to be once the drag crossed the
+      // threshold — otherwise the new bend visibly jumps a few pixels the
+      // instant it appears instead of starting exactly under the cursor.
+      conn.waypoints.splice(wpIndex, 0, { x: startWorld.x, y: startWorld.y });
+      created = true;
+      selectWire(wireId);
+      renderWires();
+      return;
+    }
+    const world = screenToWorld(ev.clientX, ev.clientY);
+    conn.waypoints[wpIndex] = { x: world.x, y: world.y };
+    renderWires();
+  }
+  function onUp() {
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    if (created) saveState();
+    else selectWire(wireId); // no real movement — a plain click-to-select
   }
   document.addEventListener('mousemove', onMove);
   document.addEventListener('mouseup', onUp);
@@ -886,7 +1206,7 @@ function onPortMouseDown(e, portEl) {
 
   function onMove(ev) {
     const world = screenToWorld(ev.clientX, ev.clientY);
-    updatePendingWire(start.x, start.y, world.x, world.y);
+    updatePendingWire(start.x, start.y, world.x, world.y, item);
     const el = document.elementFromPoint(ev.clientX, ev.clientY);
     const candidate = el && el.closest && el.closest('.fac-port-in');
     if (hoverTarget && hoverTarget !== candidate) hoverTarget.classList.remove('wire-target-hover');
@@ -936,7 +1256,7 @@ function renderPickerList(query) {
     pickerListEl.innerHTML = `<div class="picker-empty">NO MATCHING RECIPES</div>`;
     return;
   }
-  pickerListEl.innerHTML = filtered.map(r => renderRecipeOptionCard(toPreview(r), r.key === node.recipeKey, '')).join('');
+  pickerListEl.innerHTML = filtered.map(r => renderRecipeOptionCard(toPreview(r), node.recipeKeys.includes(r.key), '')).join('');
 }
 
 function positionPickerNear(anchorEl) {
@@ -955,12 +1275,26 @@ function openRecipePicker(nodeId) {
   const node = nodesById[nodeId];
   if (!node) return;
   pickerContext = { nodeId };
-  pickerTitleEl.textContent = `${node.facility.toUpperCase()} — CHOOSE RECIPE`;
+  pickerTitleEl.textContent = `${node.facility.toUpperCase()} — CLICK TO TOGGLE RECIPES`;
   pickerSearchEl.value = '';
   renderPickerList('');
-  positionPickerNear(document.querySelector(`.fac-node[data-node-id="${nodeId}"] .fac-node-recipe-btn`));
+  positionPickerNear(document.querySelector(`.fac-node[data-node-id="${nodeId}"] .fac-node-recipes`));
   pickerOverlayEl.classList.add('open');
   pickerSearchEl.focus();
+}
+
+// Turns one of this node's facility's recipes on or off — a card can run
+// any number of its facility's recipes at once (see nodeRecipeObjs), so
+// this toggles membership in recipeKeys rather than replacing it the way a
+// single-recipe picker would.
+function toggleNodeRecipe(node, key) {
+  const idx = node.recipeKeys.indexOf(key);
+  if (idx >= 0) node.recipeKeys.splice(idx, 1);
+  else node.recipeKeys.push(key);
+  pruneConnections();
+  renderNodesLayer();
+  renderWires();
+  saveState();
 }
 
 function closeRecipePicker() {
@@ -1030,6 +1364,7 @@ function initPlannerUI() {
   // ---- Board: pan / zoom ----
   viewportEl.addEventListener('mousedown', e => {
     if (e.target.closest('.fac-node') || e.target.closest('[data-wire-id]')) return;
+    if (e.shiftKey) { startBoxSelect(e); return; }
     deselectAll();
     startPan(e);
   });
@@ -1052,7 +1387,7 @@ function initPlannerUI() {
     plannerState.nodes = [];
     plannerState.connections = [];
     nodesById = {};
-    plannerState.selectedNodeId = null;
+    plannerState.selectedNodeIds = new Set();
     plannerState.selectedWireId = null;
     renderNodesLayer();
     renderWires();
@@ -1069,13 +1404,41 @@ function initPlannerUI() {
     // otherwise block the qty input from ever receiving focus on click.
     if (e.target.closest('.fac-node-qty-inline, .fac-node-remove')) return;
     const head = e.target.closest('.fac-node-head');
-    if (head) { onNodeDragStart(e, head.closest('.fac-node')); return; }
+    if (!head) return;
+    const nodeEl = head.closest('.fac-node');
+    const nodeId = nodeEl.dataset.nodeId;
+    // Shift+click adds/removes just this one node from the selection and
+    // stops there — it doesn't also start a drag, so a box-selected group
+    // can be fine-tuned by hand without immediately dragging it.
+    if (e.shiftKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleNodeSelection(nodeId);
+      return;
+    }
+    // A plain click on a node that's already part of a multi-selection
+    // drags the whole group; clicking anything else collapses the
+    // selection down to just that node first, same as before multi-select
+    // existed.
+    if (!(plannerState.selectedNodeIds.size > 1 && plannerState.selectedNodeIds.has(nodeId))) {
+      selectNode(nodeId);
+    }
+    onNodeDragStart(e, nodeEl);
   });
   nodesLayerEl.addEventListener('click', e => {
     const removeBtn = e.target.closest('[data-action="remove"]');
     if (removeBtn) { removeNode(removeBtn.closest('.fac-node').dataset.nodeId); return; }
-    const recipeBtn = e.target.closest('[data-action="pick-recipe"]');
-    if (recipeBtn) { openRecipePicker(recipeBtn.closest('.fac-node').dataset.nodeId); return; }
+    const chipRemoveBtn = e.target.closest('[data-action="remove-recipe"]');
+    if (chipRemoveBtn) {
+      const node = nodesById[chipRemoveBtn.closest('.fac-node').dataset.nodeId];
+      if (!node) return;
+      toggleNodeRecipe(node, chipRemoveBtn.dataset.recipeKey);
+      return;
+    }
+    const addRecipeBtn = e.target.closest('[data-action="add-recipe"]');
+    if (addRecipeBtn) { openRecipePicker(addRecipeBtn.closest('.fac-node').dataset.nodeId); return; }
+    const recipeChip = e.target.closest('.fac-node-recipe-chip');
+    if (recipeChip) { openRecipePicker(recipeChip.closest('.fac-node').dataset.nodeId); return; }
     const qtyBtn = e.target.closest('[data-action="qty-inc"], [data-action="qty-dec"]');
     if (qtyBtn) {
       const node = nodesById[qtyBtn.closest('.fac-node').dataset.nodeId];
@@ -1083,40 +1446,37 @@ function initPlannerUI() {
       setNodeCount(node, node.count + (qtyBtn.dataset.action === 'qty-inc' ? 1 : -1));
       return;
     }
-    const queueBtn = e.target.closest('[data-action="queue-inc"], [data-action="queue-dec"]');
-    if (queueBtn) {
-      const node = nodesById[queueBtn.closest('.fac-node').dataset.nodeId];
-      if (!node) return;
-      setNodeQueues(node, node.queues + (queueBtn.dataset.action === 'queue-inc' ? 1 : -1));
-      return;
-    }
   });
-  // Typing a count/queue value directly commits on blur/Enter (a 'change'
+  // Typing a count value directly commits on blur/Enter (a 'change'
   // event), same pattern as the main calculator's ticket qty field — a
   // re-render mid-keystroke would fight the user for control of the input.
-  // Both fields share the same .fac-qty-val class (identical look), so
-  // which setter applies is decided by which wrapper the input is actually
-  // in, not the class.
   nodesLayerEl.addEventListener('change', e => {
     const input = e.target.closest('.fac-qty-val');
     if (!input) return;
     const node = nodesById[input.closest('.fac-node').dataset.nodeId];
     if (!node) return;
-    if (input.closest('.fac-node-queue-inline')) {
-      setNodeQueues(node, Math.floor(Number(input.value) || 1));
-      return;
-    }
     setNodeCount(node, Math.floor(Number(input.value) || 1));
   });
   nodesLayerEl.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.closest('.fac-qty-val')) e.target.blur();
   });
 
-  // ---- Wires: select ----
-  wireLayerEl.addEventListener('click', e => {
-    const hit = e.target.closest('[data-wire-id]');
-    if (!hit) return;
-    selectWire(hit.dataset.wireId);
+  // ---- Wires: select, drag to bend, drag a bend point, double-click a
+  // bend point to remove it ----
+  wireLayerEl.addEventListener('mousedown', e => {
+    const handle = e.target.closest('.wire-waypoint');
+    if (handle) { onWaypointDragStart(e, handle); return; }
+    const hit = e.target.closest('.wire-path-hitbox');
+    if (hit) { onWireHitMouseDown(e, hit); return; }
+  });
+  wireLayerEl.addEventListener('dblclick', e => {
+    const handle = e.target.closest('.wire-waypoint');
+    if (!handle) return;
+    const conn = plannerState.connections.find(c => c.id === handle.dataset.wireId);
+    if (!conn) return;
+    conn.waypoints.splice(Number(handle.dataset.wpIndex), 1);
+    renderWires();
+    saveState();
   });
 
   // ---- Recipe picker popup ----
@@ -1127,22 +1487,21 @@ function initPlannerUI() {
     const card = e.target.closest('.recipe-option-card');
     if (!card || !pickerContext) return;
     const node = nodesById[pickerContext.nodeId];
-    node.recipeKey = card.dataset.recipeKey;
-    closeRecipePicker();
-    pruneConnections();
-    renderNodesLayer();
-    renderWires();
-    saveState();
+    toggleNodeRecipe(node, card.dataset.recipeKey);
+    renderPickerList(pickerSearchEl.value); // stays open — refresh ACTIVE state so more can be toggled
   });
 
-  // ---- Keyboard: delete selected node/wire, escape closes the picker ----
+  // ---- Keyboard: delete selected node(s)/wire, copy/paste, escape closes the picker ----
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && pickerContext) { closeRecipePicker(); return; }
     const typing = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
     if (typing || pickerContext) return;
+    const cmdKey = e.ctrlKey || e.metaKey;
+    if (cmdKey && e.key.toLowerCase() === 'c') { copySelection(); return; }
+    if (cmdKey && e.key.toLowerCase() === 'v') { pasteClipboard(); return; }
     if (e.key === 'Delete' || e.key === 'Backspace') {
       if (plannerState.selectedWireId) { removeConnection(plannerState.selectedWireId); }
-      else if (plannerState.selectedNodeId) { removeNode(plannerState.selectedNodeId); }
+      else if (plannerState.selectedNodeIds.size) { removeNodes([...plannerState.selectedNodeIds]); }
     }
   });
 }

@@ -25,12 +25,12 @@
 // panel; the sidebar's own totals always stay visible regardless (see
 // renderCombinedChain's use of this vs renderRawPanel's). MATERIALS
 // CONSUMED has no toggle, so it's not tracked here.
-// queueCounts: recipeKey (or an aircraft root's "aircraft:<key>" id) ->
-// how many of that facility's parallel production queues are devoted to
-// it, 1-5 (only ever 1 for a power facility — see maxQueuesForFacility in
-// calc.js). Same per-recipe granularity as poolRecipeChoice: one setting
-// per recipe regardless of how many places in the tree use it, matching
-// how buildChainSteps already merges those occurrences into a single row.
+// queueCounts: recipeKey (or "aircraft:key" for an aircraft root — see
+// buildProductionChain in calc.js) -> how many parallel production queues
+// (1-5, 1 for power) that recipe is set to run at. Scales a step's YIELDS-
+// side rate (and, through the same craft-time math, the ticket/chain's
+// total craft time) — its NEEDS-side rate always stays the fixed 1-queue
+// base reference regardless (see renderCraftRow/renderGatherRow).
 const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {}, chainVisibility: { liquid: true, resource: true, power: true }, queueCounts: {} };
 
 // The left sidebar's own scroll region: bounded to whatever room is
@@ -419,22 +419,24 @@ function initApp() {
   // ---- Production chain interactions (per-node recipe choice) ----
 
   document.getElementById('chainPanel').addEventListener('click', (e) => {
-    // The queue stepper sits inside step-line-facility, itself inside the
-    // step-head that the recipe-toggle check right below treats as one big
-    // click target — handle (and stop at) it first, or a queue +/- click
-    // would also toggle that step's recipe picker open/closed.
-    const queueBtn = e.target.closest('.step-queue-stepper [data-action]');
+    // The queue stepper sits inside .step-head, which is itself the click
+    // target for the recipe-picker toggle below (see renderCraftRow/
+    // renderGatherRow) — handle +/- here and bail before that toggle logic
+    // ever sees the click, or clicking a queue button would also flip the
+    // picker open/closed underneath it.
+    const queueBtn = e.target.closest('[data-action="queue-inc"], [data-action="queue-dec"]');
     if (queueBtn) {
-      const key = queueBtn.closest('.step-queue-stepper').dataset.queueKey;
-      const isAircraft = key.startsWith('aircraft:');
-      const facility = isAircraft
-        ? (AIRCRAFT_COSTS[key.slice('aircraft:'.length)] || {}).facility
-        : (MATERIAL_RECIPES[key] || {}).facility;
+      const wrap = queueBtn.closest('.step-queue-stepper');
+      const key = wrap.dataset.recipeKey;
+      const max = Number(wrap.dataset.maxQueues) || 5;
       const current = state.queueCounts[key] || 1;
-      state.queueCounts[key] = clampQueueCount(current + (queueBtn.dataset.action === 'queue-inc' ? 1 : -1), facility);
+      state.queueCounts[key] = Math.min(max, Math.max(1, current + (queueBtn.dataset.action === 'queue-inc' ? 1 : -1)));
       renderResults();
       return;
     }
+    // Clicking into the stepper's own value field to type in it shouldn't
+    // toggle the row either — same reasoning, one level up.
+    if (e.target.closest('.step-queue-stepper')) return;
 
     // The whole YIELDS tray is the toggle now, not a separate button — see
     // renderCraftRow/renderGatherRow in render.js. A single-recipe step's
@@ -503,6 +505,22 @@ function initApp() {
       }
       renderResults();
     }
+  });
+
+  // Typing a queue count directly commits on blur/Enter (a 'change' event),
+  // same pattern as every other numeric stepper in this app — a re-render
+  // mid-keystroke would fight the user for control of the input.
+  document.getElementById('chainPanel').addEventListener('change', (e) => {
+    const input = e.target.closest('.step-queue-val-input');
+    if (!input) return;
+    const wrap = input.closest('.step-queue-stepper');
+    const key = wrap.dataset.recipeKey;
+    const max = Number(wrap.dataset.maxQueues) || 5;
+    state.queueCounts[key] = Math.min(max, Math.max(1, Math.floor(Number(input.value)) || 1));
+    renderResults();
+  });
+  document.getElementById('chainPanel').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.closest('.step-queue-val-input')) e.target.blur();
   });
 
   // ---- Sidebar: LIQUIDS/RAW RESOURCES/POWER headers toggle their gather
