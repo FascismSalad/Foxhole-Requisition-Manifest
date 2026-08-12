@@ -355,16 +355,25 @@ body.planner-page {
 }
 .fac-node-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
 
+/* Recipe picker + (when the facility supports more than one) the queue
+   stepper share this row as siblings, not nested inside the button — a
+   queue +/- click must never also open the recipe picker underneath it. */
+.fac-node-recipe-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px dashed var(--line-faint);
+}
+
 .fac-node-recipe-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 6px 10px;
   background: var(--panel);
   border: none;
-  border-bottom: 1px dashed var(--line-faint);
   color: var(--yellow);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
@@ -380,6 +389,15 @@ body.planner-page {
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
   transform: rotate(45deg);
+}
+
+.fac-node-queue-inline {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  padding: 0 8px;
+  border-left: 1px dashed var(--line-faint);
 }
 
 .fac-node-io {

@@ -661,6 +661,53 @@ body {
 .step-facility-icon { width: 28px; height: 28px; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)); }
 .step-facility-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 
+/* Every facility but power generation runs up to 5 parallel production
+   queues (see maxQueuesForFacility in calc.js) — pinned to the right end
+   of the facility line, clear of the step-head click target it visually
+   sits inside (app.js intercepts a click here before that toggle logic
+   ever sees it). Omitted entirely for a power facility (nothing to
+   choose between at a hard cap of 1), so this never appears half-dead. */
+.step-queue-stepper {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+}
+.step-queue-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dim);
+  margin-right: 2px;
+}
+.step-queue-btn {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--brass-bright);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.step-queue-btn:hover { border-color: var(--brass); }
+.step-queue-val {
+  min-width: 12px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brass-bright);
+}
+
 /* Hand-drawn clock glyph (circle + two hands from borders), same technique
    as .ticket-caret / .crate-toggle-box::after elsewhere — no image/emoji. */
 .step-clock-icon { display: inline-block; width: 9px; height: 9px; border: 1.5px solid var(--steel-bright); border-radius: 50%; position: relative; flex-shrink: 0; margin-right: 3px; }

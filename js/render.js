@@ -329,7 +329,7 @@ function renderGatherRow(num, itemName, totalQty, preview, isOpen) {
 
 // isOpen: whether this step's "view/choose recipe" detail is currently
 // expanded (state.craftRecipesOpen, keyed by item name — see app.js).
-function renderCraftRow(num, node, isOpen) {
+function renderCraftRow(num, node, isOpen, queueCounts) {
   // Totals for the whole run, not the per-batch recipe ratio — "make 85
   // batches, here's what that actually costs you" instead of making the
   // reader multiply "2 Salvage -> 1 Basic Materials" by 85 themselves.
@@ -374,7 +374,7 @@ function renderCraftRow(num, node, isOpen) {
     ? `<div class="step-recipe-detail-wrap ${isOpen ? 'open' : ''}">
         <div class="step-recipe-detail">
           <span class="step-choice-label">CHOOSE RECIPE</span>
-          <div class="recipe-option-list">${recipeAlternativePreviews(node.itemName, totalUnitsNeeded).map(p =>
+          <div class="recipe-option-list">${recipeAlternativePreviews(node.itemName, totalUnitsNeeded, queueCounts).map(p =>
             renderRecipeOptionCard(p, p.recipeKey === node.recipeKey, `data-paths="${node.paths.join('|')}"`)
           ).join('')}</div>
         </div>
@@ -392,6 +392,7 @@ function renderCraftRow(num, node, isOpen) {
   // recipeKey when this step has one, else the first merged occurrence's
   // own path (matches buildChainSteps' own groupKey fallback exactly).
   const rowKey = node.recipeKey || node.paths[0];
+  const queueStepperHtml = stepQueueStepper(rowKey, node.facility, queueCounts);
 
   return `<div class="step-row ${node.isDirect ? 'step-row-direct' : ''}" data-row-key="craft:${rowKey}">
     <div class="step-num ${poolBadgeClass}">${num}</div>
@@ -403,6 +404,7 @@ function renderCraftRow(num, node, isOpen) {
             ${node.isDirect ? `<div class="step-direct-tag">DIRECT INPUT</div>` : ''}
             <div class="step-facility-inline">${node.facility || 'ASSEMBLE'}</div>
           </div>
+          ${queueStepperHtml}
         </div>
         <div class="step-line-flow">
           <div class="step-flow-side step-flow-inputs">
@@ -483,7 +485,7 @@ function renderConsumedPanel(items) {
 // entries[i]). All selected outputs share one flattened, merged step list —
 // a step needed by two different outputs shows up once with its run count
 // summed, instead of being duplicated per output.
-function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen, gatherRecipesOpen, chainVisibility) {
+function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen, gatherRecipesOpen, chainVisibility, queueCounts) {
   const { liquids, resources, power } = aggregateRawResources(trees);
   const expandedGather = expandGatherChain(liquids, resources, power, poolRecipeChoice);
   const craftSteps = buildChainSteps(trees);
@@ -527,12 +529,12 @@ function renderCombinedChain(entries, trees, poolRecipeChoice, craftRecipesOpen,
   });
   let stepNum = 0;
   const gatherRowsHtml = visibleGatherItems.map(it => {
-    const preview = poolItemRecipePreview(it.name, it.qty, poolRecipeChoice[it.name]);
-    return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name]);
+    const preview = poolItemRecipePreview(it.name, it.qty, poolRecipeChoice[it.name], queueCounts);
+    return renderGatherRow(++stepNum, it.name, it.qty, preview, gatherRecipesOpen[it.name], queueCounts);
   }).join('');
   const rowsHtml =
     gatherRowsHtml +
-    craftSteps.map(s => renderCraftRow(++stepNum, s, craftRecipesOpen[s.itemName])).join('');
+    craftSteps.map(s => renderCraftRow(++stepNum, s, craftRecipesOpen[s.itemName], queueCounts)).join('');
 
   const legend = `<div class="chain-legend">
     <span class="chain-legend-item"><span class="chain-legend-swatch chain-legend-swatch-dashed"></span>CONSUMED</span>

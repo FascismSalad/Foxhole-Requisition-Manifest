@@ -25,7 +25,13 @@
 // panel; the sidebar's own totals always stay visible regardless (see
 // renderCombinedChain's use of this vs renderRawPanel's). MATERIALS
 // CONSUMED has no toggle, so it's not tracked here.
-const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {}, chainVisibility: { liquid: true, resource: true, power: true } };
+// queueCounts: recipeKey (or an aircraft root's "aircraft:<key>" id) ->
+// how many of that facility's parallel production queues are devoted to
+// it, 1-5 (only ever 1 for a power facility — see maxQueuesForFacility in
+// calc.js). Same per-recipe granularity as poolRecipeChoice: one setting
+// per recipe regardless of how many places in the tree use it, matching
+// how buildChainSteps already merges those occurrences into a single row.
+const state = { entries: [], poolRecipeChoice: {}, craftRecipesOpen: {}, gatherRecipesOpen: {}, chainVisibility: { liquid: true, resource: true, power: true }, queueCounts: {} };
 
 // The left sidebar's own scroll region: bounded to whatever room is
 // actually left below its current on-screen position, so it starts
@@ -112,16 +118,16 @@ function renderResults() {
   const trees = [];
 
   for (const entry of state.entries) {
-    const tree = buildProductionChain(entry);
+    const tree = buildProductionChain(entry, state.queueCounts);
     trees.push(tree);
 
     ticketsHtml += entry.kind === 'aircraft'
-      ? renderAircraftTicket(entry, tree.totalSeconds)
-      : renderMaterialTicket(entry, tree.recipeKey, tree.totalSeconds);
+      ? renderAircraftTicket(entry, tree.totalSeconds, state.queueCounts)
+      : renderMaterialTicket(entry, tree.recipeKey, tree.totalSeconds, state.queueCounts);
   }
 
   resultsContainer.innerHTML = ticketsHtml;
-  updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility));
+  updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility, state.queueCounts));
   const { liquids, resources, power } = aggregateRawResources(trees);
   const expanded = expandGatherChain(liquids, resources, power, state.poolRecipeChoice);
   rawContainer.innerHTML = renderRawPanel(expanded.liquids, expanded.resources, expanded.power, state.chainVisibility);
@@ -413,6 +419,23 @@ function initApp() {
   // ---- Production chain interactions (per-node recipe choice) ----
 
   document.getElementById('chainPanel').addEventListener('click', (e) => {
+    // The queue stepper sits inside step-line-facility, itself inside the
+    // step-head that the recipe-toggle check right below treats as one big
+    // click target — handle (and stop at) it first, or a queue +/- click
+    // would also toggle that step's recipe picker open/closed.
+    const queueBtn = e.target.closest('.step-queue-stepper [data-action]');
+    if (queueBtn) {
+      const key = queueBtn.closest('.step-queue-stepper').dataset.queueKey;
+      const isAircraft = key.startsWith('aircraft:');
+      const facility = isAircraft
+        ? (AIRCRAFT_COSTS[key.slice('aircraft:'.length)] || {}).facility
+        : (MATERIAL_RECIPES[key] || {}).facility;
+      const current = state.queueCounts[key] || 1;
+      state.queueCounts[key] = clampQueueCount(current + (queueBtn.dataset.action === 'queue-inc' ? 1 : -1), facility);
+      renderResults();
+      return;
+    }
+
     // The whole YIELDS tray is the toggle now, not a separate button — see
     // renderCraftRow/renderGatherRow in render.js. A single-recipe step's
     // tray carries neither data attribute (step-yield-static, non-
@@ -502,8 +525,8 @@ function initApp() {
     // re-render needed.
     const btn = section.querySelector('.raw-panel-section-toggle');
     if (btn) btn.classList.toggle('inactive', !isActiveNow);
-    const trees = state.entries.map(entry => buildProductionChain(entry));
-    updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility));
+    const trees = state.entries.map(entry => buildProductionChain(entry, state.queueCounts));
+    updateChainPanel(renderCombinedChain(state.entries, trees, state.poolRecipeChoice, state.craftRecipesOpen, state.gatherRecipesOpen, state.chainVisibility, state.queueCounts));
   });
 
   // ---- Raw panel: scrolls in place once it reaches the bottom of the
@@ -518,7 +541,7 @@ function initApp() {
   // out, and wires it on its own first render. ----
   document.getElementById('sendToPlannerBtn').addEventListener('click', () => {
     if (!state.entries.length) return;
-    const trees = state.entries.map(entry => buildProductionChain(entry));
+    const trees = state.entries.map(entry => buildProductionChain(entry, state.queueCounts));
     const exportData = buildPlannerExport(trees, state.poolRecipeChoice);
     try {
       localStorage.setItem('foxholePlannerImport.v1', JSON.stringify(exportData));

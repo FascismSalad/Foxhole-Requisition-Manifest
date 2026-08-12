@@ -313,11 +313,12 @@ function round2(n) { return Math.round(n * 100) / 100; }
 function itemRatePerMin(node, item, dir) {
   const recipe = nodeRecipeObj(node);
   if (!recipe) return 0;
+  const queues = node.queues || 1;
   if (item === 'Facility Power') {
-    return dir === 'in' ? (recipe.power_mw || 0) * node.count : (recipe.outputs[item] || 0) * node.count;
+    return dir === 'in' ? (recipe.power_mw || 0) * node.count * queues : (recipe.outputs[item] || 0) * node.count * queues;
   }
   const qty = dir === 'in' ? (recipe.inputs[item] || 0) : (recipe.outputs[item] || 0);
-  return qty / Math.max(effectiveCraftingTime(recipe), 0.001) * 60 * node.count;
+  return qty / Math.max(effectiveCraftingTime(recipe, queues), 0.001) * 60 * node.count;
 }
 
 function fmtItemRate(item, rate) {
@@ -370,6 +371,17 @@ function buildNodeHtml(node) {
   // row, no craft-time row below it — see the card-condensing pass this
   // came from) — same qty-inc/qty-dec/.fac-qty-val hooks the event
   // delegation in initPlannerUI already listens for, just laid out smaller.
+  // Queues (separate from facility count — parallel lines WITHIN one
+  // building, not how many buildings) share the button row with the recipe
+  // picker instead of costing their own row, same reasoning; omitted
+  // entirely for a power facility, capped at a single queue.
+  const maxQueues = maxQueuesForFacility(node.facility);
+  const queueStepperHtml = maxQueues > 1 ? `
+    <div class="fac-node-queue-inline" title="Production queues (parallel)">
+      <button class="fac-qty-mini-btn" data-action="queue-dec" title="One fewer queue">−</button>
+      <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.queues}" min="1" max="${maxQueues}" step="1" inputmode="numeric">
+      <button class="fac-qty-mini-btn" data-action="queue-inc" title="One more queue">+</button>
+    </div>` : '';
   return `
     <div class="fac-node-head" data-drag-handle>
       ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
@@ -381,10 +393,13 @@ function buildNodeHtml(node) {
       </div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
-    <button class="fac-node-recipe-btn" data-action="pick-recipe">
-      <span class="rbtn-label">${recipe ? recipe.label : 'SELECT RECIPE'}</span>
-      <span class="rbtn-chevron" aria-hidden="true"></span>
-    </button>
+    <div class="fac-node-recipe-row">
+      <button class="fac-node-recipe-btn" data-action="pick-recipe">
+        <span class="rbtn-label">${recipe ? recipe.label : 'SELECT RECIPE'}</span>
+        <span class="rbtn-chevron" aria-hidden="true"></span>
+      </button>
+      ${queueStepperHtml}
+    </div>
     <div class="fac-node-io">
       <div class="fac-node-io-col needs">
         <div class="fac-node-io-label">NEEDS</div>
@@ -558,7 +573,7 @@ function addNode(facility, x, y) {
   // whichever module recipe happens to sort first alphabetically) — falls
   // back to the alphabetically-first when there's no plain configuration.
   const defaultRecipe = recipes.find(r => r.facility === facility) || recipes[0];
-  const node = { id: `n${nodeIdCounter++}`, facility, recipeKey: defaultRecipe.key, x, y, count: 1 };
+  const node = { id: `n${nodeIdCounter++}`, facility, recipeKey: defaultRecipe.key, x, y, count: 1, queues: 1 };
   plannerState.nodes.push(node);
   nodesById[node.id] = node;
   renderNodesLayer();
@@ -574,6 +589,21 @@ function addNode(facility, x, y) {
 // still one recipe cycle, just running on `count` physical copies at once.
 function setNodeCount(node, count) {
   node.count = Math.max(1, count);
+  const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
+  if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
+  indexPorts();
+  renderWires();
+  saveState();
+}
+
+// How many of this node's facility's parallel production queues are
+// devoted to it — 1-5, clamped to 1 for a power facility (see
+// maxQueuesForFacility in calc.js). Unlike count (separate physical
+// buildings), this scales rate by shortening the effective craft time
+// (see itemRatePerMin) — the same lever the manifest's own per-step queue
+// stepper pulls, just expressed per-node here instead of per-recipe-row.
+function setNodeQueues(node, queues) {
+  node.queues = clampQueueCount(queues, node.facility);
   const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
   if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
   indexPorts();
@@ -654,7 +684,11 @@ function loadState() {
 
   plannerState.nodes = (data.nodes || [])
     .filter(n => RECIPES_BY_FACILITY[n.facility])
-    .map(n => ({ ...n, count: Math.max(1, Math.floor(n.count) || 1) })); // older saved layouts predate the count field
+    .map(n => ({
+      ...n,
+      count: Math.max(1, Math.floor(n.count) || 1), // older saved layouts predate the count field
+      queues: clampQueueCount(n.queues || 1, n.facility) // ...and predate queues entirely
+    }));
   plannerState.connections = data.connections || [];
   plannerState.pan = data.pan && typeof data.pan.x === 'number' ? data.pan : { x: 60, y: 60 };
   plannerState.scale = typeof data.scale === 'number' ? clamp(data.scale, 0.3, 2.5) : 1;
@@ -713,7 +747,7 @@ function tryImportFromCalculator() {
   Object.keys(byDepth).map(Number).sort((a, b) => a - b).forEach(depth => {
     byDepth[depth].forEach((entry, i) => {
       const id = `n${nodeIdCounter++}`;
-      const node = { id, facility: entry.facility, recipeKey: entry.recipeKey, x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1 };
+      const node = { id, facility: entry.facility, recipeKey: entry.recipeKey, x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1, queues: 1 };
       plannerState.nodes.push(node);
       nodesById[id] = node;
       nodeIdByRecipeKey[entry.recipeKey] = id;
@@ -1049,15 +1083,29 @@ function initPlannerUI() {
       setNodeCount(node, node.count + (qtyBtn.dataset.action === 'qty-inc' ? 1 : -1));
       return;
     }
+    const queueBtn = e.target.closest('[data-action="queue-inc"], [data-action="queue-dec"]');
+    if (queueBtn) {
+      const node = nodesById[queueBtn.closest('.fac-node').dataset.nodeId];
+      if (!node) return;
+      setNodeQueues(node, node.queues + (queueBtn.dataset.action === 'queue-inc' ? 1 : -1));
+      return;
+    }
   });
-  // Typing a count directly commits on blur/Enter (a 'change' event), same
-  // pattern as the main calculator's ticket qty field — a re-render mid-
-  // keystroke would fight the user for control of the input.
+  // Typing a count/queue value directly commits on blur/Enter (a 'change'
+  // event), same pattern as the main calculator's ticket qty field — a
+  // re-render mid-keystroke would fight the user for control of the input.
+  // Both fields share the same .fac-qty-val class (identical look), so
+  // which setter applies is decided by which wrapper the input is actually
+  // in, not the class.
   nodesLayerEl.addEventListener('change', e => {
     const input = e.target.closest('.fac-qty-val');
     if (!input) return;
     const node = nodesById[input.closest('.fac-node').dataset.nodeId];
     if (!node) return;
+    if (input.closest('.fac-node-queue-inline')) {
+      setNodeQueues(node, Math.floor(Number(input.value) || 1));
+      return;
+    }
     setNodeCount(node, Math.floor(Number(input.value) || 1));
   });
   nodesLayerEl.addEventListener('keydown', e => {
