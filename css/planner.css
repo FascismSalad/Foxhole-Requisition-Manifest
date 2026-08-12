@@ -7,16 +7,58 @@
    specific to the node-board UI.
    ============================================================ */
 
+/* The whole page fits in one screen, no page-level scrollbar — the board
+   itself pans/zooms instead of the page scrolling to it. body.planner-page
+   (set on planner.html only — this must never leak onto index.html, whose
+   long production-chain content genuinely needs to scroll) becomes a
+   single-screen flex column: masthead keeps its natural height, .planner-
+   wrap takes exactly what's left via flex:1, and that "remaining space"
+   keeps getting handed down through .planner-layout -> .planner-canvas-wrap
+   -> .planner-viewport (each needs both flex:1 AND min-height:0 — a flex
+   item's default min-height is its content size, which would otherwise
+   refuse to shrink and blow the whole chain back out to scrolling). The
+   sidebar gets the same treatment so ITS OWN overflow is the facility
+   list's existing internal scrollbar (.planner-facility-list), not the page.
+
+   zoom cancels the site-wide html{zoom:1.12} (see style.css) for this page
+   specifically — confirmed empirically that a zoomed ancestor doesn't
+   compose cleanly with nested flex-grow distribution in Chromium (a 100vh
+   column flex chain like this one settled ~90px taller than its container
+   at zoom 1.12, even after compensating the container's own rendered size
+   for it, and fit pixel-perfect the moment the EFFECTIVE zoom was 1). zoom
+   COMPOUNDS multiplicatively with an ancestor's zoom rather than resetting
+   it (confirmed empirically too — plain `zoom: 1` here had no visible
+   effect at all, net zoom stayed 1.12), so this has to be the reciprocal
+   of style.css's 1.12, not 1, for the two to cancel out to a net 1. Text/
+   icons on this page render at their un-zoomed size as a result (index.html
+   is unaffected — this is scoped to body.planner-page) — a worthwhile
+   trade for a layout that's actually reliable, rather than chasing zoom's
+   interaction with flex through every nested level. */
+body.planner-page {
+  zoom: calc(1 / 1.12);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 .planner-wrap {
   max-width: none;
   margin: 0 auto;
-  padding: 20px 20px 30px;
+  padding: 14px 20px 16px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .planner-layout {
   display: flex;
   align-items: stretch;
   gap: 18px;
+  flex: 1;
+  min-height: 0;
 }
 
 /* ---------- Sidebar: facility catalog ---------- */
@@ -24,6 +66,7 @@
 .planner-sidebar {
   flex: 0 0 280px;
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -94,6 +137,7 @@
 .planner-canvas-wrap {
   flex: 1 1 auto;
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -143,11 +187,19 @@
 
 .planner-viewport {
   position: relative;
-  height: calc(100vh - 260px);
-  min-height: 480px;
+  flex: 1;
+  min-height: 320px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--bg);
+  background-color: var(--bg);
+  /* The dot grid lives here (a real, non-zero box — see the .planner-world
+     comment below for why it can't live there) with background-size/
+     -position updated in JS (applyTransform) to exactly match the current
+     pan/scale, so the dots read as part of the world — panning and zooming
+     right along with the nodes — rather than a static texture painted
+     behind it. */
+  background-image: radial-gradient(circle, var(--line) 1.5px, transparent 1.5px);
+  background-repeat: repeat;
   cursor: grab;
   user-select: none;
 }
@@ -169,6 +221,12 @@
 }
 .planner-empty-hint.hidden { display: none; }
 
+/* Deliberately a zero-size box: it only exists to carry the pan/zoom
+   transform that nodesLayer/wireLayer sit inside, and a zero size keeps it
+   from ever clipping/scrolling its own absolutely-positioned children
+   (which routinely sit at x/y well outside 0,0..0,0). That same zero size
+   means a background-image painted HERE would have no box to paint into —
+   the dot grid lives on .planner-viewport instead, kept in sync via JS. */
 .planner-world {
   position: absolute;
   left: 0;
@@ -176,12 +234,6 @@
   width: 0;
   height: 0;
   transform-origin: 0 0;
-  background-image: radial-gradient(circle, var(--line-faint) 1.5px, transparent 1.5px);
-  background-size: 28px 28px;
-  /* the dot grid needs a bounded box to actually tile against — sized well
-     past anything a node's x/y could reach, recentered so panning never
-     visibly runs out of dots before the node board itself does */
-  background-position: -3000px -3000px;
 }
 
 .wire-layer {
@@ -470,8 +522,15 @@
 }
 
 @media (max-width: 900px) {
-  .planner-layout { flex-direction: column; }
+  /* Below this width the layout stacks (sidebar above canvas) and reverts
+     to the page's normal scrolling — there's no sane way to fit a facility
+     list AND a usable board in one short mobile screen, so this undoes the
+     single-screen flex chain above rather than fighting it. */
+  body.planner-page { height: auto; overflow: visible; }
+  .planner-wrap { flex: none; min-height: 0; }
+  .planner-layout { flex-direction: column; flex: none; }
   .planner-sidebar { flex: 1 1 auto; width: 100%; }
   .planner-facility-list { max-height: 220px; }
-  .planner-viewport { height: 60vh; }
+  .planner-canvas-wrap { flex: none; }
+  .planner-viewport { flex: none; height: 60vh; min-height: 0; }
 }

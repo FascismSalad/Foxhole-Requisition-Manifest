@@ -78,10 +78,27 @@ function computeRecipeLabel(r, siblingRecipes, baseName) {
   return r.outputName;
 }
 
+// Every term a recipe should be findable by in a picker search — not just
+// its own label, but every alias/tag it or (for a multi-recipe item like
+// Construction Materials) its parent item carries, same breadth the main
+// calculator's own search bar indexes (buildSuggestions in app.js): full
+// name, key, category/subcategory/class/type, aliases, and its own output
+// names. Lets "bomber" surface an aircraft whose real name doesn't contain
+// that word at all, purely via its type ("heavy_bomber") or an alias.
+function buildSearchText(parts) {
+  return parts.filter(Boolean).join(' ').toLowerCase();
+}
+
 function buildFacilityIndex() {
   const raw = [];
   for (const [key, recipe] of Object.entries(MATERIAL_RECIPES)) {
     if (!recipe.facility) continue;
+    // A recipe belonging to a multi-recipe item (Steel, Construction
+    // Materials, ...) carries its OWN aliases sometimes (e.g. "salvage
+    // harvester"), but the item-wide aliases/full_name ("cmat", "cmats",
+    // "Construction Materials") live one level up, on the parent — both
+    // need to be searchable from this one recipe entry.
+    const parent = findMultiRecipeParent(recipe.recipeKey || key);
     raw.push({
       key: recipe.recipeKey || key,
       facility: recipe.facility,
@@ -91,7 +108,15 @@ function buildFacilityIndex() {
       power_mw: recipe.power_mw,
       full_name: recipe.full_name || null,
       recipe_name: recipe.recipe_name || null,
-      isAircraft: false
+      isAircraft: false,
+      searchText: buildSearchText([
+        recipe.full_name, recipe.recipe_name, recipe.recipeKey || key,
+        recipe.category, recipe.subcategory,
+        ...(recipe.aliases || []),
+        ...Object.keys(recipe.outputs || {}),
+        parent && parent.itemData.full_name, parent && parent.itemKey,
+        ...(parent ? parent.itemData.aliases || [] : [])
+      ])
     });
   }
   for (const [key, aircraft] of Object.entries(AIRCRAFT_COSTS)) {
@@ -108,7 +133,11 @@ function buildFacilityIndex() {
       power_mw: aircraft.power_mw,
       full_name: aircraft.full_name,
       recipe_name: null,
-      isAircraft: true
+      isAircraft: true,
+      searchText: buildSearchText([
+        aircraft.full_name, key, aircraft.category, aircraft.subcategory, aircraft.class, aircraft.type,
+        ...(aircraft.aliases || [])
+      ])
     });
   }
 
@@ -134,13 +163,44 @@ function buildFacilityIndex() {
     list.sort((a, b) => a.label.localeCompare(b.label));
   }
 
+  // "Beach" isn't a real placeable facility — it's the game letting you
+  // assemble one specific small boat directly on open shoreline, no
+  // building involved, and it only shows up here because the recipe data
+  // still needs SOME facility field for it. Not a building you'd ever
+  // place on this board, so it's excluded from the catalog outright.
+  delete RECIPES_BY_FACILITY['Beach'];
+
   // Every key in RECIPES_BY_FACILITY already IS a valid, non-empty base
   // building name by construction — no need to cross-reference FACILITIES
   // separately (that also would have re-fragmented the list back into
   // one-entry-per-module, the exact thing being merged away here).
+  // representativeFacility carries one real (unmerged) recipe's own exact
+  // facility string alongside the base name — a fallback icon candidate
+  // for bases like "Infantry Kit Factory" that have no icon of their own
+  // (only its bracketed modules were ever scraped) — see
+  // iconTagWithFallback.
   FACILITY_CATALOG = Object.entries(RECIPES_BY_FACILITY)
-    .map(([name, list]) => ({ name, count: list.length }))
+    .map(([name, list]) => ({ name, count: list.length, representativeFacility: list[0].facility }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// Some base building names were never individually scraped an icon (only
+// their bracketed module variants were, e.g. "Infantry Kit Factory") — this
+// tries a list of candidate names in order, falling back to the next one
+// on a 404 instead of just leaving that slot blank (iconTag's plain
+// this.remove() behavior) whenever a better-covered alternative name exists.
+function handleIconFallback(imgEl) {
+  const remaining = (imgEl.dataset.fallbacks || '').split('|').filter(Boolean);
+  if (!remaining.length) { imgEl.remove(); return; }
+  const next = remaining.shift();
+  imgEl.dataset.fallbacks = remaining.join('|');
+  imgEl.src = `icons/images/${next}.png`;
+}
+function iconTagWithFallback(candidateNames, cssClass) {
+  const files = [...new Set(candidateNames.filter(Boolean).map(iconFileName))];
+  if (!files.length) return '';
+  const [first, ...rest] = files;
+  return `<img src="icons/images/${first}.png" class="${cssClass}" alt="" data-fallbacks="${rest.join('|')}" onerror="handleIconFallback(this)">`;
 }
 
 // ============================================================
@@ -176,31 +236,18 @@ let pickerOverlayEl, pickerPanelEl, pickerTitleEl, pickerSearchEl, pickerListEl,
 // GEOMETRY HELPERS
 // ============================================================
 
-// style.css sets `zoom` on <html> (a non-standard but Chromium/Edge-supported
-// property that scales the whole page up) to bump every text size and icon
-// in one place. That works fine for static layout, but it makes two normally-
-// interchangeable pixel spaces diverge: getBoundingClientRect()/clientX/
-// clientY/window.innerWidth all report already-zoomed, on-screen positions,
-// while a raw px value WE assign (style.left, a transform's translate(), an
-// SVG path coordinate) is what the browser re-multiplies BY that same zoom
-// factor when it paints — window.innerWidth/innerHeight are the one
-// exception, reported unzoomed. Any math that mixes a "read" value with a
-// "write" value has to convert between the two explicitly, via this factor,
-// or everything drifts out of alignment (ports, wires, the picker popup) the
-// moment zoom isn't exactly 1.
-let CSS_ZOOM = 1;
-function detectCssZoom() {
-  const z = parseFloat(getComputedStyle(document.documentElement).zoom);
-  CSS_ZOOM = z > 0 ? z : 1;
-}
-
+// body.planner-page cancels the site-wide html{zoom:1.12} for this page
+// (see the comment on that rule in planner.css) specifically so this math
+// doesn't have to account for it — getBoundingClientRect()/clientX/clientY
+// and a raw px value we assign (style.left, a transform's translate(), an
+// SVG path coordinate) are back to being the same pixel space, board-wide.
 function clamp(n, lo, hi) { return Math.min(hi, Math.max(lo, n)); }
 
 function screenToWorld(clientX, clientY) {
   const rect = viewportEl.getBoundingClientRect();
   return {
-    x: ((clientX - rect.left) / CSS_ZOOM - plannerState.pan.x) / plannerState.scale,
-    y: ((clientY - rect.top) / CSS_ZOOM - plannerState.pan.y) / plannerState.scale
+    x: (clientX - rect.left - plannerState.pan.x) / plannerState.scale,
+    y: (clientY - rect.top - plannerState.pan.y) / plannerState.scale
   };
 }
 
@@ -218,10 +265,9 @@ function getPortWorldPos(portEl) {
   const node = nodesById[nodeEl.dataset.nodeId];
   const portRect = portEl.getBoundingClientRect();
   const nodeRect = nodeEl.getBoundingClientRect();
-  const divisor = CSS_ZOOM * plannerState.scale;
   return {
-    x: node.x + (portRect.left - nodeRect.left + portRect.width / 2) / divisor,
-    y: node.y + (portRect.top - nodeRect.top + portRect.height / 2) / divisor
+    x: node.x + (portRect.left - nodeRect.left + portRect.width / 2) / plannerState.scale,
+    y: node.y + (portRect.top - nodeRect.top + portRect.height / 2) / plannerState.scale
   };
 }
 
@@ -327,7 +373,7 @@ function buildNodeHtml(node) {
   const iconFacility = recipe ? recipe.facility : node.facility;
   return `
     <div class="fac-node-head" data-drag-handle>
-      ${iconTag(iconFacility, 'fac-node-icon')}
+      ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
       <div class="fac-node-title" title="${iconFacility}">${node.facility}</div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
@@ -631,18 +677,23 @@ function loadState() {
 // PAN / ZOOM
 // ============================================================
 
+const GRID_SPACING = 28;
+
 function applyTransform() {
   worldEl.style.transform = `translate(${plannerState.pan.x}px, ${plannerState.pan.y}px) scale(${plannerState.scale})`;
   zoomReadoutEl.textContent = `${Math.round(plannerState.scale * 100)}%`;
+  // The viewport's own dot-grid background (see .planner-viewport in
+  // planner.css) is driven from the same pan/scale as worldEl's transform,
+  // so the dots stay in exact visual sync with the nodes.
+  const gridSize = GRID_SPACING * plannerState.scale;
+  viewportEl.style.backgroundSize = `${gridSize}px ${gridSize}px`;
+  viewportEl.style.backgroundPosition = `${plannerState.pan.x}px ${plannerState.pan.y}px`;
 }
 
 function zoomBy(factor, anchorClientX, anchorClientY) {
   const rect = viewportEl.getBoundingClientRect();
-  // rect/clientX are on-screen (zoomed) px — divide down to the same raw
-  // px space pan.x/scale live in before doing the anchor-preserving math
-  // (see the CSS_ZOOM comment above screenToWorld).
-  const cx = (anchorClientX != null ? anchorClientX - rect.left : rect.width / 2) / CSS_ZOOM;
-  const cy = (anchorClientY != null ? anchorClientY - rect.top : rect.height / 2) / CSS_ZOOM;
+  const cx = anchorClientX != null ? anchorClientX - rect.left : rect.width / 2;
+  const cy = anchorClientY != null ? anchorClientY - rect.top : rect.height / 2;
   const worldXBefore = (cx - plannerState.pan.x) / plannerState.scale;
   const worldYBefore = (cy - plannerState.pan.y) / plannerState.scale;
   plannerState.scale = clamp(plannerState.scale * factor, 0.3, 2.5);
@@ -657,8 +708,8 @@ function startPan(e) {
   const startPan = { x: plannerState.pan.x, y: plannerState.pan.y };
   viewportEl.classList.add('panning');
   function onMove(ev) {
-    plannerState.pan.x = startPan.x + (ev.clientX - startClientX) / CSS_ZOOM;
-    plannerState.pan.y = startPan.y + (ev.clientY - startClientY) / CSS_ZOOM;
+    plannerState.pan.x = startPan.x + (ev.clientX - startClientX);
+    plannerState.pan.y = startPan.y + (ev.clientY - startClientY);
     applyTransform();
   }
   function onUp() {
@@ -685,8 +736,8 @@ function onNodeDragStart(e, nodeEl) {
   const startX = node.x, startY = node.y;
   let moved = false;
   function onMove(ev) {
-    const dx = (ev.clientX - startClientX) / (CSS_ZOOM * plannerState.scale);
-    const dy = (ev.clientY - startClientY) / (CSS_ZOOM * plannerState.scale);
+    const dx = (ev.clientX - startClientX) / plannerState.scale;
+    const dy = (ev.clientY - startClientY) / plannerState.scale;
     if (Math.abs(dx) > 1 || Math.abs(dy) > 1) moved = true;
     node.x = startX + dx;
     node.y = startY + dy;
@@ -763,7 +814,7 @@ function renderPickerList(query) {
   const node = nodesById[pickerContext.nodeId];
   const recipes = RECIPES_BY_FACILITY[node.facility] || [];
   const q = query.toLowerCase().trim();
-  const filtered = q ? recipes.filter(r => r.label.toLowerCase().includes(q)) : recipes;
+  const filtered = q ? recipes.filter(r => r.searchText.includes(q)) : recipes;
   if (!filtered.length) {
     pickerListEl.innerHTML = `<div class="picker-empty">NO MATCHING RECIPES</div>`;
     return;
@@ -773,22 +824,14 @@ function renderPickerList(query) {
 
 function positionPickerNear(anchorEl) {
   const rect = anchorEl.getBoundingClientRect();
-  // Every measurement above (rect, window.innerWidth/innerHeight) is
-  // on-screen/zoomed px, and the whole computation below stays in that same
-  // space — it's a fixed-position popup, so window.inner* is the right
-  // frame of reference throughout. Only the FINAL assignment to style.left/
-  // top needs converting: the browser re-multiplies a raw style px value by
-  // CSS_ZOOM when painting a descendant of the zoomed <html>, so the value
-  // written has to be pre-divided or the popup lands zoom-times too far
-  // from the anchor (see the CSS_ZOOM comment above screenToWorld).
   const panelW = 360, margin = 10;
   let left = rect.right + 12;
   if (left + panelW > window.innerWidth - margin) left = rect.left - panelW - 12;
   left = clamp(left, margin, Math.max(margin, window.innerWidth - panelW - margin));
   const panelMaxH = window.innerHeight * 0.7;
   let top = clamp(rect.top, margin, Math.max(margin, window.innerHeight - panelMaxH - margin));
-  pickerPanelEl.style.left = `${left / CSS_ZOOM}px`;
-  pickerPanelEl.style.top = `${top / CSS_ZOOM}px`;
+  pickerPanelEl.style.left = `${left}px`;
+  pickerPanelEl.style.top = `${top}px`;
 }
 
 function openRecipePicker(nodeId) {
@@ -821,7 +864,7 @@ function renderFacilitySidebar(query = '') {
   }
   facilityListEl.innerHTML = filtered.map(f => `
     <div class="planner-facility-item" draggable="true" data-facility="${f.name}">
-      ${iconTag(f.name, 'planner-facility-icon')}
+      ${iconTagWithFallback([f.name, f.representativeFacility], 'planner-facility-icon')}
       <span class="planner-facility-name">${f.name}</span>
       <span class="planner-facility-count">${f.count}</span>
     </div>`).join('');
@@ -989,7 +1032,6 @@ async function bootPlanner(retriesLeft = 2) {
 
   buildFacilityIndex();
   initPlannerUI();
-  detectCssZoom();
   const restored = loadState();
   applyTransform();
   renderFacilitySidebar();
