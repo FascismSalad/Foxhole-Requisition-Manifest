@@ -131,29 +131,117 @@ const LOADOUT_TAB_BY_NAME = {
   "Velian Flak Vest": "uniforms",
   "Venom c.II 35": "heavy_arms",
   "Volta r.I Repeater": "small_arms",
+
+  // Utility and Medical — both real Factory-building categories (confirmed
+  // via the Foxhole wiki's Factory page, which lists exactly 7 tabs: Small
+  // Arms, Heavy Arms, Heavy Ammunition, Utility, Medical, Resources,
+  // Uniforms). Pulled straight from this repo's own data/items/utility.json
+  // and data/items/medical.json (their "Utility"/"Medical" subcategory
+  // already matches 1:1). Kept Factory-only on this page — see
+  // LOADOUT_TAB_LOCATION_RESTRICTION below — even though one item
+  // (Maintenance Supplies) does have its own real MPF recipe in the data;
+  // treating the whole tab consistently avoids a one-off exception.
+  "Shovel": "utilities",
+  "Sledge Hammer": "utilities",
+  "Water Bucket": "utilities",
+  "Wrench": "utilities",
+  "Binoculars": "utilities",
+  "Flight Mask": "utilities",
+  "Gas Mask": "utilities",
+  "Gas Mask Filter": "utilities",
+  "Radio": "utilities",
+  "Radio Backpack": "utilities",
+  "Air Raid Siren": "utilities",
+  "Legion Vexillum": "utilities",
+  "Listening Kit": "utilities",
+  "Wind Sock": "utilities",
+  "Paratrooper's Ruck": "utilities",
+  "Tripod": "utilities",
+  "Bandages": "medical",
+  "Blood Plasma": "medical",
+  "First Aid Kit": "medical",
+  "Soldier Supplies": "medical",
+  "Trauma Kit": "medical",
 };
 
-// Utilities and Medical were dropped entirely (not just hidden) — every
-// single item in both categories is Factory-only, zero have an MPF recipe
-// (confirmed: 0/23 and 0/5), so they'd always render as an empty tab the
-// moment MPF is selected. Rather than leave a dead-end tab in the UI, the
-// items themselves were removed from the map above too — no orphaned data
-// hanging off a tab nothing points at.
-const LOADOUT_TAB_ORDER = ['small_arms', 'heavy_arms', 'heavy_ammunition', 'supplies', 'uniforms', 'vehicles', 'shipables'];
+// Tab order matches the real Factory building's own category order (per
+// the wiki) for the first 7, with Vehicles/Shippables appended — those two
+// are never Factory categories in-game (Garages/Construction Yards build
+// them instead), so they're MPF-only here (see
+// LOADOUT_TAB_LOCATION_RESTRICTION).
+const LOADOUT_TAB_ORDER = ['small_arms', 'heavy_arms', 'heavy_ammunition', 'utilities', 'medical', 'supplies', 'uniforms', 'vehicles', 'shipables'];
 const LOADOUT_TAB_LABELS = {
   small_arms: 'SMALL ARMS',
   heavy_arms: 'HEAVY ARMS',
   heavy_ammunition: 'HEAVY AMMUNITION',
+  utilities: 'UTILITY',
+  medical: 'MEDICAL',
   supplies: 'SUPPLIES',
   uniforms: 'UNIFORMS',
   vehicles: 'VEHICLES',
   shipables: 'SHIPPABLES'
 };
 
+// Some tabs are only meaningful at one craft location, by design — not
+// because every individual item necessarily lacks a recipe at the other
+// location, but to match the real in-game menus this page is modeled on.
+// Utility/Medical are two of the Factory building's own 7 categories and
+// never show at an MPF; Vehicles/Shippables are never Factory categories
+// (Garages/Construction Yards build those) and only show at an MPF here.
+// Tabs absent from this map (small_arms, heavy_arms, heavy_ammunition,
+// supplies, uniforms) are available at both locations, same as before —
+// per-item recipe availability (pickRecipeForLocation) still applies on
+// top of this.
+const LOADOUT_TAB_LOCATION_RESTRICTION = {
+  utilities: 'factory',
+  medical: 'factory',
+  vehicles: 'mpf',
+  shipables: 'mpf'
+};
+
+function isTabAvailableForLocation(tab, craftLocation) {
+  const restriction = LOADOUT_TAB_LOCATION_RESTRICTION[tab];
+  return !restriction || restriction === craftLocation;
+}
+
+// The real in-game category filter icons (128x128 PNGs pulled from the
+// Foxhole wiki — filenames match their actual game asset names, e.g.
+// IconFilterSmallWeapons is the literal icon the Factory/MPF crafting menu
+// itself uses for that tab). Not run through iconFileName() like item
+// icons are, since these aren't item/resource names in the data model —
+// just this page's own per-tab UI icon.
+const LOADOUT_TAB_ICON_FILE = {
+  small_arms: 'IconFilterSmallWeapons.png',
+  heavy_arms: 'IconFilterHeavyWeapons.png',
+  heavy_ammunition: 'IconFilterHeavyAmmunition.png',
+  utilities: 'IconFilterUtility.png',
+  medical: 'IconFilterMedical.png',
+  supplies: 'IconFilterResource.png',
+  uniforms: 'IconFilterUniforms.png',
+  vehicles: 'IconFilterVehicle.png',
+  shipables: 'IconFilterShippables.png'
+};
+
 // The four resources this page's totals lead with (everything else this
-// order happens to cost — Explosive Powder, Construction Materials, etc. —
+// order happens to cost — Construction Materials, Assembly Materials, etc. —
 // still shows, just sorted after these by name).
-const LOADOUT_PRIMARY_RESOURCES = ['Basic Materials', 'Refined Materials', 'Explosive Materials', 'Heavy Explosive Materials'];
+const LOADOUT_PRIMARY_RESOURCES = ['Basic Materials', 'Refined Materials', 'Explosive Powder', 'Heavy Explosive Powder'];
+
+// Real per-crate sizes for these four, sourced from the Foxhole wiki
+// (foxhole.wiki.gg) — raw resources have no crate_size field anywhere else
+// in this codebase's data (CRATE_SIZE_BY_NAME only covers craftable items'
+// own output crate sizes), so this table exists solely to power the "TOTAL
+// COST IN CRATES" panel below. Deliberately not extended to every resource
+// that could show up in a recipe's inputs (Construction Materials, Assembly
+// Materials, etc.) — those aren't shipped in fixed-size crates the way
+// these four are, and guessing a number would be worse than omitting it;
+// renderCostCratesPanel simply skips any resource without an entry here.
+const LOADOUT_RESOURCE_CRATE_SIZE = {
+  'Basic Materials': 100,
+  'Refined Materials': 20,
+  'Explosive Powder': 40,
+  'Heavy Explosive Powder': 30,
+};
 
 const LOADOUT_STORAGE_KEY = 'foxholeLoadout.v1';
 
@@ -182,7 +270,7 @@ const loadoutState = {
   order: {} // item full_name -> quantity, in whole crates
 };
 
-let tabBarEl, itemGridEl, searchInputEl, totalsPanelEl, crateTotalsPanelEl, orderListEl;
+let tabBarEl, itemGridEl, searchInputEl, totalsPanelEl, crateTotalsPanelEl, costCratesPanelEl, orderListEl;
 
 function buildLoadoutItems() {
   const byName = {};
@@ -220,6 +308,15 @@ function pickRecipeForLocation(recipes, craftLocation) {
   return nonMpf.find(r => r.facility === 'Factory') || nonMpf[0];
 }
 
+// Combines the per-item recipe check above with the tab-level restriction
+// (LOADOUT_TAB_LOCATION_RESTRICTION) — every place that needs to know "is
+// this item actually orderable right now" should go through this, not
+// pickRecipeForLocation directly, so the two checks can't drift apart.
+function getItemRecipe(item, craftLocation) {
+  if (!isTabAvailableForLocation(item.tab, craftLocation)) return null;
+  return pickRecipeForLocation(item.recipes, craftLocation);
+}
+
 function sortResourceNames(names) {
   return names.sort((a, b) => {
     const ia = LOADOUT_PRIMARY_RESOURCES.indexOf(a);
@@ -247,7 +344,7 @@ function computeLoadoutTotals() {
     const item = LOADOUT_ITEMS_BY_NAME[name];
     if (!item) continue;
     crateTotalsByTab[item.tab] = (crateTotalsByTab[item.tab] || 0) + qty;
-    const recipe = pickRecipeForLocation(item.recipes, loadoutState.craftLocation);
+    const recipe = getItemRecipe(item, loadoutState.craftLocation);
     if (!recipe) continue; // queued, but not craftable at the current toggle — see renderOrderList
     const cratesPerBatch = recipe.crate_output || 1;
     for (const [resName, resQty] of Object.entries(recipe.inputs)) {
@@ -276,10 +373,20 @@ function removeFromOrder(name) {
   renderAll();
 }
 
+// Only shows tabs with at least one orderable item at the CURRENT craft
+// location — e.g. Utility disappears while MPF is selected, Vehicles
+// disappears while Factory is selected (see LOADOUT_TAB_LOCATION_RESTRICTION).
+// If the previously-active tab drops out this way, falls back to the first
+// still-available tab so the item grid never renders against a hidden tab.
 function renderTabBar() {
-  const usedTabs = LOADOUT_TAB_ORDER.filter(tab => LOADOUT_ITEMS.some(item => item.tab === tab));
+  const usedTabs = LOADOUT_TAB_ORDER.filter(tab =>
+    LOADOUT_ITEMS.some(item => item.tab === tab && getItemRecipe(item, loadoutState.craftLocation))
+  );
+  if (usedTabs.length && !usedTabs.includes(loadoutState.activeTab)) {
+    loadoutState.activeTab = usedTabs[0];
+  }
   tabBarEl.innerHTML = usedTabs.map(tab =>
-    `<button type="button" class="loadout-tab${tab === loadoutState.activeTab ? ' active' : ''}" data-tab="${tab}">${LOADOUT_TAB_LABELS[tab]}</button>`
+    `<button type="button" class="loadout-tab${tab === loadoutState.activeTab ? ' active' : ''}" data-tab="${tab}"><img src="icons/images/${LOADOUT_TAB_ICON_FILE[tab]}" class="loadout-tab-icon" alt="" onerror="this.remove()">${LOADOUT_TAB_LABELS[tab]}</button>`
   ).join('');
 }
 
@@ -288,7 +395,7 @@ function renderItemGrid() {
   const items = LOADOUT_ITEMS
     .filter(item => item.tab === loadoutState.activeTab)
     .filter(item => !q || item.name.toLowerCase().includes(q))
-    .filter(item => pickRecipeForLocation(item.recipes, loadoutState.craftLocation))
+    .filter(item => getItemRecipe(item, loadoutState.craftLocation))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   if (!items.length) {
@@ -314,6 +421,7 @@ function renderTotalsPanel(costTotals) {
   const names = sortResourceNames(Object.keys(costTotals));
   totalsPanelEl.innerHTML = names.map(name => `
     <div class="loadout-resource-chip">
+      ${iconTag(name, 'loadout-resource-icon')}
       <span class="loadout-resource-name">${name}</span>
       <span class="loadout-resource-value">${fmtNum(costTotals[name])}</span>
     </div>
@@ -324,8 +432,27 @@ function renderCrateTotalsPanel(crateTotalsByTab) {
   const tabs = LOADOUT_TAB_ORDER.filter(tab => crateTotalsByTab[tab] > 0);
   crateTotalsPanelEl.innerHTML = tabs.map(tab => `
     <div class="loadout-resource-chip">
+      ${iconTag('Crate', 'loadout-resource-icon')}
       <span class="loadout-resource-name">${LOADOUT_TAB_LABELS[tab]}</span>
       <span class="loadout-resource-value">${fmtNum(crateTotalsByTab[tab])}</span>
+    </div>
+  `).join('');
+}
+
+// Condenses TOTAL COSTS' raw unit counts into whole crates, e.g. 160 Basic
+// Materials -> 2 crates (a crate holds 100, and any partial crate still
+// costs a whole one to actually fulfill in-game, hence the ceiling — same
+// round-up-to-whole-crates logic the rest of this page already applies to
+// item orders). Only resources with a known real crate size are shown here
+// (see LOADOUT_RESOURCE_CRATE_SIZE) — everything else already has its exact
+// unit count in TOTAL COSTS above and just isn't repeated down here.
+function renderCostCratesPanel(costTotals) {
+  const names = sortResourceNames(Object.keys(costTotals).filter(name => LOADOUT_RESOURCE_CRATE_SIZE[name]));
+  costCratesPanelEl.innerHTML = names.map(name => `
+    <div class="loadout-resource-chip">
+      ${iconTag('Crate', 'loadout-resource-icon')}
+      <span class="loadout-resource-name">${name}</span>
+      <span class="loadout-resource-value">${fmtNum(Math.ceil(costTotals[name] / LOADOUT_RESOURCE_CRATE_SIZE[name]))}</span>
     </div>
   `).join('');
 }
@@ -361,7 +488,7 @@ function renderOrderList() {
     for (const name of tabNames) {
       const item = LOADOUT_ITEMS_BY_NAME[name];
       const qty = loadoutState.order[name];
-      const available = !!pickRecipeForLocation(item.recipes, loadoutState.craftLocation);
+      const available = !!getItemRecipe(item, loadoutState.craftLocation);
       // Informational only — never blocks ordering more. A single real
       // production order queue only holds so many crates (see
       // LOADOUT_QUEUE_LIMIT); past that, the player just needs multiple
@@ -411,6 +538,7 @@ function renderAll() {
   const { costTotals, crateTotalsByTab } = computeLoadoutTotals();
   renderTotalsPanel(costTotals);
   renderCrateTotalsPanel(crateTotalsByTab);
+  renderCostCratesPanel(costTotals);
   renderOrderList();
   saveLoadoutState();
 }
@@ -421,6 +549,7 @@ function initLoadoutUI() {
   searchInputEl = document.getElementById('itemSearch');
   totalsPanelEl = document.getElementById('totalsPanel');
   crateTotalsPanelEl = document.getElementById('crateTotalsPanel');
+  costCratesPanelEl = document.getElementById('costCratesPanel');
   orderListEl = document.getElementById('orderList');
 
   document.getElementById('craftLocationFactory').checked = loadoutState.craftLocation === 'factory';

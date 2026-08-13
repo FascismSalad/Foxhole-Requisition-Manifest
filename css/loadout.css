@@ -143,6 +143,9 @@ body.loadout-page .masthead {
 }
 
 .loadout-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -152,6 +155,8 @@ body.loadout-page .masthead {
   padding: 8px 14px;
   cursor: pointer;
 }
+
+.loadout-tab-icon { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; }
 
 .loadout-tab:hover { color: var(--brass-light); border-color: var(--brass-dim); }
 
@@ -219,7 +224,16 @@ body.loadout-page .masthead {
    at-a-glance amount without anything sitting on top of the icon. */
 .loadout-item-tile.has-qty { border-color: var(--brass-dim); background: var(--panel); }
 
-.loadout-item-icon { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+/* Single number controls how far the icon+name pair sits from dead-center —
+   change this one value to nudge both together (the qty tag stays put,
+   it's not part of this group). Icon art (not this box) is what's off in
+   the first place — most weapon icons are diagonal silhouettes (thick
+   stock, thin barrel) so their visual weight sits off the true middle of
+   their transparent canvas, even though object-fit:contain centers that
+   canvas exactly. */
+.loadout-item-tile { --icon-nudge-y: 15px; }
+
+.loadout-item-icon { width: 60px; height: 60px; object-fit: contain; flex-shrink: 0; transform: translateY(var(--icon-nudge-y)); }
 
 /* min-height reserves room for a full 2 lines even when the name only
    needs 1 — without it, a short name (e.g. "9mm") made the whole
@@ -228,14 +242,15 @@ body.loadout-page .masthead {
    on a tile with a longer, 2-line name. Reserving the space up front keeps
    every icon at the same vertical position regardless of name length. */
 .loadout-item-name {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 400;
   color: var(--brass-bright);
   line-height: 1.2;
   min-height: 2.4em;
   display: -webkit-box;
   overflow-wrap: anywhere;
   -webkit-line-clamp: 2;
+  transform: translateY(var(--icon-nudge-y));
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -288,22 +303,24 @@ body.loadout-page .masthead {
 .loadout-resource-chip {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--panel);
   border: 1px solid var(--line);
-  padding: 6px 10px;
+  padding: 8px 12px;
 }
+
+.loadout-resource-icon { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
 
 .loadout-resource-name {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   color: var(--paper-dim);
 }
 
 .loadout-resource-value {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--brass-bright);
 }

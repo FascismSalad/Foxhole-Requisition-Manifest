@@ -45,15 +45,17 @@
     if (costTotals['Refined Materials'] === 30) pass('cost-totals-correct');
     else fail('cost-totals-correct', `expected Refined Materials 30, got ${costTotals['Refined Materials']}`);
 
-    // H-5 Hatchet: Garage recipe costs 115 Refined Materials (Garage counts
-    // as "factory mode" — see pickRecipeForLocation), MPF recipe costs
-    // 1206 Refined Materials for a 5-crate batch (241.2/crate). Toggling
-    // location should swap which recipe (and thus cost) is used.
+    // H-5 Hatchet is a Vehicles-tab item — Vehicles/Shippables are MPF-only
+    // on this page by design (matching the real Factory building's own 7
+    // categories, which never include Vehicles — see
+    // LOADOUT_TAB_LOCATION_RESTRICTION in loadout.js), even though the item
+    // itself also has a Garage recipe (115 Refined Materials) sitting in the
+    // underlying data. Queuing it while Factory is selected should NOT
+    // contribute to totals.
     addToOrder('H-5 Hatchet');
     const factoryTotals = computeLoadoutTotals().costTotals;
-    const expectedFactory = 30 + 115; // Dusk x2 (30) + Hatchet Garage (115)
-    if (factoryTotals['Refined Materials'] === expectedFactory) pass('factory-mode-uses-garage-recipe');
-    else fail('factory-mode-uses-garage-recipe', `expected Refined Materials ${expectedFactory}, got ${factoryTotals['Refined Materials']}`);
+    if (factoryTotals['Refined Materials'] === 30) pass('vehicles-tab-unavailable-in-factory-mode');
+    else fail('vehicles-tab-unavailable-in-factory-mode', `expected Refined Materials 30 (Hatchet excluded), got ${factoryTotals['Refined Materials']}`);
 
     loadoutState.craftLocation = 'mpf';
     renderAll();
