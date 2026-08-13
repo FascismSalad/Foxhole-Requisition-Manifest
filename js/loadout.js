@@ -270,7 +270,7 @@ const loadoutState = {
   order: {} // item full_name -> quantity, in whole crates
 };
 
-let tabBarEl, itemGridEl, searchInputEl, totalsPanelEl, crateTotalsPanelEl, costCratesPanelEl, orderListEl;
+let tabBarEl, itemGridEl, searchInputEl, totalsPanelEl, costCratesPanelEl, orderListEl;
 
 function buildLoadoutItems() {
   const byName = {};
@@ -330,20 +330,18 @@ function sortResourceNames(names) {
   });
 }
 
-// Sums the whole order's raw-material cost and per-category crate counts in
-// one pass. Order quantities are always in whole CRATES (matching how
-// foxholelogi itself displays "Produces a crate of Nx") — an MPF recipe
-// that batches multiple crates at once (crate_output > 1) is prorated back
-// down to a per-crate cost first, same crate_output/unit_output convention
-// used throughout calc.js/render.js elsewhere in this codebase.
+// Sums the whole order's raw-material cost in one pass. Order quantities
+// are always in whole CRATES (matching how foxholelogi itself displays
+// "Produces a crate of Nx") — an MPF recipe that batches multiple crates at
+// once (crate_output > 1) is prorated back down to a per-crate cost first,
+// same crate_output/unit_output convention used throughout calc.js/render.js
+// elsewhere in this codebase.
 function computeLoadoutTotals() {
   const costTotals = {};
-  const crateTotalsByTab = {};
   for (const [name, qty] of Object.entries(loadoutState.order)) {
     if (!qty) continue;
     const item = LOADOUT_ITEMS_BY_NAME[name];
     if (!item) continue;
-    crateTotalsByTab[item.tab] = (crateTotalsByTab[item.tab] || 0) + qty;
     const recipe = getItemRecipe(item, loadoutState.craftLocation);
     if (!recipe) continue; // queued, but not craftable at the current toggle — see renderOrderList
     const cratesPerBatch = recipe.crate_output || 1;
@@ -351,20 +349,11 @@ function computeLoadoutTotals() {
       costTotals[resName] = (costTotals[resName] || 0) + (resQty / cratesPerBatch) * qty;
     }
   }
-  return { costTotals, crateTotalsByTab };
+  return { costTotals };
 }
 
 function addToOrder(name, amount = 1) {
   loadoutState.order[name] = (loadoutState.order[name] || 0) + amount;
-  renderAll();
-}
-
-function setOrderQty(name, qty) {
-  if (qty <= 0) {
-    delete loadoutState.order[name];
-  } else {
-    loadoutState.order[name] = qty;
-  }
   renderAll();
 }
 
@@ -417,24 +406,19 @@ function renderItemGrid() {
   }).join('');
 }
 
+// The 4 primary resources (LOADOUT_PRIMARY_RESOURCES) are always shown,
+// defaulting to 0 — a permanent set of anchors rather than a list that
+// grows/shrinks/reorders as items are added, so this panel never jumps
+// around. Anything else a queued item happens to cost (Construction
+// Materials, Assembly Materials, ...) still appears too, just sorted after
+// the 4 primaries and only when actually present.
 function renderTotalsPanel(costTotals) {
-  const names = sortResourceNames(Object.keys(costTotals));
+  const names = sortResourceNames(Array.from(new Set([...LOADOUT_PRIMARY_RESOURCES, ...Object.keys(costTotals)])));
   totalsPanelEl.innerHTML = names.map(name => `
     <div class="loadout-resource-chip">
       ${iconTag(name, 'loadout-resource-icon')}
       <span class="loadout-resource-name">${name}</span>
-      <span class="loadout-resource-value">${fmtNum(costTotals[name])}</span>
-    </div>
-  `).join('');
-}
-
-function renderCrateTotalsPanel(crateTotalsByTab) {
-  const tabs = LOADOUT_TAB_ORDER.filter(tab => crateTotalsByTab[tab] > 0);
-  crateTotalsPanelEl.innerHTML = tabs.map(tab => `
-    <div class="loadout-resource-chip">
-      ${iconTag('Crate', 'loadout-resource-icon')}
-      <span class="loadout-resource-name">${LOADOUT_TAB_LABELS[tab]}</span>
-      <span class="loadout-resource-value">${fmtNum(crateTotalsByTab[tab])}</span>
+      <span class="loadout-resource-value">${fmtNum(costTotals[name] || 0)}</span>
     </div>
   `).join('');
 }
@@ -444,15 +428,16 @@ function renderCrateTotalsPanel(crateTotalsByTab) {
 // costs a whole one to actually fulfill in-game, hence the ceiling — same
 // round-up-to-whole-crates logic the rest of this page already applies to
 // item orders). Only resources with a known real crate size are shown here
-// (see LOADOUT_RESOURCE_CRATE_SIZE) — everything else already has its exact
-// unit count in TOTAL COSTS above and just isn't repeated down here.
+// (see LOADOUT_RESOURCE_CRATE_SIZE) — same permanent-anchor, default-0
+// treatment as renderTotalsPanel above, so the two panels never disagree
+// about whether something's "there."
 function renderCostCratesPanel(costTotals) {
-  const names = sortResourceNames(Object.keys(costTotals).filter(name => LOADOUT_RESOURCE_CRATE_SIZE[name]));
+  const names = sortResourceNames(Object.keys(LOADOUT_RESOURCE_CRATE_SIZE));
   costCratesPanelEl.innerHTML = names.map(name => `
     <div class="loadout-resource-chip">
       ${iconTag('Crate', 'loadout-resource-icon')}
       <span class="loadout-resource-name">${name}</span>
-      <span class="loadout-resource-value">${fmtNum(Math.ceil(costTotals[name] / LOADOUT_RESOURCE_CRATE_SIZE[name]))}</span>
+      <span class="loadout-resource-value">${fmtNum(Math.ceil((costTotals[name] || 0) / LOADOUT_RESOURCE_CRATE_SIZE[name]))}</span>
     </div>
   `).join('');
 }
@@ -497,16 +482,16 @@ function renderOrderList() {
       const warning = overLimit
         ? `<span class="loadout-order-warning" title="A single ${locationLabel} order queue only holds ${queueLimit} crates — you'll need ${Math.ceil(qty / queueLimit)} separate orders to fulfill this.">⚠ ${Math.ceil(qty / queueLimit)}× orders</span>`
         : '';
-      html += `<div class="loadout-order-row${available ? '' : ' loadout-order-row-unavailable'}" data-item-name="${name}">
+      // Click-to-remove, no stepper — this list is for reviewing/pruning the
+      // order, not adjusting quantities (that's what the item grid's
+      // click/shift-click is for). A separate +/-/remove button cluster here
+      // was mostly wasted width; the whole row now doubles as the remove
+      // control.
+      html += `<div class="loadout-order-row${available ? '' : ' loadout-order-row-unavailable'}" data-item-name="${name}" title="Click to remove ${name} from the order">
         ${iconTag(name, 'loadout-order-icon')}
-        <span class="loadout-order-name" title="${available ? name : name + ' — not craftable at this location'}">${name}</span>
+        <span class="loadout-order-name">${name}</span>
         ${warning}
-        <div class="step-queue-stepper">
-          <button type="button" class="step-queue-btn loadout-qty-dec">−</button>
-          <input type="number" min="1" class="qty-val step-queue-val-input loadout-qty-input" value="${qty}">
-          <button type="button" class="step-queue-btn loadout-qty-inc">+</button>
-        </div>
-        <button type="button" class="loadout-order-remove" title="Remove">×</button>
+        <span class="loadout-order-qty">×${qty}</span>
       </div>`;
     }
   }
@@ -515,7 +500,7 @@ function renderOrderList() {
 
 function saveLoadoutState() {
   try {
-    localStorage.setItem(LOADOUT_STORAGE_KEY, JSON.stringify({ order: loadoutState.order, craftLocation: loadoutState.craftLocation }));
+    localStorage.setItem(LOADOUT_STORAGE_KEY, JSON.stringify({ order: loadoutState.order, craftLocation: loadoutState.craftLocation, activeTab: loadoutState.activeTab }));
   } catch (e) { /* localStorage unavailable (private browsing, quota) — order just won't persist */ }
 }
 
@@ -528,6 +513,9 @@ function loadLoadoutState() {
     if (parsed && typeof parsed === 'object') {
       if (parsed.order && typeof parsed.order === 'object') loadoutState.order = parsed.order;
       if (parsed.craftLocation === 'factory' || parsed.craftLocation === 'mpf') loadoutState.craftLocation = parsed.craftLocation;
+      // Any bogus/no-longer-valid tab self-corrects on first render — see
+      // the usedTabs fallback in renderTabBar — so no validation needed here.
+      if (typeof parsed.activeTab === 'string') loadoutState.activeTab = parsed.activeTab;
     }
   } catch (e) { /* corrupt saved state — ignore, start fresh */ }
 }
@@ -535,9 +523,8 @@ function loadLoadoutState() {
 function renderAll() {
   renderTabBar();
   renderItemGrid();
-  const { costTotals, crateTotalsByTab } = computeLoadoutTotals();
+  const { costTotals } = computeLoadoutTotals();
   renderTotalsPanel(costTotals);
-  renderCrateTotalsPanel(crateTotalsByTab);
   renderCostCratesPanel(costTotals);
   renderOrderList();
   saveLoadoutState();
@@ -548,7 +535,6 @@ function initLoadoutUI() {
   itemGridEl = document.getElementById('itemGrid');
   searchInputEl = document.getElementById('itemSearch');
   totalsPanelEl = document.getElementById('totalsPanel');
-  crateTotalsPanelEl = document.getElementById('crateTotalsPanel');
   costCratesPanelEl = document.getElementById('costCratesPanel');
   orderListEl = document.getElementById('orderList');
 
@@ -580,31 +566,29 @@ function initLoadoutUI() {
     addToOrder(tile.dataset.itemName, amount);
   });
 
+  // Right-click a tile to drop that item's entire queued amount in one step
+  // — a no-op (still suppresses the browser's own context menu) if it
+  // isn't queued.
+  itemGridEl.addEventListener('contextmenu', e => {
+    const tile = e.target.closest('.loadout-item-tile');
+    if (!tile) return;
+    e.preventDefault();
+    const name = tile.dataset.itemName;
+    if (loadoutState.order[name] > 0) removeFromOrder(name);
+  });
+
   document.getElementById('clearOrderBtn').addEventListener('click', () => {
     loadoutState.order = {};
     renderAll();
   });
 
+  // Click anywhere on an order row to remove that item entirely — this list
+  // is for reviewing/pruning the order, not adjusting quantities (see the
+  // comment above renderOrderList's markup).
   orderListEl.addEventListener('click', e => {
     const row = e.target.closest('.loadout-order-row');
     if (!row) return;
-    const name = row.dataset.itemName;
-    if (e.target.closest('.loadout-order-remove')) {
-      removeFromOrder(name);
-    } else if (e.target.closest('.loadout-qty-dec')) {
-      const next = (loadoutState.order[name] || 1) - 1;
-      setOrderQty(name, next);
-    } else if (e.target.closest('.loadout-qty-inc')) {
-      setOrderQty(name, (loadoutState.order[name] || 0) + 1);
-    }
-  });
-
-  orderListEl.addEventListener('change', e => {
-    const input = e.target.closest('.loadout-qty-input');
-    if (!input) return;
-    const row = e.target.closest('.loadout-order-row');
-    const next = Math.max(1, Math.round(Number(input.value)) || 1);
-    setOrderQty(row.dataset.itemName, next);
+    removeFromOrder(row.dataset.itemName);
   });
 }
 

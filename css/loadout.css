@@ -16,17 +16,19 @@
    through every nested level. Without this, the item grid below has no
    natural height limit and just grows the whole page — masthead, search,
    tabs and all — off the bottom of the screen instead of scrolling in
-   place. Only .loadout-item-grid and .loadout-order-list actually scroll;
-   everything else (settings, search, tabs, totals) stays put, same
-   division of labor as .planner-sidebar/.planner-facility-list.
+   place. Only .loadout-item-grid still scrolls internally on purpose (it's
+   a fixed-size catalog); .loadout-order-list deliberately does NOT (see its
+   own comment) — min-height (not a hard height+overflow:hidden) is what
+   lets the page grow and scroll normally on the rare order long enough to
+   need it, while still matching index.html's height exactly the rest of
+   the time, same as before.
 
    .masthead below opts back OUT of the zoom-cancel (same fix, same reason,
    as body.planner-page .masthead in planner.css) so the title/nav render
    at the same size as index.html instead of ~11% smaller. */
 body.loadout-page {
   zoom: calc(1 / 1.12);
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -36,9 +38,9 @@ body.loadout-page .masthead {
 }
 
 .loadout-wrap {
-  max-width: 1600px;
+  max-width: 1880px;
   margin: 0 auto;
-  padding: 32px 20px 80px;
+  padding: 18px 20px 20px;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -64,7 +66,7 @@ body.loadout-page .masthead {
   flex-direction: column;
 }
 
-.loadout-settings { margin-bottom: 16px; }
+.loadout-settings { margin-bottom: 10px; }
 
 .loadout-fieldset {
   border: 1px solid var(--line);
@@ -118,7 +120,7 @@ body.loadout-page .masthead {
   border-color: var(--brass-dim);
 }
 
-.loadout-search-wrap { margin-bottom: 14px; }
+.loadout-search-wrap { margin-bottom: 10px; }
 
 .loadout-search-input {
   width: 100%;
@@ -139,7 +141,7 @@ body.loadout-page .masthead {
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .loadout-tab {
@@ -168,12 +170,12 @@ body.loadout-page .masthead {
 
 .loadout-item-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
   align-content: start;
-  gap: 6px;
+  gap: 5px;
   border: 1px solid var(--line);
   background: var(--panel);
-  padding: 10px;
+  padding: 8px;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -209,10 +211,10 @@ body.loadout-page .masthead {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   background: var(--panel-raised);
   border: 1px solid var(--line);
-  padding: 8px 6px;
+  padding: 6px 5px;
   cursor: pointer;
   text-align: center;
 }
@@ -231,9 +233,9 @@ body.loadout-page .masthead {
    stock, thin barrel) so their visual weight sits off the true middle of
    their transparent canvas, even though object-fit:contain centers that
    canvas exactly. */
-.loadout-item-tile { --icon-nudge-y: 15px; }
+.loadout-item-tile { --icon-nudge-y: 10px; }
 
-.loadout-item-icon { width: 60px; height: 60px; object-fit: contain; flex-shrink: 0; transform: translateY(var(--icon-nudge-y)); }
+.loadout-item-icon { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; transform: translateY(var(--icon-nudge-y)); }
 
 /* min-height reserves room for a full 2 lines even when the name only
    needs 1 — without it, a short name (e.g. "9mm") made the whole
@@ -242,7 +244,7 @@ body.loadout-page .masthead {
    on a tile with a longer, 2-line name. Reserving the space up front keeps
    every icon at the same vertical position regardless of name length. */
 .loadout-item-name {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--brass-bright);
   line-height: 1.2;
@@ -300,10 +302,15 @@ body.loadout-page .masthead {
   font-size: 12px;
 }
 
+/* width:100% (rather than the flex-item default of shrink-to-fit content)
+   is what makes every chip the same size regardless of how long its name
+   or value is — without it, "Basic Materials 800" and "Heavy Explosive
+   Powder 0" ended up as different-width boxes. */
 .loadout-resource-chip {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
   background: var(--panel);
   border: 1px solid var(--line);
   padding: 8px 12px;
@@ -318,7 +325,11 @@ body.loadout-page .masthead {
   color: var(--paper-dim);
 }
 
+/* margin-left:auto pins the value to the box's right edge regardless of
+   name length, instead of it just trailing right after the name — keeps
+   the value column visually aligned down the whole panel. */
 .loadout-resource-value {
+  margin-left: auto;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 22px;
   font-weight: 700;
@@ -348,12 +359,14 @@ body.loadout-page .masthead {
 }
 .loadout-btn-danger:hover { border-color: var(--rust); color: var(--rust-bright); }
 
+/* No flex:1/overflow-y:auto here on purpose — this list just grows with
+   its content instead of scrolling in its own cramped box. In the rare
+   case a long order makes the whole page taller than the viewport, the
+   page itself scrolls normally (see the min-height comment on
+   body.loadout-page above) rather than nesting a second scrollbar. */
 .loadout-order-list {
   border: 1px solid var(--line);
   background: var(--panel);
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
 }
 
 .loadout-order-category {
@@ -364,14 +377,20 @@ body.loadout-page .masthead {
   padding: 8px 12px 4px;
 }
 
+/* Whole row is the remove control now (click anywhere to drop that item) —
+   see the click handler in initLoadoutUI and the comment above
+   renderOrderList's markup. */
 .loadout-order-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
+  gap: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
 }
+.loadout-order-row:hover { background: var(--panel-raised); }
+.loadout-order-row:hover .loadout-order-name { color: var(--rust-bright); }
 
-.loadout-order-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+.loadout-order-icon { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
 
 /* Queued but not craftable at the currently-selected Factory/MPF toggle
    (e.g. a Factory-only item while MPF is selected) — stays in the list
@@ -384,7 +403,7 @@ body.loadout-page .masthead {
 .loadout-order-name {
   flex: 1;
   min-width: 0;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--paper);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -405,31 +424,28 @@ body.loadout-page .masthead {
   white-space: nowrap;
 }
 
-.loadout-order-remove {
+.loadout-order-qty {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  background: none;
-  border: 1px solid var(--line);
-  color: var(--paper-dim);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brass-bright);
 }
-.loadout-order-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
 
 @media (max-width: 900px) {
   /* Small screens get normal page scroll instead of the fixed-viewport
      split layout — same override body.planner-page uses at this
      breakpoint, same reason (a two-pane internal-scroll layout doesn't
-     have room to breathe once the columns stack). */
-  body.loadout-page { height: auto; overflow: visible; }
+     have room to breathe once the columns stack). body.loadout-page's base
+     rule already permits normal page scroll (min-height, not a hard
+     height+overflow:hidden), so nothing to override there anymore. */
   .loadout-wrap { flex: none; min-height: 0; }
   .loadout-layout { flex-direction: column; flex: none; }
   .loadout-picker { flex: none; }
   .loadout-item-grid { flex: none; max-height: 60vh; }
   .loadout-summary { flex: 1 1 auto; width: 100%; order: -1; }
-  .loadout-order-list { flex: none; max-height: 320px; }
+  /* Unlike the desktop layout, still capped+scrollable here — on a small
+     screen a long order pushing the whole page down means a lot of
+     scrolling just to reach the item catalog below it. */
+  .loadout-order-list { max-height: 320px; overflow-y: auto; }
 }

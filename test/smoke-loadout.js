@@ -90,6 +90,29 @@
     renderAll();
     if (Object.keys(loadoutState.order).length === 0) pass('clear-order');
     else fail('clear-order', `expected empty order, got ${JSON.stringify(loadoutState.order)}`);
+
+    // Click-to-remove: clicking anywhere on an order row removes that item
+    // entirely — no more +/-/remove-button cluster there (see the comment
+    // above renderOrderList's markup in loadout.js).
+    addToOrder('Dusk ce.III');
+    renderAll();
+    const orderRow = orderListEl.querySelector('.loadout-order-row');
+    if (orderRow) orderRow.click();
+    if (!loadoutState.order['Dusk ce.III']) pass('click-order-row-removes-item');
+    else fail('click-order-row-removes-item', `expected Dusk ce.III removed, got qty ${loadoutState.order['Dusk ce.III']}`);
+
+    // Right-click a queued tile drops its ENTIRE queued amount in one step
+    // (not just one crate), and suppresses the browser's own context menu.
+    addToOrder('Dusk ce.III', 2);
+    renderAll();
+    const tile = itemGridEl.querySelector('[data-item-name="Dusk ce.III"]');
+    const ctxEvt = new MouseEvent('contextmenu', { bubbles: true, cancelable: true });
+    tile.dispatchEvent(ctxEvt);
+    if (!loadoutState.order['Dusk ce.III'] && ctxEvt.defaultPrevented) pass('right-click-tile-removes-entire-queue');
+    else fail('right-click-tile-removes-entire-queue', `expected Dusk ce.III fully removed + preventDefault, got qty=${loadoutState.order['Dusk ce.III']} defaultPrevented=${ctxEvt.defaultPrevented}`);
+
+    loadoutState.order = {};
+    renderAll();
   } catch (e) {
     console.log(`AUTOTEST:ERROR ${e.message}`);
   }
