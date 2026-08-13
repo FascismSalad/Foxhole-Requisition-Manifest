@@ -25,6 +25,7 @@
           "Bane 45": 5
         }
       },
+
       {
         "recipe_key": "bane_45_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -42,6 +43,7 @@
       }
     ]
   },
+
   "ignifist_30": {
     "full_name": "Ignifist 30",
     "category": "weapon",
@@ -67,6 +69,7 @@
           "Ignifist 30": 10
         }
       },
+
       {
         "recipe_key": "ignifist_30_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -82,6 +85,7 @@
         "crate_output": 9,
         "unit_output": 90
       },
+
       {
         "recipe_key": "ignifist_30_infantry_kit_factory",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -98,6 +102,7 @@
       }
     ]
   },
+
   "venom_cii_35": {
     "full_name": "Venom c.II 35",
     "category": "weapon",
@@ -124,6 +129,7 @@
           "Venom c.II 35": 5
         }
       },
+
       {
         "recipe_key": "venom_cii_35_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -141,6 +147,7 @@
       }
     ]
   },
+
   "klg901_2_lunaire_f": {
     "full_name": "KLG901-2 Lunaire F",
     "category": "weapon",
@@ -171,6 +178,7 @@
           "KLG901-2 Lunaire F": 5
         }
       },
+
       {
         "recipe_key": "klg901_2_lunaire_f_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -188,6 +196,7 @@
       }
     ]
   },
+
   "mounted_fissura_gdi": {
     "full_name": "Mounted Fissura gd.I",
     "category": "weapon",
@@ -218,6 +227,7 @@
           "Mounted Fissura gd.I": 1
         }
       },
+
       {
         "recipe_key": "mounted_fissura_gdi_factory",
         "recipe_name": "Factory",
@@ -231,6 +241,7 @@
           "Mounted Fissura gd.I": 5
         }
       },
+
       {
         "recipe_key": "mounted_fissura_gdi_mpf",
         "recipe_name": "MPF (9-Crate)",

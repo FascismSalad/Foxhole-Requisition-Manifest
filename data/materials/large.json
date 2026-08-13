@@ -25,6 +25,8 @@
           "Construction Materials": 1
         }
       },
+
+
       {
         "recipe_key": "metal_beam_factory_utility",
         "recipe_name": "Factory",
@@ -39,6 +41,8 @@
       }
     ]
   },
+
+
   "am1": {
     "full_name": "Assembly Materials I",
     "category": "material",
@@ -63,6 +67,8 @@
       "Assembly Materials I": 1
     }
   },
+
+
   "am2": {
     "full_name": "Assembly Materials II",
     "category": "material",
@@ -87,6 +93,8 @@
       "Assembly Materials II": 1
     }
   },
+
+
   "am3": {
     "full_name": "Assembly Materials III",
     "category": "material",
@@ -111,6 +119,8 @@
       "Assembly Materials III": 1
     }
   },
+
+
   "am4": {
     "full_name": "Assembly Materials IV",
     "category": "material",
@@ -135,6 +145,8 @@
       "Assembly Materials IV": 1
     }
   },
+
+
   "am5": {
     "full_name": "Assembly Materials V",
     "category": "material",
@@ -161,6 +173,8 @@
       "Assembly Materials V": 1
     }
   },
+
+
   "rare_alloys": {
     "full_name": "Rare Alloys",
     "category": "material",
@@ -184,6 +198,8 @@
       "Rare Alloys": 1
     }
   },
+
+
   "steel": {
     "full_name": "Steel Construction Materials",
     "category": "material",
@@ -198,6 +214,7 @@
     "recipes": [
       {
         "recipe_key": "steel_eoil",
+        "is_default": true,
         "recipe_name": "Enriched Oil Recipe (EOil)",
         "facility": "Metalworks Factory [Engineering Station]",
         "crafting_time_seconds": 90,
@@ -217,6 +234,8 @@
           "Steel Construction Materials": 3
         }
       },
+
+
       {
         "recipe_key": "steel_hoil",
         "recipe_name": "Heavy Oil Recipe (HOil)",
@@ -240,6 +259,8 @@
       }
     ]
   },
+
+
   "thermal_shielding": {
     "full_name": "Thermal Shielding",
     "category": "material",
@@ -261,6 +282,8 @@
       "Thermal Shielding": 1
     }
   },
+
+
   "barbed_wire": {
     "full_name": "Barbed Wire",
     "category": "material",
@@ -284,6 +307,8 @@
           "Construction Materials": 1
         }
       },
+
+
       {
         "recipe_key": "barbed_wire_factory_utility",
         "recipe_name": "Factory",
@@ -298,6 +323,8 @@
       }
     ]
   },
+
+
   "sandbag": {
     "full_name": "Sandbag",
     "category": "material",
@@ -321,6 +348,8 @@
           "Construction Materials": 1
         }
       },
+
+
       {
         "recipe_key": "sandbag_factory_utility",
         "recipe_name": "Factory",
@@ -335,6 +364,8 @@
       }
     ]
   },
+
+
   "pcon": {
     "full_name": "Processed Construction Materials",
     "category": "material",
@@ -363,6 +394,8 @@
           "Processed Construction Materials": 1
         }
       },
+
+
       {
         "recipe_key": "pcon_base",
         "recipe_name": "Metalworks Factory",
@@ -377,6 +410,8 @@
           "Processed Construction Materials": 1
         }
       },
+
+
       {
         "recipe_key": "pcon_blast_furnace",
         "recipe_name": "Blast Furnace",
@@ -394,6 +429,8 @@
       }
     ]
   },
+
+
   "concrete_materials": {
     "full_name": "Concrete Materials",
     "category": "material",
@@ -420,6 +457,8 @@
           "Oil (L)": 50
         }
       },
+
+
       {
         "recipe_key": "concrete_materials_advanced_liquefier",
         "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
@@ -436,6 +475,8 @@
           "Oil (L)": 100
         }
       },
+
+
       {
         "recipe_key": "concrete_materials_concrete_mixer",
         "recipe_name": "Concrete Mixer",
@@ -450,6 +491,8 @@
       }
     ]
   },
+
+
   "pipe": {
     "full_name": "Pipe",
     "category": "material",
@@ -468,6 +511,8 @@
       "Pipe": 1
     }
   },
+
+
   "rare_materials": {
     "full_name": "Rare Materials",
     "category": "material",
@@ -487,6 +532,8 @@
       "Rare Materials": 1
     }
   },
+
+
   "unstable_substances": {
     "full_name": "Unstable Substances",
     "category": "material",

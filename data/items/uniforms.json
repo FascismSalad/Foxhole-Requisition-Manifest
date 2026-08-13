@@ -3,186 +3,416 @@
     "full_name": "Fabri Rucksack",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "fabri_rucksack",
       "fabri rucksack",
       "engineer uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Fabri Rucksack": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "fabri_rucksack_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Fabri Rucksack": 15
+        }
+      },
+
+      {
+        "recipe_key": "fabri_rucksack_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Fabri Rucksack": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "medic_fatigues": {
     "full_name": "Medic Fatigues",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "medic_fatigues",
       "medic fatigues",
       "medic uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Medic Fatigues": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "medic_fatigues_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Medic Fatigues": 15
+        }
+      },
+
+      {
+        "recipe_key": "medic_fatigues_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Medic Fatigues": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "recon_camo": {
     "full_name": "Recon Camo",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "recon_camo",
       "recon camo",
       "scout uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Recon Camo": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "recon_camo_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Recon Camo": 15
+        }
+      },
+
+      {
+        "recipe_key": "recon_camo_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Recon Camo": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "tankmans_coveralls": {
     "full_name": "Tankman's Coveralls",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "tankmans_coveralls",
       "tankman's coveralls",
       "tankmans coveralls",
       "tank uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Tankman's Coveralls": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "tankmans_coveralls_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Tankman's Coveralls": 15
+        }
+      },
+
+      {
+        "recipe_key": "tankmans_coveralls_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Tankman's Coveralls": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "heavy_topcoat": {
     "full_name": "Heavy Topcoat",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "heavy_topcoat",
       "heavy topcoat",
       "snow uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Heavy Topcoat": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "heavy_topcoat_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Heavy Topcoat": 15
+        }
+      },
+
+      {
+        "recipe_key": "heavy_topcoat_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Heavy Topcoat": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "legionarys_oilcoat": {
     "full_name": "Legionary's Oilcoat",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "legionarys_oilcoat",
       "legionary's oilcoat",
       "legionarys oilcoat",
       "rain uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Legionary's Oilcoat": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "legionarys_oilcoat_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Legionary's Oilcoat": 15
+        }
+      },
+
+      {
+        "recipe_key": "legionarys_oilcoat_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Legionary's Oilcoat": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "grenadiers_baldric": {
     "full_name": "Grenadier's Baldric",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "grenadiers_baldric",
       "grenadier's baldric",
       "grenadiers baldric",
       "grenade uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Grenadier's Baldric": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "grenadiers_baldric_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Grenadier's Baldric": 15
+        }
+      },
+
+      {
+        "recipe_key": "grenadiers_baldric_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Grenadier's Baldric": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "velian_flak_vest": {
     "full_name": "Velian Flak Vest",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 10,
     "aliases": [
       "velian_flak_vest",
       "velian flak vest",
       "armour uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 200
-    },
-    "outputs": {
-      "Velian Flak Vest": 10
-    }
+    "recipes": [
+      {
+        "recipe_key": "velian_flak_vest_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 200
+        },
+        "outputs": {
+          "Velian Flak Vest": 10
+        }
+      },
+
+      {
+        "recipe_key": "velian_flak_vest_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 1100
+        },
+        "outputs": {
+          "Velian Flak Vest": 90
+        },
+        "crate_output": 9,
+        "unit_output": 90
+      }
+    ]
   },
+
   "officialis_attire": {
     "full_name": "Officialis' Attire",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 3,
     "aliases": [
       "officialis_attire",
       "officialis' attire",
       "officialis attire",
       "officer uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Officialis' Attire": 3
-    }
+    "recipes": [
+      {
+        "recipe_key": "officialis_attire_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Officialis' Attire": 3
+        }
+      },
+
+      {
+        "recipe_key": "officialis_attire_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Officialis' Attire": 27
+        },
+        "crate_output": 9,
+        "unit_output": 27
+      }
+    ]
   },
+
   "remex_garb": {
     "full_name": "Remex Garb",
     "category": "item",
     "subcategory": "Uniform",
+    "crate_size": 15,
     "aliases": [
       "remex_garb",
       "remex garb",
       "naval uniform"
     ],
-    "facility": "Factory",
-    "crafting_time_seconds": 90,
-    "inputs": {
-      "Basic Materials": 100
-    },
-    "outputs": {
-      "Remex Garb": 15
-    }
+    "recipes": [
+      {
+        "recipe_key": "remex_garb_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "crafting_time_seconds": 90,
+        "inputs": {
+          "Basic Materials": 100
+        },
+        "outputs": {
+          "Remex Garb": 15
+        }
+      },
+
+      {
+        "recipe_key": "remex_garb_mpf",
+        "recipe_name": "MPF (9-Crate)",
+        "facility": "Mass Production Factory",
+        "crafting_time_seconds": 8100,
+        "inputs": {
+          "Basic Materials": 550
+        },
+        "outputs": {
+          "Remex Garb": 135
+        },
+        "crate_output": 9,
+        "unit_output": 135
+      }
+    ]
   },
+
   "lodesmans_lorica": {
     "full_name": "Lodesman's Lorica",
     "category": "item",
@@ -204,6 +434,7 @@
       "Lodesman's Lorica": 1
     }
   },
+
   "austers_harness": {
     "full_name": "Auster's Harness",
     "category": "item",

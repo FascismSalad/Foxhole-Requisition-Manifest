@@ -24,6 +24,7 @@
           "Catara mo.II": 20
         }
       },
+
       {
         "recipe_key": "catara_moii_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -40,6 +41,7 @@
       }
     ]
   },
+
   "krn886_127_gast_machine_gun": {
     "full_name": "KRN886-127 Gast Machine Gun",
     "category": "weapon",
@@ -67,6 +69,7 @@
           "KRN886-127 Gast Machine Gun": 5
         }
       },
+
       {
         "recipe_key": "krn886_127_gast_machine_gun_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -83,6 +86,7 @@
       }
     ]
   },
+
   "lamentum_mmiv": {
     "full_name": "Lamentum mm.IV",
     "category": "weapon",
@@ -109,6 +113,7 @@
           "Lamentum mm.IV": 1
         }
       },
+
       {
         "recipe_key": "lamentum_mmiv_factory",
         "recipe_name": "Factory",
@@ -122,6 +127,7 @@
           "Lamentum mm.IV": 5
         }
       },
+
       {
         "recipe_key": "lamentum_mmiv_mpf",
         "recipe_name": "MPF (9-Crate)",

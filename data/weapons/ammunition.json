@@ -24,6 +24,7 @@
         "crate_output": 1,
         "unit_output": 30
       },
+
       {
         "recipe_key": "cal_792mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -40,6 +41,7 @@
       }
     ]
   },
+
   "cal_762mm": {
     "full_name": "7.62mm",
     "category": "ammunition",
@@ -65,6 +67,7 @@
         "crate_output": 1,
         "unit_output": 40
       },
+
       {
         "recipe_key": "cal_762mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -81,6 +84,7 @@
       }
     ]
   },
+
   "cal_9mm": {
     "full_name": "9mm",
     "category": "ammunition",
@@ -88,7 +92,8 @@
     "is_caliber": true,
     "crate_size": 40,
     "aliases": [
-      "9mm"
+      "9mm",
+      "9mm smg"
     ],
     "recipes": [
       {
@@ -105,6 +110,7 @@
         "crate_output": 1,
         "unit_output": 40
       },
+
       {
         "recipe_key": "cal_9mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -121,6 +127,7 @@
       }
     ]
   },
+
   "cal_8mm": {
     "full_name": "8mm",
     "category": "ammunition",
@@ -145,6 +152,7 @@
         "crate_output": 1,
         "unit_output": 40
       },
+
       {
         "recipe_key": "cal_8mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -161,6 +169,7 @@
       }
     ]
   },
+
   "cal_44mag": {
     "full_name": ".44 Mag",
     "category": "ammunition",
@@ -170,7 +179,9 @@
     "aliases": [
       ".44 mag",
       ".44mag",
-      "44 mag"
+      "44 mag",
+      ".44",
+      "44"
     ],
     "recipes": [
       {
@@ -187,6 +198,7 @@
         "crate_output": 1,
         "unit_output": 40
       },
+
       {
         "recipe_key": "cal_44mag_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -203,6 +215,7 @@
       }
     ]
   },
+
   "buckshot": {
     "full_name": "Buckshot",
     "category": "ammunition",
@@ -227,6 +240,7 @@
         "crate_output": 1,
         "unit_output": 40
       },
+
       {
         "recipe_key": "buckshot_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -243,6 +257,7 @@
       }
     ]
   },
+
   "cal_127mm": {
     "full_name": "12.7mm",
     "category": "ammunition",
@@ -268,6 +283,7 @@
         "crate_output": 1,
         "unit_output": 20
       },
+
       {
         "recipe_key": "cal_127mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -284,6 +300,7 @@
       }
     ]
   },
+
   "cal_145mm": {
     "full_name": "14.5mm",
     "category": "ammunition",
@@ -309,6 +326,7 @@
         "crate_output": 1,
         "unit_output": 10
       },
+
       {
         "recipe_key": "cal_145mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -323,6 +341,7 @@
         "crate_output": 9,
         "unit_output": 90
       },
+
       {
         "recipe_key": "cal_145mm_infantry_kit_small_arms_workshop",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -340,25 +359,61 @@
       }
     ]
   },
+
   "cal_20mm": {
     "full_name": "20mm",
     "category": "ammunition",
     "subcategory": "Magazines",
     "is_caliber": true,
+    "crate_size": 5,
     "aliases": [
       "20mm"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "cal_20mm_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "inputs": {
+          "Basic Materials": 120
+        },
+        "outputs": {
+          "20mm": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      }
     ]
   },
+
   "absol_aa_rounds": {
     "full_name": "Absol Anti-Aircraft Rounds",
     "category": "ammunition",
     "subcategory": "Magazines",
     "is_caliber": true,
+    "crate_size": 5,
     "aliases": [
       "absol anti-aircraft rounds",
       "absol rounds"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "absol_aa_rounds_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "inputs": {
+          "Basic Materials": 150,
+          "Explosive Powder": 160
+        },
+        "outputs": {
+          "Absol Anti-Aircraft Rounds": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      }
     ]
   },
+
   "flame_ammo": {
     "full_name": "Flame Ammo",
     "category": "ammunition",
@@ -384,6 +439,7 @@
       }
     ]
   },
+
   "cal_30mm": {
     "full_name": "30mm",
     "category": "ammunition",
@@ -409,6 +465,7 @@
         "crate_output": 1,
         "unit_output": 20
       },
+
       {
         "recipe_key": "cal_30mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -424,6 +481,7 @@
         "crate_output": 9,
         "unit_output": 180
       },
+
       {
         "recipe_key": "cal_30mm_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -442,6 +500,7 @@
       }
     ]
   },
+
   "shell_40mm": {
     "full_name": "40mm",
     "category": "ammunition",
@@ -467,6 +526,7 @@
         "crate_output": 1,
         "unit_output": 20
       },
+
       {
         "recipe_key": "shell_40mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -482,6 +542,7 @@
         "crate_output": 9,
         "unit_output": 180
       },
+
       {
         "recipe_key": "shell_40mm_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -500,6 +561,7 @@
       }
     ]
   },
+
   "shell_68mm": {
     "full_name": "68mm",
     "category": "ammunition",
@@ -525,6 +587,7 @@
         "crate_output": 1,
         "unit_output": 20
       },
+
       {
         "recipe_key": "shell_68mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -540,6 +603,7 @@
         "crate_output": 9,
         "unit_output": 180
       },
+
       {
         "recipe_key": "shell_68mm_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -558,6 +622,7 @@
       }
     ]
   },
+
   "shell_75mm": {
     "full_name": "75mm",
     "category": "ammunition",
@@ -583,6 +648,7 @@
       }
     ]
   },
+
   "shell_945mm": {
     "full_name": "94.5mm",
     "category": "ammunition",
@@ -609,6 +675,7 @@
       }
     ]
   },
+
   "shell_950_70b_aa": {
     "full_name": "950-70b Anti-Aircraft Shell",
     "category": "ammunition",
@@ -633,6 +700,7 @@
           "950-70b Anti-Aircraft Shell": 1
         }
       },
+
       {
         "recipe_key": "shell_950_70b_aa_factory",
         "recipe_name": "Factory",
@@ -648,6 +716,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "shell_950_70b_aa_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -665,6 +734,7 @@
       }
     ]
   },
+
   "artillery_120mm": {
     "full_name": "120mm",
     "category": "ammunition",
@@ -689,6 +759,7 @@
           "120mm": 1
         }
       },
+
       {
         "recipe_key": "artillery_120mm_factory",
         "recipe_name": "Factory",
@@ -704,6 +775,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "artillery_120mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -721,6 +793,7 @@
       }
     ]
   },
+
   "artillery_150mm": {
     "full_name": "150mm",
     "category": "ammunition",
@@ -745,6 +818,7 @@
           "150mm": 1
         }
       },
+
       {
         "recipe_key": "artillery_150mm_factory",
         "recipe_name": "Factory",
@@ -760,6 +834,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "artillery_150mm_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -777,6 +852,7 @@
       }
     ]
   },
+
   "artillery_300mm": {
     "full_name": "300mm",
     "category": "ammunition",
@@ -802,6 +878,7 @@
       }
     ]
   },
+
   "rocket_3c_he": {
     "full_name": "3C-High Explosive Rocket",
     "category": "ammunition",
@@ -828,6 +905,7 @@
       }
     ]
   },
+
   "rocket_4c_fire": {
     "full_name": "4C-Fire Rocket",
     "category": "ammunition",
@@ -854,6 +932,7 @@
       }
     ]
   },
+
   "mortar_shell_flare": {
     "full_name": "Flare Mortar Shell",
     "category": "ammunition",
@@ -880,6 +959,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "mortar_shell_flare_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -895,6 +975,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "mortar_shell_flare_infantry_kit_small_arms_workshop",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -913,6 +994,7 @@
       }
     ]
   },
+
   "mortar_shell_incendiary": {
     "full_name": "Incendiary Mortar Shell",
     "category": "ammunition",
@@ -943,6 +1025,7 @@
       }
     ]
   },
+
   "mortar_shell": {
     "full_name": "Mortar Shell",
     "category": "ammunition",
@@ -968,6 +1051,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "mortar_shell_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -983,6 +1067,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "mortar_shell_infantry_kit_small_arms_workshop",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -1001,6 +1086,7 @@
       }
     ]
   },
+
   "mortar_shell_shrapnel": {
     "full_name": "Shrapnel Mortar Shell",
     "category": "ammunition",
@@ -1027,6 +1113,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "mortar_shell_shrapnel_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1042,6 +1129,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "mortar_shell_shrapnel_infantry_kit_small_arms_workshop",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -1060,6 +1148,7 @@
       }
     ]
   },
+
   "shell_250mm_fury": {
     "full_name": "250mm \"Fury\" Shell",
     "category": "ammunition",
@@ -1086,6 +1175,7 @@
           "250mm \"Fury\" Shell": 1
         }
       },
+
       {
         "recipe_key": "shell_250mm_fury_factory",
         "recipe_name": "Factory",
@@ -1101,6 +1191,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "shell_250mm_fury_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1118,6 +1209,7 @@
       }
     ]
   },
+
   "shell_250mm_purity": {
     "full_name": "250mm \"Purity\" Shell",
     "category": "ammunition",
@@ -1143,6 +1235,7 @@
           "250mm \"Purity\" Shell": 1
         }
       },
+
       {
         "recipe_key": "shell_250mm_purity_factory",
         "recipe_name": "Factory",
@@ -1158,6 +1251,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "shell_250mm_purity_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1175,6 +1269,7 @@
       }
     ]
   },
+
   "ammo_ap_rpg": {
     "full_name": "AP/RPG",
     "category": "ammunition",
@@ -1200,6 +1295,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "ammo_ap_rpg_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1215,6 +1311,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "ammo_ap_rpg_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -1233,6 +1330,7 @@
       }
     ]
   },
+
   "ammo_arc_rpg": {
     "full_name": "ARC/RPG",
     "category": "ammunition",
@@ -1258,6 +1356,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "ammo_arc_rpg_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1273,6 +1372,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "ammo_arc_rpg_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -1291,6 +1391,7 @@
       }
     ]
   },
+
   "ammo_rpg": {
     "full_name": "RPG",
     "category": "ammunition",
@@ -1298,7 +1399,9 @@
     "is_caliber": true,
     "crate_size": 15,
     "aliases": [
-      "rpg"
+      "rpg",
+      "r.p.g shell",
+      "rpg shell"
     ],
     "recipes": [
       {
@@ -1316,6 +1419,7 @@
         "crate_output": 1,
         "unit_output": 15
       },
+
       {
         "recipe_key": "ammo_rpg_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1331,6 +1435,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "ammo_rpg_infantry_kit_heavy_munitions_foundry",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -1349,6 +1454,7 @@
       }
     ]
   },
+
   "ammo_shatter_missile": {
     "full_name": "Shatter Missile",
     "category": "ammunition",
@@ -1373,6 +1479,7 @@
           "Shatter Missile": 1
         }
       },
+
       {
         "recipe_key": "ammo_shatter_missile_factory",
         "recipe_name": "Factory",
@@ -1388,6 +1495,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "ammo_shatter_missile_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -1405,6 +1513,7 @@
       }
     ]
   },
+
   "molten_wind_vii_ammo": {
     "full_name": "Molten Wind v.II Ammo",
     "category": "ammunition",

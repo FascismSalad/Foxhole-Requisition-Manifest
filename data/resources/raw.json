@@ -9,6 +9,7 @@
       "rares"
     ]
   },
+
   "salvage": {
     "full_name": "Salvage",
     "category": "resource",
@@ -34,6 +35,7 @@
           "Salvage": 50
         }
       },
+
       {
         "recipe_key": "salvage_harvester_excavator",
         "recipe_name": "Stationary Harvester (Salvage) [Excavator]",
@@ -49,6 +51,7 @@
           "Salvage": 15
         }
       },
+
       {
         "recipe_key": "salvage_mine_diesel",
         "recipe_name": "Salvage Mine (Diesel)",
@@ -65,6 +68,7 @@
         },
         "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
       },
+
       {
         "recipe_key": "salvage_mine_petrol",
         "recipe_name": "Salvage Mine (Petrol)",
@@ -83,6 +87,7 @@
       }
     ]
   },
+
   "damaged_components": {
     "full_name": "Damaged Components",
     "category": "resource",
@@ -108,6 +113,7 @@
       }
     ]
   },
+
   "components": {
     "full_name": "Components",
     "category": "resource",
@@ -131,6 +137,7 @@
           "Components": 6
         }
       },
+
       {
         "recipe_key": "components_recycler",
         "recipe_name": "Metalworks Factory [Recycler]",
@@ -148,6 +155,7 @@
           "Components": 5
         }
       },
+
       {
         "recipe_key": "components_mine_diesel",
         "recipe_name": "Component Mine (Diesel)",
@@ -164,6 +172,7 @@
         },
         "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
       },
+
       {
         "recipe_key": "components_mine_petrol",
         "recipe_name": "Component Mine (Petrol)",
@@ -182,6 +191,7 @@
       }
     ]
   },
+
   "sulfur": {
     "full_name": "Sulfur",
     "category": "resource",
@@ -205,6 +215,7 @@
           "Sulfur": 6
         }
       },
+
       {
         "recipe_key": "sulfur_harvester_excavator",
         "recipe_name": "Stationary Harvester (Sulfur) [Excavator]",
@@ -221,6 +232,7 @@
           "Coal": 5
         }
       },
+
       {
         "recipe_key": "sulfur_mine_diesel",
         "recipe_name": "Sulfur Mine (Diesel)",
@@ -237,6 +249,7 @@
         },
         "yield_note": "Mine yield is randomized (9-15 per cycle); output shown is the average."
       },
+
       {
         "recipe_key": "sulfur_mine_petrol",
         "recipe_name": "Sulfur Mine (Petrol)",
@@ -253,6 +266,7 @@
         },
         "yield_note": "Mine yield is randomized (27-45 per cycle); output shown is the average."
       },
+
       {
         "recipe_key": "sulfur_power_station_heavy_oil",
         "recipe_name": "Power Station [Sulfuric Reactor] (Heavy Oil)",
@@ -269,6 +283,7 @@
           "Sulfur": 5
         }
       },
+
       {
         "recipe_key": "sulfur_power_station_coke",
         "recipe_name": "Power Station [Sulfuric Reactor] (Coke/Water)",
@@ -286,6 +301,7 @@
           "Sulfur": 5
         }
       },
+
       {
         "recipe_key": "sulfur_coal_refinery_advanced",
         "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
@@ -305,6 +321,7 @@
           "Oil (L)": 100
         }
       },
+
       {
         "recipe_key": "sulfur_coal_refinery_coke_furnace",
         "recipe_name": "Coal Refinery [Coke Furnace]",
@@ -322,6 +339,7 @@
           "Coke": 165
         }
       },
+
       {
         "recipe_key": "sulfur_coal_refinery_liquefier",
         "recipe_name": "Coal Refinery [Coal Liquefier]",
@@ -343,6 +361,7 @@
       }
     ]
   },
+
   "coal": {
     "full_name": "Coal",
     "category": "resource",
@@ -366,6 +385,7 @@
           "Coal": 50
         }
       },
+
       {
         "recipe_key": "coal_harvester_excavator",
         "recipe_name": "Stationary Harvester (Coal) [Excavator]",
@@ -383,6 +403,7 @@
       }
     ]
   },
+
   "oil": {
     "full_name": "Oil",
     "category": "resource",
@@ -404,6 +425,7 @@
           "Oil (L)": 50
         }
       },
+
       {
         "recipe_key": "oil_well_electric",
         "recipe_name": "Oil Well [Electric Oil Well]",
@@ -418,6 +440,7 @@
           "Oil (L)": 50
         }
       },
+
       {
         "recipe_key": "oil_well_fracker",
         "recipe_name": "Oil Well [Fracker]",
@@ -437,6 +460,7 @@
       }
     ]
   },
+
   "water": {
     "full_name": "Water",
     "category": "resource",
@@ -460,6 +484,7 @@
       }
     ]
   },
+
   "coke": {
     "full_name": "Coke",
     "category": "resource",
@@ -481,6 +506,7 @@
           "Coke": 180
         }
       },
+
       {
         "recipe_key": "coke_furnace",
         "recipe_name": "Coal Refinery [Coke Furnace]",
@@ -495,6 +521,7 @@
           "Sulfur": 15
         }
       },
+
       {
         "recipe_key": "coke_advanced_liquefier",
         "recipe_name": "Coal Refinery [Advanced Coal Liquefier]",
@@ -512,6 +539,7 @@
       }
     ]
   },
+
   "basic_materials": {
     "full_name": "Basic Materials",
     "category": "resource",
@@ -531,6 +559,7 @@
       "Basic Materials": 1
     }
   },
+
   "diesel": {
     "full_name": "Diesel",
     "category": "resource",
@@ -547,6 +576,7 @@
       "Diesel (L)": 100
     }
   },
+
   "enriched_oil": {
     "full_name": "Enriched Oil",
     "category": "resource",
@@ -570,6 +600,7 @@
           "Enriched Oil (L)": 30
         }
       },
+
       {
         "recipe_key": "enriched_oil_petrochemical",
         "recipe_name": "Oil Refinery [Petrochemical Plant]",
@@ -586,6 +617,7 @@
       }
     ]
   },
+
   "explosive_powder": {
     "full_name": "Explosive Powder",
     "category": "resource",
@@ -604,6 +636,7 @@
       "Explosive Powder": 1
     }
   },
+
   "gravel": {
     "full_name": "Gravel",
     "category": "resource",
@@ -624,6 +657,7 @@
           "Gravel": 20
         }
       },
+
       {
         "recipe_key": "gravel_concrete_mixer_salvage",
         "recipe_name": "Concrete Mixer (Salvage)",
@@ -636,6 +670,7 @@
           "Gravel": 20
         }
       },
+
       {
         "recipe_key": "gravel_refinery_coal",
         "recipe_name": "Refinery (Coal)",
@@ -648,6 +683,7 @@
           "Gravel": 1
         }
       },
+
       {
         "recipe_key": "gravel_refinery_salvage",
         "recipe_name": "Refinery (Salvage)",
@@ -662,6 +698,7 @@
       }
     ]
   },
+
   "heavy_explosive_powder": {
     "full_name": "Heavy Explosive Powder",
     "category": "resource",
@@ -681,6 +718,7 @@
       "Heavy Explosive Powder": 1
     }
   },
+
   "heavy_oil": {
     "full_name": "Heavy Oil",
     "category": "resource",
@@ -705,6 +743,7 @@
           "Heavy Oil (L)": 30
         }
       },
+
       {
         "recipe_key": "heavy_oil_offshore",
         "recipe_name": "Offshore Platform",
@@ -717,6 +756,7 @@
       }
     ]
   },
+
   "petrol": {
     "full_name": "Petrol",
     "category": "resource",
@@ -739,6 +779,7 @@
           "Petrol (L)": 50
         }
       },
+
       {
         "recipe_key": "petrol_base",
         "recipe_name": "Oil Refinery",
@@ -754,6 +795,7 @@
       }
     ]
   },
+
   "refined_materials": {
     "full_name": "Refined Materials",
     "category": "resource",

@@ -26,6 +26,34 @@
       }
     ]
   },
+
+  "naval_buoy": {
+    "full_name": "Naval Buoy",
+    "category": "weapon",
+    "subcategory": "Naval Equipment",
+    "crate_size": 5,
+    "aliases": [
+      "naval_buoy",
+      "naval buoy",
+      "naval bouy"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "naval_buoy_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "inputs": {
+          "Basic Materials": 150
+        },
+        "outputs": {
+          "Naval Buoy": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      }
+    ]
+  },
+
   "quillback_torpedo": {
     "full_name": "Quillback Torpedo",
     "category": "weapon",
@@ -51,6 +79,7 @@
           "Quillback Torpedo": 1
         }
       },
+
       {
         "recipe_key": "quillback_torpedo_factory",
         "recipe_name": "Factory",
@@ -66,6 +95,7 @@
         "crate_output": 1,
         "unit_output": 5
       },
+
       {
         "recipe_key": "quillback_torpedo_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -83,6 +113,7 @@
       }
     ]
   },
+
   "model7_evie": {
     "full_name": "Model-7 \"Evie\"",
     "category": "weapon",
@@ -111,6 +142,7 @@
       }
     ]
   },
+
   "shrike_rounds_912": {
     "full_name": "912 Shrike Rounds",
     "category": "weapon",
@@ -138,6 +170,7 @@
       }
     ]
   },
+
   "raidbreaker_mk2": {
     "full_name": "Mark II Raidbreaker",
     "category": "weapon",

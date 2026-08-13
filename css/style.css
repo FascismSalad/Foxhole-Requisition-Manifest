@@ -49,6 +49,13 @@ html {
   zoom: 1.12;
 }
 
+/* Deliberately no min-height: 100vh here — html{zoom:1.12} above makes
+   Chromium compute 100vh as 112% of the real viewport (confirmed: a 900px
+   window measured a 1008px body, exactly 900*1.12), so it always forced a
+   scrollbar even on short/empty content. See body.planner-page in
+   planner.css for the one page that legitimately needs a fixed-viewport
+   body — it cancels the zoom first, which is why this can't just be fixed
+   here directly. */
 body {
   margin: 0;
   background: var(--bg);
@@ -57,7 +64,6 @@ body {
     radial-gradient(circle at 80% 70%, rgba(92,122,128,0.05), transparent 45%);
   color: var(--paper);
   font-family: 'Barlow Condensed', sans-serif;
-  min-height: 100vh;
 }
 
 ::selection { background: var(--brass); color: #191c15; }
@@ -98,6 +104,10 @@ body {
   gap: 48px;
 }
 
+/* The angled parallelogram flanking the page title — a slanted clip-path
+   rather than a plain rectangle, echoing the beveled-tab look used
+   throughout (tickets, buttons). ::after draws a thin rust-colored
+   companion stripe just outside it, clipped to the same angle. */
 .title-bar {
   flex-shrink: 0;
   width: 14px;
@@ -120,6 +130,10 @@ body {
   opacity: 0.75;
 }
 
+/* The two bars flank the title symmetrically — only the outer edge of each
+   should show its stripe, so the first bar's (which would sit between it
+   and the title) is hidden, and the last bar's whole shape + stripe are
+   mirrored to slant the other way. */
 .title-row .title-bar:first-child::after { display: none; }
 
 .title-row .title-bar:last-child {
@@ -153,6 +167,7 @@ body {
 
 .tool-nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 2px;
   margin-top: 18px;
@@ -1332,7 +1347,6 @@ body {
   color: var(--steel);
   margin-bottom: 10px;
 }
-.section-label.raw { color: var(--rust); }
 .section-label.parts { color: var(--brass-bright); }
 
 .item-line {

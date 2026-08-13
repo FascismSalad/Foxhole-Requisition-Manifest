@@ -16,6 +16,7 @@
     },
     "aircraft_parts": {}
   },
+
   "perdix": {
     "full_name": "A59 Venti Perdix",
     "category": "vehicle",
@@ -33,6 +34,7 @@
     },
     "aircraft_parts": {}
   },
+
   "blind_silver": {
     "full_name": "Toxot-902 Blind Silver",
     "category": "vehicle",
@@ -59,6 +61,7 @@
       "Colonial Aircraft Mechanical Parts (Small)": 5
     }
   },
+
   "myrmidon": {
     "full_name": "Mergo-4 Myrmidon",
     "category": "vehicle",
@@ -86,8 +89,9 @@
       "Colonial Aircraft Mechanical Parts (Small)": 5
     }
   },
+
   "harpy": {
-    "full_name": "Daimon aK-5 \"Harpy\"",
+    "full_name": "Diamon aK-5 \"Harpy\"",
     "category": "vehicle",
     "subcategory": "Aircraft",
     "class": "Small Aircraft",
@@ -113,6 +117,7 @@
       "Colonial Aircraft Mechanical Parts (Small)": 7
     }
   },
+
   "pegasus": {
     "full_name": "V-5b Pegasus",
     "category": "vehicle",
@@ -138,6 +143,7 @@
       "Colonial Aircraft Mechanical Parts (Large)": 6
     }
   },
+
   "tzykalia": {
     "full_name": "V-1 Tzykalia",
     "category": "vehicle",

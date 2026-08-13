@@ -40,6 +40,11 @@ function effectiveCraftingTime(recipeOrAircraft, queueCount) {
 function maxQueuesForRecipe(recipeOrAircraft) {
   return (recipeOrAircraft && recipeOrAircraft.outputs && 'Facility Power' in recipeOrAircraft.outputs) ? 1 : 5;
 }
+
+// Rounds a raw (possibly typed-in) queue value to a valid depth for this
+// specific recipe: never below 1, never above what maxQueuesForRecipe
+// allows (1 for power producers, 5 otherwise). `|| 1` also catches NaN
+// from an empty/non-numeric input box.
 function clampQueueCount(n, recipeOrAircraft) {
   return Math.min(maxQueuesForRecipe(recipeOrAircraft), Math.max(1, Math.round(n) || 1));
 }
@@ -620,6 +625,10 @@ function plannerStepKey(step) {
   return step.recipeKey || step.paths[0];
 }
 
+// Top-level entry point for the "Send to Planner" action: dedupes craft
+// steps and gather (pooled) steps down to one entry per recipe, resolves
+// which step produces each input (producerOf), and turns that into the
+// flat steps[]/edges[] shape planner.js lays out as nodes and wires.
 function buildPlannerExport(trees, poolRecipeChoice) {
   const craftSteps = buildChainSteps(trees);
   const { liquids, resources, power } = aggregateRawResources(trees);
@@ -678,8 +687,13 @@ function buildPlannerExport(trees, poolRecipeChoice) {
 // FORMATTING HELPERS
 // ============================================================
 
+// Whole-unit quantity display (ticket totals, chain step counts) — rounded
+// and comma-grouped, e.g. 12345 -> "12,345".
 function fmtNum(n) { return Math.round(n).toLocaleString('en-US'); }
 
+// Generic 2-decimal rounding for anything shown with fractional precision
+// (currently just MW power draw via fmtItemRate) — avoids float noise like
+// 1.9999999999999998 rendering literally.
 function round2(n) { return Math.round(n * 100) / 100; }
 
 // Shared by both pages' per-minute rate displays (the calculator's queue-
@@ -715,6 +729,10 @@ function iconFileName(name) {
   const clean = name.replace(/\s*\(L\)$/, '');
   return clean.replace(/[^A-Za-z0-9-]+/g, '_').replace(/^_+|_+$/g, '');
 }
+
+// Plain <img> wrapper around iconFileName — the self-removing onerror is
+// what makes missing icon coverage a silent no-op instead of a broken-image
+// glyph (see iconFileName above).
 function iconTag(name, cssClass) {
   return `<img src="icons/images/${iconFileName(name)}.png" class="${cssClass}" alt="" onerror="this.remove()">`;
 }
@@ -764,6 +782,9 @@ function fmtTime(totalSeconds) {
   return parts.join(" ");
 }
 
+// One "qty + name" row used by the raw-resource/gather list panels — plain
+// HTML string builder, no event wiring, so it's fine to regenerate on every
+// render.
 function itemLine(qty, name, facility) {
   return `<div class="item-line"><span class="qty-chip">${fmtQty(name, qty, facility)}</span><span class="item-name">${name}</span></div>`;
 }

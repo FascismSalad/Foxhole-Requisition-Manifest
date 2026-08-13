@@ -89,6 +89,12 @@ function buildSearchText(parts) {
   return parts.filter(Boolean).join(' ').toLowerCase();
 }
 
+// Builds RECIPES_BY_FACILITY/RECIPE_INDEX_BY_KEY/FACILITY_CATALOG from
+// MATERIAL_RECIPES + AIRCRAFT_COSTS (already loaded by loadData() in
+// loader.js by the time this runs) — the planner-specific facility-indexed
+// view neither of the calculator's own data structures provide on their
+// own. Called once at boot, right after loadData() resolves (see
+// bootPlanner below).
 function buildFacilityIndex() {
   const raw = [];
   for (const [key, recipe] of Object.entries(MATERIAL_RECIPES)) {
@@ -196,6 +202,7 @@ function handleIconFallback(imgEl) {
   imgEl.dataset.fallbacks = remaining.join('|');
   imgEl.src = `icons/images/${next}.png`;
 }
+
 function iconTagWithFallback(candidateNames, cssClass) {
   const files = [...new Set(candidateNames.filter(Boolean).map(iconFileName))];
   if (!files.length) return '';
@@ -245,6 +252,10 @@ let pickerOverlayEl, pickerPanelEl, pickerTitleEl, pickerSearchEl, pickerListEl,
 // SVG path coordinate) are back to being the same pixel space, board-wide.
 function clamp(n, lo, hi) { return Math.min(hi, Math.max(lo, n)); }
 
+// Converts a raw mouse position (clientX/Y, screen space) into world-space
+// board coordinates — inverts applyTransform's own pan+scale so a click at
+// a given screen pixel maps back to the exact same board point regardless
+// of how far panned/zoomed the view currently is.
 function screenToWorld(clientX, clientY) {
   const rect = viewportEl.getBoundingClientRect();
   return {
@@ -253,6 +264,10 @@ function screenToWorld(clientX, clientY) {
   };
 }
 
+// Whatever board point is currently centered in the viewport — used to
+// drop a newly-placed facility (click-to-place in the sidebar) roughly in
+// the middle of what's actually visible, rather than at a fixed world
+// origin that might be scrolled off-screen.
 function viewportCenterWorld() {
   const rect = viewportEl.getBoundingClientRect();
   return screenToWorld(rect.left + rect.width / 2, rect.top + rect.height / 2);
@@ -299,18 +314,50 @@ function orthogonalPath(x1, y1, x2, y2) {
   return `M ${x1} ${y1} L ${midX} ${y1} L ${midX} ${y2} L ${x2} ${y2}`;
 }
 
+// The single-hop (no waypoints) routing rule: power gets the right-angle
+// elbow, everything else gets the smooth default curve — see renderWires,
+// the only place that decides when a wire actually has just one hop.
 function wirePathFor(item, x1, y1, x2, y2) {
   return poolKindOf(item) === 'power' ? orthogonalPath(x1, y1, x2, y2) : bezierPath(x1, y1, x2, y2);
 }
 
+// A plain straight line between two points — used for a power wire's own
+// hops once it has waypoints (see renderWires): power keeps its
+// right-angle-only rule even when manually adjusted, so its hops stay
+// straight lines between whatever points are placed rather than curving
+// like a normal wire's do (see smoothSegmentPath).
 function straightPath(x1, y1, x2, y2) {
   return `M ${x1} ${y1} L ${x2} ${y2}`;
+}
+
+// One hop of a smooth curve running through an entire point sequence
+// (port -> waypoints -> port) — dragging a waypoint bends the wire
+// gracefully around it instead of kinking it into a hard corner. Standard
+// Catmull-Rom-to-Bezier conversion: this hop's own control points lean on
+// its NEIGHBORS on both sides (p0 before, p3 after — duplicated at either
+// end of the sequence, the usual open-curve convention), so consecutive
+// hops blend into one continuous curve rather than each being shaped in
+// isolation — the same trick behind "smooth" path tools in vector
+// editors. i is this hop's index into points (points[i] -> points[i+1]).
+function smoothSegmentPath(points, i) {
+  const p0 = points[i - 1] || points[i];
+  const p1 = points[i];
+  const p2 = points[i + 1];
+  const p3 = points[i + 2] || p2;
+  const cp1x = p1.x + (p2.x - p0.x) / 6;
+  const cp1y = p1.y + (p2.y - p0.y) / 6;
+  const cp2x = p2.x - (p3.x - p1.x) / 6;
+  const cp2y = p2.y - (p3.y - p1.y) / 6;
+  return `M ${p1.x} ${p1.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
 }
 
 // fmtRate/fmtItemRate/round2 are defined in calc.js (shared with the
 // calculator's own queue-scaled rate chips — see renderCraftRow in
 // render.js) so both pages' rate displays read identically.
 
+// Which category color a port dot gets, matching the calculator's own
+// liquid/resource/power color coding (stepColorClass in render.js) — a
+// plain crafted item gets no extra class, just the default port styling.
 function portColorClass(name) {
   const kind = poolKindOf(name);
   if (kind === 'liquid') return 'fac-port-liquid';
@@ -328,6 +375,10 @@ function nodeRecipeObjs(node) {
   return node.recipeKeys.map(k => RECIPE_INDEX_BY_KEY[k]).filter(Boolean);
 }
 
+// Whether this exact port (a node + item + direction) already has at
+// least one wire touching it — drives the "connected" dot styling
+// (buildNodeHtml/ioRowHtml) so a wired port reads differently at a glance
+// from an unwired one, before you even look for the wire itself.
 function isPortConnected(nodeId, item, dir) {
   return dir === 'out'
     ? plannerState.connections.some(c => c.fromNode === nodeId && c.fromItem === item)
@@ -362,6 +413,10 @@ function itemRatePerMin(node, item, dir) {
 // RENDERING — nodes
 // ============================================================
 
+// One NEEDS/YIELDS row on a node card: the draggable port dot, icon, item
+// name, and its already-formatted rate text (see itemRatePerMin/
+// fmtItemRate) — dir is 'in' or 'out', matching the port's own
+// data-dir/portElIndex key so wiring logic can find it again.
 function ioRowHtml(node, name, rateText, dir) {
   const colorClass = portColorClass(name);
   const connectedClass = isPortConnected(node.id, name, dir) ? 'connected' : '';
@@ -375,6 +430,12 @@ function ioRowHtml(node, name, rateText, dir) {
   </div>`;
 }
 
+// Builds one facility card's full inner HTML — header (icon, title, count
+// stepper, remove), the active-recipe chip list, and the combined NEEDS/
+// YIELDS port columns. Called both for a brand new node (renderNodesLayer)
+// and to refresh a single existing one in place (setNodeCount,
+// toggleNodeRecipe, ...) whenever something about it changes without
+// needing a full board re-render.
 function buildNodeHtml(node) {
   const recipes = nodeRecipeObjs(node);
   // NEEDS/YIELDS are the UNION of every active recipe's own inputs/outputs
@@ -448,6 +509,12 @@ function buildNodeHtml(node) {
     </div>`;
 }
 
+// Rebuilds every node's DOM element from scratch (positioned via
+// style.left/top, sized/laid out by buildNodeHtml's own markup) — the
+// full-board equivalent of buildNodeHtml's single-node refresh, used
+// whenever the SET of nodes itself changed (added/removed/pasted/loaded),
+// not just one node's own content. Always followed by indexPorts, since
+// every port element it just created needs to be findable again.
 function renderNodesLayer() {
   nodesLayerEl.innerHTML = '';
   for (const node of plannerState.nodes) {
@@ -462,6 +529,11 @@ function renderNodesLayer() {
   indexPorts();
 }
 
+// Rebuilds portElIndex (nodeId|dir|item -> its actual port element) by
+// scanning the live DOM — the lookup renderWires/getPortWorldPos use to
+// find a specific port without re-querying the whole board on every wire.
+// Must be re-run any time a node's own HTML is rebuilt (its old port
+// elements are gone, replaced by new ones with the same keys).
 function indexPorts() {
   portElIndex = {};
   nodesLayerEl.querySelectorAll('.fac-port').forEach(portEl => {
@@ -475,6 +547,7 @@ function indexPorts() {
 // ============================================================
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
+const WAYPOINT_HANDLE_SIZE = 9; // a small square "box" you grab to bend a wire — see smoothSegmentPath
 
 // Two jobs in one pass, both about wires sharing a port that only has one
 // combined rate to go around:
@@ -556,12 +629,13 @@ function renderWires() {
     const p1 = getPortWorldPos(fromEl);
     const p2 = getPortWorldPos(toEl);
     // A dragged bend point (see onWireHitMouseDown/onWaypointDragStart)
-    // splits the wire into a chain of straight hops through each
-    // waypoint in order, rather than one smooth curve straight to the
-    // target — each hop is its own path/hitbox (still tagged with this
-    // connection's id, so selection/click-through-drag work on any of
-    // them) instead of trying to splice multiple curve commands into one
-    // "d" string.
+    // splits the wire into a chain of hops through each waypoint in
+    // order — smoothly curved for a normal wire, straight for power (see
+    // the isPower/hasWaypoints branch below) — rather than one smooth
+    // curve straight to the target. Each hop is its own path/hitbox
+    // (still tagged with this connection's id, so selection/click-
+    // through-drag work on any of them) instead of trying to splice
+    // multiple curve commands into one "d" string.
     const waypoints = conn.waypoints || [];
     const points = [p1, ...waypoints, p2];
 
@@ -580,17 +654,23 @@ function renderWires() {
     if (producerOvercap) fromEl.classList.add('overcap');
     if (inputShort) toEl.classList.add('overcap');
 
-    // A hop between two user-placed points is always a straight line — a
-    // waypoint IS the manual override, so re-curving (or re-elbowing) on
-    // top of it would fight the exact shape being asked for and make
-    // dragging feel unpredictable. The auto routing (bezier, or the
-    // right-angle-only elbow for power — see wirePathFor) only applies to
-    // the untouched single hop straight from port to port.
-    const useStraight = points.length > 2;
+    // Once a wire has waypoints, dragging one bends the wire smoothly
+    // around it (see smoothSegmentPath) — the whole point of a "curve you
+    // can drag" is that it stays a curve, not a polyline with a kink at
+    // every point. Power keeps its right-angle-only rule even once
+    // adjusted by hand (see wirePathFor/orthogonalPath) — a curved power
+    // line would undercut the very thing that request asked for — so it
+    // still gets straight hops between whatever points are placed. The
+    // untouched single hop (no waypoints at all) keeps using the auto
+    // routing for both cases.
+    const isPower = poolKindOf(conn.fromItem) === 'power';
+    const hasWaypoints = points.length > 2;
     for (let i = 0; i < points.length - 1; i++) {
-      const segD = useStraight
-        ? straightPath(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y)
-        : wirePathFor(conn.fromItem, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
+      const segD = !hasWaypoints
+        ? wirePathFor(conn.fromItem, points[i].x, points[i].y, points[i + 1].x, points[i + 1].y)
+        : isPower
+          ? straightPath(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y)
+          : smoothSegmentPath(points, i);
 
       const hit = document.createElementNS(SVG_NS, 'path');
       hit.setAttribute('d', segD);
@@ -609,10 +689,12 @@ function renderWires() {
     }
 
     waypoints.forEach((wp, i) => {
-      const handle = document.createElementNS(SVG_NS, 'circle');
-      handle.setAttribute('cx', wp.x);
-      handle.setAttribute('cy', wp.y);
-      handle.setAttribute('r', 5);
+      const handle = document.createElementNS(SVG_NS, 'rect');
+      handle.setAttribute('x', wp.x - WAYPOINT_HANDLE_SIZE / 2);
+      handle.setAttribute('y', wp.y - WAYPOINT_HANDLE_SIZE / 2);
+      handle.setAttribute('width', WAYPOINT_HANDLE_SIZE);
+      handle.setAttribute('height', WAYPOINT_HANDLE_SIZE);
+      handle.setAttribute('rx', 1.5);
       handle.setAttribute('class', 'wire-waypoint' + (conn.id === plannerState.selectedWireId ? ' selected' : ''));
       handle.dataset.wireId = conn.id;
       handle.dataset.wpIndex = i;
@@ -638,6 +720,11 @@ function renderWires() {
   }
 }
 
+// The dashed "wire being dragged" preview shown while dragging from an
+// output port (see onPortMouseDown) — a single reused path element,
+// created lazily on the first call and just re-pointed on every mousemove
+// rather than recreated, following the same routing rule (bezier/
+// orthogonal) the real wire would use once dropped.
 function updatePendingWire(x1, y1, x2, y2, item) {
   if (!pendingPathEl) {
     pendingPathEl = document.createElementNS(SVG_NS, 'path');
@@ -647,6 +734,8 @@ function updatePendingWire(x1, y1, x2, y2, item) {
   pendingPathEl.setAttribute('d', wirePathFor(item, x1, y1, x2, y2));
 }
 
+// Removes the pending-wire preview once a port drag ends, whether it
+// landed on a valid target or not.
 function clearPendingWire() {
   if (pendingPathEl) pendingPathEl.remove();
   pendingPathEl = null;
@@ -656,6 +745,10 @@ function clearPendingWire() {
 // SELECTION
 // ============================================================
 
+// Syncs every node/wire element's .selected class to the current
+// plannerState.selectedNodeIds/selectedWireId — called by every selection
+// function below instead of a full re-render, since selection changes far
+// more often than the board's actual content does.
 function updateSelectionClasses() {
   nodesLayerEl.querySelectorAll('.fac-node').forEach(el => {
     el.classList.toggle('selected', plannerState.selectedNodeIds.has(el.dataset.nodeId));
@@ -665,11 +758,15 @@ function updateSelectionClasses() {
   });
 }
 
+// Node and wire selection are mutually exclusive — selecting either kind
+// always clears the other — since the sidebar/delete/copy actions below
+// only make sense applied to one or the other, never both at once.
 function selectNode(id) {
   plannerState.selectedNodeIds = new Set([id]);
   plannerState.selectedWireId = null;
   updateSelectionClasses();
 }
+
 // Shift-clicking a node's header adds/removes just that one node from
 // whatever's currently selected, instead of replacing the selection the
 // way a plain click does — lets a box-select be fine-tuned by hand.
@@ -680,16 +777,22 @@ function toggleNodeSelection(id) {
   plannerState.selectedWireId = null;
   updateSelectionClasses();
 }
+
+// Replaces the whole selection at once — used by box-select to select
+// everything caught in the drag rectangle in one go, unlike
+// toggleNodeSelection's one-at-a-time shift-click behavior.
 function setSelectedNodes(ids) {
   plannerState.selectedNodeIds = new Set(ids);
   plannerState.selectedWireId = null;
   updateSelectionClasses();
 }
+
 function selectWire(id) {
   plannerState.selectedWireId = id;
   plannerState.selectedNodeIds = new Set();
   updateSelectionClasses();
 }
+
 function deselectAll() {
   if (!plannerState.selectedNodeIds.size && !plannerState.selectedWireId) return;
   plannerState.selectedNodeIds = new Set();
@@ -701,6 +804,8 @@ function deselectAll() {
 // NODE / CONNECTION MUTATIONS
 // ============================================================
 
+// Shows/hides the "SELECT A FACILITY..." placeholder overlay depending on
+// whether the board has any nodes at all yet.
 function updateEmptyHint() {
   emptyHintEl.classList.toggle('hidden', plannerState.nodes.length > 0);
 }
@@ -754,6 +859,11 @@ function removeNodes(ids) {
   saveState();
 }
 
+// Drops any connection that's no longer valid — its node was removed, or
+// (more often) a recipe change means one end no longer has a matching
+// port. Called after anything that can invalidate a wire without directly
+// touching plannerState.connections itself: removing a node, toggling a
+// recipe on/off, loading a saved board.
 function pruneConnections() {
   plannerState.connections = plannerState.connections.filter(c => {
     const fromNode = nodesById[c.fromNode];
@@ -776,6 +886,9 @@ function pruneConnections() {
   }
 }
 
+// Wires an output port to an input port — a no-op for a self-loop or an
+// exact duplicate of an existing wire (same four fields), so repeatedly
+// dragging the same connection never stacks up identical wires.
 function addConnection(fromNode, fromItem, toNode, toItem) {
   if (fromNode === toNode) return;
   const exists = plannerState.connections.some(c =>
@@ -787,6 +900,8 @@ function addConnection(fromNode, fromItem, toNode, toItem) {
   saveState();
 }
 
+// Deletes one specific wire by id (e.g. the Delete key on a selected
+// wire — see the keydown handler in initPlannerUI).
 function removeConnection(id) {
   plannerState.connections = plannerState.connections.filter(c => c.id !== id);
   if (plannerState.selectedWireId === id) plannerState.selectedWireId = null;
@@ -852,6 +967,10 @@ function pasteClipboard() {
 // PERSISTENCE
 // ============================================================
 
+// Persists the whole board (nodes, wires, pan, zoom) to localStorage —
+// called after essentially every mutation in this file, so the board is
+// never more than one action away from being saved; a fresh page load
+// picks it back up via loadState below.
 function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
@@ -863,6 +982,12 @@ function saveState() {
   } catch (e) { /* storage unavailable/full — layout just won't persist */ }
 }
 
+// Restores a previously-saved board from localStorage, if there is one —
+// returns false (leaving plannerState untouched) on no saved data, a
+// storage error, or invalid JSON, so callers can tell "nothing to
+// restore" apart from "restored successfully." A node whose facility no
+// longer exists in the current data (removed/renamed since it was saved)
+// is silently dropped rather than left broken.
 function loadState() {
   let raw;
   try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return false; }
@@ -986,6 +1111,12 @@ function fitViewToNodes() {
 
 const GRID_SPACING = 28;
 
+// Pushes the current pan/scale out to the actual DOM — the CSS transform
+// on the world layer, the zoom readout text, and the background dot grid
+// (kept in sync here rather than via CSS alone, since its size/position
+// needs to track the same pan/scale values). Called after anything that
+// changes pan or scale: panning, zooming, resetting the view, fitting to
+// an imported chain.
 function applyTransform() {
   worldEl.style.transform = `translate(${plannerState.pan.x}px, ${plannerState.pan.y}px) scale(${plannerState.scale})`;
   zoomReadoutEl.textContent = `${Math.round(plannerState.scale * 100)}%`;
@@ -997,6 +1128,12 @@ function applyTransform() {
   viewportEl.style.backgroundPosition = `${plannerState.pan.x}px ${plannerState.pan.y}px`;
 }
 
+// Zooms in/out by a multiplier around a fixed screen point (the mouse
+// position for a scroll-wheel zoom, or the viewport's own center for the
+// +/-/reset buttons) — the anchor point's WORLD coordinate is held fixed
+// before and after, which is what makes zooming under the cursor feel
+// like it's "zooming into" that exact spot rather than the board just
+// resizing around its own center.
 function zoomBy(factor, anchorClientX, anchorClientY) {
   const rect = viewportEl.getBoundingClientRect();
   const cx = anchorClientX != null ? anchorClientX - rect.left : rect.width / 2;
@@ -1010,6 +1147,11 @@ function zoomBy(factor, anchorClientX, anchorClientY) {
   saveState();
 }
 
+// Dragging the empty board background moves the whole world — plain
+// delta-from-mousedown tracking, same drag-lifecycle shape as
+// onNodeDragStart/startBoxSelect (mousemove/mouseup listeners on document,
+// not the element itself, so the drag keeps tracking even if the cursor
+// leaves the viewport mid-drag).
 function startPan(e) {
   const startClientX = e.clientX, startClientY = e.clientY;
   const startPan = { x: plannerState.pan.x, y: plannerState.pan.y };
@@ -1195,6 +1337,12 @@ function onWireHitMouseDown(e, hitEl) {
 // WIRE DRAG (port -> port)
 // ============================================================
 
+// Dragging from an output port shows a live pending-wire preview
+// (updatePendingWire) that snaps to highlight any matching (same item)
+// input port the cursor is over, and completes the connection on mouseup
+// only if it's released over one. A port that's already the wire's own
+// source is excluded (addConnection would reject the self-loop anyway,
+// but the hover highlight itself shouldn't invite it).
 function onPortMouseDown(e, portEl) {
   if (portEl.dataset.dir !== 'out') return; // wires are always dragged from an output
   e.preventDefault();
@@ -1235,6 +1383,12 @@ function onPortMouseDown(e, portEl) {
 // RECIPE PICKER (floating popup)
 // ============================================================
 
+// Reshapes one of this file's own recipe-index entries into the
+// { recipeKey, label, facility, batches, craftSeconds, inputs, outputs }
+// preview shape renderRecipeOptionCard (render.js) expects — batches is
+// always 1 here since the picker is comparing single-run recipes, not a
+// scaled-to-order total the way the calculator's own alternatives picker
+// does (see recipeAlternativePreviews in calc.js).
 function toPreview(r) {
   return {
     recipeKey: r.key,
@@ -1247,6 +1401,11 @@ function toPreview(r) {
   };
 }
 
+// Fills the picker popup's list with every recipe belonging to the
+// current node's facility, filtered by the search box's own text (all
+// recipes when empty) — re-run on every keystroke and every recipe
+// toggle, so the ACTIVE tag (see renderRecipeOptionCard) always reflects
+// the node's current recipeKeys even as the user keeps toggling more on.
 function renderPickerList(query) {
   const node = nodesById[pickerContext.nodeId];
   const recipes = RECIPES_BY_FACILITY[node.facility] || [];
@@ -1259,6 +1418,11 @@ function renderPickerList(query) {
   pickerListEl.innerHTML = filtered.map(r => renderRecipeOptionCard(toPreview(r), node.recipeKeys.includes(r.key), '')).join('');
 }
 
+// Places the floating picker panel just to the right of whatever anchor
+// element opened it (a node's recipe row), flipping to the left side if
+// it wouldn't fit on the right, and clamped on all sides so it never
+// renders partially off-screen regardless of where on the board the node
+// happens to be.
 function positionPickerNear(anchorEl) {
   const rect = anchorEl.getBoundingClientRect();
   const panelW = 360, margin = 10;
@@ -1271,6 +1435,9 @@ function positionPickerNear(anchorEl) {
   pickerPanelEl.style.top = `${top}px`;
 }
 
+// Opens the floating recipe picker for a specific node — remembers which
+// node it's for (pickerContext) so the search box and the list's click
+// handler both know where to route their results.
 function openRecipePicker(nodeId) {
   const node = nodesById[nodeId];
   if (!node) return;
@@ -1306,6 +1473,10 @@ function closeRecipePicker() {
 // UI WIRING
 // ============================================================
 
+// Fills the left sidebar's facility catalog, filtered by the search box
+// (or the full FACILITY_CATALOG when empty) — each entry is both
+// click-to-place and drag-to-place (see the click/dragstart listeners in
+// initPlannerUI).
 function renderFacilitySidebar(query = '') {
   const q = query.toLowerCase().trim();
   const filtered = q ? FACILITY_CATALOG.filter(f => f.name.toLowerCase().includes(q)) : FACILITY_CATALOG;
@@ -1321,6 +1492,11 @@ function renderFacilitySidebar(query = '') {
     </div>`).join('');
 }
 
+// Grabs every DOM reference this file needs and wires up every listener
+// on the board — pan/zoom, node placement/drag/wiring, box-select/copy/
+// paste, the recipe picker popup, and keyboard shortcuts. Everything below
+// this point is event-driven; called once from bootPlanner, after
+// buildFacilityIndex has run.
 function initPlannerUI() {
   viewportEl = document.getElementById('plannerViewport');
   worldEl = document.getElementById('plannerWorld');
@@ -1510,6 +1686,11 @@ function initPlannerUI() {
 // BOOT
 // ============================================================
 
+// Entry point — loads the shared data (retrying a couple of times on a
+// transient network hiccup, same reasoning as bootWithRetry in app.js),
+// builds the facility index, wires up the UI, then restores a saved board
+// or a chain handed off from the calculator (at most one of the two — see
+// tryImportFromCalculator's own confirm() prompt when both would apply).
 async function bootPlanner(retriesLeft = 2) {
   try {
     await loadData();
@@ -1537,3 +1718,11 @@ async function bootPlanner(retriesLeft = 2) {
 }
 
 bootPlanner();
+
+// Dev-only smoke-test hook — inert for every real visitor since nothing
+// ever links to this page with ?autotest=1. See test.ps1/test/smoke-planner.js.
+if (new URLSearchParams(location.search).has('autotest')) {
+  const s = document.createElement('script');
+  s.src = 'test/smoke-planner.js';
+  document.head.appendChild(s);
+}

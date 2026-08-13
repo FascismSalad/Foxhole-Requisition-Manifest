@@ -25,6 +25,7 @@
           "03MM Caster": 1
         }
       },
+
       {
         "recipe_key": "caster_03mm_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -41,6 +42,7 @@
       }
     ]
   },
+
   "stinger_00ms": {
     "full_name": "00MS Stinger",
     "category": "vehicle",
@@ -71,6 +73,7 @@
       }
     ]
   },
+
   "argonaut_uv05a": {
     "full_name": "UV-05a Argonaut",
     "category": "vehicle",
@@ -97,6 +100,7 @@
           "UV-05a Argonaut": 1
         }
       },
+
       {
         "recipe_key": "argonaut_uv05a_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -113,6 +117,7 @@
       }
     ]
   },
+
   "icarus_uv24": {
     "full_name": "UV-24 Icarus",
     "category": "vehicle",
@@ -144,6 +149,7 @@
       }
     ]
   },
+
   "odyssey_uv5c": {
     "full_name": "UV-5c Odyssey",
     "category": "vehicle",
@@ -172,6 +178,7 @@
       }
     ]
   },
+
   "xiphos_t3": {
     "full_name": "T3 Xiphos",
     "category": "vehicle",
@@ -200,6 +207,7 @@
           "T3 Xiphos": 1
         }
       },
+
       {
         "recipe_key": "xiphos_t3_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -216,6 +224,7 @@
       }
     ]
   },
+
   "gemini_t8": {
     "full_name": "T8 Gemini",
     "category": "vehicle",
@@ -247,6 +256,7 @@
       }
     ]
   },
+
   "percutio_t5": {
     "full_name": "T5 Percutio",
     "category": "vehicle",
@@ -279,6 +289,7 @@
       }
     ]
   },
+
   "actaeon_t12": {
     "full_name": "T12 Actaeon Tankette",
     "category": "vehicle",
@@ -307,6 +318,7 @@
           "T12 Actaeon Tankette": 1
         }
       },
+
       {
         "recipe_key": "actaeon_t12_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -323,6 +335,7 @@
       }
     ]
   },
+
   "vesta_t14": {
     "full_name": "T14 Vesta Tankette",
     "category": "vehicle",
@@ -354,6 +367,7 @@
       }
     ]
   },
+
   "ixion_t20": {
     "full_name": "T20 Ixion Tankette",
     "category": "vehicle",
@@ -385,6 +399,7 @@
       }
     ]
   },
+
   "deioneus_t13": {
     "full_name": "T13 Deioneus Rocket Battery",
     "category": "vehicle",
@@ -417,6 +432,7 @@
       }
     ]
   },
+
   "acheron_ab8": {
     "full_name": "AB-8 Acheron",
     "category": "vehicle",
@@ -443,6 +459,7 @@
           "AB-8 Acheron": 1
         }
       },
+
       {
         "recipe_key": "acheron_ab8_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -459,6 +476,7 @@
       }
     ]
   },
+
   "doru_ab11": {
     "full_name": "AB-11 Doru",
     "category": "vehicle",
@@ -490,6 +508,7 @@
       }
     ]
   },
+
   "javelin_hha": {
     "full_name": "HH-a Javelin",
     "category": "vehicle",
@@ -516,6 +535,7 @@
           "HH-a Javelin": 1
         }
       },
+
       {
         "recipe_key": "javelin_hha_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -532,6 +552,7 @@
       }
     ]
   },
+
   "hoplite_hhb": {
     "full_name": "HH-b Hoplite",
     "category": "vehicle",
@@ -561,6 +582,7 @@
       }
     ]
   },
+
   "peltast_hhd": {
     "full_name": "HH-d Peltast",
     "category": "vehicle",
@@ -600,6 +622,7 @@
       }
     ]
   },
+
   "hatchet_h5": {
     "full_name": "H-5 Hatchet",
     "category": "vehicle",
@@ -613,6 +636,7 @@
     "aliases": [
       "hatchet_h5",
       "h-5 hatchet",
+      "h5 hatchet",
       "hatchet"
     ],
     "recipes": [
@@ -628,6 +652,7 @@
           "H-5 Hatchet": 1
         }
       },
+
       {
         "recipe_key": "hatchet_h5_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -644,6 +669,7 @@
       }
     ]
   },
+
   "sagaris_ha1": {
     "full_name": "HA-1 Sagaris",
     "category": "vehicle",
@@ -673,6 +699,7 @@
           "HA-1 Sagaris": 1
         }
       },
+
       {
         "recipe_key": "sagaris_ha1_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -689,6 +716,7 @@
       }
     ]
   },
+
   "kranesca_h8": {
     "full_name": "H-8 Kranesca",
     "category": "vehicle",
@@ -721,6 +749,7 @@
       }
     ]
   },
+
   "vulcan_h19": {
     "full_name": "H-19 Vulcan",
     "category": "vehicle",
@@ -753,6 +782,7 @@
       }
     ]
   },
+
   "pelekys_h10": {
     "full_name": "H-10 Pelekys",
     "category": "vehicle",
@@ -786,6 +816,7 @@
       }
     ]
   },
+
   "bardiche_86ka": {
     "full_name": "86K-a Bardiche",
     "category": "vehicle",
@@ -820,6 +851,7 @@
           "86K-a Bardiche": 1
         }
       },
+
       {
         "recipe_key": "bardiche_86ka_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -836,6 +868,7 @@
       }
     ]
   },
+
   "falchion_85kb": {
     "full_name": "85K-b Falchion",
     "category": "vehicle",
@@ -866,6 +899,7 @@
           "85K-b Falchion": 1
         }
       },
+
       {
         "recipe_key": "falchion_85kb_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -882,6 +916,7 @@
       }
     ]
   },
+
   "nemesis_90tv": {
     "full_name": "90T-v Nemesis",
     "category": "vehicle",
@@ -917,6 +952,7 @@
           "90T-v Nemesis": 1
         }
       },
+
       {
         "recipe_key": "nemesis_90tv_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -933,6 +969,7 @@
       }
     ]
   },
+
   "spatha_85ka": {
     "full_name": "85K-a Spatha",
     "category": "vehicle",
@@ -965,6 +1002,7 @@
       }
     ]
   },
+
   "talos_85vg": {
     "full_name": "85V-g Talos",
     "category": "vehicle",
@@ -998,6 +1036,7 @@
       }
     ]
   },
+
   "ranseur_86kc": {
     "full_name": "86K-c Ranseur",
     "category": "vehicle",
@@ -1038,6 +1077,7 @@
       }
     ]
   },
+
   "scorpion_hc2": {
     "full_name": "HC-2 Scorpion",
     "category": "vehicle",
@@ -1067,6 +1107,7 @@
           "HC-2 Scorpion": 1
         }
       },
+
       {
         "recipe_key": "scorpion_hc2_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1083,6 +1124,7 @@
       }
     ]
   },
+
   "ballista_hc7": {
     "full_name": "HC-7 Ballista",
     "category": "vehicle",
@@ -1114,6 +1156,7 @@
       }
     ]
   },
+
   "lance_36": {
     "full_name": "Lance-36",
     "category": "vehicle",
@@ -1151,6 +1194,7 @@
       }
     ]
   },
+
   "hasta_lance25": {
     "full_name": "Lance-25 Hasta",
     "category": "vehicle",
@@ -1184,6 +1228,7 @@
       }
     ]
   },
+
   "sarissa_lance46": {
     "full_name": "Lance-46 Sarissa",
     "category": "vehicle",
@@ -1216,6 +1261,7 @@
       }
     ]
   },
+
   "ares_o75b": {
     "full_name": "O-75b Ares",
     "category": "vehicle",
@@ -1249,6 +1295,7 @@
       }
     ]
   },
+
   "atlas_hauler_r5": {
     "full_name": "R-5 Atlas Hauler",
     "category": "vehicle",
@@ -1276,6 +1323,7 @@
           "R-5 Atlas Hauler": 1
         }
       },
+
       {
         "recipe_key": "atlas_hauler_r5_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1292,6 +1340,7 @@
       }
     ]
   },
+
   "hauler_r1": {
     "full_name": "R-1 Hauler",
     "category": "vehicle",
@@ -1317,6 +1366,7 @@
           "R-1 Hauler": 1
         }
       },
+
       {
         "recipe_key": "hauler_r1_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1333,6 +1383,7 @@
       }
     ]
   },
+
   "speartip_escort_r9": {
     "full_name": "R-9 Speartip Escort",
     "category": "vehicle",
@@ -1363,6 +1414,7 @@
       }
     ]
   },
+
   "sisyphus_hauler_r5b": {
     "full_name": "R-5b Sisyphus Hauler",
     "category": "vehicle",
@@ -1391,6 +1443,7 @@
       }
     ]
   },
+
   "retiarius_skirmisher_r17": {
     "full_name": "R-17 Retiarius Skirmisher",
     "category": "vehicle",
@@ -1423,6 +1476,7 @@
       }
     ]
   },
+
   "stolon_tanker_rr3": {
     "full_name": "RR-3 Stolon Tanker",
     "category": "vehicle",
@@ -1449,6 +1503,7 @@
           "RR-3 Stolon Tanker": 1
         }
       },
+
       {
         "recipe_key": "stolon_tanker_rr3_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1465,6 +1520,7 @@
       }
     ]
   },
+
   "packmule_flatbed": {
     "full_name": "BMS - Packmule Flatbed",
     "category": "vehicle",
@@ -1493,6 +1549,7 @@
           "BMS - Packmule Flatbed": 1
         }
       },
+
       {
         "recipe_key": "packmule_flatbed_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1509,6 +1566,7 @@
       }
     ]
   },
+
   "chariot_r15": {
     "full_name": "R-15 - Chariot",
     "category": "vehicle",
@@ -1535,6 +1593,7 @@
           "R-15 - Chariot": 1
         }
       },
+
       {
         "recipe_key": "chariot_r15_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1551,6 +1610,7 @@
       }
     ]
   },
+
   "taurine_rigger": {
     "full_name": "AU-A150 Taurine Rigger",
     "category": "vehicle",
@@ -1578,6 +1638,7 @@
       }
     ]
   },
+
   "universal_assembly_rig": {
     "full_name": "BMS - Universal Assembly Rig",
     "category": "vehicle",
@@ -1604,6 +1665,7 @@
           "BMS - Universal Assembly Rig": 1
         }
       },
+
       {
         "recipe_key": "universal_assembly_rig_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1620,6 +1682,7 @@
       }
     ]
   },
+
   "fabricator": {
     "full_name": "BMS - Fabricator",
     "category": "vehicle",
@@ -1648,6 +1711,7 @@
       }
     ]
   },
+
   "mobile_auto_crane": {
     "full_name": "BMS - Class 2 Mobile Auto-Crane",
     "category": "vehicle",
@@ -1674,6 +1738,7 @@
           "BMS - Class 2 Mobile Auto-Crane": 1
         }
       },
+
       {
         "recipe_key": "mobile_auto_crane_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1690,6 +1755,7 @@
       }
     ]
   },
+
   "scrap_hauler": {
     "full_name": "BMS - Scrap Hauler",
     "category": "vehicle",
@@ -1718,6 +1784,7 @@
       }
     ]
   },
+
   "tumblebox": {
     "full_name": "Rooster - Tumblebox",
     "category": "vehicle",
@@ -1743,6 +1810,7 @@
           "Rooster - Tumblebox": 1
         }
       },
+
       {
         "recipe_key": "tumblebox_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1759,6 +1827,7 @@
       }
     ]
   },
+
   "lamploader": {
     "full_name": "Rooster - Lamploader",
     "category": "vehicle",
@@ -1784,6 +1853,7 @@
           "Rooster - Lamploader": 1
         }
       },
+
       {
         "recipe_key": "lamploader_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1800,6 +1870,7 @@
       }
     ]
   },
+
   "junkwagon": {
     "full_name": "Rooster - Junkwagon",
     "category": "vehicle",
@@ -1825,6 +1896,7 @@
           "Rooster - Junkwagon": 1
         }
       },
+
       {
         "recipe_key": "junkwagon_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1841,6 +1913,7 @@
       }
     ]
   },
+
   "salus_ambulance": {
     "full_name": "R-12 - Salus Ambulance",
     "category": "vehicle",
@@ -1867,6 +1940,7 @@
           "R-12 - Salus Ambulance": 1
         }
       },
+
       {
         "recipe_key": "salus_ambulance_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -1883,6 +1957,7 @@
       }
     ]
   },
+
   "salva_flame_truck": {
     "full_name": "R-12b - Salva Flame Truck",
     "category": "vehicle",
@@ -1913,6 +1988,7 @@
       }
     ]
   },
+
   "mineseeker": {
     "full_name": "BMS Mineseeker",
     "category": "vehicle",
@@ -1941,6 +2017,7 @@
       }
     ]
   },
+
   "stowheel": {
     "full_name": "BMS Stowheel",
     "category": "vehicle",
@@ -1969,6 +2046,7 @@
       }
     ]
   },
+
   "railtruck": {
     "full_name": "BMS Railtruck",
     "category": "vehicle",
@@ -1997,6 +2075,7 @@
       }
     ]
   },
+
   "linerunner": {
     "full_name": "BMS Linerunner",
     "category": "vehicle",
@@ -2025,6 +2104,7 @@
       }
     ]
   },
+
   "tinderbox": {
     "full_name": "BMS Tinderbox",
     "category": "vehicle",
@@ -2053,6 +2133,7 @@
       }
     ]
   },
+
   "black_bolt": {
     "full_name": "BMS Black Bolt",
     "category": "vehicle",
@@ -2081,6 +2162,7 @@
       }
     ]
   },
+
   "roadhouse": {
     "full_name": "BMS Roadhouse",
     "category": "vehicle",
@@ -2109,6 +2191,7 @@
       }
     ]
   },
+
   "rockhold": {
     "full_name": "BMS Rockhold",
     "category": "vehicle",
@@ -2137,6 +2220,7 @@
       }
     ]
   },
+
   "longrider": {
     "full_name": "BMS Longrider",
     "category": "vehicle",
@@ -2165,6 +2249,7 @@
       }
     ]
   },
+
   "holdout": {
     "full_name": "BMS Holdout",
     "category": "vehicle",
@@ -2193,6 +2278,7 @@
       }
     ]
   },
+
   "steelbreaker_k5a": {
     "full_name": "Aegis Steelbreaker K5a",
     "category": "vehicle",
@@ -2230,6 +2316,7 @@
       }
     ]
   },
+
   "bloodtender": {
     "full_name": "BMS Bloodtender",
     "category": "vehicle",
@@ -2262,6 +2349,7 @@
       }
     ]
   },
+
   "tempest_cannon_ra2": {
     "full_name": "Tempest Cannon RA-2",
     "category": "vehicle",
@@ -2296,6 +2384,7 @@
       }
     ]
   },
+
   "sky_hauler": {
     "full_name": "BMS - Overseer Sky-Hauler",
     "category": "vehicle",

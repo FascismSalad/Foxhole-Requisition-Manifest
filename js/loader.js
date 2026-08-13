@@ -43,6 +43,15 @@ const PARENT_ITEM_BY_OUTPUT = {};
 // dataset, so they simply have no entry and display as a plain unit count.
 const CRATE_SIZE_BY_NAME = {};
 
+// Fetches manifest.json, then every data file it lists, and sorts each
+// top-level entry from each of those files into the right global lookup
+// table purely by SHAPE (recipes/inputs+outputs/assembly_materials/
+// build_costs — see the branches below), not by which file it came from —
+// finishes by calling buildIndices() to build the derived alias/output
+// indices those tables don't carry on their own. Called once at boot (see
+// bootWithRetry in app.js / bootPlanner in planner.js); awaited before
+// either page does anything else, since every other function here assumes
+// these tables are already populated.
 async function loadData() {
   const manifest = await fetch('data/manifest.json').then(r => r.json());
 
@@ -130,10 +139,14 @@ function buildIndices() {
   // recipes also list byproducts (e.g. a Sulfur recipe that incidentally
   // yields some Coal), and those must never register as "the" way to get
   // that byproduct, or that byproduct's own real recipe(s) get shadowed.
+  // Normally first-seen-wins (whichever recipe's data happens to load
+  // first) — a recipe can override that and force itself to be the
+  // default regardless of load order by setting "is_default": true in its
+  // own JSON entry (see Steel's EOil recipe in data/materials/large.json).
   for (const [recipeKey, recipe] of Object.entries(MATERIAL_RECIPES)) {
     const primaryOutput = Object.keys(recipe.outputs)[0];
     if (!primaryOutput) continue;
-    if (!(primaryOutput in RECIPE_BY_OUTPUT) || recipeKey === 'steel_eoil') {
+    if (!(primaryOutput in RECIPE_BY_OUTPUT) || recipe.is_default) {
       RECIPE_BY_OUTPUT[primaryOutput] = recipe;
     }
     // Fallback crate size for anything with an MPF-style crate_output +

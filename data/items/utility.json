@@ -25,6 +25,7 @@
         "crate_output": 1,
         "unit_output": 100
       },
+
       {
         "recipe_key": "maintenance_supplies_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -39,6 +40,7 @@
         "crate_output": 9,
         "unit_output": 900
       },
+
       {
         "recipe_key": "maintenance_supplies_materials_factory",
         "recipe_name": "Materials Factory",
@@ -54,6 +56,7 @@
       }
     ]
   },
+
   "shovel": {
     "full_name": "Shovel",
     "category": "item",
@@ -71,6 +74,7 @@
       "Shovel": 10
     }
   },
+
   "sledge_hammer": {
     "full_name": "Sledge Hammer",
     "category": "item",
@@ -89,6 +93,7 @@
       "Sledge Hammer": 10
     }
   },
+
   "water_bucket": {
     "full_name": "Water Bucket",
     "category": "item",
@@ -106,6 +111,7 @@
       "Water Bucket": 50
     }
   },
+
   "wrench": {
     "full_name": "Wrench",
     "category": "item",
@@ -123,6 +129,7 @@
       "Wrench": 5
     }
   },
+
   "binoculars": {
     "full_name": "Binoculars",
     "category": "item",
@@ -141,6 +148,7 @@
       "Binoculars": 5
     }
   },
+
   "flight_mask": {
     "full_name": "Flight Mask",
     "category": "item",
@@ -159,6 +167,7 @@
       "Flight Mask": 5
     }
   },
+
   "gas_mask": {
     "full_name": "Gas Mask",
     "category": "item",
@@ -176,6 +185,25 @@
       "Gas Mask": 20
     }
   },
+
+  "gas_mask_filter": {
+    "full_name": "Gas Mask Filter",
+    "category": "item",
+    "subcategory": "Utility",
+    "crate_size": 20,
+    "aliases": [
+      "gas_mask_filter",
+      "gas mask filter"
+    ],
+    "facility": "Factory",
+    "inputs": {
+      "Basic Materials": 100
+    },
+    "outputs": {
+      "Gas Mask Filter": 20
+    }
+  },
+
   "radio": {
     "full_name": "Radio",
     "category": "item",
@@ -192,6 +220,7 @@
       "Radio": 5
     }
   },
+
   "radio_backpack": {
     "full_name": "Radio Backpack",
     "category": "item",
@@ -209,6 +238,7 @@
       "Radio Backpack": 5
     }
   },
+
   "air_raid_siren": {
     "full_name": "Air Raid Siren",
     "category": "item",
@@ -227,6 +257,7 @@
       "Air Raid Siren": 5
     }
   },
+
   "legion_vexillum": {
     "full_name": "Legion Vexillum",
     "category": "item",
@@ -247,6 +278,7 @@
       "Legion Vexillum": 1
     }
   },
+
   "listening_kit": {
     "full_name": "Listening Kit",
     "category": "item",
@@ -265,6 +297,7 @@
       "Listening Kit": 5
     }
   },
+
   "wind_sock": {
     "full_name": "Wind Sock",
     "category": "item",
@@ -283,6 +316,7 @@
       "Wind Sock": 5
     }
   },
+
   "paratroopers_ruck": {
     "full_name": "Paratrooper's Ruck",
     "category": "item",
@@ -302,6 +336,7 @@
       "Paratrooper's Ruck": 10
     }
   },
+
   "tripod": {
     "full_name": "Tripod",
     "category": "item",
@@ -323,6 +358,7 @@
           "Tripod": 5
         }
       },
+
       {
         "recipe_key": "tripod_ammunition_factory_tripod_factory",
         "recipe_name": "Ammunition Factory [Tripod Factory]",

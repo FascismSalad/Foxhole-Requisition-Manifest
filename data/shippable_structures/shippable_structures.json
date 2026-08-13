@@ -25,6 +25,7 @@
           "DAE 1b-2 \"Serra\"": 1
         }
       },
+
       {
         "recipe_key": "dae_1b2_serra_mpf",
         "recipe_name": "MPF [Structures]",
@@ -41,6 +42,7 @@
       }
     ]
   },
+
   "leary_snare_trap_20": {
     "full_name": "Leary Snare Trap 20",
     "category": "shippable",
@@ -67,6 +69,7 @@
           "Leary Snare Trap 20": 1
         }
       },
+
       {
         "recipe_key": "leary_snare_trap_20_mpf",
         "recipe_name": "MPF [Structures]",
@@ -83,6 +86,7 @@
       }
     ]
   },
+
   "leary_shellbore_68mm": {
     "full_name": "Leary Shellbore 68mm",
     "category": "shippable",
@@ -109,6 +113,7 @@
           "Leary Shellbore 68mm": 1
         }
       },
+
       {
         "recipe_key": "leary_shellbore_68mm_mpf",
         "recipe_name": "MPF [Structures]",
@@ -125,6 +130,7 @@
       }
     ]
   },
+
   "dae_1o3_polybolos": {
     "full_name": "DAE 1o-3 \"Polybolos\"",
     "category": "shippable",
@@ -151,6 +157,7 @@
           "DAE 1o-3 \"Polybolos\"": 1
         }
       },
+
       {
         "recipe_key": "dae_1o3_polybolos_mpf",
         "recipe_name": "MPF [Structures]",
@@ -167,6 +174,7 @@
       }
     ]
   },
+
   "huber_starbreaker_945mm": {
     "full_name": "Huber Starbreaker 94.5mm",
     "category": "shippable",
@@ -190,6 +198,7 @@
       "Huber Starbreaker 94.5mm": 1
     }
   },
+
   "dae_2a1_ruptura": {
     "full_name": "DAE 2a-1 \"Ruptura\"",
     "category": "shippable",
@@ -213,6 +222,7 @@
       "DAE 2a-1 \"Ruptura\"": 1
     }
   },
+
   "thunderbolt_cannon": {
     "full_name": "50-500 \"Thunderbolt\" Cannon",
     "category": "shippable",
@@ -240,6 +250,7 @@
           "50-500 \"Thunderbolt\" Cannon": 1
         }
       },
+
       {
         "recipe_key": "thunderbolt_cannon_mpf",
         "recipe_name": "MPF [Structures]",
@@ -256,6 +267,7 @@
       }
     ]
   },
+
   "huber_exalt_150mm": {
     "full_name": "Huber Exalt 150mm",
     "category": "shippable",
@@ -282,6 +294,7 @@
           "Huber Exalt 150mm": 1
         }
       },
+
       {
         "recipe_key": "huber_exalt_150mm_mpf",
         "recipe_name": "MPF [Structures]",
@@ -298,6 +311,7 @@
       }
     ]
   },
+
   "huber_lariat_120mm": {
     "full_name": "Huber Lariat 120mm",
     "category": "shippable",
@@ -324,6 +338,7 @@
           "Huber Lariat 120mm": 1
         }
       },
+
       {
         "recipe_key": "huber_lariat_120mm_mpf",
         "recipe_name": "MPF [Structures]",
@@ -340,6 +355,7 @@
       }
     ]
   },
+
   "dae_3b2_hades_net": {
     "full_name": "DAE 3b-2 \"Hades' Net\"",
     "category": "shippable",
@@ -364,6 +380,7 @@
       "DAE 3b-2 \"Hades' Net\"": 1
     }
   },
+
   "dae_5b_zeal": {
     "full_name": "DAE 5b \"Zeal\"",
     "category": "shippable",
@@ -390,6 +407,7 @@
           "DAE 5b \"Zeal\"": 1
         }
       },
+
       {
         "recipe_key": "dae_5b_zeal_mpf",
         "recipe_name": "MPF [Structures]",
@@ -406,6 +424,7 @@
       }
     ]
   },
+
   "leary_aa70_bolas": {
     "full_name": "Leary AA-70 Bolas",
     "category": "shippable",
@@ -432,6 +451,7 @@
           "Leary AA-70 Bolas": 1
         }
       },
+
       {
         "recipe_key": "leary_aa70_bolas_small_assembly_station",
         "recipe_name": "Small Assembly Station [Battery Line]",
@@ -447,6 +467,7 @@
           "Leary AA-70 Bolas": 1
         }
       },
+
       {
         "recipe_key": "leary_aa70_bolas_mpf",
         "recipe_name": "MPF [Structures]",
@@ -463,6 +484,7 @@
       }
     ]
   },
+
   "naval_hull_segments": {
     "full_name": "Naval Hull Segments",
     "category": "shippable",
@@ -488,6 +510,7 @@
       "Naval Hull Segments": 1
     }
   },
+
   "naval_shell_plating": {
     "full_name": "Naval Shell Plating",
     "category": "shippable",
@@ -509,6 +532,7 @@
       "Naval Shell Plating": 1
     }
   },
+
   "naval_turbine_components": {
     "full_name": "Naval Turbine Components",
     "category": "shippable",
@@ -530,6 +554,7 @@
       "Naval Turbine Components": 1
     }
   },
+
   "shipping_container": {
     "full_name": "Shipping Container",
     "category": "shippable",
@@ -554,6 +579,7 @@
           "Shipping Container": 1
         }
       },
+
       {
         "recipe_key": "shipping_container_mpf",
         "recipe_name": "MPF [Structures]",
@@ -570,6 +596,7 @@
       }
     ]
   },
+
   "resource_container": {
     "full_name": "Resource Container",
     "category": "shippable",
@@ -594,6 +621,7 @@
           "Resource Container": 1
         }
       },
+
       {
         "recipe_key": "resource_container_mpf",
         "recipe_name": "MPF [Structures]",
@@ -610,6 +638,7 @@
       }
     ]
   },
+
   "liquid_container": {
     "full_name": "Liquid Container",
     "category": "shippable",
@@ -634,6 +663,7 @@
           "Liquid Container": 1
         }
       },
+
       {
         "recipe_key": "liquid_container_mpf",
         "recipe_name": "MPF [Structures]",
@@ -650,6 +680,7 @@
       }
     ]
   },
+
   "material_pallet": {
     "full_name": "Material Pallet",
     "category": "shippable",
@@ -674,6 +705,7 @@
           "Material Pallet": 1
         }
       },
+
       {
         "recipe_key": "material_pallet_small_assembly_station",
         "recipe_name": "Small Assembly Station",
@@ -687,6 +719,7 @@
           "Material Pallet": 1
         }
       },
+
       {
         "recipe_key": "material_pallet_mpf",
         "recipe_name": "MPF [Structures]",
@@ -703,6 +736,7 @@
       }
     ]
   },
+
   "a0e9_rocket_warhead": {
     "full_name": "A0E-9 Rocket Warhead",
     "category": "shippable",
@@ -726,6 +760,7 @@
       "A0E-9 Rocket Warhead": 1
     }
   },
+
   "a0e9_rocket_body": {
     "full_name": "A0E-9 Rocket Body",
     "category": "shippable",
@@ -751,6 +786,7 @@
       "A0E-9 Rocket Body": 1
     }
   },
+
   "a0e9_rocket_booster": {
     "full_name": "A0E-9 Rocket Booster",
     "category": "shippable",
@@ -776,6 +812,7 @@
       "A0E-9 Rocket Booster": 1
     }
   },
+
   "weather_station_parts": {
     "full_name": "Weather Station Parts",
     "category": "shippable",
@@ -798,6 +835,7 @@
       "Weather Station Parts": 1
     }
   },
+
   "underground_fortress_parts": {
     "full_name": "Underground Fortress Parts",
     "category": "shippable",
@@ -820,6 +858,7 @@
       "Underground Fortress Parts": 1
     }
   },
+
   "structure_parts": {
     "full_name": "Structure Parts",
     "category": "shippable",
@@ -842,6 +881,7 @@
       "Structure Parts": 1
     }
   },
+
   "storm_cannon_parts": {
     "full_name": "Storm Cannon Parts",
     "category": "shippable",
@@ -864,6 +904,7 @@
       "Storm Cannon Parts": 1
     }
   },
+
   "sc3_aerial_interceptor_array_parts": {
     "full_name": "SC-3 Aerial Interceptor Array Parts",
     "category": "shippable",
@@ -887,6 +928,7 @@
       "SC-3 Aerial Interceptor Array Parts": 1
     }
   },
+
   "intelligence_center_parts": {
     "full_name": "Intelligence Center Parts",
     "category": "shippable",
@@ -909,6 +951,7 @@
       "Intelligence Center Parts": 1
     }
   },
+
   "construction_parts": {
     "full_name": "Construction Parts",
     "category": "shippable",
@@ -931,6 +974,7 @@
       "Construction Parts": 1
     }
   },
+
   "construction_equipment": {
     "full_name": "Construction Equipment",
     "category": "shippable",
@@ -955,6 +999,7 @@
           "Construction Equipment": 1
         }
       },
+
       {
         "recipe_key": "construction_equipment_mpf",
         "recipe_name": "MPF [Structures]",
@@ -971,6 +1016,7 @@
       }
     ]
   },
+
   "concrete_mixer_structure": {
     "full_name": "Concrete Mixer",
     "category": "shippable",
@@ -995,6 +1041,7 @@
           "Concrete Mixer": 1
         }
       },
+
       {
         "recipe_key": "concrete_mixer_mpf",
         "recipe_name": "MPF [Structures]",

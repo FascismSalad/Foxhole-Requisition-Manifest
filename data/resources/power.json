@@ -21,6 +21,7 @@
           "Facility Power": 12
         }
       },
+
       {
         "recipe_key": "power_diesel_plant_diesel",
         "recipe_name": "Diesel Power Plant",
@@ -33,6 +34,7 @@
           "Facility Power": 5
         }
       },
+
       {
         "recipe_key": "power_diesel_plant_coal",
         "recipe_name": "Diesel Power Plant [Coal Power Plant]",
@@ -45,6 +47,7 @@
           "Facility Power": 5
         }
       },
+
       {
         "recipe_key": "power_station_coal_water",
         "recipe_name": "Power Station (Coal/Water)",
@@ -58,6 +61,7 @@
           "Facility Power": 10
         }
       },
+
       {
         "recipe_key": "power_station_oil",
         "recipe_name": "Power Station (Oil)",
@@ -70,6 +74,7 @@
           "Facility Power": 10
         }
       },
+
       {
         "recipe_key": "power_station_sulfuric_reactor_coke",
         "recipe_name": "Power Station [Sulfuric Reactor] (Coke/Water)",
@@ -84,6 +89,7 @@
           "Sulfur": 5
         }
       },
+
       {
         "recipe_key": "power_station_sulfuric_reactor_heavy_oil",
         "recipe_name": "Power Station [Sulfuric Reactor] (Heavy Oil)",

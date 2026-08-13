@@ -28,6 +28,7 @@
           "K-81e Sombre": 1
         }
       },
+
       {
         "recipe_key": "sombre_k81e_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -44,6 +45,7 @@
       }
     ]
   },
+
   "strider": {
     "full_name": "Strider",
     "category": "vehicle",
@@ -79,6 +81,7 @@
           "Strider": 1
         }
       },
+
       {
         "recipe_key": "strider_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -95,6 +98,7 @@
       }
     ]
   },
+
   "charon_type_c": {
     "full_name": "Type C - Charon",
     "category": "vehicle",
@@ -123,6 +127,7 @@
           "Type C - Charon": 1
         }
       },
+
       {
         "recipe_key": "charon_type_c_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -139,6 +144,7 @@
       }
     ]
   },
+
   "lucian_type_b": {
     "full_name": "Type B - Lucian",
     "category": "vehicle",
@@ -168,6 +174,7 @@
           "Type B - Lucian": 1
         }
       },
+
       {
         "recipe_key": "lucian_type_b_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -184,6 +191,7 @@
       }
     ]
   },
+
   "interceptor_pa12": {
     "full_name": "Interceptor PA-12",
     "category": "vehicle",
@@ -211,6 +219,7 @@
       }
     ]
   },
+
   "bellweather_vac": {
     "full_name": "Bellweather by VAC",
     "category": "vehicle",
@@ -240,6 +249,7 @@
           "Bellweather by VAC": 1
         }
       },
+
       {
         "recipe_key": "bellweather_vac_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -256,6 +266,7 @@
       }
     ]
   },
+
   "aquatipper": {
     "full_name": "BMS - Aquatipper",
     "category": "vehicle",
@@ -282,6 +293,7 @@
           "BMS - Aquatipper": 1
         }
       },
+
       {
         "recipe_key": "aquatipper_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -298,6 +310,7 @@
       }
     ]
   },
+
   "ironship": {
     "full_name": "BMS - Ironship",
     "category": "vehicle",
@@ -324,6 +337,7 @@
           "BMS - Ironship": 1
         }
       },
+
       {
         "recipe_key": "ironship_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -340,6 +354,7 @@
       }
     ]
   },
+
   "das_krokodil_vac": {
     "full_name": "Das Krokodil by VAC",
     "category": "vehicle",
@@ -367,6 +382,7 @@
           "Das Krokodil by VAC": 1
         }
       },
+
       {
         "recipe_key": "das_krokodil_vac_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -383,6 +399,7 @@
       }
     ]
   },
+
   "grouper": {
     "full_name": "BMS - Grouper",
     "category": "vehicle",
@@ -409,6 +426,7 @@
       }
     ]
   },
+
   "trident_acb": {
     "full_name": "AC-b Trident",
     "category": "vehicle",
@@ -438,6 +456,7 @@
       }
     ]
   },
+
   "conqueror": {
     "full_name": "Conqueror",
     "category": "vehicle",
@@ -466,6 +485,7 @@
       }
     ]
   },
+
   "longhook": {
     "full_name": "BMS - Longhook",
     "category": "vehicle",
@@ -495,6 +515,7 @@
       }
     ]
   },
+
   "bluefin": {
     "full_name": "BMS - Bluefin",
     "category": "vehicle",
@@ -523,6 +544,7 @@
       }
     ]
   },
+
   "bowhead": {
     "full_name": "BMS - Bowhead",
     "category": "vehicle",
@@ -552,6 +574,7 @@
       }
     ]
   },
+
   "poseidon": {
     "full_name": "Poseidon",
     "category": "vehicle",
@@ -579,6 +602,7 @@
       }
     ]
   },
+
   "titan": {
     "full_name": "Titan",
     "category": "vehicle",

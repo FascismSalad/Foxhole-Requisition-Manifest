@@ -27,6 +27,7 @@
           "G40 Sagittarii": 1
         }
       },
+
       {
         "recipe_key": "sagittarii_g40_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -43,6 +44,7 @@
       }
     ]
   },
+
   "cestus_ga6": {
     "full_name": "GA6 Cestus",
     "category": "vehicle",
@@ -73,6 +75,7 @@
       }
     ]
   },
+
   "battering_ram_aa2": {
     "full_name": "AA-2 Battering Ram",
     "category": "vehicle",
@@ -101,6 +104,7 @@
           "AA-2 Battering Ram": 1
         }
       },
+
       {
         "recipe_key": "battering_ram_aa2_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -117,6 +121,7 @@
       }
     ]
   },
+
   "smelter_40_45": {
     "full_name": "40-45 Smelter",
     "category": "vehicle",
@@ -149,6 +154,7 @@
       }
     ]
   },
+
   "stygian_bolt_945g": {
     "full_name": "945g Stygian Bolt",
     "category": "vehicle",
@@ -180,6 +186,7 @@
       }
     ]
   },
+
   "koronides_120_68": {
     "full_name": "120-68 Koronides Field Gun",
     "category": "vehicle",
@@ -207,6 +214,7 @@
           "120-68 Koronides Field Gun": 1
         }
       },
+
       {
         "recipe_key": "koronides_120_68_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -223,6 +231,7 @@
       }
     ]
   },
+
   "tisiphone_30_250": {
     "full_name": "30-250 Tisiphone Field Cannon",
     "category": "vehicle",
@@ -250,6 +259,7 @@
           "30-250 Tisiphone Field Cannon": 1
         }
       },
+
       {
         "recipe_key": "tisiphone_30_250_mpf",
         "recipe_name": "MPF (5-Crate)",
@@ -266,6 +276,7 @@
       }
     ]
   },
+
   "alekto_40_250": {
     "full_name": "40-250 Alekto Heavy Cannon",
     "category": "vehicle",

@@ -99,6 +99,13 @@ function updateChainPanel(html) {
   setTimeout(() => container.replaceChildren(...temp.children), 180);
 }
 
+// The main re-render, called after any state change that affects what's on
+// screen (adding/removing a ticket, changing a quantity, picking a recipe,
+// adjusting a queue, ...): rebuilds every ticket, the combined production
+// chain, and both sidebar panels from the current state.entries/queueCounts/
+// etc. from scratch. Cheap enough to just call outright rather than
+// tracking fine-grained dirty state — see updateChainPanel for the one
+// place that still animates rather than snapping (the chain panel's rows).
 function renderResults() {
   const resultsContainer = document.getElementById('results');
   const chainContainer = document.getElementById('chainPanel');
@@ -138,6 +145,9 @@ function renderResults() {
   if (sendToPlannerBtn) sendToPlannerBtn.disabled = false;
 }
 
+// Adds a ticket for an aircraft or material (kind/key match how they're
+// keyed in AIRCRAFT_COSTS/MATERIAL_RECIPES), or just bumps its quantity if
+// it's already in the list.
 function addEntry(kind, key, quantity = 1) {
   // avoid duplicate tickets for the exact same item; bump quantity instead
   const existing = state.entries.find(e => e.kind === kind && e.key === key);
@@ -153,6 +163,11 @@ function addEntry(kind, key, quantity = 1) {
   renderResults();
 }
 
+// Resolves a typed/clicked search phrase to a real entry and adds it —
+// aircraft aliases can map to MULTIPLE keys (e.g. a squadron alias that
+// adds a whole set), material aliases always map to exactly one recipe
+// key. Returns false (instead of throwing) for a phrase that matches
+// neither, so callers can just no-op on a miss.
 function selectPhrase(phrase) {
   const clean = phrase.toLowerCase().trim();
   if (clean in AIRCRAFT_ALIASES) {
@@ -166,6 +181,13 @@ function selectPhrase(phrase) {
   return false;
 }
 
+// Builds the search dropdown's full result list for the current query —
+// aircraft, multi-recipe items (Steel, Salvage, ...), and standalone
+// single-recipe materials, each tagged with enough of its own
+// category/subcategory/class/type/aliases to both search AND render the
+// colored tag chips in renderAutocomplete below. Case-insensitive
+// substring match against every one of those fields joined together, not
+// just the display name.
 function buildSuggestions(query) {
   const clean = query.toLowerCase().trim();
   const results = [];
@@ -207,6 +229,12 @@ function buildSuggestions(query) {
   return results;
 }
 
+// Wires up every interactive element on the page — search/autocomplete,
+// ticket qty/crate/collapse controls, the production-chain panel's recipe
+// pickers and queue steppers, the sidebar's LIQUIDS/RAW/POWER visibility
+// toggles, and the "SEND TO PLANNER" handoff — then does the first real
+// render. Only ever called once, from bootWithRetry() below, after
+// loadData() has resolved (everything here assumes the data's already in).
 function initApp() {
   // ---- Dropdown toggle + search + full scrollable item list ----
 
@@ -610,3 +638,11 @@ async function bootWithRetry(retriesLeft = 2) {
 }
 
 bootWithRetry();
+
+// Dev-only smoke-test hook — inert for every real visitor since nothing
+// ever links to this page with ?autotest=1. See test.ps1/test/smoke-calc.js.
+if (new URLSearchParams(location.search).has('autotest')) {
+  const s = document.createElement('script');
+  s.src = 'test/smoke-calc.js';
+  document.head.appendChild(s);
+}

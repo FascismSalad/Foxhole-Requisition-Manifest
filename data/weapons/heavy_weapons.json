@@ -30,6 +30,7 @@
       }
     ]
   },
+
   "molten_wind_vii_flame_torch": {
     "full_name": "Molten Wind v.II Flame Torch",
     "category": "weapon",
@@ -56,6 +57,7 @@
           "Molten Wind v.II Flame Torch": 10
         }
       },
+
       {
         "recipe_key": "molten_wind_vii_flame_torch_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -73,6 +75,7 @@
       }
     ]
   },
+
   "typhon_raxii": {
     "full_name": "Typhon ra.XII",
     "category": "weapon",
@@ -99,6 +102,7 @@
           "Typhon ra.XII": 1
         }
       },
+
       {
         "recipe_key": "typhon_raxii_factory",
         "recipe_name": "Factory",
@@ -112,6 +116,7 @@
           "Typhon ra.XII": 5
         }
       },
+
       {
         "recipe_key": "typhon_raxii_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -129,6 +134,7 @@
       }
     ]
   },
+
   "daucus_isgiii": {
     "full_name": "Daucus isg.III",
     "category": "weapon",
@@ -155,6 +161,7 @@
           "Daucus isg.III": 1
         }
       },
+
       {
         "recipe_key": "daucus_isgiii_factory",
         "recipe_name": "Factory",
@@ -168,6 +175,7 @@
           "Daucus isg.III": 5
         }
       },
+
       {
         "recipe_key": "daucus_isgiii_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -185,6 +193,7 @@
       }
     ]
   },
+
   "quickhatch_rti": {
     "full_name": "Quickhatch Rt.I",
     "category": "weapon",

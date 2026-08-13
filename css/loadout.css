@@ -1,0 +1,418 @@
+/* ============================================================
+   FACTORY/MPF CALCULATOR PAGE
+   A flat "shopping list" calculator: pick weapons/vehicles/
+   equipment from a tabbed catalog, click to add them to a running
+   order, and read off the total raw-material + crate cost. No
+   recursive production chain here — every item's cost is read
+   directly off its own existing recipe (see js/loadout.js), the
+   same way the source tool this replicates (foxholelogi.com)
+   works. Shares style.css's tokens/panel-label/step-queue-stepper
+   classes rather than redefining them.
+   ============================================================ */
+
+/* Same fixed-viewport trick as body.planner-page in planner.css, same
+   reason: html{zoom:1.12} (style.css) doesn't compose with vh-based flex
+   sizing in Chromium, so this cancels it locally rather than fighting it
+   through every nested level. Without this, the item grid below has no
+   natural height limit and just grows the whole page — masthead, search,
+   tabs and all — off the bottom of the screen instead of scrolling in
+   place. Only .loadout-item-grid and .loadout-order-list actually scroll;
+   everything else (settings, search, tabs, totals) stays put, same
+   division of labor as .planner-sidebar/.planner-facility-list.
+
+   .masthead below opts back OUT of the zoom-cancel (same fix, same reason,
+   as body.planner-page .masthead in planner.css) so the title/nav render
+   at the same size as index.html instead of ~11% smaller. */
+body.loadout-page {
+  zoom: calc(1 / 1.12);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body.loadout-page .masthead {
+  zoom: 1.12;
+}
+
+.loadout-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loadout-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---------- Left: item catalog ---------- */
+
+.loadout-picker {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadout-settings { margin-bottom: 16px; }
+
+.loadout-fieldset {
+  border: 1px solid var(--line);
+  padding: 10px 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.loadout-fieldset legend {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim-bright);
+  padding: 0 6px;
+}
+
+/* Same bordered-box-button look as .loadout-tab, not native radio dots —
+   the input itself is visually hidden (not display:none, so it stays
+   keyboard/screen-reader operable) and the <label> does all the styling,
+   toggling on :has(input:checked) the same way .loadout-tab.active does
+   via a JS-added class. */
+.loadout-location-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--paper-dim);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.loadout-location-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.loadout-location-option:hover { color: var(--brass-light); border-color: var(--brass-dim); }
+
+.loadout-location-option:has(input:checked) {
+  color: var(--brass-bright);
+  background: var(--panel-raised);
+  border-color: var(--brass-dim);
+}
+
+.loadout-search-wrap { margin-bottom: 14px; }
+
+.loadout-search-input {
+  width: 100%;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--paper);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.loadout-search-input:focus { border-color: var(--brass); }
+.loadout-search-input::placeholder { color: var(--paper-dim); }
+
+.loadout-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.loadout-tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dim);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.loadout-tab:hover { color: var(--brass-light); border-color: var(--brass-dim); }
+
+.loadout-tab.active {
+  color: var(--brass-bright);
+  background: var(--panel-raised);
+  border-color: var(--brass-dim);
+}
+
+.loadout-item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  align-content: start;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  /* Shift-click is used to add a full queue at once (see the itemGrid
+     click handler in loadout.js) — shift+click is also the browser's own
+     "extend the text selection" gesture, and with nothing here to stop it,
+     that's exactly what happened: every tile's icon/name between the last
+     click and this one got highlighted like selected text. This kills
+     that entirely, on the whole grid rather than per-tile, since the
+     selection drag isn't scoped to one tile anyway. */
+  user-select: none;
+  /* Without this, a tab with enough items to need a scrollbar loses ~15px
+     of content width to it, while a short tab (e.g. Supplies, 1 item)
+     doesn't — auto-fill then recomputes column widths against two
+     different available widths, so tiles measurably changed size between
+     tabs (187.6px vs 190.6px, confirmed). Reserving the gutter always
+     keeps the available width identical whether a scrollbar is actually
+     needed or not. */
+  scrollbar-gutter: stable;
+}
+
+/* aspect-ratio (not a fixed height) keeps every tile square regardless of
+   how many lines its name wraps to — line-clamp below caps the name at 2
+   lines instead of letting a long one stretch the tile tall and lopsided.
+   The ×N tag (.loadout-item-qty) is always present in the markup, even at
+   qty 0 (just invisible — see is-empty below), so its row always reserves
+   the same height and the icon/name never jump the moment a tile's first
+   count appears. */
+.loadout-item-tile {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  padding: 8px 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.loadout-item-tile:hover { border-color: var(--brass); }
+
+/* Queued items get a persistent brass border (echoing .loadout-tab.active)
+   instead of a bubble/badge overlay — the ×N tag below is enough of an
+   at-a-glance amount without anything sitting on top of the icon. */
+.loadout-item-tile.has-qty { border-color: var(--brass-dim); background: var(--panel); }
+
+.loadout-item-icon { width: 52px; height: 52px; object-fit: contain; flex-shrink: 0; }
+
+/* min-height reserves room for a full 2 lines even when the name only
+   needs 1 — without it, a short name (e.g. "9mm") made the whole
+   icon+name+qty group shorter, and since the group is centered as a block
+   (see .loadout-item-tile), the icon itself would sit lower than it does
+   on a tile with a longer, 2-line name. Reserving the space up front keeps
+   every icon at the same vertical position regardless of name length. */
+.loadout-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brass-bright);
+  line-height: 1.2;
+  min-height: 2.4em;
+  display: -webkit-box;
+  overflow-wrap: anywhere;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.loadout-item-qty {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brass-bright);
+}
+
+/* visibility (not display:none) so the tag still occupies its row — see
+   the aspect-ratio comment above for why that matters. */
+.loadout-item-qty.is-empty { visibility: hidden; }
+
+.loadout-empty-hint {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Right: totals + order ---------- */
+
+.loadout-summary {
+  flex: 0 0 340px;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadout-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.loadout-totals:empty::before {
+  content: "Nothing queued yet.";
+  color: var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+.loadout-resource-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+}
+
+.loadout-resource-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--paper-dim);
+}
+
+.loadout-resource-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brass-bright);
+}
+
+.loadout-crate-totals .loadout-resource-value { color: var(--steel-bright); }
+
+.loadout-order-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.loadout-order-head .panel-label { margin-bottom: 0; }
+
+.loadout-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.loadout-btn-danger:hover { border-color: var(--rust); color: var(--rust-bright); }
+
+.loadout-order-list {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.loadout-order-category {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--steel-bright);
+  padding: 8px 12px 4px;
+}
+
+.loadout-order-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+}
+
+.loadout-order-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+
+/* Queued but not craftable at the currently-selected Factory/MPF toggle
+   (e.g. a Factory-only item while MPF is selected) — stays in the list
+   instead of vanishing (switching the toggle back and forth would
+   otherwise silently drop part of the order), just dimmed and excluded
+   from the totals above (see computeLoadoutTotals). */
+.loadout-order-row-unavailable { opacity: 0.45; }
+.loadout-order-row-unavailable .loadout-order-name { font-style: italic; }
+
+.loadout-order-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--paper);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Purely informational (see LOADOUT_QUEUE_LIMIT in loadout.js) — this
+   order exceeds what a single real production queue can hold, so it'll
+   take more than one in-game order to actually fulfill. Never blocks or
+   changes the total; amber, not red/rust, since it's a heads-up, not an
+   error. */
+.loadout-order-warning {
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+.loadout-order-remove {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--paper-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.loadout-order-remove:hover { border-color: var(--rust); color: var(--rust-bright); }
+
+@media (max-width: 900px) {
+  /* Small screens get normal page scroll instead of the fixed-viewport
+     split layout — same override body.planner-page uses at this
+     breakpoint, same reason (a two-pane internal-scroll layout doesn't
+     have room to breathe once the columns stack). */
+  body.loadout-page { height: auto; overflow: visible; }
+  .loadout-wrap { flex: none; min-height: 0; }
+  .loadout-layout { flex-direction: column; flex: none; }
+  .loadout-picker { flex: none; }
+  .loadout-item-grid { flex: none; max-height: 60vh; }
+  .loadout-summary { flex: 1 1 auto; width: 100%; order: -1; }
+  .loadout-order-list { flex: none; max-height: 320px; }
+}

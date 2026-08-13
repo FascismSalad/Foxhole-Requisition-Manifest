@@ -20,6 +20,7 @@
       "Colonial Aircraft Engine (Small)": 1
     }
   },
+
   "small_mech_parts": {
     "full_name": "Colonial Aircraft Mechanical Parts (Small)",
     "category": "material",
@@ -41,6 +42,7 @@
       "Colonial Aircraft Mechanical Parts (Small)": 1
     }
   },
+
   "large_engine": {
     "full_name": "Colonial Aircraft Engine (Large)",
     "category": "material",
@@ -62,6 +64,7 @@
       "Colonial Aircraft Engine (Large)": 1
     }
   },
+
   "large_mech_parts": {
     "full_name": "Colonial Aircraft Mechanical Parts (Large)",
     "category": "material",

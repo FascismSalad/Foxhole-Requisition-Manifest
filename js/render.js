@@ -2,6 +2,8 @@
 // TICKET RENDERING
 // ============================================================
 
+// "heavy_bomber" -> "Heavy Bomber" — the data's own snake_case type/class
+// tags, turned into the Title Case text actually shown to the player.
 function titleCaseFromSnake(str) {
   return str.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
@@ -18,6 +20,14 @@ function categoryLabel(obj) {
   return '';
 }
 
+// Builds one aircraft's requisition ticket (right column): header with
+// icon/qty stepper/crate toggle, its direct assembly materials + parts,
+// and the direct-vs-cumulative craft time split. Mirrors
+// renderMaterialTicket's shape closely — kept as its own function rather
+// than a shared one because an aircraft has no MATERIAL_RECIPES entry to
+// read facility/inputs/outputs off (see buildProductionChain's aircraft
+// branch in calc.js), so nearly every line here reads from AIRCRAFT_COSTS
+// instead.
 function renderAircraftTicket(entry, cumulativeSeconds, queueCounts) {
   const { key, quantity, crateMode, collapsed } = entry;
   const aircraft = AIRCRAFT_COSTS[key];
@@ -197,48 +207,40 @@ function stepColorClass(name) {
   return 'step-color-craft';
 }
 
-// One item's icon-forward "chip": icon in a category-colored frame with the
-// quantity as a small badge over its corner, plus a text caption underneath
-// (qty + name) so it's still fully readable, not icon-only. Shared by both
+// One item's icon-forward "chip": icon in a category-colored frame with a
+// text caption underneath (a quantity or rate, plus the name) so it's
+// still fully readable, not icon-only. The shared shape behind both
+// stepIconChip (a total-for-the-order quantity) and stepRateChip (a live
+// per-minute/hour throughput figure) below — captionText is already fully
+// formatted by the caller, this only ever lays it out. Shared by both
 // inputs and outputs — position decides the styling, not the item itself:
 // every NEEDS-side chip is dashed, every YIELDS-side chip is solid (plus
 // `large`, the output's own headline treatment), so the same item (e.g.
 // Petrol (L)) reads dashed when it's being consumed and solid when it's
 // what a step produces, with no exceptions either way.
+function iconChipHtml(name, captionText, { dashed = false, large = false, colorClass } = {}) {
+  return `<div class="step-icon-chip ${large ? 'step-icon-chip-lg' : ''} ${dashed ? 'step-icon-dashed' : ''} ${colorClass || stepColorClass(name)}">
+    <div class="step-icon-frame">
+      ${iconTag(name, 'step-icon-img')}
+    </div>
+    <div class="step-icon-caption">
+      <span class="step-icon-qty">${captionText}</span>
+      <span class="step-icon-name">${name}</span>
+    </div>
+  </div>`;
+}
+
 // facility here is whatever produced THIS item elsewhere in the chain (the
 // child node's own facility) — a Battering Ram fed into another step still
 // shows plain, not crated, if it was itself built at a Garage.
-function stepIconChip(name, qty, facility, { dashed = false, large = false, colorClass } = {}) {
-  const qtyHtml = fmtQty(name, qty, facility);
-  return `<div class="step-icon-chip ${large ? 'step-icon-chip-lg' : ''} ${dashed ? 'step-icon-dashed' : ''} ${colorClass || stepColorClass(name)}">
-    <div class="step-icon-frame">
-      ${iconTag(name, 'step-icon-img')}
-    </div>
-    <div class="step-icon-caption">
-      <span class="step-icon-qty">${qtyHtml}</span>
-      <span class="step-icon-name">${name}</span>
-    </div>
-  </div>`;
-}
+function stepIconChip(name, qty, facility, opts) { return iconChipHtml(name, fmtQty(name, qty, facility), opts); }
 function stepNeedItem(name, qty, facility) { return stepIconChip(name, qty, facility, { dashed: true }); }
 function stepOutputItem(name, qty, facility, colorClass) { return stepIconChip(name, qty, facility, { large: true, colorClass }); }
 
-// Same icon-forward chip shape as stepIconChip, but for a step's own
-// per-minute (or per-hour — see fmtItemRate in calc.js) throughput instead
-// of a crate-formatted total-for-the-order quantity — used by a step row's
-// live NEEDS/YIELDS once a queue count is in play (see renderCraftRow/
-// renderGatherRow), where "how fast" matters more than "how many total."
-function stepRateChip(name, rateText, { dashed = false, large = false, colorClass } = {}) {
-  return `<div class="step-icon-chip ${large ? 'step-icon-chip-lg' : ''} ${dashed ? 'step-icon-dashed' : ''} ${colorClass || stepColorClass(name)}">
-    <div class="step-icon-frame">
-      ${iconTag(name, 'step-icon-img')}
-    </div>
-    <div class="step-icon-caption">
-      <span class="step-icon-qty">${rateText}</span>
-      <span class="step-icon-name">${name}</span>
-    </div>
-  </div>`;
-}
+// Used by a step row's live NEEDS/YIELDS once a queue count is in play
+// (see renderCraftRow/renderGatherRow), where "how fast" matters more than
+// "how many total."
+function stepRateChip(name, rateText, opts) { return iconChipHtml(name, rateText, opts); }
 function stepNeedRate(name, rateText) { return stepRateChip(name, rateText, { dashed: true }); }
 function stepOutputRate(name, rateText, colorClass) { return stepRateChip(name, rateText, { large: true, colorClass }); }
 
@@ -271,6 +273,14 @@ function stepQueueStepperHtml(queueKey, queueCount, maxQueues) {
 // .recipe-option-card click handler in app.js). extraDataAttrs carries
 // whatever the caller needs to route that click back to the right
 // entry/node (a real chain override) or pooled-item preview choice.
+// Deliberately still the old "×N RUNS + time" format (via stepIconChip),
+// not the live per-minute/hour rate chips renderCraftRow/renderGatherRow
+// show on the row itself — this card's job is comparing whole ALTERNATIVE
+// recipes for the order as a whole ("if I switched to this, here's the
+// total run count and inputs"), not showing a queue-scaled live rate for
+// whichever recipe happens to already be active. Reused as-is by the
+// Facility Planner's own recipe picker (openRecipePicker in planner.js),
+// which has no queue/rate concept of its own to match anyway.
 function renderRecipeOptionCard(preview, isActive, extraDataAttrs) {
   const inputsHtml = preview.inputs.length
     ? preview.inputs.map(inp => stepNeedItem(inp.name, inp.qty, inp.facility)).join('')
@@ -493,6 +503,13 @@ function renderCraftRow(num, node, isOpen) {
 // yield 100 Salvage, but only 60 of that is actually spent downstream, so
 // this list still reads 60). Lives in the left sidebar so it's visible
 // without scrolling through the whole chain to find it.
+// No facility passed to fmtQty here, unlike itemLine/stepIconChip's own
+// calls — item.qty is a POOLED total that can legitimately come from
+// several different gather recipes/facilities across the chain at once
+// (see aggregateRawResources), so there's no single correct facility to
+// pass; fmtQty's Garage/Shipyard-uncrated exception just never applies to
+// this list as a result, which is fine since none of these three pools are
+// ever Garage/Shipyard output anyway.
 function rawPanelRow(item) {
   return `<div class="raw-panel-row">
     ${iconTag(item.name, 'raw-panel-icon')}

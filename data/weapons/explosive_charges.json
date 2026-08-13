@@ -27,6 +27,7 @@
       }
     ]
   },
+
   "crows_foot_mine": {
     "full_name": "Crow's Foot Mine",
     "category": "weapon",
@@ -55,6 +56,7 @@
       }
     ]
   },
+
   "havoc_charge": {
     "full_name": "Havoc Charge",
     "category": "weapon",
@@ -82,6 +84,36 @@
       }
     ]
   },
+
+  "havoc_charge_detonator": {
+    "full_name": "Havoc Charge Detonator",
+    "category": "weapon",
+    "subcategory": "Explosive Charges",
+    "class": "Explosive Charge",
+    "crate_size": 5,
+    "aliases": [
+      "havoc_charge_detonator",
+      "havoc charge detonator",
+      "havoc detonator"
+    ],
+    "recipes": [
+      {
+        "recipe_key": "havoc_charge_detonator_factory",
+        "recipe_name": "Factory",
+        "facility": "Factory",
+        "inputs": {
+          "Basic Materials": 75,
+          "Heavy Explosive Powder": 20
+        },
+        "outputs": {
+          "Havoc Charge Detonator": 5
+        },
+        "crate_output": 1,
+        "unit_output": 5
+      }
+    ]
+  },
+
   "hydras_whisper": {
     "full_name": "Hydra's Whisper",
     "category": "weapon",
@@ -109,6 +141,7 @@
       }
     ]
   },
+
   "e680s_rudder_lock": {
     "full_name": "E680-S Rudder Lock",
     "category": "weapon",
@@ -137,6 +170,7 @@
       }
     ]
   },
+
   "e681b_hullbreaker_mine": {
     "full_name": "E681-B Hullbreaker Mine",
     "category": "weapon",
@@ -162,6 +196,7 @@
           "E681-B Hullbreaker Mine": 1
         }
       },
+
       {
         "recipe_key": "e681b_hullbreaker_mine_factory",
         "recipe_name": "Factory",
@@ -175,6 +210,7 @@
           "E681-B Hullbreaker Mine": 5
         }
       },
+
       {
         "recipe_key": "e681b_hullbreaker_mine_mpf",
         "recipe_name": "MPF (9-Crate)",

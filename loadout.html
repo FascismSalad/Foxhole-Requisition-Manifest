@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory/MPF Calculator — Foxhole Requisition Manifest</title>
+<meta name="description" content="Free Foxhole Factory/MPF calculator — pick weapons, ammo, vehicles, and equipment and get the total raw-material and crate cost to requisition them.">
+<link rel="canonical" href="https://fascismsalad.github.io/Foxhole-Requisition-Manifest/loadout.html">
+<link rel="icon" href="favicon.ico?v=1">
+<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="stylesheet" href="css/loadout.css?v=9">
+</head>
+<body class="loadout-page">
+
+<div class="masthead">
+  <div class="title-row">
+    <span class="title-bar" aria-hidden="true"></span>
+    <h1>FOXHOLE REQUISITION MANIFEST</h1>
+    <span class="title-bar" aria-hidden="true"></span>
+  </div>
+  <div class="subtitle">FACILITY REQUISITION MANAGEMENT</div>
+  <nav class="tool-nav">
+    <a class="tool-nav-link" href="index.html">REQUISITION CALCULATOR</a>
+    <a class="tool-nav-link" href="planner.html">FACILITY PLANNER</a>
+    <a class="tool-nav-link active" href="loadout.html">FACTORY/MPF CALCULATOR</a>
+    <a class="tool-nav-link tool-nav-link-feedback" href="https://docs.google.com/forms/d/e/1FAIpQLSf0jzM32zuX9fUQ2iPoGpXXHdGNcDf6iSTAEbzQ41u2GvOLdg/viewform?usp=dialog" target="_blank" rel="noopener">FEEDBACK / BUGS ↗</a>
+  </nav>
+</div>
+
+<div class="loadout-wrap">
+  <div class="loadout-layout">
+
+    <div class="loadout-picker">
+      <div class="loadout-settings">
+        <fieldset class="loadout-fieldset">
+          <legend>CRAFT LOCATION</legend>
+          <label class="loadout-location-option">
+            <input type="radio" name="craftLocation" value="factory" id="craftLocationFactory" checked>
+            <span>FACTORY</span>
+          </label>
+          <label class="loadout-location-option">
+            <input type="radio" name="craftLocation" value="mpf" id="craftLocationMpf">
+            <span>MASS PRODUCTION FACTORY</span>
+          </label>
+        </fieldset>
+      </div>
+      <div class="loadout-search-wrap">
+        <input class="loadout-search-input" id="itemSearch" type="text" placeholder="SEARCH ITEMS..." autocomplete="off">
+      </div>
+      <div class="loadout-tab-bar" id="tabBar"></div>
+      <div class="loadout-item-grid" id="itemGrid"></div>
+    </div>
+
+    <div class="loadout-summary">
+      <div class="panel-label">TOTAL COSTS</div>
+      <div class="loadout-totals" id="totalsPanel"></div>
+
+      <div class="panel-label">CRATES ORDERED BY CATEGORY</div>
+      <div class="loadout-totals loadout-crate-totals" id="crateTotalsPanel"></div>
+
+      <div class="loadout-order-head">
+        <span class="panel-label">MANAGE ORDER</span>
+        <button class="loadout-btn loadout-btn-danger" id="clearOrderBtn">CLEAR ALL</button>
+      </div>
+      <div class="loadout-order-list" id="orderList">
+        <div class="loadout-empty-hint" id="orderEmptyHint">— CLICK AN ITEM TO ADD IT TO THE ORDER —</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/loader.js?v=26"></script>
+<script src="js/calc.js?v=26"></script>
+<script src="js/render.js?v=26"></script>
+<script src="js/loadout.js?v=7"></script>
+</body>
+</html>

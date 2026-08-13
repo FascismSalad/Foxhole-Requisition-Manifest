@@ -24,6 +24,7 @@
           "Construction Materials": 3
         }
       },
+
       {
         "recipe_key": "cmat_base",
         "recipe_name": "Materials Factory",
@@ -37,6 +38,7 @@
           "Construction Materials": 1
         }
       },
+
       {
         "recipe_key": "cmat_smelter",
         "recipe_name": "Smelter",

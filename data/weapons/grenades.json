@@ -25,6 +25,7 @@
           "Anti-Tank Sticky Bomb": 10
         }
       },
+
       {
         "recipe_key": "anti_tank_sticky_bomb_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -40,6 +41,7 @@
         "crate_output": 9,
         "unit_output": 90
       },
+
       {
         "recipe_key": "anti_tank_sticky_bomb_infantry_kit_factory",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",
@@ -56,6 +58,7 @@
       }
     ]
   },
+
   "bomastone_grenade": {
     "full_name": "Bomastone Grenade",
     "category": "weapon",
@@ -81,6 +84,7 @@
           "Bomastone Grenade": 25
         }
       },
+
       {
         "recipe_key": "bomastone_grenade_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -98,6 +102,7 @@
       }
     ]
   },
+
   "green_ash_grenade": {
     "full_name": "Green Ash Grenade",
     "category": "weapon",
@@ -123,6 +128,7 @@
           "Green Ash Grenade": 5
         }
       },
+
       {
         "recipe_key": "green_ash_grenade_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -139,6 +145,7 @@
       }
     ]
   },
+
   "mammon_91b": {
     "full_name": "Mammon 91-b",
     "category": "weapon",
@@ -164,6 +171,7 @@
           "Mammon 91-b": 20
         }
       },
+
       {
         "recipe_key": "mammon_91b_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -181,6 +189,7 @@
       }
     ]
   },
+
   "tremola_grenade_gpb1": {
     "full_name": "Tremola Grenade GPb-1",
     "category": "weapon",
@@ -206,6 +215,7 @@
           "Tremola Grenade GPb-1": 20
         }
       },
+
       {
         "recipe_key": "tremola_grenade_gpb1_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -221,6 +231,7 @@
         "crate_output": 9,
         "unit_output": 180
       },
+
       {
         "recipe_key": "tremola_grenade_gpb1_infantry_kit_factory",
         "recipe_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
@@ -237,6 +248,7 @@
       }
     ]
   },
+
   "pt_815_smoke_grenade": {
     "full_name": "PT-815 Smoke Grenade",
     "category": "weapon",
@@ -261,6 +273,7 @@
           "PT-815 Smoke Grenade": 15
         }
       },
+
       {
         "recipe_key": "pt_815_smoke_grenade_mpf",
         "recipe_name": "MPF (9-Crate)",
@@ -275,6 +288,7 @@
         "crate_output": 9,
         "unit_output": 135
       },
+
       {
         "recipe_key": "pt_815_smoke_grenade_infantry_kit_factory",
         "recipe_name": "Infantry Kit Factory [Small Arms Workshop]",

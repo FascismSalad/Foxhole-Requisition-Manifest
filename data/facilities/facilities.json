@@ -8,6 +8,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_salvage_excavator": {
     "full_name": "Stationary Harvester (Salvage) [Excavator]",
     "category": "facility",
@@ -17,6 +18,7 @@
     ],
     "build_costs": {}
   },
+
   "salvage_mine": {
     "full_name": "Salvage Mine",
     "category": "facility",
@@ -25,6 +27,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_components": {
     "full_name": "Stationary Harvester (Components)",
     "category": "facility",
@@ -34,6 +37,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_components_excavator": {
     "full_name": "Stationary Harvester (Components) [Excavator]",
     "category": "facility",
@@ -43,6 +47,7 @@
     ],
     "build_costs": {}
   },
+
   "component_mine": {
     "full_name": "Component Mine",
     "category": "facility",
@@ -51,6 +56,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_sulfur": {
     "full_name": "Stationary Harvester (Sulfur)",
     "category": "facility",
@@ -60,6 +66,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_sulfur_excavator": {
     "full_name": "Stationary Harvester (Sulfur) [Excavator]",
     "category": "facility",
@@ -69,6 +76,7 @@
     ],
     "build_costs": {}
   },
+
   "sulfur_mine": {
     "full_name": "Sulfur Mine",
     "category": "facility",
@@ -77,6 +85,7 @@
     ],
     "build_costs": {}
   },
+
   "power_station_sulfuric_reactor": {
     "full_name": "Power Station [Sulfuric Reactor]",
     "category": "facility",
@@ -86,6 +95,7 @@
     ],
     "build_costs": {}
   },
+
   "power_station": {
     "full_name": "Power Station",
     "category": "facility",
@@ -94,6 +104,7 @@
     ],
     "build_costs": {}
   },
+
   "diesel_power_plant": {
     "full_name": "Diesel Power Plant",
     "category": "facility",
@@ -102,6 +113,7 @@
     ],
     "build_costs": {}
   },
+
   "diesel_power_plant_coal_power_plant": {
     "full_name": "Diesel Power Plant [Coal Power Plant]",
     "category": "facility",
@@ -111,6 +123,7 @@
     ],
     "build_costs": {}
   },
+
   "diesel_power_plant_petrol_power_plant": {
     "full_name": "Diesel Power Plant [Petrol Power Plant]",
     "category": "facility",
@@ -120,6 +133,7 @@
     ],
     "build_costs": {}
   },
+
   "coal_refinery_advanced_coal_liquefier": {
     "full_name": "Coal Refinery [Advanced Coal Liquefier]",
     "category": "facility",
@@ -129,6 +143,7 @@
     ],
     "build_costs": {}
   },
+
   "coal_refinery_coke_furnace": {
     "full_name": "Coal Refinery [Coke Furnace]",
     "category": "facility",
@@ -138,6 +153,7 @@
     ],
     "build_costs": {}
   },
+
   "coal_refinery_coal_liquefier": {
     "full_name": "Coal Refinery [Coal Liquefier]",
     "category": "facility",
@@ -147,6 +163,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_coal": {
     "full_name": "Stationary Harvester (Coal)",
     "category": "facility",
@@ -156,6 +173,7 @@
     ],
     "build_costs": {}
   },
+
   "stationary_harvester_coal_excavator": {
     "full_name": "Stationary Harvester (Coal) [Excavator]",
     "category": "facility",
@@ -165,6 +183,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_well": {
     "full_name": "Oil Well",
     "category": "facility",
@@ -173,6 +192,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_well_electric": {
     "full_name": "Oil Well [Electric Oil Well]",
     "category": "facility",
@@ -182,6 +202,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_well_fracker": {
     "full_name": "Oil Well [Fracker]",
     "category": "facility",
@@ -191,6 +212,7 @@
     ],
     "build_costs": {}
   },
+
   "water_pump": {
     "full_name": "Water Pump",
     "category": "facility",
@@ -199,6 +221,7 @@
     ],
     "build_costs": {}
   },
+
   "aircraft_maintenance_factory": {
     "full_name": "Aircraft Maintenance Factory",
     "category": "facility",
@@ -207,6 +230,7 @@
     ],
     "build_costs": {}
   },
+
   "aircraft_maintenance_factory_strategic_maintenance_hangar": {
     "full_name": "Aircraft Maintenance Factory [Strategic Maintenance Hangar]",
     "category": "facility",
@@ -216,6 +240,7 @@
     ],
     "build_costs": {}
   },
+
   "materials_factory_metal_press": {
     "full_name": "Materials Factory [Metal Press]",
     "category": "facility",
@@ -225,6 +250,7 @@
     ],
     "build_costs": {}
   },
+
   "materials_factory_assembly_bay": {
     "full_name": "Materials Factory [Assembly Bay]",
     "category": "facility",
@@ -234,6 +260,7 @@
     ],
     "build_costs": {}
   },
+
   "materials_factory_forge": {
     "full_name": "Materials Factory [Forge]",
     "category": "facility",
@@ -243,6 +270,7 @@
     ],
     "build_costs": {}
   },
+
   "metalworks_factory_blast_furnace": {
     "full_name": "Metalworks Factory [Blast Furnace]",
     "category": "facility",
@@ -252,6 +280,7 @@
     ],
     "build_costs": {}
   },
+
   "metalworks_factory_engineering_station": {
     "full_name": "Metalworks Factory [Engineering Station]",
     "category": "facility",
@@ -261,6 +290,7 @@
     ],
     "build_costs": {}
   },
+
   "metalworks_factory_recycler": {
     "full_name": "Metalworks Factory [Recycler]",
     "category": "facility",
@@ -270,6 +300,7 @@
     ],
     "build_costs": {}
   },
+
   "ammunition_factory": {
     "full_name": "Ammunition Factory",
     "category": "facility",
@@ -278,6 +309,7 @@
     ],
     "build_costs": {}
   },
+
   "coal_refinery": {
     "full_name": "Coal Refinery",
     "category": "facility",
@@ -286,6 +318,7 @@
     ],
     "build_costs": {}
   },
+
   "materials_factory": {
     "full_name": "Materials Factory",
     "category": "facility",
@@ -294,6 +327,7 @@
     ],
     "build_costs": {}
   },
+
   "materials_factory_smelter": {
     "full_name": "Materials Factory [Smelter]",
     "category": "facility",
@@ -303,6 +337,7 @@
     ],
     "build_costs": {}
   },
+
   "refinery": {
     "full_name": "Refinery",
     "category": "facility",
@@ -311,6 +346,7 @@
     ],
     "build_costs": {}
   },
+
   "offshore_platform": {
     "full_name": "Offshore Platform",
     "category": "facility",
@@ -319,6 +355,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_refinery": {
     "full_name": "Oil Refinery",
     "category": "facility",
@@ -327,6 +364,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_refinery_petrochemical_plant": {
     "full_name": "Oil Refinery [Petrochemical Plant]",
     "category": "facility",
@@ -336,6 +374,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_refinery_cracking_unit": {
     "full_name": "Oil Refinery [Cracking Unit]",
     "category": "facility",
@@ -345,6 +384,7 @@
     ],
     "build_costs": {}
   },
+
   "oil_refinery_reformer": {
     "full_name": "Oil Refinery [Reformer]",
     "category": "facility",
@@ -354,6 +394,7 @@
     ],
     "build_costs": {}
   },
+
   "concrete_mixer": {
     "full_name": "Concrete Mixer",
     "category": "facility",
@@ -362,6 +403,7 @@
     ],
     "build_costs": {}
   },
+
   "factory": {
     "full_name": "Factory",
     "category": "facility",
@@ -370,6 +412,7 @@
     ],
     "build_costs": {}
   },
+
   "metalworks_factory": {
     "full_name": "Metalworks Factory",
     "category": "facility",
@@ -378,6 +421,7 @@
     ],
     "build_costs": {}
   },
+
   "ammunition_factory_rocket_battery_workshop": {
     "full_name": "Ammunition Factory [Rocket Battery Workshop]",
     "category": "facility",
@@ -387,6 +431,7 @@
     ],
     "build_costs": {}
   },
+
   "ammunition_factory_large_shell_factory": {
     "full_name": "Ammunition Factory [Large Shell Factory]",
     "category": "facility",
@@ -396,6 +441,7 @@
     ],
     "build_costs": {}
   },
+
   "mpf": {
     "full_name": "Mass Production Factory",
     "category": "facility",
@@ -405,6 +451,7 @@
     ],
     "build_costs": {}
   },
+
   "ammunition_factory_tripod_factory": {
     "full_name": "Ammunition Factory [Tripod Factory]",
     "category": "facility",
@@ -414,6 +461,7 @@
     ],
     "build_costs": {}
   },
+
   "infantry_kit_factory_special_issue_firearms_assembly": {
     "full_name": "Infantry Kit Factory [Special-Issue Firearms Assembly]",
     "category": "facility",
@@ -423,6 +471,7 @@
     ],
     "build_costs": {}
   },
+
   "infantry_kit_factory_small_arms_workshop": {
     "full_name": "Infantry Kit Factory [Small Arms Workshop]",
     "category": "facility",
@@ -432,6 +481,7 @@
     ],
     "build_costs": {}
   },
+
   "infantry_kit_factory_heavy_munitions_foundry": {
     "full_name": "Infantry Kit Factory [Heavy Munitions Foundry]",
     "category": "facility",
@@ -441,6 +491,7 @@
     ],
     "build_costs": {}
   },
+
   "garage": {
     "full_name": "Garage",
     "category": "facility",
@@ -449,6 +500,7 @@
     ],
     "build_costs": {}
   },
+
   "construction_yard": {
     "full_name": "Construction Yard",
     "category": "facility",
@@ -457,6 +509,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station": {
     "full_name": "Small Assembly Station",
     "category": "facility",
@@ -465,6 +518,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_advanced_structure_manufactory": {
     "full_name": "Small Assembly Station [Advanced Structure Manufactory]",
     "category": "facility",
@@ -474,6 +528,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_motor_pool": {
     "full_name": "Small Assembly Station [Motor Pool]",
     "category": "facility",
@@ -483,6 +538,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_battery_line": {
     "full_name": "Small Assembly Station [Battery Line]",
     "category": "facility",
@@ -492,6 +548,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_field_station": {
     "full_name": "Small Assembly Station [Field Station]",
     "category": "facility",
@@ -501,6 +558,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_tank_factory": {
     "full_name": "Small Assembly Station [Tank Factory]",
     "category": "facility",
@@ -510,6 +568,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_weapons_platform": {
     "full_name": "Small Assembly Station [Weapons Platform]",
     "category": "facility",
@@ -519,6 +578,7 @@
     ],
     "build_costs": {}
   },
+
   "large_assembly_station_heavy_tank_assembly": {
     "full_name": "Large Assembly Station [Heavy Tank Assembly]",
     "category": "facility",
@@ -528,6 +588,7 @@
     ],
     "build_costs": {}
   },
+
   "large_assembly_station": {
     "full_name": "Large Assembly Station",
     "category": "facility",
@@ -536,6 +597,7 @@
     ],
     "build_costs": {}
   },
+
   "large_assembly_station_train_assembly": {
     "full_name": "Large Assembly Station [Train Assembly]",
     "category": "facility",
@@ -545,6 +607,7 @@
     ],
     "build_costs": {}
   },
+
   "shipyard": {
     "full_name": "Shipyard",
     "category": "facility",
@@ -553,6 +616,7 @@
     ],
     "build_costs": {}
   },
+
   "base_ship": {
     "full_name": "Base Ship",
     "category": "facility",
@@ -561,6 +625,7 @@
     ],
     "build_costs": {}
   },
+
   "beach": {
     "full_name": "Beach",
     "category": "facility",
@@ -569,6 +634,7 @@
     ],
     "build_costs": {}
   },
+
   "dry_dock": {
     "full_name": "Dry Dock",
     "category": "facility",
@@ -577,6 +643,7 @@
     ],
     "build_costs": {}
   },
+
   "small_assembly_station_naval_works": {
     "full_name": "Small Assembly Station [Naval Works]",
     "category": "facility",
@@ -586,6 +653,7 @@
     ],
     "build_costs": {}
   },
+
   "aircraft_hangar": {
     "full_name": "Aircraft Hangar",
     "category": "facility",
@@ -594,6 +662,7 @@
     ],
     "build_costs": {}
   },
+
   "large_assembly_station_aircraft_assembly": {
     "full_name": "Large Assembly Station [Aircraft Assembly]",
     "category": "facility",

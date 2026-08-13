@@ -30,16 +30,28 @@
    it (confirmed empirically too — plain `zoom: 1` here had no visible
    effect at all, net zoom stayed 1.12), so this has to be the reciprocal
    of style.css's 1.12, not 1, for the two to cancel out to a net 1. Text/
-   icons on this page render at their un-zoomed size as a result (index.html
-   is unaffected — this is scoped to body.planner-page) — a worthwhile
-   trade for a layout that's actually reliable, rather than chasing zoom's
-   interaction with flex through every nested level. */
+   icons on the board itself render at their un-zoomed size as a result — a
+   worthwhile trade for a layout that's actually reliable, rather than
+   chasing zoom's interaction with flex through every nested level. The
+   masthead (title/nav, shared markup with index.html) gets its own zoom
+   below specifically to opt back OUT of this cancellation: compounding
+   1.12 back on top of the already-cancelled 1/1.12 nets back to 1.12,
+   matching index.html's masthead exactly (which never had its zoom
+   touched at all). Without that, the title measurably rendered ~11%
+   smaller here than on index.html (893px vs 798px wide, confirmed by
+   direct measurement) despite identical CSS — purely a side effect of
+   this page needing the zoom-cancel for its board layout, with the
+   masthead just going along for the ride as body's other child. */
 body.planner-page {
   zoom: calc(1 / 1.12);
   height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+body.planner-page .masthead {
+  zoom: 1.12;
 }
 
 .planner-wrap {
@@ -251,6 +263,12 @@ body.planner-page {
   transform-origin: 0 0;
 }
 
+/* Same near-zero-box trick as .planner-world above (1px instead of 0 since
+   an SVG root collapses to nothing and stops painting at true 0×0) —
+   overflow:visible lets wires drawn at any coordinate show through anyway.
+   pointer-events:none so the layer itself never blocks clicks on nodes
+   underneath; individual .wire-path-hitbox/.wire-waypoint shapes opt
+   themselves back in below. */
 .wire-layer {
   position: absolute;
   left: 0;
@@ -272,11 +290,13 @@ body.planner-page {
 .wire-path.selected { stroke: var(--rust-bright); stroke-width: 3; }
 .wire-path-hitbox { fill: none; stroke: transparent; stroke-width: 16; pointer-events: stroke; cursor: pointer; }
 
-/* A dragged bend point on a wire (see onWireHitMouseDown/onWaypointDragStart
-   in planner.js — grab the wire body to pull out a new one, drag an
-   existing dot to move it, double-click to remove it). pointer-events:all
-   because it's a filled shape being grabbed by its area, not traced by its
-   outline the way .wire-path-hitbox's stroke is. */
+/* The small square "box" you grab to bend a wire (see
+   onWireHitMouseDown/onWaypointDragStart in planner.js — grab the wire
+   body to pull out a new one, drag an existing box to move it — the wire
+   curves smoothly around it, see smoothSegmentPath — double-click to
+   remove it). pointer-events:all because it's a filled shape being
+   grabbed by its area, not traced by its outline the way
+   .wire-path-hitbox's stroke is. */
 .wire-waypoint { fill: var(--brass); stroke: var(--bg); stroke-width: 1.5px; cursor: move; pointer-events: all; }
 .wire-waypoint:hover { fill: var(--brass-bright); }
 .wire-waypoint.selected { fill: var(--rust-bright); }

@@ -16,6 +16,7 @@
       "Bandages": 50
     }
   },
+
   "blood_plasma": {
     "full_name": "Blood Plasma",
     "category": "item",
@@ -34,6 +35,7 @@
       "Blood Plasma": 50
     }
   },
+
   "first_aid_kit": {
     "full_name": "First Aid Kit",
     "category": "item",
@@ -52,6 +54,7 @@
       "First Aid Kit": 10
     }
   },
+
   "soldier_supplies": {
     "full_name": "Soldier Supplies",
     "category": "item",
@@ -71,6 +74,7 @@
       "Soldier Supplies": 10
     }
   },
+
   "trauma_kit": {
     "full_name": "Trauma Kit",
     "category": "item",
