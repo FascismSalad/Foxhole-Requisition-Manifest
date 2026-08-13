@@ -1,4 +1,4 @@
-// Smoke test for the Factory/MPF Calculator page (loadout.html). Loaded only
+// Smoke test for the Factory/MPF Calculator page (factory.html). Loaded only
 // when the page is opened with ?autotest=1 — see the hook at the bottom of
 // js/loadout.js. Sibling to test/smoke-calc.js and test/smoke-planner.js;
 // see smoke-calc.js's header for the general approach.

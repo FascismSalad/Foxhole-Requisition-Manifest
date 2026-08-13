@@ -1,5 +1,5 @@
 <#
-  Smoke-tests index.html, planner.html, and loadout.html in headless Chrome.
+  Smoke-tests index.html, planner.html, and factory.html in headless Chrome.
 
   Loads each page with ?autotest=1, which triggers a tiny permanent hook at
   the bottom of app.js/planner.js/loadout.js that pulls in test/smoke-calc.js,
@@ -49,7 +49,7 @@ if ($Reset) {
     Write-Host "Resetting Chrome test profiles..."
     Remove-Item "$scratchRoot\profile-index" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
     Remove-Item "$scratchRoot\profile-planner" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
-    Remove-Item "$scratchRoot\profile-loadout" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
+    Remove-Item "$scratchRoot\profile-factory" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
 }
 
 function Test-ServerUp {
@@ -121,7 +121,7 @@ Get-Process chrome -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAct
 $jobs = @(
     (Start-PageTest -PageName 'index' -ProfileDir "$scratchRoot\profile-index"),
     (Start-PageTest -PageName 'planner' -ProfileDir "$scratchRoot\profile-planner"),
-    (Start-PageTest -PageName 'loadout' -ProfileDir "$scratchRoot\profile-loadout")
+    (Start-PageTest -PageName 'factory' -ProfileDir "$scratchRoot\profile-factory")
 )
 
 $exitCode = 0
