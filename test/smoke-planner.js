@@ -55,6 +55,27 @@
       fail('import-merges-same-facility-recipes-onto-one-node', 'T8 Gemini not found in data');
     }
 
+    // Recipe picker cards (see toPreview/renderRecipeOptionCard) must show
+    // the exact facility/module a recipe needs — a recipe like Assembly
+    // Materials I has no sibling recipe sharing its output, so
+    // computeRecipeLabel's own collision-avoidance logic never folds the
+    // module into the label itself, and the card used to show nothing
+    // else identifying it as a Forge recipe at all (another symptom of the
+    // same bug report above).
+    if (RECIPES_BY_FACILITY['Materials Factory']) {
+      addNode('Materials Factory', 200, 200);
+      const pickerNode = plannerState.nodes[plannerState.nodes.length - 1];
+      openRecipePicker(pickerNode.id);
+      renderPickerList('assembly materials i');
+      const showsModuleFacility = pickerListEl.innerHTML.includes('Materials Factory [Forge]');
+      if (showsModuleFacility) pass('recipe-picker-shows-module-facility');
+      else fail('recipe-picker-shows-module-facility', 'picker HTML missing "Materials Factory [Forge]"');
+      closeRecipePicker();
+      removeNodes([pickerNode.id]);
+    } else {
+      fail('recipe-picker-shows-module-facility', 'Materials Factory not found in RECIPES_BY_FACILITY');
+    }
+
     // Force a known-empty baseline regardless of whatever a reused Chrome
     // profile's localStorage board happens to have left behind (e.g. from
     // a previous run that crashed mid-test) — every assertion below is an

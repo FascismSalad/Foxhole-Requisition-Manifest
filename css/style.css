@@ -905,7 +905,15 @@ body {
 .recipe-option-card.active { border-color: var(--brass); background: rgba(201, 154, 68, 0.08); }
 
 .recipe-option-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.recipe-option-titles { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .recipe-option-label { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 700; color: var(--brass-bright); }
+/* The exact (unstripped) facility a recipe runs on — e.g. "Materials
+   Factory [Forge]" — shown alongside the label rather than only in the
+   picker's own icon/hover state, since a recipe's label alone often can't
+   tell you which specific module it needs (see computeRecipeLabel in
+   planner.js: the module only gets folded into the label itself when two
+   sibling recipes would otherwise share an identical one). */
+.recipe-option-facility { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.04em; color: var(--paper-dim); }
 .recipe-option-active-tag {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;

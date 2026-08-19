@@ -292,7 +292,10 @@ function renderRecipeOptionCard(preview, isActive, extraDataAttrs) {
   return `<div class="recipe-option-card ${isActive ? 'active' : ''}" data-recipe-key="${preview.recipeKey}" ${extraDataAttrs}>
     <div class="recipe-option-head">
       <div class="step-facility-icon-wrap">${iconTag(preview.facility || '', 'step-facility-icon')}</div>
-      <div class="recipe-option-label">${preview.label}</div>
+      <div class="recipe-option-titles">
+        <div class="recipe-option-label">${preview.label}</div>
+        ${preview.facility ? `<div class="recipe-option-facility">${preview.facility}</div>` : ''}
+      </div>
       ${isActive ? `<span class="recipe-option-active-tag">ACTIVE</span>` : ''}
     </div>
     <div class="step-line-flow">
