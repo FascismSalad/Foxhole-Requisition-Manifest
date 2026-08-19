@@ -397,12 +397,20 @@ function isPortConnected(nodeId, item, dir) {
 function itemRatePerMin(node, item, dir) {
   const recipes = nodeRecipeObjs(node);
   if (!recipes.length) return 0;
+  if (item === 'Facility Power') {
+    // Power is a flat draw per PHYSICAL BUILDING, not per queue — up to 5
+    // queues (node.count) still fit in one building before a second one is
+    // needed, same "5 queues per building" rule as maxQueuesForRecipe in
+    // calc.js. A power-GENERATING recipe's own node.count is already locked
+    // to 1 (see maxCountForNode), so buildings only ever exceeds 1 here for
+    // a normal power-consuming recipe run past 5 queues.
+    const buildings = Math.ceil(node.count / 5);
+    let total = 0;
+    for (const recipe of recipes) total += dir === 'in' ? (recipe.power_mw || 0) : (recipe.outputs[item] || 0);
+    return total * buildings;
+  }
   let total = 0;
   for (const recipe of recipes) {
-    if (item === 'Facility Power') {
-      total += dir === 'in' ? (recipe.power_mw || 0) : (recipe.outputs[item] || 0);
-      continue;
-    }
     const qty = dir === 'in' ? (recipe.inputs[item] || 0) : (recipe.outputs[item] || 0);
     if (qty) total += qty / Math.max(effectiveCraftingTime(recipe), 0.001) * 60;
   }
@@ -482,14 +490,18 @@ function buildNodeHtml(node) {
         <button class="chip-remove" data-action="remove-recipe" data-recipe-key="${r.key}" title="Stop running this recipe">×</button>
       </div>`).join('')
     : `<div class="fac-node-recipe-empty">NO RECIPE SELECTED</div>`;
+  // Locked (nothing to step between) for a power-generating recipe — same
+  // static-instead-of-steppable treatment the calculator gives a maxQueues
+  // <= 1 recipe (see stepQueueStepperHtml in render.js).
+  const countLocked = maxCountForNode(node) === 1;
   return `
     <div class="fac-node-head" data-drag-handle>
       ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
       <div class="fac-node-title" title="${iconFacility}">${node.facility}</div>
-      <div class="fac-node-qty-inline" title="Facilities placed here">
-        <button class="fac-qty-mini-btn" data-action="qty-dec" title="One fewer of this facility">−</button>
-        <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.count}" min="1" step="1" inputmode="numeric">
-        <button class="fac-qty-mini-btn" data-action="qty-inc" title="One more of this facility">+</button>
+      <div class="fac-node-qty-inline ${countLocked ? 'fac-qty-locked' : ''}" title="${countLocked ? "Power facilities can't run multiple queues" : 'Facilities placed here'}">
+        <button class="fac-qty-mini-btn" data-action="qty-dec" title="One fewer of this facility" ${countLocked ? 'disabled' : ''}>−</button>
+        <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.count}" min="1" step="1" inputmode="numeric" ${countLocked ? 'disabled' : ''}>
+        <button class="fac-qty-mini-btn" data-action="qty-inc" title="One more of this facility" ${countLocked ? 'disabled' : ''}>+</button>
       </div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
@@ -827,13 +839,25 @@ function addNode(facility, x, y) {
   saveState();
 }
 
+// A node's count models queues/buildings (see itemRatePerMin's power-draw
+// math) — but a power-GENERATING recipe (Power Station, ...) has nothing to
+// parallelize, same reasoning as maxQueuesForRecipe in calc.js, so a node
+// currently running one locks to exactly 1 instead of being steppable.
+// Every other node is uncapped: count can climb past 5 to represent a
+// second (or third, ...) physical building.
+function maxCountForNode(node) {
+  return nodeRecipeObjs(node).some(r => maxQueuesForRecipe(r) === 1) ? 1 : Infinity;
+}
+
 // How many of this exact facility+recipe are placed here, side by side —
-// scales every displayed rate (NEEDS/YIELDS per-minute, power draw, and any
-// wire fed from this node's outputs) without needing separate duplicate
-// nodes for "I built two of these." Craft time itself is untouched: it's
-// still one recipe cycle, just running on `count` physical copies at once.
+// scales every displayed rate (NEEDS/YIELDS per-minute, and any wire fed
+// from this node's outputs) linearly, and power draw once per full
+// building's worth (see itemRatePerMin) instead of linearly, without
+// needing separate duplicate nodes for "I built two of these." Craft time
+// itself is untouched: it's still one recipe cycle, just running on `count`
+// physical copies at once.
 function setNodeCount(node, count) {
-  node.count = Math.max(1, count);
+  node.count = Math.min(maxCountForNode(node), Math.max(1, count));
   const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
   if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
   indexPorts();
@@ -1004,6 +1028,10 @@ function loadState() {
       // recipeKey instead — migrate it into a one-item recipeKeys array.
       recipeKeys: n.recipeKeys ? n.recipeKeys : (n.recipeKey ? [n.recipeKey] : [])
     }));
+  // Re-clamp against the power-producer cap (see maxCountForNode) — a
+  // layout saved before that rule existed could have count > 1 on a power
+  // node.
+  for (const n of plannerState.nodes) n.count = Math.min(maxCountForNode(n), n.count);
   plannerState.connections = data.connections || [];
   plannerState.pan = data.pan && typeof data.pan.x === 'number' ? data.pan : { x: 60, y: 60 };
   plannerState.scale = typeof data.scale === 'number' ? clamp(data.scale, 0.3, 2.5) : 1;
@@ -1458,6 +1486,10 @@ function toggleNodeRecipe(node, key) {
   const idx = node.recipeKeys.indexOf(key);
   if (idx >= 0) node.recipeKeys.splice(idx, 1);
   else node.recipeKeys.push(key);
+  // Adding/removing a recipe can change whether this node is now (or is no
+  // longer) a power producer — re-clamp so a stale count > 1 can't survive
+  // gaining a power recipe (see maxCountForNode).
+  node.count = Math.min(maxCountForNode(node), node.count);
   pruneConnections();
   renderNodesLayer();
   renderWires();

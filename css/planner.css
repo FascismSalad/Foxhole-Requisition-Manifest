@@ -383,6 +383,12 @@ body.planner-page .masthead {
 .fac-qty-mini-btn:hover { border-color: var(--brass); }
 .fac-qty-mini-val { width: 22px; font-size: 11px; padding: 0; }
 
+/* Power-generating recipe (see maxCountForNode in planner.js) — locked at
+   1, so the stepper reads as inert rather than inviting a click that does
+   nothing. */
+.fac-qty-mini-btn:disabled { opacity: 0.35; cursor: default; border-color: var(--line); }
+.fac-qty-mini-val:disabled { opacity: 0.6; }
+
 .fac-node-remove {
   flex-shrink: 0;
   width: 18px;

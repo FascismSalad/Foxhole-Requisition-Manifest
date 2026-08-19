@@ -50,6 +50,42 @@
     removeNodes([a.id, b.id]);
     if (plannerState.nodes.length === 0) pass('remove-nodes');
     else fail('remove-nodes', `expected 0 nodes, got ${plannerState.nodes.length}`);
+
+    // Power draw is per-BUILDING, not per-queue: flat across node.count
+    // 1-5 (one building), then doubles the instant a 6th queue needs a
+    // second building (see itemRatePerMin in planner.js).
+    const powerConsumerRecipe = Object.values(RECIPE_INDEX_BY_KEY).find(r => r.power_mw > 0);
+    if (powerConsumerRecipe) {
+      addNode(baseFacilityName(powerConsumerRecipe.facility), 200, 400);
+      const node = plannerState.nodes[plannerState.nodes.length - 1];
+      node.recipeKeys = [powerConsumerRecipe.key];
+      const rateAt1 = itemRatePerMin(node, 'Facility Power', 'in');
+      setNodeCount(node, 5);
+      const rateAt5 = itemRatePerMin(node, 'Facility Power', 'in');
+      setNodeCount(node, 6);
+      const rateAt6 = itemRatePerMin(node, 'Facility Power', 'in');
+      if (rateAt1 === rateAt5 && Math.abs(rateAt6 - rateAt1 * 2) < 1e-9) pass('power-flat-then-doubles-past-5-queues');
+      else fail('power-flat-then-doubles-past-5-queues', `1q=${rateAt1} 5q=${rateAt5} 6q=${rateAt6}`);
+      removeNodes([node.id]);
+    } else {
+      fail('power-flat-then-doubles-past-5-queues', 'no power-consuming recipe found in data');
+    }
+
+    // A power-GENERATING recipe (Power Station, ...) has nothing to
+    // parallelize — its node.count locks to 1 regardless of what's
+    // requested (see maxCountForNode in planner.js).
+    const powerProducerRecipe = Object.values(RECIPE_INDEX_BY_KEY).find(r => r.outputs && 'Facility Power' in r.outputs);
+    if (powerProducerRecipe) {
+      addNode(baseFacilityName(powerProducerRecipe.facility), 200, 600);
+      const node = plannerState.nodes[plannerState.nodes.length - 1];
+      node.recipeKeys = [powerProducerRecipe.key];
+      setNodeCount(node, 5);
+      if (node.count === 1) pass('power-producer-count-locked-to-1');
+      else fail('power-producer-count-locked-to-1', `expected count 1, got ${node.count}`);
+      removeNodes([node.id]);
+    } else {
+      fail('power-producer-count-locked-to-1', 'no power-producing recipe found in data');
+    }
   } catch (e) {
     console.log(`AUTOTEST:ERROR ${e.message}`);
   }
