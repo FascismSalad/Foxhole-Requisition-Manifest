@@ -469,6 +469,42 @@ body.planner-page .masthead {
 }
 .fac-node-recipe-add:hover { color: var(--brass-bright); border-color: var(--brass); }
 
+/* This recipe's own queue depth (1-5, locked at 1 for a power-generating
+   recipe — see recipeQueueStepperHtml in planner.js) — lives inside its
+   chip, sized down to match the chip's own small type. */
+.chip-queue { display: flex; align-items: center; gap: 2px; flex-shrink: 0; cursor: default; }
+.chip-queue-static { color: var(--paper-dim); font-size: 9.5px; letter-spacing: 0.03em; white-space: nowrap; }
+.chip-queue-btn {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  color: var(--yellow);
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+}
+.chip-queue-btn:hover { border-color: var(--brass); color: var(--yellow-bright); }
+.chip-queue-val { width: 16px; font-size: 9.5px; padding: 0; }
+
+/* Shown when the active recipes' own queue counts add up past what one
+   physical building fits (see totalNodeQueues) — a heads-up to place a
+   second copy of this building, never a block. */
+.fac-node-queue-warning {
+  padding: 5px 10px;
+  background: rgba(201, 140, 58, 0.12);
+  border-bottom: 1px dashed var(--line-faint);
+  color: var(--yellow);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
 .fac-node-io {
   display: grid;
   grid-template-columns: 1fr 1fr;

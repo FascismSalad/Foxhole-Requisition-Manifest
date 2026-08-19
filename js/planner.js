@@ -186,7 +186,15 @@ function buildFacilityIndex() {
   // (only its bracketed modules were ever scraped) — see
   // iconTagWithFallback.
   FACILITY_CATALOG = Object.entries(RECIPES_BY_FACILITY)
-    .map(([name, list]) => ({ name, count: list.length, representativeFacility: list[0].facility }))
+    .map(([name, list]) => ({
+      name, count: list.length, representativeFacility: list[0].facility,
+      // Every recipe this building runs contributes its own searchText (see
+      // buildSearchText above) — so a building becomes findable by what it
+      // MAKES too (searching "blast furnace" surfaces Metalworks), not just
+      // its own name. See matchedRecipeKey for the flip side: which recipe
+      // a query like that should actually activate once placed.
+      searchText: list.map(r => r.searchText).join(' ')
+    }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -385,34 +393,67 @@ function isPortConnected(nodeId, item, dir) {
     : plannerState.connections.some(c => c.toNode === nodeId && c.toItem === item);
 }
 
+// This recipe's own player-set queue depth on this specific node (1-5, 1 for
+// a power-generating recipe — see clampQueueCount/maxQueuesForRecipe in
+// calc.js), independent of every other active recipe on the same node and
+// of node.count. Missing/unset defaults to 1, same convention as the main
+// calculator's state.queueCounts.
+function nodeQueueCount(node, recipeKey) {
+  return (node.recipeQueues && node.recipeQueues[recipeKey]) || 1;
+}
+
+// Total queues currently configured across every active recipe on this
+// node — a single physical building only has room for 5 (see
+// maxQueuesForRecipe), so this is compared against that flat 5 to decide
+// whether the node's queue warning shows (see buildNodeHtml), regardless of
+// how many building copies (node.count) are actually placed.
+function totalNodeQueues(node) {
+  return nodeRecipeObjs(node).reduce((sum, r) => sum + nodeQueueCount(node, r.key), 0);
+}
+
+function setRecipeQueueCount(node, recipeKey, count) {
+  const recipe = RECIPE_INDEX_BY_KEY[recipeKey];
+  if (!recipe) return;
+  if (!node.recipeQueues) node.recipeQueues = {};
+  node.recipeQueues[recipeKey] = clampQueueCount(count, recipe);
+  const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
+  if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
+  indexPorts();
+  renderWires();
+  saveState();
+}
+
 // A node's actual rate for one of its own items, as either its producer
-// (dir 'out') or consumer (dir 'in') — MW for Facility Power (a continuous
-// draw/supply, not a per-cycle yield — same treatment calc.js gives
-// power_mw: flat, never scaled by craft time), items/min for everything
-// else. This is the one source of truth for every rate shown on a node's
-// NEEDS/YIELDS rows AND on the wires connected to it, so a wire always
-// reads as "what the consumer at this end actually draws" (see
+// (dir 'out') or consumer (dir 'in') — MW for Facility Power, items/min for
+// everything else. This is the one source of truth for every rate shown on
+// a node's NEEDS/YIELDS rows AND on the wires connected to it, so a wire
+// always reads as "what the consumer at this end actually draws" (see
 // renderWires) rather than restating the producer's full output on every
 // branch it happens to feed.
+//
+// Two independent multipliers stack here: node.count (how many physical
+// COPIES of this building are placed — set via the header +/-) and each
+// recipe's own queueCount (how many parallel production lines that ONE
+// recipe runs inside a single copy — set via its chip's +/-, see
+// setRecipeQueueCount). A material rate scales by both (2 copies each
+// running 3 queues = 6x); power is a flat per-recipe draw that only ever
+// scales by node.count — running more queues of a recipe doesn't add a
+// second power connection to the same physical building, same "one shared
+// connection" reasoning calc.js gives power_mw everywhere else.
 function itemRatePerMin(node, item, dir) {
   const recipes = nodeRecipeObjs(node);
   if (!recipes.length) return 0;
   if (item === 'Facility Power') {
-    // Power is a flat draw per PHYSICAL BUILDING, not per queue — up to 5
-    // queues (node.count) still fit in one building before a second one is
-    // needed, same "5 queues per building" rule as maxQueuesForRecipe in
-    // calc.js. A power-GENERATING recipe's own node.count is already locked
-    // to 1 (see maxCountForNode), so buildings only ever exceeds 1 here for
-    // a normal power-consuming recipe run past 5 queues.
-    const buildings = Math.ceil(node.count / 5);
     let total = 0;
     for (const recipe of recipes) total += dir === 'in' ? (recipe.power_mw || 0) : (recipe.outputs[item] || 0);
-    return total * buildings;
+    return total * node.count;
   }
   let total = 0;
   for (const recipe of recipes) {
     const qty = dir === 'in' ? (recipe.inputs[item] || 0) : (recipe.outputs[item] || 0);
-    if (qty) total += qty / Math.max(effectiveCraftingTime(recipe), 0.001) * 60;
+    if (!qty) continue;
+    const craftSecondsPerBatch = effectiveCraftingTime(recipe, nodeQueueCount(node, recipe.key));
+    total += qty / Math.max(craftSecondsPerBatch, 0.001) * 60;
   }
   return total * node.count;
 }
@@ -438,12 +479,32 @@ function ioRowHtml(node, name, rateText, dir) {
   </div>`;
 }
 
+// The +/- inside one recipe chip — that recipe's OWN queue depth on this
+// node (1 to maxQueuesForRecipe: 1-5 normal, locked at 1 for a
+// power-generating recipe), independent of every other active recipe on
+// the same node (see nodeQueueCount/setRecipeQueueCount). A locked recipe
+// gets a plain static badge instead of dead +/- buttons, same treatment the
+// calculator gives a maxQueues <= 1 recipe (stepQueueStepperHtml in
+// render.js).
+function recipeQueueStepperHtml(node, recipe) {
+  const max = maxQueuesForRecipe(recipe);
+  const count = nodeQueueCount(node, recipe.key);
+  if (max <= 1) {
+    return `<span class="chip-queue chip-queue-static" title="This recipe can't run parallel queues">Q:1</span>`;
+  }
+  return `<span class="chip-queue" title="Parallel queues of this recipe (1-${max})">
+    <button class="chip-queue-btn" data-action="recipe-queue-dec" data-recipe-key="${recipe.key}" title="One fewer queue">−</button>
+    <input type="number" class="qty-val chip-queue-val" data-recipe-key="${recipe.key}" value="${count}" min="1" max="${max}" step="1" inputmode="numeric">
+    <button class="chip-queue-btn" data-action="recipe-queue-inc" data-recipe-key="${recipe.key}" title="One more queue">+</button>
+  </span>`;
+}
+
 // Builds one facility card's full inner HTML — header (icon, title, count
-// stepper, remove), the active-recipe chip list, and the combined NEEDS/
-// YIELDS port columns. Called both for a brand new node (renderNodesLayer)
-// and to refresh a single existing one in place (setNodeCount,
-// toggleNodeRecipe, ...) whenever something about it changes without
-// needing a full board re-render.
+// stepper, remove), the active-recipe chip list (each with its own queue
+// stepper), and the combined NEEDS/YIELDS port columns. Called both for a
+// brand new node (renderNodesLayer) and to refresh a single existing one in
+// place (setNodeCount, setRecipeQueueCount, toggleNodeRecipe, ...) whenever
+// something about it changes without needing a full board re-render.
 function buildNodeHtml(node) {
   const recipes = nodeRecipeObjs(node);
   // NEEDS/YIELDS are the UNION of every active recipe's own inputs/outputs
@@ -472,12 +533,13 @@ function buildNodeHtml(node) {
     ? outputItems.map(n => ioRowHtml(node, n, fmtItemRate(n, itemRatePerMin(node, n, 'out')), 'out')).join('')
     : `<div class="fac-node-io-empty">—</div>`;
 
-  // The header always names the base building (what you searched for and
-  // placed) — the icon and tooltip switch to the first ACTIVE recipe's own
-  // exact module facility when one's selected ("Oil Refinery [Cracking
-  // Unit]"), since that's the more specific/accurate picture of what's
-  // actually sitting on the board right now; falls back to the base
-  // building's own icon before any recipe's chosen.
+  // The header names the first ACTIVE recipe's own exact module facility
+  // once one's selected ("Materials Factory [Forge]"), not just the generic
+  // base building — two nodes of the same base facility running different
+  // modules (e.g. Metal Press vs Forge) are otherwise visually
+  // indistinguishable on the board, both reading plain "Materials Factory"
+  // with the module that actually matters buried in a hover tooltip. Falls
+  // back to the base building's own name before any recipe's chosen.
   const iconFacility = recipes.length ? recipes[0].facility : node.facility;
   // The facility count lives inline in the header now (no separate labeled
   // row, no craft-time row below it — see the card-condensing pass this
@@ -485,23 +547,28 @@ function buildNodeHtml(node) {
   // delegation in initPlannerUI already listens for, just laid out smaller.
   const recipeListHtml = recipes.length
     ? recipes.map(r => `
-      <div class="fac-node-recipe-chip" data-recipe-key="${r.key}" title="Click to edit recipes">
-        <span class="chip-label">${r.label}</span>
+      <div class="fac-node-recipe-chip" data-recipe-key="${r.key}">
+        <span class="chip-label" title="Click to edit recipes">${r.label}</span>
+        ${recipeQueueStepperHtml(node, r)}
         <button class="chip-remove" data-action="remove-recipe" data-recipe-key="${r.key}" title="Stop running this recipe">×</button>
       </div>`).join('')
     : `<div class="fac-node-recipe-empty">NO RECIPE SELECTED</div>`;
-  // Locked (nothing to step between) for a power-generating recipe — same
-  // static-instead-of-steppable treatment the calculator gives a maxQueues
-  // <= 1 recipe (see stepQueueStepperHtml in render.js).
-  const countLocked = maxCountForNode(node) === 1;
+  // A single physical building only fits 5 queues total across everything
+  // running on it — flagged here (never blocked) once the active recipes'
+  // own queue counts add up past that, regardless of how many building
+  // copies (node.count) are actually placed (see totalNodeQueues).
+  const totalQueues = totalNodeQueues(node);
+  const queueWarningHtml = totalQueues > 5
+    ? `<div class="fac-node-queue-warning" title="A single building only fits 5 queues total across all its active recipes">⚠ ${totalQueues} QUEUES ON ONE BUILDING</div>`
+    : '';
   return `
     <div class="fac-node-head" data-drag-handle>
       ${iconTagWithFallback([iconFacility, node.facility], 'fac-node-icon')}
-      <div class="fac-node-title" title="${iconFacility}">${node.facility}</div>
-      <div class="fac-node-qty-inline ${countLocked ? 'fac-qty-locked' : ''}" title="${countLocked ? "Power facilities can't run multiple queues" : 'Facilities placed here'}">
-        <button class="fac-qty-mini-btn" data-action="qty-dec" title="One fewer of this facility" ${countLocked ? 'disabled' : ''}>−</button>
-        <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.count}" min="1" step="1" inputmode="numeric" ${countLocked ? 'disabled' : ''}>
-        <button class="fac-qty-mini-btn" data-action="qty-inc" title="One more of this facility" ${countLocked ? 'disabled' : ''}>+</button>
+      <div class="fac-node-title" title="${iconFacility}">${iconFacility}</div>
+      <div class="fac-node-qty-inline" title="Physical copies of this building placed here">
+        <button class="fac-qty-mini-btn" data-action="qty-dec" title="One fewer copy of this building">−</button>
+        <input type="number" class="qty-val fac-qty-val fac-qty-mini-val" value="${node.count}" min="1" step="1" inputmode="numeric">
+        <button class="fac-qty-mini-btn" data-action="qty-inc" title="One more copy of this building">+</button>
       </div>
       <button class="fac-node-remove" data-action="remove" title="Remove facility">×</button>
     </div>
@@ -509,6 +576,7 @@ function buildNodeHtml(node) {
       ${recipeListHtml}
       <button class="fac-node-recipe-add" data-action="add-recipe" title="Run another of this facility's recipes at the same time">+ RECIPE</button>
     </div>
+    ${queueWarningHtml}
     <div class="fac-node-io">
       <div class="fac-node-io-col needs">
         <div class="fac-node-io-label">NEEDS</div>
@@ -822,15 +890,34 @@ function updateEmptyHint() {
   emptyHintEl.classList.toggle('hidden', plannerState.nodes.length > 0);
 }
 
-function addNode(facility, x, y) {
+// Which of `facility`'s own recipes the given search query actually
+// matched BY (its recipe name/alias/output — see buildSearchText), as
+// opposed to matching the base building name itself — e.g. searching
+// "blast furnace" should place Metalworks with Blast Furnace already
+// active, not whatever recipe the base default falls back to. Returns null
+// on an empty query or no specific-recipe match (the base name matched
+// instead, or nothing did), leaving addNode's own default pick untouched.
+function matchedRecipeKey(facility, query) {
+  const q = (query || '').toLowerCase().trim();
+  if (!q) return null;
+  const recipes = RECIPES_BY_FACILITY[facility];
+  if (!recipes) return null;
+  const match = recipes.find(r => r.searchText.includes(q));
+  return match ? match.key : null;
+}
+
+function addNode(facility, x, y, preferredRecipeKey) {
   const recipes = RECIPES_BY_FACILITY[facility];
   if (!recipes || !recipes.length) return;
   // Prefer the group's own plain/unmodule'd recipe as the default (placing
   // "Oil Refinery" should start on the base Oil Refinery recipe, not
   // whichever module recipe happens to sort first alphabetically) — falls
   // back to the alphabetically-first when there's no plain configuration.
-  const defaultRecipe = recipes.find(r => r.facility === facility) || recipes[0];
-  const node = { id: `n${nodeIdCounter++}`, facility, recipeKeys: [defaultRecipe.key], x, y, count: 1 };
+  // A caller-supplied preferredRecipeKey (see matchedRecipeKey) wins over
+  // both: it's what the user actually searched for.
+  const preferred = preferredRecipeKey && recipes.find(r => r.key === preferredRecipeKey);
+  const defaultRecipe = preferred || recipes.find(r => r.facility === facility) || recipes[0];
+  const node = { id: `n${nodeIdCounter++}`, facility, recipeKeys: [defaultRecipe.key], x, y, count: 1, recipeQueues: {} };
   plannerState.nodes.push(node);
   nodesById[node.id] = node;
   renderNodesLayer();
@@ -839,25 +926,15 @@ function addNode(facility, x, y) {
   saveState();
 }
 
-// A node's count models queues/buildings (see itemRatePerMin's power-draw
-// math) — but a power-GENERATING recipe (Power Station, ...) has nothing to
-// parallelize, same reasoning as maxQueuesForRecipe in calc.js, so a node
-// currently running one locks to exactly 1 instead of being steppable.
-// Every other node is uncapped: count can climb past 5 to represent a
-// second (or third, ...) physical building.
-function maxCountForNode(node) {
-  return nodeRecipeObjs(node).some(r => maxQueuesForRecipe(r) === 1) ? 1 : Infinity;
-}
-
-// How many of this exact facility+recipe are placed here, side by side —
-// scales every displayed rate (NEEDS/YIELDS per-minute, and any wire fed
-// from this node's outputs) linearly, and power draw once per full
-// building's worth (see itemRatePerMin) instead of linearly, without
-// needing separate duplicate nodes for "I built two of these." Craft time
-// itself is untouched: it's still one recipe cycle, just running on `count`
-// physical copies at once.
+// How many physical COPIES of this exact building are placed here, side by
+// side — scales every displayed rate (NEEDS/YIELDS per-minute, power draw,
+// and any wire fed from this node's outputs) linearly, without needing
+// separate duplicate nodes for "I built two of these." Uncapped (even for a
+// power-generating recipe — a second Power Station is a perfectly normal
+// thing to build) since it's queues, not copies, that a single building
+// caps at 5 (see setRecipeQueueCount/nodeQueueCount).
 function setNodeCount(node, count) {
-  node.count = Math.min(maxCountForNode(node), Math.max(1, count));
+  node.count = Math.max(1, count);
   const nodeEl = nodesLayerEl.querySelector(`.fac-node[data-node-id="${node.id}"]`);
   if (nodeEl) nodeEl.innerHTML = buildNodeHtml(node);
   indexPorts();
@@ -1026,12 +1103,20 @@ function loadState() {
       count: Math.max(1, Math.floor(n.count) || 1), // older saved layouts predate the count field
       // Older saved layouts predate multi-recipe cards and carry a single
       // recipeKey instead — migrate it into a one-item recipeKeys array.
-      recipeKeys: n.recipeKeys ? n.recipeKeys : (n.recipeKey ? [n.recipeKey] : [])
+      recipeKeys: n.recipeKeys ? n.recipeKeys : (n.recipeKey ? [n.recipeKey] : []),
+      recipeQueues: n.recipeQueues || {} // older saved layouts predate per-recipe queues
     }));
-  // Re-clamp against the power-producer cap (see maxCountForNode) — a
-  // layout saved before that rule existed could have count > 1 on a power
-  // node.
-  for (const n of plannerState.nodes) n.count = Math.min(maxCountForNode(n), n.count);
+  // Re-clamp every recipe's own queue count against its current max (1 for
+  // a power-generating recipe, 5 otherwise — see clampQueueCount) — a
+  // layout saved before this rule existed, or edited by hand, could carry a
+  // stale out-of-range value.
+  for (const n of plannerState.nodes) {
+    for (const key of Object.keys(n.recipeQueues)) {
+      const recipe = RECIPE_INDEX_BY_KEY[key];
+      if (recipe) n.recipeQueues[key] = clampQueueCount(n.recipeQueues[key], recipe);
+      else delete n.recipeQueues[key];
+    }
+  }
   plannerState.connections = data.connections || [];
   plannerState.pan = data.pan && typeof data.pan.x === 'number' ? data.pan : { x: 60, y: 60 };
   plannerState.scale = typeof data.scale === 'number' ? clamp(data.scale, 0.3, 2.5) : 1;
@@ -1055,6 +1140,15 @@ const PLANNER_IMPORT_KEY = 'foxholePlannerImport.v1';
 // steps out in columns by depth (gathered raw materials on the left,
 // deeper/more-refined steps to the right — the same direction wires
 // naturally flow), then reconnect edges by recipe key.
+//
+// Every step is grouped by its BASE facility first — a chain that needs
+// both Construction Materials (Materials Factory [Metal Press]) and
+// Assembly Materials I (Materials Factory [Forge]) lands both recipes on
+// ONE Materials Factory node (as two recipe chips, same as manually
+// clicking "+ RECIPE" would), not two separate same-named cards with no
+// visible way to tell them apart. A step's own depth still decides the
+// group's column, using whichever depth is SHALLOWEST among its recipes —
+// the group is needed as soon as its earliest-required recipe is.
 function tryImportFromCalculator() {
   let raw;
   try { raw = localStorage.getItem(PLANNER_IMPORT_KEY); } catch (e) { return false; }
@@ -1068,14 +1162,23 @@ function tryImportFromCalculator() {
     return false;
   }
 
-  const byDepth = {};
+  const groupsByFacility = new Map();
   for (const step of payload.steps) {
     const recipe = RECIPE_INDEX_BY_KEY[step.recipeKey];
     if (!recipe) continue; // stale export from before a data change — skip rather than guess
+    const base = baseFacilityName(recipe.facility);
     const depth = Number(step.depth) || 0;
-    (byDepth[depth] || (byDepth[depth] = [])).push({ recipeKey: step.recipeKey, facility: baseFacilityName(recipe.facility) });
+    const group = groupsByFacility.get(base) || { recipeKeys: [], minDepth: depth };
+    group.recipeKeys.push(step.recipeKey);
+    group.minDepth = Math.min(group.minDepth, depth);
+    groupsByFacility.set(base, group);
   }
-  if (!Object.keys(byDepth).length) return false;
+  if (!groupsByFacility.size) return false;
+
+  const byDepth = {};
+  for (const [base, group] of groupsByFacility) {
+    (byDepth[group.minDepth] || (byDepth[group.minDepth] = [])).push({ facility: base, recipeKeys: group.recipeKeys });
+  }
 
   plannerState.nodes = [];
   plannerState.connections = [];
@@ -1090,16 +1193,21 @@ function tryImportFromCalculator() {
   Object.keys(byDepth).map(Number).sort((a, b) => a - b).forEach(depth => {
     byDepth[depth].forEach((entry, i) => {
       const id = `n${nodeIdCounter++}`;
-      const node = { id, facility: entry.facility, recipeKeys: [entry.recipeKey], x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1 };
+      const node = { id, facility: entry.facility, recipeKeys: entry.recipeKeys, x: depth * COL_SPACING, y: i * ROW_SPACING, count: 1, recipeQueues: {} };
       plannerState.nodes.push(node);
       nodesById[id] = node;
-      nodeIdByRecipeKey[entry.recipeKey] = id;
+      for (const recipeKey of entry.recipeKeys) nodeIdByRecipeKey[recipeKey] = id;
     });
   });
 
   for (const edge of payload.edges || []) {
     const fromId = nodeIdByRecipeKey[edge.from], toId = nodeIdByRecipeKey[edge.to];
-    if (!fromId || !toId) continue;
+    // fromId === toId once two recipes sharing an item both landed on the
+    // same merged node (e.g. Metal Press's own Construction Materials
+    // output happening to also be Forge's — not the case today, but
+    // possible for a future data change) — nothing to wire, it's already
+    // the same physical building.
+    if (!fromId || !toId || fromId === toId) continue;
     plannerState.connections.push({ id: `w${wireIdCounter++}`, fromNode: fromId, fromItem: edge.item, toNode: toId, toItem: edge.item, waypoints: [] });
   }
 
@@ -1484,12 +1592,12 @@ function openRecipePicker(nodeId) {
 // single-recipe picker would.
 function toggleNodeRecipe(node, key) {
   const idx = node.recipeKeys.indexOf(key);
-  if (idx >= 0) node.recipeKeys.splice(idx, 1);
-  else node.recipeKeys.push(key);
-  // Adding/removing a recipe can change whether this node is now (or is no
-  // longer) a power producer — re-clamp so a stale count > 1 can't survive
-  // gaining a power recipe (see maxCountForNode).
-  node.count = Math.min(maxCountForNode(node), node.count);
+  if (idx >= 0) {
+    node.recipeKeys.splice(idx, 1);
+    if (node.recipeQueues) delete node.recipeQueues[key];
+  } else {
+    node.recipeKeys.push(key);
+  }
   pruneConnections();
   renderNodesLayer();
   renderWires();
@@ -1511,7 +1619,7 @@ function closeRecipePicker() {
 // initPlannerUI).
 function renderFacilitySidebar(query = '') {
   const q = query.toLowerCase().trim();
-  const filtered = q ? FACILITY_CATALOG.filter(f => f.name.toLowerCase().includes(q)) : FACILITY_CATALOG;
+  const filtered = q ? FACILITY_CATALOG.filter(f => f.name.toLowerCase().includes(q) || f.searchText.includes(q)) : FACILITY_CATALOG;
   if (!filtered.length) {
     facilityListEl.innerHTML = `<div class="planner-facility-empty">NO MATCHING FACILITIES</div>`;
     return;
@@ -1552,12 +1660,17 @@ function initPlannerUI() {
     const item = e.target.closest('.planner-facility-item');
     if (!item) return;
     const center = viewportCenterWorld();
-    addNode(item.dataset.facility, center.x - 130 + (Math.random() * 40 - 20), center.y - 90 + (Math.random() * 40 - 20));
+    addNode(item.dataset.facility, center.x - 130 + (Math.random() * 40 - 20), center.y - 90 + (Math.random() * 40 - 20), matchedRecipeKey(item.dataset.facility, facilitySearchEl.value));
   });
   facilityListEl.addEventListener('dragstart', e => {
     const item = e.target.closest('.planner-facility-item');
     if (!item) return;
     e.dataTransfer.setData('text/plain', item.dataset.facility);
+    // Carried alongside the facility name so a drop far from the sidebar
+    // (search box may have since changed) still activates whichever recipe
+    // the search actually matched at drag time (see matchedRecipeKey).
+    const recipeKey = matchedRecipeKey(item.dataset.facility, facilitySearchEl.value);
+    if (recipeKey) e.dataTransfer.setData('application/x-recipe-key', recipeKey);
     e.dataTransfer.effectAllowed = 'copy';
   });
   viewportEl.addEventListener('dragover', e => e.preventDefault());
@@ -1566,7 +1679,7 @@ function initPlannerUI() {
     const facility = e.dataTransfer.getData('text/plain');
     if (!facility || !RECIPES_BY_FACILITY[facility]) return;
     const pos = screenToWorld(e.clientX, e.clientY);
-    addNode(facility, pos.x - 130, pos.y - 20);
+    addNode(facility, pos.x - 130, pos.y - 20, e.dataTransfer.getData('application/x-recipe-key') || undefined);
   });
 
   // ---- Board: pan / zoom ----
@@ -1643,6 +1756,18 @@ function initPlannerUI() {
       toggleNodeRecipe(node, chipRemoveBtn.dataset.recipeKey);
       return;
     }
+    const chipQueueBtn = e.target.closest('[data-action="recipe-queue-inc"], [data-action="recipe-queue-dec"]');
+    if (chipQueueBtn) {
+      const node = nodesById[chipQueueBtn.closest('.fac-node').dataset.nodeId];
+      if (!node) return;
+      const recipeKey = chipQueueBtn.dataset.recipeKey;
+      const delta = chipQueueBtn.dataset.action === 'recipe-queue-inc' ? 1 : -1;
+      setRecipeQueueCount(node, recipeKey, nodeQueueCount(node, recipeKey) + delta);
+      return;
+    }
+    // Clicking the queue stepper's input (or its static "Q:1" badge)
+    // shouldn't fall through to opening the recipe picker below.
+    if (e.target.closest('.chip-queue')) return;
     const addRecipeBtn = e.target.closest('[data-action="add-recipe"]');
     if (addRecipeBtn) { openRecipePicker(addRecipeBtn.closest('.fac-node').dataset.nodeId); return; }
     const recipeChip = e.target.closest('.fac-node-recipe-chip');
@@ -1655,18 +1780,24 @@ function initPlannerUI() {
       return;
     }
   });
-  // Typing a count value directly commits on blur/Enter (a 'change'
+  // Typing a count/queue value directly commits on blur/Enter (a 'change'
   // event), same pattern as the main calculator's ticket qty field — a
   // re-render mid-keystroke would fight the user for control of the input.
   nodesLayerEl.addEventListener('change', e => {
-    const input = e.target.closest('.fac-qty-val');
-    if (!input) return;
-    const node = nodesById[input.closest('.fac-node').dataset.nodeId];
-    if (!node) return;
-    setNodeCount(node, Math.floor(Number(input.value) || 1));
+    const countInput = e.target.closest('.fac-qty-val');
+    if (countInput) {
+      const node = nodesById[countInput.closest('.fac-node').dataset.nodeId];
+      if (node) setNodeCount(node, Math.floor(Number(countInput.value) || 1));
+      return;
+    }
+    const queueInput = e.target.closest('.chip-queue-val');
+    if (queueInput) {
+      const node = nodesById[queueInput.closest('.fac-node').dataset.nodeId];
+      if (node) setRecipeQueueCount(node, queueInput.dataset.recipeKey, Math.floor(Number(queueInput.value) || 1));
+    }
   });
   nodesLayerEl.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && e.target.closest('.fac-qty-val')) e.target.blur();
+    if (e.key === 'Enter' && e.target.closest('.fac-qty-val, .chip-queue-val')) e.target.blur();
   });
 
   // ---- Wires: select, drag to bend, drag a bend point, double-click a
