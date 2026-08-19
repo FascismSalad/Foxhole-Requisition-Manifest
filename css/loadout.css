@@ -252,6 +252,7 @@ body.loadout-page .masthead {
   display: -webkit-box;
   overflow-wrap: anywhere;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   transform: translateY(var(--icon-nudge-y));
   -webkit-box-orient: vertical;
   overflow: hidden;
