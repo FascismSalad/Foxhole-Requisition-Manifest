@@ -72,6 +72,16 @@
       else fail('recipe-picker-shows-module-facility', 'picker HTML missing "Materials Factory [Forge]"');
       closeRecipePicker();
       removeNodes([pickerNode.id]);
+
+      // recipeVariantSuffix must not repeat a module word that's already
+      // in the bracket tag — some data entries set recipe_name to just the
+      // bare module name again ("Metal Press" alongside facility
+      // "Materials Factory [Metal Press]"), which used to render as
+      // "[Metal Press] Metal Press" on every label that shows it (recipe
+      // chips, picker cards, alternative-recipe cards alike).
+      const metalPress = RECIPES_BY_FACILITY['Materials Factory'].find(r => r.key === 'cmat_metal_press');
+      if (metalPress && !/\[Metal Press\]\s*Metal Press/.test(metalPress.label)) pass('recipe-label-no-module-word-repeat');
+      else fail('recipe-label-no-module-word-repeat', `label=${metalPress && metalPress.label}`);
     } else {
       fail('recipe-picker-shows-module-facility', 'Materials Factory not found in RECIPES_BY_FACILITY');
     }

@@ -50,16 +50,23 @@ function baseFacilityName(name) {
 //    name with nothing left once that's stripped, but sometimes carries
 //    genuinely new info even on the plain facility itself (fuel choice:
 //    "Salvage Mine (Diesel)" vs "(Petrol)", both facility "Salvage Mine").
+//    Some data entries (Materials/Metalworks Factory's module recipes) set
+//    recipe_name to just the bare module word again instead of repeating
+//    the facility or leaving it blank ("Metal Press" alongside facility
+//    "Materials Factory [Metal Press]") — that's not new info, moduleTag
+//    already carries it, so it's dropped rather than shown twice
+//    ("[Metal Press] Metal Press").
 function recipeVariantSuffix(r, baseName) {
   let moduleTag = '';
   if (r.facility && r.facility !== baseName) {
     moduleTag = r.facility.startsWith(baseName) ? r.facility.slice(baseName.length).trim() : r.facility;
   }
+  const moduleWord = moduleTag.replace(/^\[|\]$/g, '');
   let fuelTag = '';
   if (r.recipe_name && r.facility) {
     let v = r.recipe_name;
     if (v.startsWith(r.facility)) v = v.slice(r.facility.length).trim();
-    if (v && v !== r.facility) fuelTag = v;
+    if (v && v !== r.facility && v !== moduleWord) fuelTag = v;
   }
   return [moduleTag, fuelTag].filter(Boolean).join(' ');
 }
